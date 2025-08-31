@@ -5,11 +5,11 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main-dashboard');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('main-dashboard', ['title' => 'Dashboard', 'subtitle' => 'Ringkasan laporan riksa uji PT. Asteria Riksa Indonesia']);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Tools Route
-    Route::middleware(['auth', 'role:admin|owner'])->group(function () {
+    Route::middleware(['auth', 'role:admin|owner|petugas'])->group(function () {
     Route::resource('tools', ToolController::class);
 });
 });

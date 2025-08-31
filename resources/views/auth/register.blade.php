@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nama')" />
             <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -12,21 +12,21 @@
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Position -->
         <div class="mt-4">
-            <x-input-label for="position" :value="__('position')" />
-            <x-text-input id="position" class="block w-full mt-1" type="text" name="position" :value="old('position')" required autocomplete="username" />
+            <x-input-label for="position" :value="__('Jabatan')" />
+            <x-text-input id="position" class="block w-full mt-1" type="text" name="position" :value="old('position')" required autocomplete="position" />
             <x-input-error :messages="$errors->get('position')" class="mt-2" />
         </div>
 
         <!-- Avatar -->
         <div class="mt-4">
-            <x-input-label for="avatar" :value="__('avatar')" />
-            <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" :value="old('avatar')" required autocomplete="avatar" />
+            <x-input-label for="avatar" :value="__('Foto')" />
+            <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" :value="old('avatar')" autocomplete="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
 

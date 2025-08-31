@@ -13,7 +13,11 @@ class ToolController extends Controller
     public function index()
     {
         $tools = Tool::all();
-        return view('tools.index', compact('tools'));
+        return view('tools.index', [
+            'tools' => $tools, 
+            'title' => 'Daftar Alat', 
+            'subtitle' => 'Daftar alat riksa uji PT. Asteria Riksa Indonesia'
+        ]);
     }
 
     /**
