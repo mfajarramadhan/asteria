@@ -4,9 +4,9 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Nama')" />
-            <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="nama" :value="__('Nama')" />
+            <x-text-input id="nama" class="block w-full mt-1" type="text" name="nama" :value="old('nama')" required autofocus autocomplete="nama" />
+            <x-input-error :messages="$errors->get('nama')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -18,14 +18,14 @@
 
         <!-- Position -->
         <div class="mt-4">
-            <x-input-label for="position" :value="__('Jabatan')" />
-            <x-text-input id="position" class="block w-full mt-1" type="text" name="position" :value="old('position')" required autocomplete="position" />
-            <x-input-error :messages="$errors->get('position')" class="mt-2" />
+            <x-input-label for="jabatan" :value="__('Jabatan')" />
+            <x-text-input id="jabatan" class="block w-full mt-1" type="text" name="jabatan" :value="old('jabatan')" required autocomplete="jabatan" />
+            <x-input-error :messages="$errors->get('jabatan')" class="mt-2" />
         </div>
 
         <!-- Avatar -->
         <div class="mt-4">
-            <x-input-label for="avatar" :value="__('Foto')" />
+            <x-input-label for="avatar" :value="__('Foto Profile')" />
             <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" :value="old('avatar')" autocomplete="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>

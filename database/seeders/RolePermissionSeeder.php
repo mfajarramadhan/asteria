@@ -33,8 +33,8 @@ class RolePermissionSeeder extends Seeder
 
         // 4. Create Super Owner
         $userOwner = User::create([
-            'name' => 'Muh Fajar',
-            'position' => 'Manager',
+            'nama' => 'Muh Fajar',
+            'jabatan' => 'Manager',
             'avatar' => 'images/default-avatar.png',
             'email' => 'fajar@owner.com',
             'password' => bcrypt('fajar12345'),

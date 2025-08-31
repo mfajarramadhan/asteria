@@ -1,22 +1,62 @@
-<!-- Profile Section -->
-            <div x-show="activeSection === 'profile'" class="space-y-6">
-                <header>
-                    <h1 class="text-2xl font-bold text-gray-800">Your Profile</h1>
-                    <p class="text-gray-600">Update your personal information and settings.</p>
-                </header>
-                <div class="p-4 bg-white rounded-lg shadow-md">
-                    <form class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" id="name" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                            <input type="email" id="email" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="john.doe@example.com">
-                        </div>
-                        <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Save Changes
-                        </button>
-                    </form>
+<x-layout>
+    <x-slot:title>{{ $title }}</x-slot:title>
+    <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
+        <div class="p-4 bg-white rounded-lg shadow-md">
+            <form action="{{ route('tools.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
+                @csrf
+                <div>
+                    <label for="nama_alat" class="block text-sm font-medium text-gray-700">Nama Alat</label>
+                    <input type="text" name="nama_alat" id="nama_alat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_alat') }}" placeholder="Masukkan nama alat...">
+                    @error('nama_alat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
                 </div>
-            </div>
+                <div>
+                    <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Alat</label>
+                    <select name="jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <option value="-">--- Pilih Jenis Alat ---</option>
+                        <option value="PUBT" {{ old('jenis') == 'PUBT' ? 'selected' : '' }}>PUBT</option>
+                        <option value="PTP" {{ old('jenis') == 'PTP' ? 'selected' : '' }}>PTP</option>
+                        <option value="PAPA" {{ old('jenis') == 'PAPA' ? 'selected' : '' }}>PAPA</option>
+                        <option value="ILP" {{ old('jenis') == 'ILP' ? 'selected' : '' }}>ILP</option>
+                        <option value="ELEVATOR" {{ old('jenis') == 'ELEVATOR' ? 'selected' : '' }}>ELEVATOR</option>
+                        <option value="IPK" {{ old('jenis') == 'IPK' ? 'selected' : '' }}>IPK</option>
+                        <option value="LINGKER" {{ old('jenis') == 'LINGKER' ? 'selected' : '' }}>LINGKER</option>
+                    </select>
+                    @error('jenis')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror  
+                </div>
+                <div class="mb-4">
+                    <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
+                    <img class="max-w-md rounded-md img-preview max-h-24" alt="">
+                    <input class="block w-full text-sm text-gray-900 px-3 py-2 mt-1 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('lampiran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" id="lampiran" name="lampiran" onchange="previewImage()" type="file">
+                    @error('lampiran')
+                        <div class="text-xs text-red-600">
+                        {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Simpan
+                </button>
+            </form>
+        </div>
+        <script>
+            // Add previewImage
+            function previewImage(){
+                const image = document.querySelector('#lampiran');
+                const imgPreview = document.querySelector('.img-preview');
+                imgPreview.style.display = "block";
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+                oFReader.onload = function(oFREvent){
+                    imgPreview.src = oFREvent.target.result;
+                }
+            }
+        </script>
+</x-layout>

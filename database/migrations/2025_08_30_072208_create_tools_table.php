@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tools', function (Blueprint $table) {
         $table->id();
         $table->string('nama_alat');
-        $table->string('jenis_alat');
-        $table->text('spesifikasi')->nullable();
+        $table->string('jenis');
+        $table->string('lampiran')->nullable();
         $table->timestamps();
 });
 

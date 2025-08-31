@@ -13,8 +13,8 @@
         <ul class="space-y-2">
             <li>
                 <a href="{{ route('dashboard') }}"
-                    class="flex items-center px-4 py-2 space-x-3 transition-colors rounded-lg hover:bg-gray-100
-                    {{ request()->routeIs('dashboard') ? 'bg-gray-100' : '' }}">
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-blue-300
+                    {{ request()->routeIs('dashboard') ? 'bg-blue-300' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0l-2-2m2 2V4a1 1 0 00-1-1h-3a1 1 0 00-1 1z" />
                     </svg>
@@ -24,8 +24,8 @@
             </li>
             <li>
                 <a href="{{ route('tools.index') }}" 
-                    class="flex items-center px-4 py-2 space-x-3 transition-colors rounded-lg hover:bg-gray-100 
-                    {{ request()->routeIs('tools.*') ? 'bg-gray-100' : '' }}">
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-blue-300 
+                    {{ request()->routeIs('tools.*') ? 'bg-blue-300' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
@@ -35,8 +35,8 @@
             </li>
             <li>
                 <a href="{{ route('tools.index') }}" 
-                    class="flex items-center px-4 py-2 space-x-3 transition-colors rounded-lg hover:bg-gray-100 
-                    {{ request()->routeIs('tools.*') ? 'bg-gray-100' : '' }}">
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-blue-300 
+                    {{ request()->routeIs('tools.*') ? 'bg-blue-300' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>

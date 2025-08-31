@@ -25,7 +25,10 @@ class ToolController extends Controller
      */
     public function create()
     {
-        return view('tools.create');
+        return view('tools.create', [
+            'title' => 'Tambah Alat', 
+            'subtitle' => 'Tambah alat riksa uji PT. Asteria Riksa Indonesia'
+        ]);
     }
 
     /**
@@ -33,13 +36,19 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'nama_alat' => 'required|string|max:255',
-            'jenis_alat' => 'required|string|max:255',
+            'jenis' => 'required|string|max:255',
         ]);
+         // Jika ada gambar baru (upload)
+        if($request->file('lampiran')){
+            // simpan ke dalam folder post-images
+            $validateData['lampiran'] = $request->file('lampiran')->store('lampiran-images');
+        }
+        // Jika tidak ada gambar baru, maka biarkan saja
 
-        Tool::create($request->all());
-        return redirect()->route('tools.index')->with('success', 'Alat berhasil ditambahkan');
+        Tool::create($validateData);
+        return redirect()->route('tools.index')->with('success', 'Alat berhasil ditambahkan!');
     }
 
     /**
@@ -78,6 +87,6 @@ class ToolController extends Controller
     public function destroy(Tool $tool)
     {
         $tool->delete();
-        return redirect()->route('tools.index')->with('success', 'Alat berhasil dihapus');
+        return redirect()->route('tools.index')->with('success', 'Alat berhasil dihapus!');
     }
 }
