@@ -19,4 +19,9 @@ class Tool extends Model
     protected $casts = [
         'lampiran' => 'array',
     ];
+
+    public function jobOrders()
+    {
+        return $this->hasMany(JobOrderTool::class);
+    }
 }
