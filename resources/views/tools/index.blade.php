@@ -2,57 +2,65 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
 
-    {{-- Alert Success --}}
+   {{-- Alert Success --}}
     @if (session()->has('success'))
-    <div x-data="{ show: true }" x-show="show" @click.outside="show = false" id="alert-3" class="flex items-center p-4 mb-4 text-black bg-blue-300 rounded-lg" role="alert" x-transition>
-     
-        <div class="text-sm font-semibold ms-2">
-            {{ session('success') }}
-        </div>
+        <div 
+            x-data="{ show: true }" 
+            x-show="show" 
+            x-init="setTimeout(() => show = false, 2500)" 
+            @click.outside="show = false"
+            class="flex items-center p-2 mb-2 text-black bg-blue-300 rounded-lg shadow" 
+            role="alert" 
+            x-transition
+        >
+            <div class="text-sm font-semibold ms-2">
+                {{ session('success') }}
+            </div>
 
-        <button type="button" 
-            @click="show = false"
-            class="ms-auto -mx-1.5 -my-1.5 bg-gray-200 text-black rounded-lg 
-                focus:ring-2 focus:ring-blue-300 p-1.5 hover:bg-gray-100 
-                inline-flex items-center justify-center h-8 w-8" 
-            aria-label="Close">
-            
-            <span class="sr-only">Close</span>
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
-                fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            <button type="button" 
+                @click="show = false"
+                class="flex items-center justify-center w-8 h-8 text-black bg-gray-200 rounded-md ms-auto focus:ring-2 focus:ring-blue-300 hover:bg-gray-100" 
+                aria-label="Close">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
+                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                 </svg>
-        </button>
-    </div>
+            </button>
+        </div>
     @endif
     {{-- End Alert Success --}}
 
     {{-- Alert Error --}}
-    @if (session()->has('error'))
-    <div x-data="{ show: true }" x-show="show" @click.outside="show = false" id="alert-3" class="flex items-center p-4 mb-4 text-black bg-red-300 rounded-lg" role="alert" x-transition>
-     
-        <div class="text-sm font-semibold ms-2">
-            {{ session('error') }}
-        </div>
+    @if (session()->has('error')) 
+        <div 
+            x-data="{ show: true }" 
+            x-show="show" 
+            x-init="setTimeout(() => show = false, 2500)" 
+            @click.outside="show = false"
+            class="flex items-center p-2 mb-2 text-white bg-red-600 rounded-lg shadow" 
+            role="alert" 
+            x-transition
+        >
+            <div class="text-sm font-medium ms-2">
+                {{ session('error') }}
+            </div>
 
-        <button type="button" 
-            @click="show = false"
-            class="ms-auto -mx-1.5 -my-1.5 bg-gray-200 text-black rounded-lg 
-                focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-gray-100 
-                inline-flex items-center justify-center h-8 w-8" 
-            aria-label="Close">
-            
-            <span class="sr-only">Close</span>
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
-                fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            <button type="button" 
+                @click="show = false"
+                class="flex items-center justify-center w-8 h-8 text-white bg-red-700 rounded-md ms-auto focus:ring-2 focus:ring-red-300 hover:bg-red-800" 
+                aria-label="Close">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" 
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
+                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                 </svg>
-        </button>
-    </div>
+            </button>
+        </div>
     @endif
     {{-- End Alert Error --}}
+
+
     
     <button class="px-5 py-3 font-bold text-white transition-transform rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
         <a href="{{ route('tools.create') }}">+ Tambah Alat</a>
@@ -63,7 +71,7 @@
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama Alat</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jenis</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Dokumen & Lampiran</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Deskripsi</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                 </tr>
             </thead>
@@ -73,7 +81,7 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">1</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->nama_alat }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->jenis }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->lampiran }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->deskripsi }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             {{-- Read --}}

@@ -14,4 +14,9 @@ class Tool extends Model
     protected $guarded = [
         'id',
     ];
+
+    // Cast ke array otomatis saat diambil dari DB
+    protected $casts = [
+        'lampiran' => 'array',
+    ];
 }

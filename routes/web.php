@@ -5,7 +5,7 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('main-dashboard');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {

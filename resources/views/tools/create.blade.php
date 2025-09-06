@@ -5,8 +5,8 @@
             <form action="{{ route('tools.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
                 <div>
-                    <label for="nama_alat" class="block text-sm font-medium text-gray-700">Nama Alat</label>
-                    <input type="text" name="nama_alat" id="nama_alat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_alat') }}" placeholder="Masukkan nama alat...">
+                    <label for="nama_alat" class="block text-sm font-medium text-gray-700">Nama Alat <span class="text-red-600">*</span></label>
+                    <input type="text" required name="nama_alat" id="nama_alat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_alat') }}" placeholder="Masukkan nama alat...">
                     @error('nama_alat')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -14,9 +14,9 @@
                     @enderror   
                 </div>
                 <div>
-                    <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Alat</label>
-                    <select name="jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        <option value="-">--- Pilih Jenis Alat ---</option>
+                    <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Alat <span class="text-red-600">*</span></label>
+                    <select required name="jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <option value="">--- Pilih Jenis Alat ---</option>
                         <option value="PUBT" {{ old('jenis') == 'PUBT' ? 'selected' : '' }}>PUBT</option>
                         <option value="PTP" {{ old('jenis') == 'PTP' ? 'selected' : '' }}>PTP</option>
                         <option value="PAPA" {{ old('jenis') == 'PAPA' ? 'selected' : '' }}>PAPA</option>
@@ -31,32 +31,96 @@
                     </div>
                     @enderror  
                 </div>
+                {{-- Upload 1 Image
                 <div class="mb-4">
                     <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
                     <img class="max-w-md rounded-md img-preview max-h-24" alt="">
-                    <input class="block w-full text-sm text-gray-900 px-3 py-2 mt-1 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('lampiran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" id="lampiran" name="lampiran" onchange="previewImage()" type="file">
+                    <input type="file" id="lampiran" name="lampiran" onchange="previewImage()" class="block w-full text-sm text-gray-900 px-3 py-2 mt-1 border border-gray-300 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('lampiran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     @error('lampiran')
                         <div class="text-xs text-red-600">
                         {{ $message }}
                         </div>
                     @enderror
+                </div> --}}
+                <div class="mb-4">
+                    <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
+                    
+                    <!-- Container untuk preview multiple image -->
+                    <div id="preview-container" class="flex flex-wrap gap-2 mb-2"></div>
+                    
+                    <input 
+                        type="file" 
+                        id="lampiran" 
+                        name="lampiran[]" 
+                        multiple
+                        onchange="previewImages()" 
+                        class="block w-full text-sm text-gray-900 px-3 py-2 mt-1 border border-gray-300 rounded-md cursor-pointer bg-gray-50 
+                            @error('lampiran.*') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
+                      @if($errors->has('lampiran.*'))
+                        <ul class="mt-1 space-y-1">
+                            @foreach($errors->get('lampiran.*') as $messages)
+                                @foreach($messages as $message)
+                                    <li class="text-xs text-red-600">{{ $message }}</li>
+                                @endforeach
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
+                <div>
+                <label for="deskripsi" class="block text-sm font-medium text-gray-700">
+                    Deskripsi
+                </label>
+                <textarea 
+                    name="deskripsi" 
+                    id="deskripsi" 
+                    rows="4"
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('deskripsi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" placeholder="Masukkan deskripsi alat...">{{ old('deskripsi') }}</textarea>
+                @error('deskripsi')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror   
+            </div>
+
                 <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Simpan
                 </button>
             </form>
         </div>
         <script>
-            // Add previewImage
-            function previewImage(){
-                const image = document.querySelector('#lampiran');
-                const imgPreview = document.querySelector('.img-preview');
-                imgPreview.style.display = "block";
-                const oFReader = new FileReader();
-                oFReader.readAsDataURL(image.files[0]);
-                oFReader.onload = function(oFREvent){
-                    imgPreview.src = oFREvent.target.result;
-                }
+            // // Add previewImage (1 image)
+            // function previewImage(){
+            //     const image = document.querySelector('#lampiran');
+            //     const imgPreview = document.querySelector('.img-preview');
+            //     imgPreview.style.display = "block";
+            //     const oFReader = new FileReader();
+            //     oFReader.readAsDataURL(image.files[0]);
+            //     oFReader.onload = function(oFREvent){
+            //         imgPreview.src = oFREvent.target.result;
+            //     }
+            // }
+
+            // Add previewImage (multiple image)
+            function previewImages() {
+                const previewContainer = document.getElementById('preview-container');
+                const files = document.getElementById('lampiran').files;
+                
+                // Kosongkan preview lama
+                previewContainer.innerHTML = "";
+
+                // Loop semua file yg dipilih
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Buat element <img> baru untuk tiap file
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
+                        previewContainer.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                });
             }
         </script>
 </x-layout>

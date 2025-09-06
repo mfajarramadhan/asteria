@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ToolController extends Controller
 {
@@ -39,13 +40,34 @@ class ToolController extends Controller
         $validateData = $request->validate([
             'nama_alat' => 'required|string|max:255',
             'jenis' => 'required|string|max:255',
+            'lampiran' => 'nullable|array',
+            'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
+            'deskripsi' => 'nullable|string|max:65535'    
         ]);
-         // Jika ada gambar baru (upload)
-        if($request->file('lampiran')){
-            // simpan ke dalam folder post-images
-            $validateData['lampiran'] = $request->file('lampiran')->store('lampiran-images');
+        // // Untuk menampung 1 foto
+        // if($request->file('lampiran')){
+        //     // simpan ke dalam folder post-images
+        //     $validateData['lampiran'] = $request->file('lampiran')->store('lampiran-images', 'public');
+        // }
+
+        // Untuk menampung json multiple foto gunakan array kosong 
+        $lampiranPaths = [];
+
+        // Default deskripsi "-"
+        $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
+
+        // Jika ada gambar baru (upload)
+        if ($request->hasFile('lampiran')) {
+            foreach ($request->file('lampiran') as $file) {
+                // Simpan tiap file ke storage/app/public/lampiran-images
+                $path = $file->store('lampiran-images', 'public');
+                $lampiranPaths[] = $path;
+            }
         }
         // Jika tidak ada gambar baru, maka biarkan saja
+
+        // Simpan sebagai JSON ke database
+        $validateData['lampiran'] = json_encode($lampiranPaths);
 
         Tool::create($validateData);
         return redirect()->route('tools.index')->with('success', 'Alat berhasil ditambahkan!');
@@ -56,7 +78,11 @@ class ToolController extends Controller
      */
     public function show(Tool $tool)
     {
-        
+        return view('tools.show', [
+            'tool' => $tool, 
+            'title' => 'Detail alat',
+            'subtitle' => ''
+        ]);
     }
 
     /**
@@ -64,7 +90,11 @@ class ToolController extends Controller
      */
     public function edit(Tool $tool)
     {
-        return view('tools.edit', compact('tool'));
+        return view('tools.edit', [
+            'tool' => $tool,
+            'title' => 'Edit Alat', 
+            'subtitle' => 'Edit alat riksa uji PT. Asteria Riksa Indonesia'
+        ]);
     }
 
     /**
@@ -72,12 +102,32 @@ class ToolController extends Controller
      */
     public function update(Request $request, Tool $tool)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'nama_alat' => 'required|string|max:255',
-            'jenis_alat' => 'required|string|max:255',
+            'jenis' => 'required|string|max:255',
+            'lampiran' => 'nullable|array',
+            'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
+            'deskripsi' => 'nullable|string|max:65535'    
         ]);
 
-        $tool->update($request->all());
+        // Default deskripsi "-"
+        $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
+
+        // Ambil lampiran lama dari database
+        $lampiranPaths = $tool->lampiran ? json_decode($tool->lampiran, true) : [];
+
+        // Jika ada gambar baru
+        if ($request->hasFile('lampiran')) {
+            foreach ($request->file('lampiran') as $file) {
+                $path = $file->store('lampiran-images', 'public');
+                $lampiranPaths[] = $path;
+            }
+        }
+
+        // Simpan array JSON ke DB
+        $validateData['lampiran'] = json_encode($lampiranPaths);
+
+        $tool->update($validateData);
         return redirect()->route('tools.index')->with('success', 'Alat berhasil diperbarui');
     }
 
