@@ -13,11 +13,26 @@ return new class extends Migration
     {
         Schema::create('job_orders', function (Blueprint $table) {
         $table->id();
-        $table->date('tanggal_pembuatan');
-        $table->string('nomor_jo')->unique();
-        $table->date('tanggal_kunjungan')->nullable();
         $table->string('nama_perusahaan');
-        $table->string('alamat_perusahaan')->nullable();
+        $table->string('alamat_perusahaan');
+        $table->string('pic_order');
+        $table->string('email')->nullable();
+        $table->string('contact_person')->nullable();
+        $table->string('no_penawaran')->nullable();
+        $table->string('no_purcash_order')->nullable();
+        $table->date('tanggal_pemeriksaan1')->nullable();
+        $table->date('tanggal_pemeriksaan2')->nullable();
+        $table->date('tanggal_pemeriksaan3')->nullable();
+        $table->date('tanggal_pemeriksaan4')->nullable();
+        $table->date('tanggal_pemeriksaan5')->nullable();
+        $table->integer('jumlah_hari_pemeriksaan');
+        $table->date('tanggal_selesai')->nullable();
+        $table->time('jam_bertemu')->nullable();
+        $table->time('jam_selesai')->nullable();
+        $table->string('pic_ditemui')->nullable();
+        $table->string('contact_person2')->nullable();
+        $table->date('tanggal_dibuat')->nullable(); 
+        $table->string('nomor_jo')->unique();
         $table->string('status')->default('belum'); // belum, on proses, selesai
         $table->timestamps();
 });

@@ -5,7 +5,6 @@
             <form action="{{ route('tools.update', $tool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-
                 <!-- Nama Alat -->
                 <div>
                     <label for="nama_alat" class="block text-sm font-medium text-gray-700">
@@ -24,8 +23,9 @@
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror   
                 </div>
+                <!-- End Nama Alat -->
 
-                <!-- Jenis -->
+                <!-- Jenis Alat -->
                 <div>
                     <label for="jenis" class="block text-sm font-medium text-gray-700">
                         Jenis Alat <span class="text-red-600">*</span>
@@ -49,6 +49,7 @@
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror  
                 </div>
+                <!-- End Jenis Alat -->
 
                 <!-- Lampiran -->
                 <div class="mb-4">
@@ -88,6 +89,7 @@
                         </ul>
                     @endif
                 </div>
+                <!-- End Lampiran -->
 
                 <!-- Deskripsi -->
                 <div>
@@ -103,11 +105,13 @@
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror   
                 </div>
+                <!-- End Deskripsi -->
 
                 <!-- Submit -->
                 <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Update
                 </button>
+                {{-- End Submit --}}
             </form>
         </div>
 

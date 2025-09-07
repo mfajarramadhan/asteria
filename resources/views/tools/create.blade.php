@@ -4,6 +4,7 @@
         <div class="p-4 bg-white rounded-lg shadow-md">
             <form action="{{ route('tools.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
                 @csrf
+                {{-- Nama Alat --}}
                 <div>
                     <label for="nama_alat" class="block text-sm font-medium text-gray-700">Nama Alat <span class="text-red-600">*</span></label>
                     <input type="text" required name="nama_alat" id="nama_alat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_alat') }}" placeholder="Masukkan nama alat...">
@@ -13,6 +14,9 @@
                     </div>
                     @enderror   
                 </div>
+                {{-- End Nama Alat --}}
+
+                {{-- Jenis Alat --}}
                 <div>
                     <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Alat <span class="text-red-600">*</span></label>
                     <select required name="jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -31,6 +35,8 @@
                     </div>
                     @enderror  
                 </div>
+                {{-- End Jenis Alat --}}
+                
                 {{-- Upload 1 Image
                 <div class="mb-4">
                     <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
@@ -42,6 +48,8 @@
                         </div>
                     @enderror
                 </div> --}}
+                
+                {{-- Lampiran --}}
                 <div class="mb-4">
                     <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
                     
@@ -67,6 +75,9 @@
                         </ul>
                     @endif
                 </div>
+                {{-- End Lampiran --}}
+
+                {{-- Deskripsi --}}
                 <div>
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700">
                     Deskripsi
@@ -81,11 +92,14 @@
                     {{ $message }}
                 </div>
                 @enderror   
-            </div>
+                </div>
+                {{-- End Deskripsi --}}
 
+                {{-- Submit --}}
                 <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Simpan
                 </button>
+                {{-- End Submit --}}
             </form>
         </div>
         <script>

@@ -12,7 +12,7 @@ class JobOrderToolObserver
         if ($jobOrderTool->isDirty('status') && $jobOrderTool->status === 'selesai') {
             $jobOrderTool->finished_at = now();
         }
-    }
+    }   
 
     public function saved(JobOrderTool $jobOrderTool): void
     {

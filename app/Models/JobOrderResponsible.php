@@ -12,7 +12,6 @@ class JobOrderResponsible extends Model
      protected $fillable = [
         'job_order_id',
         'user_id',
-        'role',
     ];
 
     public function jobOrder()

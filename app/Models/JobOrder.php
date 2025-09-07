@@ -9,20 +9,28 @@ class JobOrder extends Model
 {
     /** @use HasFactory<\Database\Factories\JobOrderFactory> */
     use HasFactory;
-    protected $fillable = [
-        'nomor_jo',
-        'tanggal_kunjungan',
-        'nama_perusahaan',
-        'alamat_perusahaan',
-        'status'    
+    protected $guarded = [
+        'id'
     ];
+    // protected $fillable = [
+    //     'nama_perusahaan',
+    //     'alamat_perusahaan',
+    //     'pic_order',
+    //     'email',
+    //     'contact_person',
+    //     'no_penawaran',
+    //     'no_purcash_order',
+    //     'tanggal_pemeriksaan',
+    //     'nomor_jo',
+    //     'status'    
+    // ];
 
     public function tools(){
         return $this->hasMany(JobOrderTool::class);
     }
 
     public function responsibles(){
-        return $this->hasMany(JobOrderResponsible::class);
+        return $this->belongsToMany(User::class, 'job_order_responsibles')->withTimestamps();
     }
 
     //Logic cek status JO
@@ -30,16 +38,13 @@ class JobOrder extends Model
     {
         $total = $this->tools()->count();
         $done  = $this->tools()->where('status', 'selesai')->count();
-        $anyProses = $this->tools()->where('status', 'proses')->exists();
 
         if ($total === 0) {
             $newStatus = 'belum';
         } elseif ($done === $total) {
             $newStatus = 'selesai';
-        } elseif ($anyProses || $done > 0) {
-            $newStatus = 'proses';
         } else {
-            $newStatus = 'belum';
+            $newStatus = 'proses'; // ada sebagian selesai, sebagian belum
         }
 
         if ($this->status !== $newStatus) {

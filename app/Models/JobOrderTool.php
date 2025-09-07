@@ -9,7 +9,7 @@ class JobOrderTool extends Model
 {
     /** @use HasFactory<\Database\Factories\JobOrderToolFactory> */
     use HasFactory;
-    protected $filable = [
+    protected $fillable = [
         'job_order_id',
         'tool_id',
         'qty',
@@ -21,9 +21,8 @@ class JobOrderTool extends Model
 
     protected $casts = [
         'kelengkapan' => 'array',
+        'finished_at' => 'datetime',
     ];
-
-    protected $dates = ['finished_at'];
 
     public function jobOrder()
     {

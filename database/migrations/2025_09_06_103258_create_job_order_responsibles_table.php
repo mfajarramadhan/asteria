@@ -15,7 +15,6 @@ return new class extends Migration
         $table->id();
         $table->foreignId('job_order_id')->constrained('job_orders')->onDelete('cascade');
         $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-        $table->string('role')->nullable(); // misal: ketua, anggota
         $table->timestamps();
     });
     }

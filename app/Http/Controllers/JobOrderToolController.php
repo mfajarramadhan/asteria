@@ -8,58 +8,22 @@ use Illuminate\Http\Request;
 class JobOrderToolController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mulai pemeriksaan alat → status = belum
      */
-    public function index()
+    public function setBelum(JobOrderTool $jobOrderTool)
     {
-        //
+        $jobOrderTool->update(['status' => 'belum', 'finished_at' => null]);
+
+        return back()->with('success', 'Status alat diubah ke belum diperiksa.');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Selesaikan pemeriksaan alat → status = selesai
      */
-    public function create()
+    public function setSelesai(JobOrderTool $jobOrderTool)
     {
-        //
-    }
+        $jobOrderTool->update(['status' => 'selesai']);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(JobOrderTool $jobOrderTool)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(JobOrderTool $jobOrderTool)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, JobOrderTool $jobOrderTool)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JobOrderTool $jobOrderTool)
-    {
-        //
+        return back()->with('success', 'Alat berhasil diselesaikan.');
     }
 }
