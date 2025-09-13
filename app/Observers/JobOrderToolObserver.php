@@ -9,7 +9,7 @@ class JobOrderToolObserver
     public function saving(JobOrderTool $jobOrderTool): void
     {
         // kalau status berubah ke "selesai" → set finished_at otomatis
-        if ($jobOrderTool->isDirty('status') && $jobOrderTool->status === 'selesai') {
+        if ($jobOrderTool->isDirty('status_tool') && $jobOrderTool->status_tool === 'selesai') {
             $jobOrderTool->finished_at = now();
         }
     }   

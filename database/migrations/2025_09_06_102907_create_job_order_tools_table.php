@@ -18,13 +18,12 @@ return new class extends Migration
 
         // Detail tambahan
         $table->integer('qty')->default(1);
-        $table->string('status_pemeriksaan')->default('pertama'); // pertama / resertifikasi
-        $table->string('status')->default('belum'); // belum / on proses / selesai
+        $table->string('status')->default('pertama'); // pertama / resertifikasi
+        $table->string('kapasitas')->nullable();
+        $table->string('model')->nullable();
+        $table->string('no_seri')->nullable();
+        $table->string('status_tool')->default('belum'); // belum / on proses / selesai
         $table->timestamp('finished_at')->nullable(); // di isi otomatis saat status selesai
-
-        // Kelengkapan alat (opsional bisa JSON)
-        $table->json('kelengkapan')->nullable(); // kelengkapan alat
-
         $table->timestamps();
 });
 

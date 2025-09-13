@@ -13,14 +13,15 @@ class JobOrderTool extends Model
         'job_order_id',
         'tool_id',
         'qty',
-        'status_pemeriksaan',
         'status',
-        'kelengkapan',
+        'kapasitas',
+        'model',
+        'no_seri',
+        'status_tool',
         'finished_at',
     ];
 
     protected $casts = [
-        'kelengkapan' => 'array',
         'finished_at' => 'datetime',
     ];
 

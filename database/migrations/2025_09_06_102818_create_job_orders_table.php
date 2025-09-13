@@ -33,7 +33,10 @@ return new class extends Migration
         $table->string('contact_person2')->nullable();
         $table->date('tanggal_dibuat')->nullable(); 
         $table->string('nomor_jo')->unique();
-        $table->string('status')->default('belum'); // belum, on proses, selesai
+        $table->string('status_jo')->default('belum'); // belum, on proses, selesai
+        $table->json('kelengkapan')->nullable();
+        $table->text('catatan')->nullable();
+        
         $table->timestamps();
 });
 

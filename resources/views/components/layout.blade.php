@@ -46,3 +46,15 @@
     @stack('scripts')
 </body>
 </html>
+
+
+{{-- Layout --}}
+{{-- 
+<div class="relative inline-block group">
+    <button class="px-4 py-2 text-white transition duration-300 ease-in-out transform bg-teal-500 rounded-lg hover:bg-teal-600 hover:scale-105">Hover Me</button>
+    <div
+        class="absolute z-10 invisible w-48 py-2 mt-2 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible">
+        <p class="px-4 py-2">This is a popover component.</p>
+        <p class="px-4 py-2">You can customize it with your content.</p>
+    </div>
+</div> --}}
