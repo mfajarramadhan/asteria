@@ -75,7 +75,7 @@
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama Alat</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jenis</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Deskripsi</th>
+                    {{-- <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Deskripsi</th> --}}
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                 </tr>
             </thead>
@@ -83,13 +83,13 @@
                 @foreach($tools as $tool)
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->nama_alat }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->nama }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->jenis }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->deskripsi }}</td>
+                    {{-- <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->deskripsi }}</td> --}}
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             {{-- Read --}}
-                            <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
+                            {{-- <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
                             <a href="{{ route('tools.show', $tool->id) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -98,7 +98,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             </a>
-                            </button>
+                            </button> --}}
                             {{-- End Read --}}
 
                             {{-- Update --}}

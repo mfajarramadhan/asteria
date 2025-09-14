@@ -89,12 +89,13 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $jo->nama_perusahaan }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ \Carbon\Carbon::parse($jo->tanggal_kunjungan)->format('d M Y') }}</td>
                     <td>
-                        <span class="badge 
-                            @if($jo->status == 'belum') bg-secondary 
-                            @elseif($jo->status == 'proses') bg-warning 
-                            @else bg-success @endif">
-                            {{ ucfirst($jo->status) }}
-                        </span>
+                        @if (($jo->status_jo == 'belum'))
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-red-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                        @elseif($jo->status_jo == 'proses')
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-orange-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                        @else
+                            <span class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                        @endif
                     </td>      
                     <td>{{ $jo->tools->count() }} alat</td>              
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">

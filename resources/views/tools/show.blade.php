@@ -10,7 +10,7 @@
             </button>
             <div class="mb-16 text-center">
                 <h2 class="mt-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                    {{ $tool->nama_alat }}
+                    {{ $tool->nama }}
                 </h2>
                 <p class="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
                     {{ $tool->deskripsi }}
@@ -28,7 +28,7 @@
                         <div class="flex justify-center p-2 border rounded-lg bg-gray-50">
                             <img 
                                 src="{{ asset('storage/' . $lampiran) }}" 
-                                alt="{{ $tool->nama_alat }}" 
+                                alt="{{ $tool->nama }}" 
                                 class="h-auto max-w-full rounded-md"
                             >
                         </div>

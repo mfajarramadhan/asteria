@@ -6,9 +6,9 @@
                 @csrf
                 {{-- Nama Alat --}}
                 <div>
-                    <label for="nama_alat" class="block text-sm font-medium text-gray-700">Nama Alat <span class="text-red-600">*</span></label>
-                    <input type="text" required name="nama_alat" id="nama_alat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_alat') }}" placeholder="Masukkan nama alat...">
-                    @error('nama_alat')
+                    <label for="nama" class="block text-sm font-medium text-gray-700">Nama Alat <span class="text-red-600">*</span></label>
+                    <input type="text" required name="nama" id="nama" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama') }}" placeholder="Masukkan nama alat...">
+                    @error('nama')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -50,7 +50,7 @@
                 </div> --}}
                 
                 {{-- Lampiran --}}
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
                     
                     <!-- Container untuk preview multiple image -->
@@ -74,11 +74,11 @@
                             @endforeach
                         </ul>
                     @endif
-                </div>
+                </div> --}}
                 {{-- End Lampiran --}}
 
                 {{-- Deskripsi --}}
-                <div>
+                {{-- <div>
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700">
                     Deskripsi
                 </label>
@@ -92,7 +92,7 @@
                     {{ $message }}
                 </div>
                 @enderror   
-                </div>
+                </div> --}}
                 {{-- End Deskripsi --}}
 
                 {{-- Submit --}}
@@ -116,25 +116,25 @@
             // }
 
             // Add previewImage (multiple image)
-            function previewImages() {
-                const previewContainer = document.getElementById('preview-container');
-                const files = document.getElementById('lampiran').files;
+            // function previewImages() {
+            //     const previewContainer = document.getElementById('preview-container');
+            //     const files = document.getElementById('lampiran').files;
                 
-                // Kosongkan preview lama
-                previewContainer.innerHTML = "";
+            //     // Kosongkan preview lama
+            //     previewContainer.innerHTML = "";
 
-                // Loop semua file yg dipilih
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        // Buat element <img> baru untuk tiap file
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
-                        previewContainer.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                });
-            }
+            //     // Loop semua file yg dipilih
+            //     Array.from(files).forEach(file => {
+            //         const reader = new FileReader();
+            //         reader.onload = function(e) {
+            //             // Buat element <img> baru untuk tiap file
+            //             const img = document.createElement('img');
+            //             img.src = e.target.result;
+            //             img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
+            //             previewContainer.appendChild(img);
+            //         }
+            //         reader.readAsDataURL(file);
+            //     });
+            // }
         </script>
 </x-layout>

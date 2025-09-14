@@ -22,6 +22,8 @@ class JobOrderTool extends Model
     ];
 
     protected $casts = [
+        'tool_id'   => 'integer',
+        'qty'       => 'integer',
         'finished_at' => 'datetime',
     ];
 

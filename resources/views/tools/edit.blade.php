@@ -7,19 +7,19 @@
                 @method('PUT')
                 <!-- Nama Alat -->
                 <div>
-                    <label for="nama_alat" class="block text-sm font-medium text-gray-700">
+                    <label for="nama" class="block text-sm font-medium text-gray-700">
                         Nama Alat <span class="text-red-600">*</span>
                     </label>
                     <input 
                         type="text" 
                         required 
-                        name="nama_alat" 
-                        id="nama_alat" 
-                        value="{{ old('nama_alat', $tool->nama_alat) }}" 
+                        name="nama" 
+                        id="nama" 
+                        value="{{ old('nama', $tool->nama) }}" 
                         placeholder="Masukkan nama alat..."
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
                     >
-                    @error('nama_alat')
+                    @error('nama')
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror   
                 </div>
@@ -52,7 +52,7 @@
                 <!-- End Jenis Alat -->
 
                 <!-- Lampiran -->
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
 
                     <!-- Preview gambar lama -->
@@ -88,11 +88,11 @@
                             @endforeach
                         </ul>
                     @endif
-                </div>
+                </div> --}}
                 <!-- End Lampiran -->
 
                 <!-- Deskripsi -->
-                <div>
+                {{-- <div>
                     <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
                     <textarea 
                         name="deskripsi" 
@@ -104,7 +104,7 @@
                     @error('deskripsi')
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror   
-                </div>
+                </div> --}}
                 <!-- End Deskripsi -->
 
                 <!-- Submit -->
@@ -117,21 +117,21 @@
 
         <script>
             // Preview multiple image baru saat edit
-            function previewImages() {
-                const previewContainer = document.getElementById('preview-container');
-                const files = document.getElementById('lampiran').files;
-                previewContainer.innerHTML = "";
+            // function previewImages() {
+            //     const previewContainer = document.getElementById('preview-container');
+            //     const files = document.getElementById('lampiran').files;
+            //     previewContainer.innerHTML = "";
 
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
-                        previewContainer.appendChild(img);
-                    }
-                    reader.readAsDataURL(file);
-                });
-            }
+            //     Array.from(files).forEach(file => {
+            //         const reader = new FileReader();
+            //         reader.onload = function(e) {
+            //             const img = document.createElement('img');
+            //             img.src = e.target.result;
+            //             img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
+            //             previewContainer.appendChild(img);
+            //         }
+            //         reader.readAsDataURL(file);
+            //     });
+            // }
         </script>
 </x-layout>

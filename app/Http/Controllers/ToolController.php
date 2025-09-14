@@ -103,29 +103,29 @@ class ToolController extends Controller
     public function update(Request $request, Tool $tool)
     {
         $validateData = $request->validate([
-            'nama_alat' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'jenis' => 'required|string|max:255',
-            'lampiran' => 'nullable|array',
-            'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-            'deskripsi' => 'nullable|string|max:65535'    
+            // 'lampiran' => 'nullable|array',
+            // 'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
+            // 'deskripsi' => 'nullable|string|max:65535'    
         ]);
 
         // Default deskripsi "-"
-        $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
+        // $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
 
         // Ambil lampiran lama dari database
-        $lampiranPaths = $tool->lampiran ? json_decode($tool->lampiran, true) : [];
+        // $lampiranPaths = $tool->lampiran ? json_decode($tool->lampiran, true) : [];
 
         // Jika ada gambar baru
-        if ($request->hasFile('lampiran')) {
-            foreach ($request->file('lampiran') as $file) {
-                $path = $file->store('lampiran-images', 'public');
-                $lampiranPaths[] = $path;
-            }
-        }
+        // if ($request->hasFile('lampiran')) {
+        //     foreach ($request->file('lampiran') as $file) {
+        //         $path = $file->store('lampiran-images', 'public');
+        //         $lampiranPaths[] = $path;
+        //     }
+        // }
 
         // Simpan array JSON ke DB
-        $validateData['lampiran'] = json_encode($lampiranPaths);
+        // $validateData['lampiran'] = json_encode($lampiranPaths);
 
         $tool->update($validateData);
         return redirect()->route('tools.index')->with('success', 'Alat berhasil diperbarui');

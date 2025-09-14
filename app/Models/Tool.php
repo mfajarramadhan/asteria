@@ -16,9 +16,9 @@ class Tool extends Model
     ];
 
     // Cast ke array otomatis saat diambil dari DB
-    protected $casts = [
-        'lampiran' => 'array',
-    ];
+    // protected $casts = [
+    //     'lampiran' => 'array',
+    // ];
 
     public function jobOrders()
     {

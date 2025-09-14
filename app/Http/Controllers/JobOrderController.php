@@ -38,46 +38,49 @@ class JobOrderController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-        'nama_perusahaan'       => 'required|string|max:255',
-        'alamat_perusahaan'     => 'required|string|max:255',
-        'pic_order'             => 'required|string|max:255',
-        'email'                 => 'nullable|email|max:255',
-        'contact_person'        => 'nullable|string|max:255',
-        'no_penawaran'          => 'nullable|string|max:255',
-        'no_purcash_order'      => 'nullable|string|max:255',
+        'nama_perusahaan'                   => 'required|string|max:255',
+        'alamat_perusahaan'                 => 'required|string|max:255',
+        'pic_order'                         => 'required|string|max:255',
+        'email'                             => 'nullable|email|max:255',
+        'contact_person'                    => 'nullable|string|max:255',
+        'no_penawaran'                      => 'nullable|string|max:255',
+        'no_purcash_order'                  => 'nullable|string|max:255',
 
-        'tanggal_pemeriksaan1'  => 'nullable|date',
-        'tanggal_pemeriksaan2'  => 'nullable|date',
-        'tanggal_pemeriksaan3'  => 'nullable|date',
-        'tanggal_pemeriksaan4'  => 'nullable|date',
-        'tanggal_pemeriksaan5'  => 'nullable|date',
+        'tanggal_pemeriksaan1'              => 'nullable|date',
+        'tanggal_pemeriksaan2'              => 'nullable|date',
+        'tanggal_pemeriksaan3'              => 'nullable|date',
+        'tanggal_pemeriksaan4'              => 'nullable|date',
+        'tanggal_pemeriksaan5'              => 'nullable|date',
 
-        'jumlah_hari_pemeriksaan' => 'required|integer|min:1',
-        'tanggal_selesai'       => 'nullable|date',
-        'jam_bertemu'           => 'nullable|date_format:H:i',
-        'jam_selesai'           => 'nullable|date_format:H:i',
-        'pic_ditemui'           => 'nullable|string|max:255',
-        'contact_person2'       => 'nullable|string|max:255',
-        'tanggal_dibuat'        => 'required|date',
-        'nomor_jo'              => 'required|string|max:50|unique:job_orders,nomor_jo',
-        'catatan'               => 'nullable|string|max:65535',    
+        'jumlah_hari_pemeriksaan'           => 'required|integer|min:1',
+        'tanggal_selesai'                   => 'nullable|date',
+        'jam_bertemu'                       => 'nullable|date_format:H:i',
+        'jam_selesai'                       => 'nullable|date_format:H:i',
+        'pic_ditemui'                       => 'nullable|string|max:255',
+        'contact_person2'                   => 'nullable|string|max:255',
+        'tanggal_dibuat'                    => 'required|date',
+        'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo',
+        'catatan'                           => 'nullable|string|max:65535',    
 
-        'tools'                 => 'required|array',
-        'tools.*.tool_id'       => 'required|exists:tools,id',
-        'tools.*.qty'           => 'required|integer|min:1',
-        'tools.*.status'        => 'required|string|in:pertama,resertifikasi',
-        'tools.*.kapasitas'     => 'nullable|string|max:255',
-        'tools.*.model'         => 'nullable|string|max:255',
-        'tools.*.no_seri'       => 'nullable|string|max:255',
+        'tools'                             => 'required|array',
+        'tools.*.tool_id'                   => 'required|exists:tools,id',
+        'tools.*.qty'                       => 'required|integer|min:1',
+        'tools.*.status'                    => 'required|string|in:pertama,resertifikasi',
+        'tools.*.kapasitas'                 => 'nullable|string|max:255',
+        'tools.*.model'                     => 'nullable|string|max:255',
+        'tools.*.no_seri'                   => 'nullable|string|max:255',
 
-        'responsibles'          => 'nullable|array',
-        'responsibles.*'        => 'exists:users,id',
-
-        'kelengkapan'           => 'nullable|array',
-        'kelengkapan.*'         => 'in:manual_book,layout,maintenance_report,surat_permohonan',
-
-        'qty'                   => 'nullable|array',
-        'qty.*'                 => 'nullable|integer|min:1', //qty bisa null jika checkbox tidak dicentang
+        'responsibles'                      => 'nullable|array',
+        'responsibles.*'                    => 'exists:users,id',
+        'kelengkapan_manual_book'           => 'nullable|boolean',
+        'qty_manual_book'                   => 'nullable|integer|min:1',
+        'kelengkapan_layout'                => 'nullable|boolean',
+        'qty_layout'                        => 'nullable|integer|min:1',
+        'kelengkapan_maintenance_report'    => 'nullable|boolean',
+        'qty_maintenance_report'            => 'nullable|integer|min:1',
+        'kelengkapan_surat_permohonan'      => 'nullable|boolean',
+        'qty_surat_permohonan'              => 'nullable|integer|min:1',    
+        
     ]);
 
     // Cek validasi tanggal_dibuat & tanggal_pemeriksaan & tanggal_selesai
@@ -130,7 +133,7 @@ class JobOrderController extends Controller
                     }
 
                     // cek: tanggal dibuat harus >= tanggal pemeriksaan
-                    if ($tanggalDibuat->lt($tanggalPemeriksaan)) {
+                    if ($tanggalDibuat->gt($tanggalPemeriksaan)) {
                         $validator->errors()->add(
                             'tanggal_dibuat',
                             "Tanggal JO dibuat harus sama atau lebih dari tanggal pemeriksaan!"
@@ -167,8 +170,6 @@ class JobOrderController extends Controller
             }
         }
     });
-
-
     $validator->validate();
 
 
@@ -179,35 +180,38 @@ class JobOrderController extends Controller
 
         // 1. Buat JO & konversi format tanggal ke (Y-m-d) bawwaan laravel
         $jobOrder = JobOrder::create([
-        'nama_perusahaan'       => $request->nama_perusahaan,
-        'alamat_perusahaan'     => $request->alamat_perusahaan,
-        'pic_order'             => $request->pic_order,
-        'email'                 => $request->email,
-        'contact_person'        => $request->contact_person,
-        'no_penawaran'          => $request->no_penawaran,
-        'no_purcash_order'      => $request->no_purcash_order,
+        'nama_perusahaan'                   => $request->nama_perusahaan,
+        'alamat_perusahaan'                 => $request->alamat_perusahaan,
+        'pic_order'                         => $request->pic_order,
+        'email'                             => $request->email,
+        'contact_person'                    => $request->contact_person,
+        'no_penawaran'                      => $request->no_penawaran,
+        'no_purcash_order'                  => $request->no_purcash_order,
 
-        'tanggal_pemeriksaan1'  => $toDate($request->tanggal_pemeriksaan1),
-        'tanggal_pemeriksaan2'  => $toDate($request->tanggal_pemeriksaan2),
-        'tanggal_pemeriksaan3'  => $toDate($request->tanggal_pemeriksaan3),
-        'tanggal_pemeriksaan4'  => $toDate($request->tanggal_pemeriksaan4),
-        'tanggal_pemeriksaan5'  => $toDate($request->tanggal_pemeriksaan5),
+        'tanggal_pemeriksaan1'              => $toDate($request->tanggal_pemeriksaan1),
+        'tanggal_pemeriksaan2'              => $toDate($request->tanggal_pemeriksaan2),
+        'tanggal_pemeriksaan3'              => $toDate($request->tanggal_pemeriksaan3),
+        'tanggal_pemeriksaan4'              => $toDate($request->tanggal_pemeriksaan4),
+        'tanggal_pemeriksaan5'              => $toDate($request->tanggal_pemeriksaan5),
 
-        'jumlah_hari_pemeriksaan' => $request->jumlah_hari_pemeriksaan,
-        'tanggal_selesai'       => $toDate($request->tanggal_selesai),
-        'jam_bertemu'           => $request->jam_bertemu,
-        'jam_selesai'           => $request->jam_selesai,
-        'pic_ditemui'           => $request->pic_ditemui,
-        'contact_person2'       => $request->contact_person2,
-        'nomor_jo'              => $request->nomor_jo,
-        'tanggal_dibuat'        => $toDate($request->tanggal_dibuat),
-        'status_jo'                => 'belum',
-        'kelengkapan'           => json_encode([
-            'items'         => $request->kelengkapan,
-            'qty'           => $request->qty,
-        ]),
-        'catatan'               => $request->catatan,
-
+        'jumlah_hari_pemeriksaan'           => $request->jumlah_hari_pemeriksaan,
+        'tanggal_selesai'                   => $toDate($request->tanggal_selesai),
+        'jam_bertemu'                       => $request->jam_bertemu,
+        'jam_selesai'                       => $request->jam_selesai,
+        'pic_ditemui'                       => $request->pic_ditemui,
+        'contact_person2'                   => $request->contact_person2,
+        'nomor_jo'                          => $request->nomor_jo,
+        'tanggal_dibuat'                    => $toDate($request->tanggal_dibuat),
+        'status_jo'                         => 'belum',
+        'kelengkapan_manual_book'           => $request->has('kelengkapan_manual_book'),
+        'qty_manual_book'                   => $request->qty_manual_book,
+        'kelengkapan_layout'                => $request->has('kelengkapan_layout'),
+        'qty_layout'                        => $request->qty_layout,
+        'kelengkapan_maintenance_report'    => $request->has('kelengkapan_maintenance_report'),
+        'qty_maintenance_report'            => $request->qty_maintenance_report,
+        'kelengkapan_surat_permohonan'      => $request->has('kelengkapan_surat_permohonan'),
+        'qty_surat_permohonan'              => $request->qty_surat_permohonan,
+        'catatan'                           => $request->catatan,
     ]);
 
         // 2. Simpan alat2
@@ -221,7 +225,6 @@ class JobOrderController extends Controller
                 'model'              => $tool['model'],
                 'no_seri'            => $tool['no_seri'],
                 'status_tool'        => 'belum',
-                'kelengkapan'        => null,
                 'finished_at'        => null,
             ]);
         }
@@ -231,12 +234,217 @@ class JobOrderController extends Controller
             $jobOrder->responsibles()->sync($request->responsibles);
         }
 
-        return redirect()->route('job_orders.index', $jobOrder->id)->with('success', 'Job Order berhasil dibuat');
+        return redirect()->route('job_orders.index', $jobOrder->id)->with('success', 'Job Order berhasil dibuat!');
     }
 
     public function show(JobOrder $jobOrder)
     {
-        $jobOrder->load(['tools.tool', 'responsibles']); // eager load relasi
-        return view('job_orders.show', compact('jobOrder'));
+        $jobOrder->load(['tools', 'responsibles']); // eager load relasi langsung
+        return view('job_orders.show', [
+            'jobOrder' => $jobOrder,
+            'title' => 'Job Order',
+            'subtitle' => 'Detail Job Order PT. Asteria Riksa Indonesia'
+        ]);
+    }
+
+    public function edit(JobOrder $jobOrder)
+    {
+        $jobOrder->load(['tools', 'responsibles']); // eager load relasi langsung
+        $petugas = User::role('petugas')->get(); // ambil user role petugas
+        $tools = Tool::all(); 
+        return view('job_orders.edit', [
+            'jobOrder' => $jobOrder,
+            'petugas' => $petugas,
+            'tools' => $tools,
+            'title' => 'Job Order',
+            'subtitle' => 'Edit Job Order PT. Asteria Riksa Indonesia'
+        ]);
+    }
+
+    public function update(Request $request, JobOrder $jobOrder)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_perusahaan'                   => 'required|string|max:255',
+            'alamat_perusahaan'                 => 'required|string|max:255',
+            'pic_order'                         => 'required|string|max:255',
+            'email'                             => 'nullable|email|max:255',
+            'contact_person'                    => 'nullable|string|max:255',
+            'no_penawaran'                      => 'nullable|string|max:255',
+            'no_purcash_order'                  => 'nullable|string|max:255',
+
+            'tanggal_pemeriksaan1'              => 'nullable|string',
+            'tanggal_pemeriksaan2'              => 'nullable|string',
+            'tanggal_pemeriksaan3'              => 'nullable|string',
+            'tanggal_pemeriksaan4'              => 'nullable|string',
+            'tanggal_pemeriksaan5'              => 'nullable|string',
+
+            'jumlah_hari_pemeriksaan'           => 'required|integer|min:1',
+            'tanggal_selesai'                   => 'required|string',
+            'jam_bertemu'                       => 'nullable',
+            'jam_selesai'                       => 'nullable',
+            'pic_ditemui'                       => 'nullable|string|max:255',
+            'contact_person2'                   => 'nullable|string|max:255',
+            'tanggal_dibuat'                    => 'required|string',
+            'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo,' . $jobOrder->id,
+            'catatan'                           => 'nullable|string|max:65535',    
+
+            'tools'                             => 'required|array',
+            'tools.*.tool_id'                   => 'required|exists:tools,id',
+            'tools.*.qty'                       => 'required|integer|min:1',
+            'tools.*.status'                    => 'required|string|in:pertama,resertifikasi',
+            'tools.*.kapasitas'                 => 'nullable|string|max:255',
+            'tools.*.model'                     => 'nullable|string|max:255',
+            'tools.*.no_seri'                   => 'nullable|string|max:255',
+
+            'responsibles'                      => 'nullable|array',
+            'responsibles.*'                    => 'exists:users,id',
+            'kelengkapan_manual_book'           => 'nullable|boolean',
+            'qty_manual_book'                   => 'nullable|integer|min:1',
+            'kelengkapan_layout'                => 'nullable|boolean',
+            'qty_layout'                        => 'nullable|integer|min:1',
+            'kelengkapan_maintenance_report'    => 'nullable|boolean',
+            'qty_maintenance_report'            => 'nullable|integer|min:1',
+            'kelengkapan_surat_permohonan'      => 'nullable|boolean',
+            'qty_surat_permohonan'              => 'nullable|integer|min:1',
+        ]);
+        
+        // helper konversi tanggal aman tetap pakai $toDate
+        $toDate = function ($date) {
+            if (!$date) return null;
+            $formats = ['d-m-Y', 'Y-m-d', 'd/m/Y', 'Y/m/d'];
+            foreach ($formats as $fmt) {
+                try {
+                    $dt = Carbon::createFromFormat($fmt, $date);
+                    if ($dt) return $dt->format('Y-m-d');
+                } catch (\Throwable $e) {
+                    continue;
+                }
+            }
+            try {
+                return Carbon::parse($date)->format('Y-m-d');
+            } catch (\Throwable $e) {
+                return null;
+            }
+        };
+
+        // validator after tetap sama
+        $validator->after(function ($validator) use ($request) {
+            $toCarbonSafe = function ($value) {
+                if (!$value) return null;
+                $preferredFormats = ['d-m-Y', 'Y-m-d', 'd/m/Y', 'Y/m/d'];
+                foreach ($preferredFormats as $fmt) {
+                    $dt = \Carbon\Carbon::createFromFormat($fmt, $value);
+                    if ($dt && $dt->format($fmt) === $value) {
+                        return $dt->startOfDay();
+                    }
+                }
+                try {
+                    return \Carbon\Carbon::parse($value)->startOfDay();
+                } catch (\Throwable $e) {
+                    return null;
+                }
+            };
+
+            $tanggalDibuat = $toCarbonSafe($request->tanggal_dibuat);
+
+            if ($request->filled('tanggal_dibuat') && !$tanggalDibuat) {
+                $validator->errors()->add('tanggal_dibuat', 'Format tanggal dibuat tidak valid (harus dd-mm-yyyy).');
+                return;
+            }
+
+            if ($tanggalDibuat) {
+                foreach (range(1, 5) as $i) {
+                    $field = "tanggal_pemeriksaan{$i}";
+                    if ($request->filled($field)) {
+                        $tanggalPemeriksaan = $toCarbonSafe($request->$field);
+                        if (!$tanggalPemeriksaan) {
+                            $validator->errors()->add($field, "Format {$field} tidak valid (harus dd-mm-yyyy).");
+                            break;
+                        }
+                        if ($tanggalDibuat->gt($tanggalPemeriksaan)) {
+                            $validator->errors()->add(
+                                'tanggal_dibuat',
+                                "Tanggal JO dibuat harus sama atau lebih dari tanggal pemeriksaan!"
+                            );
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if ($request->filled('tanggal_selesai') && $tanggalDibuat) {
+                $tanggalSelesai = $toCarbonSafe($request->tanggal_selesai);
+                if (!$tanggalSelesai) {
+                    $validator->errors()->add('tanggal_selesai', 'Format tanggal selesai tidak valid (harus dd-mm-yyyy).');
+                } else if ($tanggalSelesai->lt($tanggalDibuat)) {
+                    $validator->errors()->add(
+                        'tanggal_selesai',
+                        "Tanggal selesai tidak boleh lebih kecil dari tanggal dibuat!"
+                    );
+                }
+            }
+        });
+        // Jalankan validasi
+        $validator->validate();
+
+        // update JO
+        $jobOrder->update([
+            'nama_perusahaan'                   => $request->nama_perusahaan,
+            'alamat_perusahaan'                 => $request->alamat_perusahaan,
+            'pic_order'                         => $request->pic_order,
+            'email'                             => $request->email,
+            'contact_person'                    => $request->contact_person,
+            'no_penawaran'                      => $request->no_penawaran,
+            'no_purcash_order'                  => $request->no_purcash_order,
+
+            'tanggal_pemeriksaan1'              => $toDate($request->tanggal_pemeriksaan1),
+            'tanggal_pemeriksaan2'              => $toDate($request->tanggal_pemeriksaan2),
+            'tanggal_pemeriksaan3'              => $toDate($request->tanggal_pemeriksaan3),
+            'tanggal_pemeriksaan4'              => $toDate($request->tanggal_pemeriksaan4),
+            'tanggal_pemeriksaan5'              => $toDate($request->tanggal_pemeriksaan5),
+
+            'jumlah_hari_pemeriksaan'           => $request->jumlah_hari_pemeriksaan,
+            'tanggal_selesai'                   => $toDate($request->tanggal_selesai),
+            'jam_bertemu'                       => $request->jam_bertemu,
+            'jam_selesai'                       => $request->jam_selesai,
+            'pic_ditemui'                       => $request->pic_ditemui,
+            'contact_person2'                   => $request->contact_person2,
+            'nomor_jo'                          => $request->nomor_jo,
+            'tanggal_dibuat'                    => $toDate($request->tanggal_dibuat),
+            'kelengkapan_manual_book'           => $request->has('kelengkapan_manual_book'),
+            'qty_manual_book'                   => $request->qty_manual_book,
+            'kelengkapan_layout'                => $request->has('kelengkapan_layout'),
+            'qty_layout'                        => $request->qty_layout,
+            'kelengkapan_maintenance_report'    => $request->has('kelengkapan_maintenance_report'),
+            'qty_maintenance_report'            => $request->qty_maintenance_report,
+            'kelengkapan_surat_permohonan'      => $request->has('kelengkapan_surat_permohonan'),
+            'qty_surat_permohonan'              => $request->qty_surat_permohonan,
+            'catatan'                           => $request->catatan,
+        ]);
+
+        // hapus tools lama & simpan ulang
+        JobOrderTool::where('job_order_id', $jobOrder->id)->delete();
+        foreach ($request->tools as $tool) {
+            JobOrderTool::create([
+                'job_order_id'       => $jobOrder->id,
+                'tool_id'            => $tool['tool_id'],
+                'qty'                => $tool['qty'],
+                'status'             => $tool['status'],
+                'kapasitas'          => $tool['kapasitas'],
+                'model'              => $tool['model'],
+                'no_seri'            => $tool['no_seri'],
+                'finished_at'        => null,
+            ]);
+        }
+        $jobOrder->recalculateStatus();
+
+        // update penanggung jawab
+        if ($request->filled('responsibles')) {
+            $jobOrder->responsibles()->sync($request->responsibles);
+        } else {
+            $jobOrder->responsibles()->sync([]);
+        }
+
+        return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil di update!');
     }
 }
