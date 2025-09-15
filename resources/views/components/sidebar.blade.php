@@ -1,14 +1,31 @@
-<aside class="fixed inset-y-0 left-0 z-50 w-20 transition-all duration-300 ease-in-out bg-white shadow-lg md:static md:w-64"
+{{-- class md:static dihilangkan aga fixed --}}
+<aside class="fixed inset-y-0 left-0 z-50 w-20 transition-all duration-300 ease-in-out bg-white shadow-lg md:w-64"
         :class="{ 'w-64': openSidebar, 'hidden md:block': !openSidebar }">
-    <div class="flex items-center justify-between p-4 border-b">
-        <h1 :class="{ 'opacity-100': openSidebar || window.innerWidth >= 768, 'opacity-0 hidden': !openSidebar && window.innerWidth < 768 }" 
-            class="text-xl font-bold text-blue-600 transition-opacity duration-300">PT. Asteria</h1>
+    <div class="flex items-center justify-between h-16 p-4 border-b">
+        <div class="flex items-center gap-2">
+            <!-- Logo -->
+            <img 
+                src="{{ asset('assets/logo/logo-asteria.png') }}" 
+                alt="PT Asteria" 
+                class="object-contain w-14 h-14"
+            >
+            <!-- Text -->
+            <h1 
+                :class="{ 'opacity-100': openSidebar || window.innerWidth >= 768, 'opacity-0 hidden': !openSidebar && window.innerWidth < 768 }" 
+                class="text-xl italic font-bold text-black transition-opacity duration-300"
+            >
+                PT. Asteria
+            </h1>
+        </div>
+
+        <!-- Tombol toggle sidebar -->
         <button @click="openSidebar = !openSidebar" class="p-2 rounded-full md:hidden hover:bg-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
         </button>
     </div>
+
     <nav class="py-4">
         <ul class="space-y-2">
             <li>

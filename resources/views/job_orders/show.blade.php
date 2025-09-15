@@ -64,7 +64,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-1" placeholder="(1)" value="{{ $jobOrder->tanggal_pemeriksaan1 }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500n1') }}"> 
+                    <input disabled id="datepicker-autohide-1" placeholder="(1)" value="{{ optional($jobOrder->tanggal_pemeriksaan1)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500n1') }}"> 
                 </div>
             </div>
             {{-- Tanggal Pemeriksaan 2 --}}
@@ -75,7 +75,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-2" placeholder="(2)" value="{{ $jobOrder->tanggal_pemeriksaan2 }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-2" placeholder="(2)" value="{{ optional($jobOrder->tanggal_pemeriksaan2)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
             {{-- Tanggal Pemeriksaan 3 --}}
@@ -86,7 +86,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-3" placeholder="(3)" value="{{ $jobOrder->tanggal_pemeriksaan3 }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-3" placeholder="(3)" value="{{ optional($jobOrder->tanggal_pemeriksaan3)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
             {{-- Tanggal Pemeriksaan 4 --}}
@@ -97,7 +97,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-4" placeholder="(4)" value="{{ $jobOrder->tanggal_pemeriksaan4 }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-4" placeholder="(4)" value="{{ optional($jobOrder->tanggal_pemeriksaan4)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
             {{-- Tanggal Pemeriksaan 5 --}}
@@ -108,7 +108,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-5" placeholder="(5)" value="{{ $jobOrder->tanggal_pemeriksaan5 }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-5" placeholder="(5)" value="{{ optional($jobOrder->tanggal_pemeriksaan5)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-7" value="{{ $jobOrder->tanggal_dibuat }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-7" value="{{ optional($jobOrder->tanggal_dibuat)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
             {{-- Tanggal Selesai Pemeriksaan --}}
@@ -143,7 +143,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide-6" value="{{ $jobOrder->tanggal_selesai }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <input disabled id="datepicker-autohide-6" value="{{ optional($jobOrder->tanggal_selesai)->format('d-m-Y') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
         </div>
@@ -239,6 +239,8 @@
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Kapasitas</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Model/Tipe</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Seri</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
+                    {{-- <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Alat</th> --}}
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -251,6 +253,15 @@
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->kapasitas }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->model }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->no_seri }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                            @if (($tool->pivot->status_tool == 'belum'))
+                            <span class="px-3 py-1 text-sm font-bold text-white bg-red-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                            @elseif($tool->pivot->status_tool == 'proses')
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-orange-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                            @else
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-green-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -308,10 +319,27 @@
                         value="{{ $jobOrder->qty_surat_permohonan ?? 0 }}"
                         class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1">
                 </div>
-
             </div>
         </div>
         {{-- End Kelengkapan Alat --}}
-
+        {{-- Catatan --}}
+        <div>
+            <label for="catatan" class="block text-sm font-medium text-gray-700">
+                Catatan
+            </label>
+            <textarea 
+                disabled
+                name="catatan" 
+                id="catatan" 
+                rows="4"
+                placeholder="Masukkan catatan..."
+                class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm">{{  $jobOrder->catatan }}</textarea>
+        @error('catatan')
+        <div class="text-xs text-red-600">
+            {{ $message }}
+        </div>
+        @enderror   
+        </div>
+        {{-- End Catatan --}}
     </div>
 </x-layout>

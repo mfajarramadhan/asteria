@@ -25,7 +25,7 @@
                         <option value="PTP" {{ old('jenis') == 'PTP' ? 'selected' : '' }}>PTP</option>
                         <option value="PAPA" {{ old('jenis') == 'PAPA' ? 'selected' : '' }}>PAPA</option>
                         <option value="ILP" {{ old('jenis') == 'ILP' ? 'selected' : '' }}>ILP</option>
-                        <option value="ELEVATOR" {{ old('jenis') == 'ELEVATOR' ? 'selected' : '' }}>ELEVATOR</option>
+                        <option value="ELEVATOR" {{ old('jenis') == 'ELEVATOR & ESCALATOR' ? 'selected' : '' }}>ELEVATOR & ESCALATOR</option>
                         <option value="IPK" {{ old('jenis') == 'IPK' ? 'selected' : '' }}>IPK</option>
                         <option value="LINGKER" {{ old('jenis') == 'LINGKER' ? 'selected' : '' }}>LINGKER</option>
                     </select>

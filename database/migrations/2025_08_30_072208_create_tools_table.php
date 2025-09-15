@@ -15,9 +15,9 @@ return new class extends Migration
         $table->id();
         $table->string('nama');
         $table->string('jenis');
+        $table->timestamps();
         // $table->json('lampiran')->nullable();
         // $table->text('deskripsi')->nullable();
-        $table->timestamps();
 });
 
     }

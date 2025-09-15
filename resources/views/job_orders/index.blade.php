@@ -60,12 +60,13 @@
     @endif
     {{-- End Alert Error --}}
 
-
+    @role('admin|owner')
     {{-- Tambah Alat --}}
     <button class="px-5 py-3 font-bold text-white transition-transform rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
         <a href="{{ route('job_orders.create') }}">+ Tambah Job Order</a>
     </button>
     {{-- End Tambah Alat --}}
+    @endrole
     
     {{-- Table Alat --}}
     <div class="p-4 overflow-x-auto bg-white rounded-lg shadow-md">
@@ -74,10 +75,10 @@
                 <tr>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">ID JO</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Perusahaan</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tanggal Kunjungan</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tanggal</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama Perusahaan</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th>
+                    {{-- <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th> --}}
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                 </tr>
             </thead>
@@ -86,8 +87,8 @@
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $jo->nomor_jo }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ \Carbon\Carbon::parse($jo->tanggal_dibuat)->format('d M Y') }} - {{ \Carbon\Carbon::parse($jo->tanggal_selesai)->format('d M Y') }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $jo->nama_perusahaan }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ \Carbon\Carbon::parse($jo->tanggal_kunjungan)->format('d M Y') }}</td>
                     <td>
                         @if (($jo->status_jo == 'belum'))
                             <span class="px-3 py-2 text-sm font-bold text-white bg-red-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
@@ -97,7 +98,7 @@
                             <span class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
                         @endif
                     </td>      
-                    <td>{{ $jo->tools->count() }} alat</td>              
+                    {{-- <td>{{ $jo->tools->count() }} alat</td>               --}}
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             {{-- Read --}}

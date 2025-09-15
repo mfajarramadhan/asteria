@@ -7,7 +7,7 @@
                 {{-- Nama Perusahaan --}}
                 <h2 class="block text-sm font-bold text-gray-700">General Order</h2>
                 <div>
-                    <input type="text" required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
                     @error('nama_perusahaan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -18,7 +18,7 @@
 
                 {{-- Alamat Perusahaan --}}
                 <div>
-                    <input type="text" required name="alamat_perusahaan" placeholder="Alamat Perusahaan" id="alamat_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('alamat_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('alamat_perusahaan') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="alamat_perusahaan" placeholder="Alamat Perusahaan" id="alamat_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('alamat_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('alamat_perusahaan') }}">
                     @error('alamat_perusahaan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -29,7 +29,7 @@
                 
                 {{-- PIC Order --}}
                 <div>
-                    <input type="text" required name="pic_order" placeholder="PIC Order" id="pic_order" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pic_order') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pic_order') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="pic_order" placeholder="PIC Order" id="pic_order" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pic_order') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pic_order') }}">
                     @error('pic_order')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -40,7 +40,7 @@
                 
                 {{-- Email --}}
                 <div>
-                    <input type="email" name="email" placeholder="Email" id="email" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('email') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('email') }}">
+                    <input type="email" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="email" placeholder="Email" id="email" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('email') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('email') }}">
                     @error('email')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -51,7 +51,7 @@
                 
                 {{-- Contact Person --}}
                 <div>
-                    <input type="tel" name="contact_person" placeholder="Contact Person" id="contact_person" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('contact_person') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('contact_person') }}">
+                    <input type="tel" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="contact_person" placeholder="Contact Person" id="contact_person" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('contact_person') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('contact_person') }}">
                     @error('contact_person')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -62,7 +62,7 @@
                 
                 {{-- No Penawaran --}}
                 <div>
-                    <input type="text" name="no_penawaran" placeholder="No. Penawaran" id="no_penawaran" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_penawaran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_penawaran') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="no_penawaran" placeholder="No. Penawaran" id="no_penawaran" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_penawaran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_penawaran') }}">
                     @error('no_penawaran')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -73,7 +73,7 @@
                 
                 {{-- No Purcash Order --}}
                 <div>
-                    <input type="tel" name="no_purcash_order"  placeholder="No. Purcash Order" id="no_purcash_order" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_purcash_order') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_purcash_order') }}">
+                    <input type="tel" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="no_purcash_order"  placeholder="No. Purcash Order" id="no_purcash_order" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_purcash_order') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_purcash_order') }}">
                     @error('no_purcash_order')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -93,7 +93,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input id="datepicker-autohide-1" name="tanggal_pemeriksaan1" placeholder="(1)" value="{{ old('tanggal_pemeriksaan1') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_pemeriksaan1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan1') }}"> 
+                                <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-1" name="tanggal_pemeriksaan1" placeholder="(1)" value="{{ old('tanggal_pemeriksaan1') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan1') }}"> 
                             </div>
                             @error('tanggal_pemeriksaan1')
                             <div class="text-xs text-red-600">
@@ -109,7 +109,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input id="datepicker-autohide-2" name="tanggal_pemeriksaan2" placeholder="(2)" value="{{ old('tanggal_pemeriksaan2') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_pemeriksaan2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan2') }}">
+                                <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-2" name="tanggal_pemeriksaan2" placeholder="(2)" value="{{ old('tanggal_pemeriksaan2') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan2') }}">
                                 @error('tanggal_pemeriksaan2')
                                 <div class="text-xs text-red-600">
                                     {{ $message }}
@@ -125,7 +125,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input id="datepicker-autohide-3" name="tanggal_pemeriksaan3" placeholder="(3)" value="{{ old('tanggal_pemeriksaan3') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_pemeriksaan3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan3') }}">
+                                <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-3" name="tanggal_pemeriksaan3" placeholder="(3)" value="{{ old('tanggal_pemeriksaan3') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan3') }}">
                             </div>
                             @error('tanggal_pemeriksaan3')
                             <div class="text-xs text-red-600">
@@ -141,7 +141,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input id="datepicker-autohide-4" name="tanggal_pemeriksaan4" placeholder="(4)" value="{{ old('tanggal_pemeriksaan4') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_pemeriksaan4') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan4') }}">
+                                <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-4" name="tanggal_pemeriksaan4" placeholder="(4)" value="{{ old('tanggal_pemeriksaan4') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan4') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan4') }}">
                             </div>
                             @error('tanggal_pemeriksaan4')
                             <div class="text-xs text-red-600">
@@ -157,7 +157,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input id="datepicker-autohide-5" name="tanggal_pemeriksaan5" placeholder="(5)" value="{{ old('tanggal_pemeriksaan5') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_pemeriksaan5') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan5') }}">
+                                <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-5" name="tanggal_pemeriksaan5" placeholder="(5)" value="{{ old('tanggal_pemeriksaan5') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan5') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan5') }}">
                             </div>
                             @error('tanggal_pemeriksaan5')
                             <div class="text-xs text-red-600">
@@ -170,7 +170,7 @@
 
                 {{-- Jumlah Hari Pemeriksaan --}}
                 <div>
-                    <select required name="jumlah_hari_pemeriksaan" id="jumlah_hari_pemeriksaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_hari_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    <select @role('petugas') disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="jumlah_hari_pemeriksaan" id="jumlah_hari_pemeriksaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_hari_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         <option value="" class="text-center">--- Jumlah Hari Pemeriksaan ---</option>
                         <option value="1" {{ old('jumlah_hari_pemeriksaan') == '1' ? 'selected' : '' }}>1 Hari</option>
                         <option value="2" {{ old('jumlah_hari_pemeriksaan') == '2' ? 'selected' : '' }}>2 Hari</option>
@@ -198,7 +198,7 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_dibuat') }}">
+                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_dibuat') }}">
                         </div>
                         @error('tanggal_dibuat')
                         <div class="text-xs text-red-600">
@@ -215,7 +215,7 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_selesai') }}">
+                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_selesai') }}">
                         </div>
                         @error('tanggal_selesai')
                         <div class="text-xs text-red-600">
@@ -226,8 +226,9 @@
                 </div>
                 {{-- End Tanggal Selesai Pemeriksaan --}}
 
-                {{-- Jam Bertemu --}}
+                {{-- Jam --}}
                 <div class="pb-2">
+                    {{-- Jam Bertemu --}}
                     <div class="flex justify-between gap-x-2 gap-y-4">
                         <div class="inline-block w-full md:w-[48%]">
                             <label for="jam_bertemu" class="block mb-4 text-sm font-medium text-gray-900">Jam Bertemu:</label>
@@ -237,9 +238,10 @@
                                         <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <input type="time" name="jam_bertemu" value="{{ old('jam_bertemu', '00:00') }}" id="jam_bertemu" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                                <input type="time" @role('petugas') disabled class="bg-gray-200 cursor-not-allowed border leading-none border-gray-400 text-gray-900 text-sm rounded-lg block w-full p-2.5" @endrole name="jam_bertemu" value="{{ old('jam_bertemu', '00:00') }}" id="jam_bertemu" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                             </div>
                         </div>
+                        {{-- Jam Selesai --}}
                         <div class="inline-block w-full md:w-[48%]">
                             <label for="end-time" class="block mb-4 text-sm font-medium text-gray-900">Jam Selesai:</label>
                             <div class="relative">
@@ -248,7 +250,7 @@
                                         <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
-                                <input type="time" name="jam_selesai" value="{{ old('jam_selesai', '00:00') }}" id="end-time" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                                <input type="time" @role('petugas') disabled class="bg-gray-200 cursor-not-allowed border leading-none border-gray-400 text-gray-900 text-sm rounded-lg block w-full p-2.5" @endrole name="jam_selesai" value="{{ old('jam_selesai', '00:00') }}" id="end-time" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                             </div>
                         </div>
                     </div>
@@ -257,7 +259,7 @@
 
                 {{-- PIC Ditemui --}}
                 <div>
-                    <input type="text" name="pic_ditemui" placeholder="PIC yang ditemui..." id="pic_ditemui" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pic_ditemui') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pic_ditemui') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="pic_ditemui" placeholder="PIC yang ditemui..." id="pic_ditemui" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pic_ditemui') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pic_ditemui') }}">
                     @error('pic_ditemui')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -268,7 +270,7 @@
 
                 {{-- Contact Person 2 --}}
                 <div>
-                    <input type="tel" name="contact_person2" placeholder="Contact Person" id="contact_person2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('contact_person2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('contact_person2') }}">
+                    <input type="tel" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="contact_person2" placeholder="Contact Person" id="contact_person2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('contact_person2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('contact_person2') }}">
                     @error('contact_person2')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -279,7 +281,7 @@
 
                 {{-- ID JO --}}
                 <div>
-                    <input type="text" required name="nomor_jo" placeholder="ID JO" id="nomor_jo" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_jo') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_jo') }}">
+                    <input type="text" @role('petugas') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nomor_jo" placeholder="ID JO" id="nomor_jo" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_jo') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_jo') }}">
                     @error('nomor_jo')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -293,7 +295,7 @@
                     <label for="responsibles" class="block text-sm font-medium text-gray-700">
                         Penanggung Jawab <span class="text-red-600">*</span>
                     </label>
-                    <select id="responsibles" name="responsibles[]" multiple class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('responsibles') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    <select @role('petugas') disabled class="block w-full mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole id="responsibles" name="responsibles[]" multiple class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm @error('responsibles') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @foreach ($petugas as $user)
                             <option value="{{ $user->id }}" 
                                 {{ in_array($user->id, old('responsibles', [])) ? 'selected' : '' }}>
@@ -328,7 +330,7 @@
                             @foreach (old('tools') as $i => $tool)
                                 <tr>
                                     <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" class="form-control" required>
+                                        <select @role('petugas') disabled class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" class="form-control" required>
                                             <option value="">-- Pilih --</option>
                                             @foreach($tools as $t)
                                                 <option value="{{ $t->id }}" {{ old("tools.$i.tool_id") == $t->id ? 'selected' : '' }}>
@@ -338,29 +340,29 @@
                                         </select>
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <input type="number" name="tools[{{ $i }}][qty]" 
+                                        <input type="number" @role('petugas') disabled class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][qty]" 
                                             class="bg-gray-100 rounded-md form-control"
                                             min="1" required
                                             value="{{ old("tools.$i.qty") }}">
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <select name="tools[{{ $i }}][status]" class="form-control" required>
+                                        <select @role('petugas') disabled class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
                                             <option value="pertama" {{ old("tools.$i.status") == 'pertama' ? 'selected' : '' }}>Pertama</option>
                                             <option value="resertifikasi" {{ old("tools.$i.status") == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <input type="text" name="tools[{{ $i }}][kapasitas]" 
+                                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][kapasitas]" 
                                             class="bg-gray-100 rounded-md form-control"
                                             value="{{ old("tools.$i.kapasitas") }}">
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <input type="text" name="tools[{{ $i }}][model]" 
+                                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][model]" 
                                             class="bg-gray-100 rounded-md form-control"
                                             value="{{ old("tools.$i.model") }}">
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                        <input type="text" name="tools[{{ $i }}][no_seri]" 
+                                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][no_seri]" 
                                             class="bg-gray-100 rounded-md form-control"
                                             value="{{ old("tools.$i.no_seri") }}">
                                     </td>
@@ -376,7 +378,7 @@
                         @endif
                     </tbody>
                     </table>
-                    <button type="button" id="add-tool" class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">+ Tambah Alat</button>
+                    <button type="button" @role('petugas') disabled class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed" @endrole id="add-tool" class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">+ Tambah Alat</button>
                 </div>
                 {{-- End Pilih alat --}}
 
@@ -391,10 +393,28 @@
                             <label for="kelengkapan_manual_book" class="flex-1 cursor-pointer">
                                 Manual Book (Spesifikasi Alat)
                             </label>
-                            <input type="checkbox" id="kelengkapan_manual_book" name="kelengkapan_manual_book" value="1"
-                                {{ old('kelengkapan_manual_book') ? 'checked' : '' }}
-                                class="w-5 h-5">
-                            <input type="number" placeholder="Qty..." name="qty_manual_book" value="{{ old('qty_manual_book') }}"
+                            {{-- Owner/Petugas bisa ubah --}}
+                            @role('owner|petugas')
+                                <input type="checkbox"
+                                    id="kelengkapan_manual_book"
+                                    name="kelengkapan_manual_book"
+                                    value="1"
+                                    {{ old('kelengkapan_manual_book') ? 'checked' : '' }}
+                                    class="w-5 h-5">
+                            {{-- Admin hanya lihat --}}
+                            @else
+                                <input type="checkbox"
+                                    disabled
+                                    class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
+                                    id="kelengkapan_manual_book"
+                                    value="1"
+                                    {{ old('kelengkapan_manual_book') ? 'checked' : '' }}>
+
+                                {{-- Hidden agar tetap terkirim --}}
+                                <input type="hidden" name="kelengkapan_manual_book" value="{{ old('kelengkapan_manual_book') ? '1' : '' }}">
+                            @endrole
+
+                            <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_manual_book" value="{{ old('qty_manual_book') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_manual_book') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             @error('qty_manual_book')
                                 <div class="text-xs text-red-600">
@@ -408,10 +428,28 @@
                             <label for="kelengkapan_layout" class="flex-1 cursor-pointer">
                                 Layout/Diagram Instalasi
                             </label>
-                            <input type="checkbox" id="kelengkapan_layout" name="kelengkapan_layout" value="1"
-                                {{ old('kelengkapan_layout') ? 'checked' : '' }}
-                                class="w-5 h-5">
-                            <input type="number" placeholder="Qty..." name="qty_layout" value="{{ old('qty_layout') }}"
+                            {{-- Owner & Petugas bisa ubah --}}
+                            @role('owner|petugas')
+                                <input type="checkbox"
+                                    id="kelengkapan_layout"
+                                    name="kelengkapan_layout"
+                                    value="1"
+                                    {{ old('kelengkapan_layout') ? 'checked' : '' }}
+                                    class="w-5 h-5">
+                                {{-- Admin hanya lihat --}}
+                            @else
+                                <input type="checkbox"
+                                    disabled
+                                    class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
+                                    id="kelengkapan_layout"
+                                    value="1"
+                                    {{ old('kelengkapan_layout') ? 'checked' : '' }}>
+
+                                {{-- Hidden agar tetap terkirim --}}
+                                <input type="hidden" name="kelengkapan_layout" value="{{ old('kelengkapan_layout') ? '1' : '' }}">
+                            @endrole
+
+                            <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_layout" value="{{ old('qty_layout') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_layout') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             @error('qty_layout')
                                 <div class="text-xs text-red-600">
@@ -425,10 +463,28 @@
                             <label for="kelengkapan_maintenance_report" class="flex-1 cursor-pointer">
                                 Checklist Maintenance Report
                             </label>
-                            <input type="checkbox" id="kelengkapan_maintenance_report" name="kelengkapan_maintenance_report" value="1"
-                                {{ old('kelengkapan_maintenance_report') ? 'checked' : '' }}
-                                class="w-5 h-5">
-                            <input type="number" placeholder="Qty..." name="qty_maintenance_report" value="{{ old('qty_maintenance_report') }}"
+                            {{-- Owner & Petugas bisa ubah --}}
+                            @role('owner|petugas')
+                                <input type="checkbox"
+                                    id="kelengkapan_maintenance_report"
+                                    name="kelengkapan_maintenance_report"
+                                    value="1"
+                                    {{ old('kelengkapan_maintenance_report') ? 'checked' : '' }}
+                                    class="w-5 h-5">
+                            {{-- Admin hanya lihat (disabled) --}}
+                            @else
+                                <input type="checkbox"
+                                    disabled
+                                    class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
+                                    id="kelengkapan_maintenance_report"
+                                    value="1"
+                                    {{ old('kelengkapan_maintenance_report') ? 'checked' : '' }}>
+
+                                {{-- Hidden agar tetap terkirim --}}
+                                <input type="hidden" name="kelengkapan_maintenance_report" value="{{ old('kelengkapan_maintenance_report') ? '1' : '' }}">
+                            @endrole
+
+                            <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_maintenance_report" value="{{ old('qty_maintenance_report') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_maintenance_report') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             @error('qty_maintenance_report')
                                 <div class="text-xs text-red-600">
@@ -442,10 +498,28 @@
                             <label for="kelengkapan_surat_permohonan" class="flex-1 cursor-pointer">
                                 Surat Permohonan
                             </label>
-                            <input type="checkbox" id="kelengkapan_surat_permohonan" name="kelengkapan_surat_permohonan" value="1"
-                                {{ old('kelengkapan_surat_permohonan') ? 'checked' : '' }}
-                                class="w-5 h-5">
-                            <input type="number" placeholder="Qty..." name="qty_surat_permohonan" value="{{ old('qty_surat_permohonan') }}"
+                            {{-- Owner & Petugas bisa ubah --}}
+                            @role('owner|petugas')
+                                <input type="checkbox"
+                                    id="kelengkapan_surat_permohonan"
+                                    name="kelengkapan_surat_permohonan"
+                                    value="1"
+                                    {{ old('kelengkapan_surat_permohonan') ? 'checked' : '' }}
+                                    class="w-5 h-5">
+                            {{-- Admin hanya lihat (disabled) --}}
+                            @else
+                                <input type="checkbox"
+                                    disabled
+                                    class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
+                                    id="kelengkapan_surat_permohonan"
+                                    value="1"
+                                    {{ old('kelengkapan_surat_permohonan') ? 'checked' : '' }}>
+
+                                {{-- Hidden agar tetap terkirim --}}
+                                <input type="hidden" name="kelengkapan_surat_permohonan" value="{{ old('kelengkapan_surat_permohonan') ? '1' : '' }}">
+                            @endrole
+
+                            <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_surat_permohonan" value="{{ old('qty_surat_permohonan') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_surat_permohonan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             @error('qty_surat_permohonan')
                                 <div class="text-xs text-red-600">
@@ -463,16 +537,17 @@
                     Catatan
                 </label>
                 <textarea 
+                    @role('admin') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole
                     name="catatan" 
                     id="catatan" 
                     rows="4"
                     placeholder="Masukkan catatan..."
                     class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('catatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">{{ old('catatan') }}</textarea>
-                @error('catatan')
-                <div class="text-xs text-red-600">
-                    {{ $message }}
-                </div>
-                @enderror   
+                    @error('catatan')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
                 </div>
                 {{-- End Catatan --}}
 
@@ -541,7 +616,7 @@
                 let row = `
                 <tr>
                     <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <select id="tool-select-${rowCount}" name="tools[${rowCount}][tool_id]" class="form-control" required>
+                        <select @role('petugas') disabled class="bg-gray-200 cursor-not-allowed form-control" @endrole id="tool-select-${rowCount}" name="tools[${rowCount}][tool_id]" class="form-control" required>
                             <option value="">-- Pilih --</option>
                             @foreach($tools as $tool)
                                 <option value="{{ $tool->id }}">{{ $tool->nama }}</option>
@@ -549,22 +624,22 @@
                         </select>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <input type="number" name="tools[${rowCount}][qty]" class="bg-gray-100 rounded-md form-control" min="1" required>
+                        <input type="number" @role('petugas') disabled class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][qty]" class="bg-gray-100 rounded-md form-control" min="1" required>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <select name="tools[${rowCount}][status]" class="form-control" required>
+                        <select @role('petugas') disabled class="bg-gray-200 cursor-not-allowed form-control" @endrole name="tools[${rowCount}][status]" class="form-control" required>
                             <option value="pertama">Pertama</option>
                             <option value="resertifikasi">Resertifikasi</option>
                         </select>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <input type="text" name="tools[${rowCount}][kapasitas]" class="bg-gray-100 rounded-md form-control">
+                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][kapasitas]" class="bg-gray-100 rounded-md form-control">
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <input type="text" name="tools[${rowCount}][model]" class="bg-gray-100 rounded-md form-control">
+                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][model]" class="bg-gray-100 rounded-md form-control">
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        <input type="text" name="tools[${rowCount}][no_seri]" class="bg-gray-100 rounded-md form-control">
+                        <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][no_seri]" class="bg-gray-100 rounded-md form-control">
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <button type="button" class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">

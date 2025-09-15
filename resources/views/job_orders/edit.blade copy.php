@@ -77,14 +77,7 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
-                        <input id="datepicker-autohide-{{ $i }}" name="tanggal_pemeriksaan{{ $i }}" placeholder="({{ $i }})" value="{{ old('tanggal_pemeriksaan'.$i, optional($jobOrder->{'tanggal_pemeriksaan'.$i})->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_pemeriksaan'.$i) valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        @else
-                        {{-- Petugas Hanya Lihat --}}
-                        <input disabled class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" placeholder="({{ $i }})" value="{{ old('tanggal_pemeriksaan'.$i, optional($jobOrder->{'tanggal_pemeriksaan'.$i})->format('d-m-Y')) }}" type="text">
-                        <input type="hidden" name="tanggal_pemeriksaan{{ $i }}" value="{{ old('tanggal_pemeriksaan'.$i, optional($jobOrder->{'tanggal_pemeriksaan'.$i})->format('d-m-Y')) }}">
-                        @endrole
+                        <input @role('petugas') readonly class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" @endrole id="datepicker-autohide-{{ $i }}" name="tanggal_pemeriksaan{{ $i }}" placeholder="({{ $i }})" value="{{ old('tanggal_pemeriksaan'.$i, optional($jobOrder->{'tanggal_pemeriksaan'.$i})->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_pemeriksaan'.$i) valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     </div>
                     @error('tanggal_pemeriksaan'.$i)
                     <div class="text-xs text-red-600">{{ $message }}</div>
@@ -95,36 +88,18 @@
 
             {{-- Jumlah Hari Pemeriksaan --}}
             <div>
-                {{-- Admin/Owner Bisa Edit --}}
-                @role('owner|admin')
-                    <select required name="jumlah_hari_pemeriksaan" id="jumlah_hari_pemeriksaan"
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_hari_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        <option value="" class="text-center">--- Jumlah Hari Pemeriksaan ---</option>
-                        @foreach([1,2,3,4,5] as $hari)
-                            <option value="{{ $hari }}" {{ old('jumlah_hari_pemeriksaan', $jobOrder->jumlah_hari_pemeriksaan) == $hari ? 'selected' : '' }}>
-                                {{ $hari.' Hari' }}
-                            </option>
-                        @endforeach
-                    </select>
-                @else
-                    {{-- Petugas Hanya Lihat --}}
-                    <select disabled id="jumlah_hari_pemeriksaan"
-                        class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed border-r-gray-200 sm:text-sm">
-                        <option value="" class="text-center">--- Jumlah Hari Pemeriksaan ---</option>
-                        @foreach([1,2,3,4,5] as $hari)
-                            <option value="{{ $hari }}" {{ old('jumlah_hari_pemeriksaan', $jobOrder->jumlah_hari_pemeriksaan) == $hari ? 'selected' : '' }}>
-                                {{ $hari.' Hari' }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="hidden" name="jumlah_hari_pemeriksaan" value="{{ old('jumlah_hari_pemeriksaan', $jobOrder->jumlah_hari_pemeriksaan) }}">
-                @endrole
-
+                <select @role('petugas') readonly class="block w-full px-3 py-2 mt-1 border border-gray-400 rounded-md shadow-sm cursor-not-allowed border-r-gray-200 sm:text-sm" @endrole required name="jumlah_hari_pemeriksaan" id="jumlah_hari_pemeriksaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_hari_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    <option value="" class="text-center">--- Jumlah Hari Pemeriksaan ---</option>
+                    @foreach([1,2,3,4,5] as $hari)
+                        <option value="{{ $hari }}" {{ old('jumlah_hari_pemeriksaan', $jobOrder->jumlah_hari_pemeriksaan) == $hari ? 'selected' : '' }}>
+                            {{ $hari.' Hari' }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('jumlah_hari_pemeriksaan')
-                    <div class="text-xs text-red-600">{{ $message }}</div>
+                <div class="text-xs text-red-600">{{ $message }}</div>
                 @enderror
             </div>
-
 
             {{-- Tanggal JO Dibuat & Selesai --}}
             <div class="flex flex-wrap justify-between w-full gap-y-4">
@@ -137,14 +112,7 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
-                        <input id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat', optional($jobOrder->tanggal_dibuat)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        @else
-                        {{-- Petugas Hanya Lihat --}}
-                        <input disabled class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" value="{{ old('tanggal_dibuat', optional($jobOrder->tanggal_dibuat)->format('d-m-Y')) }}" type="text"  placeholder="Pilih Tanggal">
-                        <input type="hidden" name="tanggal_dibuat" value="{{ old('tanggal_dibuat', optional($jobOrder->tanggal_dibuat)->format('d-m-Y')) }}">
-                        @endrole 
+                        <input @role('petugas') readonly class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" @endrole id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat', optional($jobOrder->tanggal_dibuat)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     </div>
                     @error('tanggal_dibuat')
                     <div class="text-xs text-red-600">
@@ -161,14 +129,7 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
-                        <input id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai', optional($jobOrder->tanggal_selesai)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        @else
-                        {{-- Petugas Hanya Lihat --}}
-                        <input disabled class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" value="{{ old('tanggal_selesai', optional($jobOrder->tanggal_selesai)->format('d-m-Y')) }}" type="text"  placeholder="Pilih Tanggal">
-                        <input type="hidden" name="tanggal_selesai" value="{{ old('tanggal_selesai', optional($jobOrder->tanggal_selesai)->format('d-m-Y')) }}">
-                        @endrole                     
+                        <input @role('petugas') readonly class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 cursor-not-allowed" @endrole id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai', optional($jobOrder->tanggal_selesai)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     </div>
                     @error('tanggal_selesai')
                     <div class="text-xs text-red-600">
@@ -235,41 +196,18 @@
 
             {{-- Pilih Penanggung Jawab --}}
             <div>
-                <label for="responsibles" class="block text-sm font-medium text-gray-700">
-                    Penanggung Jawab <span class="text-red-600">*</span>
-                </label>
-                {{-- Admin/Owner Bisa Edit --}}
-                @role('owner|admin')
-                    <select id="responsibles" name="responsibles[]" multiple
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm @error('responsibles') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                        @foreach ($petugas as $user)
-                            <option value="{{ $user->id }}" {{ in_array($user->id, old('responsibles', $jobOrder->responsibles->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $user->nama }}
-                            </option>
-                        @endforeach
-                    </select>
-                @else
-                    {{-- Petugas Hanya Lihat --}}
-                    <select disabled id="responsibles" multiple
-                        class="block w-full mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm">
-                        @foreach ($petugas as $user)
-                            <option value="{{ $user->id }}" {{ in_array($user->id, old('responsibles', $jobOrder->responsibles->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $user->nama }}
-                            </option>
-                        @endforeach
-                    </select>
-
-                    {{-- Hidden inputs agar tetap submit --}}
-                    @foreach (old('responsibles', $jobOrder->responsibles->pluck('id')->toArray()) as $id)
-                        <input type="hidden" name="responsibles[]" value="{{ $id }}">
+                <label for="responsibles" class="block text-sm font-medium text-gray-700">Penanggung Jawab <span class="text-red-600">*</span></label>
+                <select @role('petugas') readonly class="block w-full mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole id="responsibles" name="responsibles[]" multiple class="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm @error('responsibles') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    @foreach ($petugas as $user)
+                        <option value="{{ $user->id }}" {{ in_array($user->id, old('responsibles', $jobOrder->responsibles->pluck('id')->toArray())) ? 'selected' : '' }}>
+                            {{ $user->nama }}
+                        </option>
                     @endforeach
-                @endrole
-
+                </select>
                 @error('responsibles')
-                    <div class="mt-1 text-xs text-red-600">{{ $message }}</div>
+                <div class="mt-1 text-xs text-red-600">{{ $message }}</div>
                 @enderror
             </div>
-
 
             {{-- Pilih alat --}}
             <label for="responsibles" class="block text-sm font-medium text-gray-700">List Job Order <span class="text-red-600">*</span></label>
@@ -283,9 +221,7 @@
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Kapasitas</th>
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Model/Tipe</th>
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Seri/Unit</th>
-                            @role('owner|admin')
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
-                            @endrole
                         </tr>
                     </thead>
                     <tbody id="tools-table-body" class="divide-y divide-gray-200">
@@ -294,34 +230,15 @@
                         @foreach (old('tools') as $i => $tool)
                             <tr>
                                 <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                    {{-- Admin/Owner Bisa Edit --}}
-                                    @role('owner|admin')
-                                        <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
-                                            class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            @foreach($tools as $t)
-                                                <option value="{{ $t->id }}" {{ old("tools.$i.tool_id", $jobOrder->tools[$i]->tool_id ?? null) == $t->id ? 'selected' : '' }}>
-                                                    {{ $t->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    @else
-                                        {{-- Petugas Hanya Lihat --}}
-                                        <select disabled id="tool-select-{{ $i }}" class="cursor-not-allowed form-control">
-                                            <option value="">-- Pilih --</option>
-                                            @foreach($tools as $t)
-                                                <option value="{{ $t->id }}" {{ old("tools.$i.tool_id", $jobOrder->tools[$i]->tool_id ?? null) == $t->id ? 'selected' : '' }}>
-                                                    {{ $t->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                        {{-- Hidden agar tetap terkirim --}}
-                                        <input type="hidden" name="tools[{{ $i }}][tool_id]" 
-                                            value="{{ old("tools.$i.tool_id", $jobOrder->tools[$i]->tool_id ?? '') }}">
-                                    @endrole
+                                    <select @role('petugas') readonly class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" class="form-control" required>
+                                        <option value="">-- Pilih --</option>
+                                        @foreach($tools as $t)
+                                            <option value="{{ $t->id }}" {{ old("tools.$i.tool_id") == $t->id ? 'selected' : '' }}>
+                                                {{ $t->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </td>
-
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="number" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][qty]" class="bg-gray-100 rounded-md form-control" min="1" required value="{{ old("tools.$i.qty") }}">
                                 </td>
@@ -340,7 +257,6 @@
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][no_seri]" class="bg-gray-100 rounded-md form-control" value="{{ old("tools.$i.no_seri") }}">
                                 </td>
-                                @role('owner|admin')
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <button type="button" @role('petugas') readonly class="cursor-not-allowed" @endrole class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                                     <!-- SVG hapus -->
@@ -349,18 +265,13 @@
                                         </svg>
                                     </button>                                    
                                 </td>
-                                @else
-                                @endrole
                             </tr>
                         @endforeach
                     @elseif($jobOrder->tools->count())
                         @foreach ($jobOrder->tools as $i => $tool)
                             <tr>
                                 <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                {{-- Admin/Owner Bisa Edit --}}
-                                @role('owner|admin')
-                                    <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
-                                        class="form-control" required>
+                                    <select @role('petugas') readonly class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" class="form-control" required>
                                         <option value="">-- Pilih --</option>
                                         @foreach($tools as $t)
                                             <option value="{{ $t->id }}" {{ $tool->id == $t->id ? 'selected' : '' }}>
@@ -368,43 +279,15 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                @else
-                                    {{-- Petugas Hanya Lihat --}}
-                                    <select disabled id="tool-select-{{ $i }}" class="cursor-not-allowed form-control">
-                                        <option value="">-- Pilih --</option>
-                                        @foreach($tools as $t)
-                                            <option value="{{ $t->id }}" {{ $tool->id == $t->id ? 'selected' : '' }}>
-                                                {{ $t->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    {{-- Hidden agar tetap terkirim --}}
-                                    <input type="hidden" name="tools[{{ $i }}][tool_id]" value="{{ $tool->id }}">
-                                @endrole
-                            </td>
-
+                                </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="number" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][qty]" class="bg-gray-100 rounded-md form-control" min="1" required value="{{ $tool->pivot->qty }}">
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                    {{-- Admin/Owner Bisa Edit --}}
-                                    @role('owner|admin')
-                                        <select name="tools[{{ $i }}][status]" class="form-control" required>
-                                            <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
-                                        </select>
-                                    @else
-                                        {{-- Petugas Hanya Lihat --}}
-                                        <select disabled class="bg-gray-200 rounded-sm cursor-not-allowed form-control">
-                                            <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
-                                        </select>
-
-                                        {{-- Hidden agar tetap terkirim --}}
-                                        <input type="hidden" name="tools[{{ $i }}][status]" value="{{ $tool->pivot->status }}">
-                                    @endrole
-
+                                    <select @role('petugas') readonly class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
+                                        <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
+                                        <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                    </select>
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][kapasitas]" class="bg-gray-100 rounded-md form-control" value="{{ $tool->pivot->kapasitas }}">
@@ -415,7 +298,6 @@
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][no_seri]" class="bg-gray-100 rounded-md form-control" value="{{ $tool->pivot->no_seri }}">
                                 </td>
-                                @role('owner|admin')
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <button type="button" @role('petugas') readonly class="cursor-not-allowed" @endrole class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                                         <!-- SVG hapus -->
@@ -424,24 +306,12 @@
                                             </svg>
                                     </button>                                 
                                 </td>
-                                @else
-                                @endrole
                             </tr>
                         @endforeach
                     @endif
                 </tbody>
                 </table>
-                @role('owner|admin')
-                    <button type="button" id="add-tool"
-                        class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
-                        + Tambah Alat
-                    </button>
-                @else
-                    <button type="button" disabled id="add-tool"
-                        class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed">
-                        + Tambah Alat
-                    </button>
-                @endrole
+                <button type="button" @role('petugas') readonly class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed" @endrole id="add-tool" class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">+ Tambah Alat</button>
             </div>
             {{-- End Pilih alat --}}
 
@@ -456,18 +326,10 @@
                         <label for="kelengkapan_manual_book" class="flex-1 cursor-pointer">
                             Manual Book (Spesifikasi Alat)
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_manual_book" name="kelengkapan_manual_book" value="1"
+                        <input type="checkbox" @role('admin') readonly class="w-5 h-5 bg-gray-200 cursor-not-allowed" @endrole id="kelengkapan_manual_book" name="kelengkapan_manual_book" value="1"
                             {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 'checked' : '' }}
                             class="w-5 h-5">
-                        @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_manual_book" value="{{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 1 : 0 }}">
-                        @endrole
-
+                        
                         <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_manual_book" value="{{ old('qty_manual_book', $jobOrder->qty_manual_book ?? '') }}"
                             class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_manual_book') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @error('qty_manual_book')
@@ -482,18 +344,9 @@
                         <label for="kelengkapan_layout" class="flex-1 cursor-pointer">
                             Layout/Diagram Instalasi
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_layout" name="kelengkapan_layout" value="1"
+                        <input type="checkbox" @role('admin') readonly class="w-5 h-5 bg-gray-200 cursor-not-allowed" @endrole id="kelengkapan_layout" name="kelengkapan_layout" value="1"
                             {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 'checked' : '' }}
                             class="w-5 h-5">
-                        @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_layout" value="{{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 1 : 0 }}">
-                        @endrole
-
                         <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_layout" value="{{ old('qty_layout', $jobOrder->qty_layout ?? '') }}"
                             class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_layout') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @error('qty_layout')
@@ -508,18 +361,9 @@
                         <label for="kelengkapan_maintenance_report" class="flex-1 cursor-pointer">
                             Checklist Maintenance Report
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_maintenance_report" name="kelengkapan_maintenance_report" value="1"
+                        <input type="checkbox" @role('admin') readonly class="w-5 h-5 bg-gray-200 cursor-not-allowed" @endrole id="kelengkapan_maintenance_report" name="kelengkapan_maintenance_report" value="1"
                             {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 'checked' : '' }}
                             class="w-5 h-5">
-                        @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_maintenance_report" value="{{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 1 : 0 }}">
-                        @endrole
-
                         <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_maintenance_report" value="{{ old('qty_maintenance_report', $jobOrder->qty_maintenance_report ?? '') }}"
                             class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_maintenance_report') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @error('qty_maintenance_report')
@@ -534,18 +378,9 @@
                         <label for="kelengkapan_surat_permohonan" class="flex-1 cursor-pointer">
                             Surat Permohonan
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_surat_permohonan" name="kelengkapan_surat_permohonan" value="1"
+                        <input type="checkbox" @role('admin') readonly class="w-5 h-5 bg-gray-200 cursor-not-allowed" @endrole id="kelengkapan_surat_permohonan" name="kelengkapan_surat_permohonan" value="1"
                             {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 'checked' : '' }}
                             class="w-5 h-5">
-                        @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_surat_permohonan" value="{{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 1 : 0 }}">
-                        @endrole
-
                         <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_surat_permohonan" value="{{ old('qty_surat_permohonan', $jobOrder->qty_surat_permohonan ?? '') }}"
                             class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_surat_permohonan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @error('qty_surat_permohonan')
@@ -667,7 +502,6 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][no_seri]" class="bg-gray-100 rounded-md form-control">
                     </td>
-                    @role('owner|admin')
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <button type="button" class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                             <!-- SVG hapus -->
@@ -676,8 +510,6 @@
                                 </svg>
                         </button>
                     </td>
-                    @else
-                    @endrole
                 </tr>`;
 
                 document.querySelector('#tools-table tbody').insertAdjacentHTML('beforeend', row);

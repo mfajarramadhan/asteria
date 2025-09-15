@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\JobOrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobOrderController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobOrderToolController;
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('main-dashboard', ['title' => 'Dashboard', 'subtitle' => 'Ringkasan laporan riksa uji PT. Asteria Riksa Indonesia']);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:owner|petugas'])->group(function () {
+Route::middleware(['auth', 'role:owner|admin|petugas'])->group(function () {
     Route::resource('job_orders', JobOrderController::class);
     Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
     ->name('job-order-tools.selesai');
