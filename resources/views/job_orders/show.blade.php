@@ -255,11 +255,11 @@
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->no_seri }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                             @if (($tool->pivot->status_tool == 'belum'))
-                            <span class="px-3 py-1 text-sm font-bold text-white bg-red-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                            <span class="px-3 py-1 text-sm font-bold text-white bg-gradient-to-t from-red-700 to-red-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
                             @elseif($tool->pivot->status_tool == 'proses')
-                                <span class="px-3 py-1 text-sm font-bold text-white bg-orange-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-gradient-to-t from-orange-700 to-orange-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
                             @else
-                                <span class="px-3 py-1 text-sm font-bold text-white bg-green-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                                <span class="px-3 py-1 text-sm font-bold text-white bg-gradient-to-t from-green-700 to-green-500 rounded-full">{{ ucfirst($tool->pivot->status_tool) }}</span>
                             @endif
                         </td>
                     </tr>

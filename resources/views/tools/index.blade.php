@@ -62,7 +62,7 @@
 
 
     {{-- Tambah Alat --}}
-    <button class="px-5 py-3 font-bold text-white transition-transform rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
+    <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
         <a href="{{ route('tools.create') }}">+ Tambah Alat</a>
     </button>
     {{-- End Tambah Alat --}}

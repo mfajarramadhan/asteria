@@ -62,7 +62,7 @@
 
     @role('admin|owner')
     {{-- Tambah Alat --}}
-    <button class="px-5 py-3 font-bold text-white transition-transform rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
+    <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
         <a href="{{ route('job_orders.create') }}">+ Tambah Job Order</a>
     </button>
     {{-- End Tambah Alat --}}
@@ -91,7 +91,7 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $jo->nama_perusahaan }}</td>
                     <td>
                         @if (($jo->status_jo == 'belum'))
-                            <span class="px-3 py-2 text-sm font-bold text-white bg-red-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                            <span class="px-3 py-1 text-sm font-bold text-white bg-gradient-to-t from-red-700 to-red-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
                         @elseif($jo->status_jo == 'proses')
                             <span class="px-3 py-2 text-sm font-bold text-white bg-orange-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
                         @else

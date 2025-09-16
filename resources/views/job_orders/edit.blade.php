@@ -432,13 +432,11 @@
                 </tbody>
                 </table>
                 @role('owner|admin')
-                    <button type="button" id="add-tool"
-                        class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">
+                    <button type="button" id="add-tool" class="px-3 py-1 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
                         + Tambah Alat
                     </button>
                 @else
-                    <button type="button" disabled id="add-tool"
-                        class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed">
+                    <button type="button" disabled id="add-tool" class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed">
                         + Tambah Alat
                     </button>
                 @endrole
@@ -580,7 +578,9 @@
             
             {{-- Tombol Submit --}}
             <div class="mt-4">
-                <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">Update Job Order</button>
+                <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
+                    Update Job Order
+                </button>
             </div>
         </form>
     </div>

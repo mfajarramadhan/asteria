@@ -10,7 +10,7 @@
         <!-- Text Info -->
         <div class="flex flex-col items-end justify-center">
             <p class="font-semibold text-black">{{ auth()->user()->nama }}</p>
-            <p class="text-sm font-light">{{ auth()->user()->email }}</p>
+            <p class="text-sm font-light">{{ auth()->user()->jabatan }}</p>
         </div>
         <!-- Image -->
         <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">

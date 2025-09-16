@@ -378,7 +378,7 @@
                         @endif
                     </tbody>
                     </table>
-                    <button type="button" @role('petugas') disabled class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed" @endrole id="add-tool" class="px-3 py-1 font-semibold text-white transition-transform rounded-md bg-gradient-to-r from-blue-500 to-purple-500 transform-gpu hover:-translate-y-0.5 hover:shadow-lg">+ Tambah Alat</button>
+                    <button type="button" @role('petugas') disabled class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed" @endrole id="add-tool" class="px-3 py-1 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">+ Tambah List</button>
                 </div>
                 {{-- End Pilih alat --}}
 
@@ -552,7 +552,7 @@
                 {{-- End Catatan --}}
 
                 {{-- Submit --}}
-                <button type="submit" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
                     Simpan
                 </button>
                 {{-- End Submit --}}
