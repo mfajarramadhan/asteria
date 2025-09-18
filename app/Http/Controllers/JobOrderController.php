@@ -447,4 +447,10 @@ class JobOrderController extends Controller
 
         return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil di update!');
     }
+
+    public function destroy(JobOrder $jobOrder)
+    {
+        $jobOrder->delete();
+        return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil dihapus!');
+    }
 }
