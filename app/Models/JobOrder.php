@@ -15,14 +15,18 @@ class JobOrder extends Model
     ];
 
     protected $casts = [
-        'kelengkapan' => 'array', // parsing json menjadi array
-        'tanggal_dibuat' => 'date',
-        'tanggal_selesai' => 'date',
-        'tanggal_pemeriksaan1' => 'date',
-        'tanggal_pemeriksaan2' => 'date',
-        'tanggal_pemeriksaan3' => 'date',
-        'tanggal_pemeriksaan4' => 'date',
-        'tanggal_pemeriksaan5' => 'date',
+        'kelengkapan'                    => 'array', // parsing json menjadi array
+        'tanggal_dibuat'                 => 'date',
+        'tanggal_selesai'                => 'date',
+        'tanggal_pemeriksaan1'           => 'date',
+        'tanggal_pemeriksaan2'           => 'date',
+        'tanggal_pemeriksaan3'           => 'date',
+        'tanggal_pemeriksaan4'           => 'date',
+        'tanggal_pemeriksaan5'           => 'date',
+        'kelengkapan_manual_book'        => 'boolean',
+        'kelengkapan_layout'             => 'boolean',
+        'kelengkapan_maintenance_report' => 'boolean',
+        'kelengkapan_surat_permohonan'   => 'boolean',
     ];
 
     public function tools()

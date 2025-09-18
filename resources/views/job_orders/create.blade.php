@@ -198,7 +198,7 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_dibuat') }}">
+                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole required id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_dibuat') }}">
                         </div>
                         @error('tanggal_dibuat')
                         <div class="text-xs text-red-600">
@@ -215,7 +215,7 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_selesai') }}">
+                            <input @role('petugas') disabled class="text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-200 border border-gray-400 cursor-not-allowed" @endrole required id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_selesai') }}">
                         </div>
                         @error('tanggal_selesai')
                         <div class="text-xs text-red-600">
@@ -393,25 +393,29 @@
                             <label for="kelengkapan_manual_book" class="flex-1 cursor-pointer">
                                 Manual Book (Spesifikasi Alat)
                             </label>
-                            {{-- Owner/Petugas bisa ubah --}}
-                            @role('owner|petugas')
+
+                            {{-- SuperAdmin & Petugas bisa ubah --}}
+                            @role('superAdmin|petugas')
+                                {{-- Hidden default false/o agar aman tidak terchecklist otomatis --}}
+                                <input type="hidden" name="kelengkapan_manual_book" value="0">
                                 <input type="checkbox"
                                     id="kelengkapan_manual_book"
                                     name="kelengkapan_manual_book"
                                     value="1"
-                                    {{ old('kelengkapan_manual_book') ? 'checked' : '' }}
+                                    {{ old('kelengkapan_manual_book', $data->kelengkapan_manual_book ?? 0) == 1 ? 'checked' : '' }}
                                     class="w-5 h-5">
-                            {{-- Admin hanya lihat --}}
                             @else
                                 <input type="checkbox"
                                     disabled
                                     class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
                                     id="kelengkapan_manual_book"
                                     value="1"
-                                    {{ old('kelengkapan_manual_book') ? 'checked' : '' }}>
+                                    {{ old('kelengkapan_manual_book', $data->kelengkapan_manual_book ?? 0) == 1 ? 'checked' : '' }}>
 
-                                {{-- Hidden agar tetap terkirim --}}
-                                <input type="hidden" name="kelengkapan_manual_book" value="{{ old('kelengkapan_manual_book') ? '1' : '' }}">
+                                {{-- Hidden agar tetap terkirim sesuai DB --}}
+                                <input type="hidden" 
+                                    name="kelengkapan_manual_book" 
+                                    value="{{ old('kelengkapan_manual_book', $data->kelengkapan_manual_book ?? 0) }}">
                             @endrole
 
                             <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_manual_book" value="{{ old('qty_manual_book') }}"
@@ -428,25 +432,30 @@
                             <label for="kelengkapan_layout" class="flex-1 cursor-pointer">
                                 Layout/Diagram Instalasi
                             </label>
-                            {{-- Owner & Petugas bisa ubah --}}
-                            @role('owner|petugas')
+
+                            {{-- SuperAdmin & Petugas bisa ubah --}}
+                            @role('superAdmin|petugas')
+                                {{-- Hidden default false/0 agar aman tidak terchecklist otomatis --}}
+                                <input type="hidden" name="kelengkapan_layout" value="0">
                                 <input type="checkbox"
                                     id="kelengkapan_layout"
                                     name="kelengkapan_layout"
                                     value="1"
-                                    {{ old('kelengkapan_layout') ? 'checked' : '' }}
+                                    {{ old('kelengkapan_layout', $data->kelengkapan_layout ?? 0) == 1 ? 'checked' : '' }}
                                     class="w-5 h-5">
-                                {{-- Admin hanya lihat --}}
                             @else
+                                {{-- Admin hanya lihat --}}
                                 <input type="checkbox"
                                     disabled
                                     class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
                                     id="kelengkapan_layout"
                                     value="1"
-                                    {{ old('kelengkapan_layout') ? 'checked' : '' }}>
+                                    {{ old('kelengkapan_layout', $data->kelengkapan_layout ?? 0) == 1 ? 'checked' : '' }}>
 
-                                {{-- Hidden agar tetap terkirim --}}
-                                <input type="hidden" name="kelengkapan_layout" value="{{ old('kelengkapan_layout') ? '1' : '' }}">
+                                {{-- Hidden agar tetap terkirim sesuai DB --}}
+                                <input type="hidden" 
+                                    name="kelengkapan_layout" 
+                                    value="{{ old('kelengkapan_layout', $data->kelengkapan_layout ?? 0) }}">
                             @endrole
 
                             <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_layout" value="{{ old('qty_layout') }}"
@@ -463,26 +472,32 @@
                             <label for="kelengkapan_maintenance_report" class="flex-1 cursor-pointer">
                                 Checklist Maintenance Report
                             </label>
-                            {{-- Owner & Petugas bisa ubah --}}
-                            @role('owner|petugas')
+
+                            {{-- SuperAdmin & Petugas bisa ubah --}}
+                            @role('superAdmin|petugas')
+                                {{-- Hidden default false/0 agar aman tidak terchecklist otomatis --}}
+                                <input type="hidden" name="kelengkapan_maintenance_report" value="0">
                                 <input type="checkbox"
                                     id="kelengkapan_maintenance_report"
                                     name="kelengkapan_maintenance_report"
                                     value="1"
-                                    {{ old('kelengkapan_maintenance_report') ? 'checked' : '' }}
+                                    {{ old('kelengkapan_maintenance_report', $data->kelengkapan_maintenance_report ?? 0) == 1 ? 'checked' : '' }}
                                     class="w-5 h-5">
-                            {{-- Admin hanya lihat (disabled) --}}
                             @else
+                                {{-- Admin hanya lihat --}}
                                 <input type="checkbox"
                                     disabled
                                     class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
                                     id="kelengkapan_maintenance_report"
                                     value="1"
-                                    {{ old('kelengkapan_maintenance_report') ? 'checked' : '' }}>
+                                    {{ old('kelengkapan_maintenance_report', $data->kelengkapan_maintenance_report ?? 0) == 1 ? 'checked' : '' }}>
 
-                                {{-- Hidden agar tetap terkirim --}}
-                                <input type="hidden" name="kelengkapan_maintenance_report" value="{{ old('kelengkapan_maintenance_report') ? '1' : '' }}">
+                                {{-- Hidden agar tetap terkirim sesuai DB --}}
+                                <input type="hidden" 
+                                    name="kelengkapan_maintenance_report" 
+                                    value="{{ old('kelengkapan_maintenance_report', $data->kelengkapan_maintenance_report ?? 0) }}">
                             @endrole
+
 
                             <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_maintenance_report" value="{{ old('qty_maintenance_report') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_maintenance_report') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -498,26 +513,32 @@
                             <label for="kelengkapan_surat_permohonan" class="flex-1 cursor-pointer">
                                 Surat Permohonan
                             </label>
-                            {{-- Owner & Petugas bisa ubah --}}
-                            @role('owner|petugas')
+
+                            {{-- SuperAdmin & Petugas bisa ubah --}}
+                            @role('superAdmin|petugas')
+                                {{-- Hidden default false/0 agar aman tidak terchecklist otomatis --}}
+                                <input type="hidden" name="kelengkapan_surat_permohonan" value="0">
                                 <input type="checkbox"
                                     id="kelengkapan_surat_permohonan"
                                     name="kelengkapan_surat_permohonan"
                                     value="1"
-                                    {{ old('kelengkapan_surat_permohonan') ? 'checked' : '' }}
+                                    {{ old('kelengkapan_surat_permohonan', $data->kelengkapan_surat_permohonan ?? 0) == 1 ? 'checked' : '' }}
                                     class="w-5 h-5">
-                            {{-- Admin hanya lihat (disabled) --}}
                             @else
+                                {{-- Admin hanya lihat --}}
                                 <input type="checkbox"
                                     disabled
                                     class="w-5 h-5 bg-gray-200 border border-gray-400 cursor-not-allowed"
                                     id="kelengkapan_surat_permohonan"
                                     value="1"
-                                    {{ old('kelengkapan_surat_permohonan') ? 'checked' : '' }}>
+                                    {{ old('kelengkapan_surat_permohonan', $data->kelengkapan_surat_permohonan ?? 0) == 1 ? 'checked' : '' }}>
 
-                                {{-- Hidden agar tetap terkirim --}}
-                                <input type="hidden" name="kelengkapan_surat_permohonan" value="{{ old('kelengkapan_surat_permohonan') ? '1' : '' }}">
+                                {{-- Hidden agar tetap terkirim sesuai DB --}}
+                                <input type="hidden" 
+                                    name="kelengkapan_surat_permohonan" 
+                                    value="{{ old('kelengkapan_surat_permohonan', $data->kelengkapan_surat_permohonan ?? 0) }}">
                             @endrole
+
 
                             <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_surat_permohonan" value="{{ old('qty_surat_permohonan') }}"
                                 class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_surat_permohonan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">

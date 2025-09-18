@@ -1,137 +1,110 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
-        <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('tools.update', $tool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <!-- Nama Alat -->
-                <div>
-                    <label for="nama" class="block text-sm font-medium text-gray-700">
-                        Nama Alat <span class="text-red-600">*</span>
-                    </label>
-                    <input 
-                        type="text" 
-                        required 
-                        name="nama" 
-                        id="nama" 
-                        value="{{ old('nama', $tool->nama) }}" 
-                        placeholder="Masukkan nama alat..."
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                    >
-                    @error('nama')
-                        <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror   
-                </div>
-                <!-- End Nama Alat -->
 
-                <!-- Jenis Alat -->
-                <div>
-                    <label for="jenis" class="block text-sm font-medium text-gray-700">
-                        Jenis Alat <span class="text-red-600">*</span>
-                    </label>
-                    <select 
-                        required 
-                        name="jenis" 
-                        id="jenis" 
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                    >
-                        <option value="">--- Pilih Jenis Alat ---</option>
-                        <option value="PUBT" {{ old('jenis', $tool->jenis) == 'PUBT' ? 'selected' : '' }}>PUBT</option>
-                        <option value="PTP" {{ old('jenis', $tool->jenis) == 'PTP' ? 'selected' : '' }}>PTP</option>
-                        <option value="PAPA" {{ old('jenis', $tool->jenis) == 'PAPA' ? 'selected' : '' }}>PAPA</option>
-                        <option value="ILP" {{ old('jenis', $tool->jenis) == 'ILP' ? 'selected' : '' }}>ILP</option>
-                        <option value="ELEVATOR" {{ old('jenis', $tool->jenis) == 'ELEVATOR' ? 'selected' : '' }}>ELEVATOR</option>
-                        <option value="IPK" {{ old('jenis', $tool->jenis) == 'IPK' ? 'selected' : '' }}>IPK</option>
-                        <option value="LINGKER" {{ old('jenis', $tool->jenis) == 'LINGKER' ? 'selected' : '' }}>LINGKER</option>
-                    </select>
-                    @error('jenis')
-                        <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror  
-                </div>
-                <!-- End Jenis Alat -->
+    <div class="p-4 bg-white rounded-lg shadow-md">
+        <form action="{{ route('tools.update', $tool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
 
-                <!-- Lampiran -->
-                {{-- <div class="mb-4">
-                    <label for="lampiran" class="block text-sm font-medium text-gray-700">Dokumen & Lampiran</label>
-
-                    <!-- Preview gambar lama -->
-                    <div class="flex flex-wrap gap-2 mb-2">
-                        @php
-                            $lampiranList = $tool->lampiran ? json_decode($tool->lampiran, true) : [];
-                        @endphp
-                        @forelse ($lampiranList as $lampiran)
-                            <img src="{{ asset('storage/' . $lampiran) }}" alt="Lampiran" class="border rounded-md max-h-24">
-                        @empty
-                            <p class="text-sm text-gray-500">Belum ada lampiran.</p>
-                        @endforelse
+            {{-- Nama Alat --}}
+            <div>
+                <label for="nama" class="block text-sm font-medium text-gray-700">
+                    Nama Alat <span class="text-red-600">*</span>
+                </label>
+                <input type="text" required name="nama" id="nama"
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                    value="{{ old('nama', $tool->nama) }}" placeholder="Masukkan nama alat...">
+                @error('nama')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
                     </div>
+                @enderror
+            </div>
+            {{-- End Nama Alat --}}
 
-                    <!-- Preview gambar baru -->
-                    <div id="preview-container" class="flex flex-wrap gap-2 mb-2"></div>
+            {{-- Jenis Alat --}}
+            <div>
+                <label for="jenis" class="block text-sm font-medium text-gray-700">
+                    Jenis Alat <span class="text-red-600">*</span>
+                </label>
+                <select required name="jenis_riksa_uji_id" id="jenis"
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
+                    <option value="">--- Pilih Jenis Alat ---</option>
+                    @foreach ($jenisRiksaUji as $jenisRiksa)
+                        <option value="{{ $jenisRiksa->id }}"
+                            {{ old('jenis_riksa_uji_id', $tool->jenis_riksa_uji_id) == $jenisRiksa->id ? 'selected' : '' }}>
+                            {{ $jenisRiksa->jenis }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('jenis_riksa_uji_id')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- End Jenis Alat --}}
 
-                    <input 
-                        type="file" 
-                        id="lampiran" 
-                        name="lampiran[]" 
-                        multiple
-                        onchange="previewImages()" 
-                        class="block w-full text-sm text-gray-900 px-3 py-2 mt-1 border border-gray-300 rounded-md cursor-pointer bg-gray-50 
-                        @error('lampiran.*') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+            {{-- Sub Jenis Alat --}}
+            <div>
+                <label for="sub_jenis" class="block text-sm font-medium text-gray-700">
+                    Sub Jenis Alat <span class="text-red-600">*</span>
+                </label>
+                <select required name="sub_jenis_riksa_uji_id" id="sub_jenis"
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('sub_jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
+                    <option value="">--- Pilih Sub Jenis ---</option>
+                </select>
+                @error('sub_jenis_riksa_uji_id')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- End Sub Jenis Alat --}}
 
-                    @if($errors->has('lampiran.*'))
-                        <ul class="mt-1 space-y-1">
-                            @foreach($errors->get('lampiran.*') as $messages)
-                                @foreach($messages as $message)
-                                    <li class="text-xs text-red-600">{{ $message }}</li>
-                                @endforeach
-                            @endforeach
-                        </ul>
-                    @endif
-                </div> --}}
-                <!-- End Lampiran -->
+            {{-- Submit --}}
+            <button type="submit" class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
+                Update
+            </>
+            {{-- End Submit --}}
+        </form>
+    </div>
 
-                <!-- Deskripsi -->
-                {{-- <div>
-                    <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                    <textarea 
-                        name="deskripsi" 
-                        id="deskripsi" 
-                        rows="4"
-                        placeholder="Masukkan deskripsi alat..."
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('deskripsi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                    >{{ old('deskripsi', $tool->deskripsi) }}</textarea>
-                    @error('deskripsi')
-                        <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror   
-                </div> --}}
-                <!-- End Deskripsi -->
+    <script>
+        function loadSubJenis(jenisId, selectedId = null) {
+            let subJenisSelect = document.getElementById('sub_jenis');
+            subJenisSelect.innerHTML = '<option value="">--- Pilih Sub Jenis ---</option>';
 
-                <!-- Submit -->
-                <button type="submit" class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
-                    Update
-                </button>
-                {{-- End Submit --}}
-            </form>
-        </div>
+            if (jenisId) {
+                fetch(`/tools/sub-jenis/${jenisId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(sub => {
+                            let option = document.createElement('option');
+                            option.value = sub.id;
+                            option.text = sub.sub_jenis;
+                            if (selectedId && selectedId == sub.id) {
+                                option.selected = true;
+                            }
+                            subJenisSelect.appendChild(option);
+                        });
+                    });
+            }
+        }
 
-        <script>
-            // Preview multiple image baru saat edit
-            // function previewImages() {
-            //     const previewContainer = document.getElementById('preview-container');
-            //     const files = document.getElementById('lampiran').files;
-            //     previewContainer.innerHTML = "";
+        // Event saat user ganti jenis
+        document.getElementById('jenis').addEventListener('change', function() {
+            loadSubJenis(this.value);
+        });
 
-            //     Array.from(files).forEach(file => {
-            //         const reader = new FileReader();
-            //         reader.onload = function(e) {
-            //             const img = document.createElement('img');
-            //             img.src = e.target.result;
-            //             img.classList.add("max-h-24", "rounded-md", "border", "object-cover");
-            //             previewContainer.appendChild(img);
-            //         }
-            //         reader.readAsDataURL(file);
-            //     });
-            // }
-        </script>
+        // Auto-load sub jenis ketika halaman edit dibuka
+        window.addEventListener('DOMContentLoaded', function() {
+            let jenisId = document.getElementById('jenis').value;
+            let selectedSubJenis = "{{ old('sub_jenis_riksa_uji_id', $tool->sub_jenis_riksa_uji_id) }}";
+            if (jenisId) {
+                loadSubJenis(jenisId, selectedSubJenis);
+            }
+        });
+    </script>
 </x-layout>

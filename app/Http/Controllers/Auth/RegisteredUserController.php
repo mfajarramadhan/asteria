@@ -31,12 +31,12 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
+            'id_user' => ['required', 'string', 'max:50', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'jabatan' => ['required', 'string', 'max:255'],
             'avatar' => ['required', 'image', 'mimes:jpg,png,jpeg'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
 
         // Proses upload file foto
         if($request->hasFile('avatar')){
@@ -48,9 +48,10 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'nama' => $request->nama,
+            'id_user' => $request->id_user, 
+            'email' => $request->email,
             'jabatan' => $request->jabatan,
             'avatar' => $avatarPath,
-            'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 

@@ -77,8 +77,8 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
+                        {{-- SuperAdmin|Admin Bisa Edit --}}
+                        @role('superAdmin|admin')
                         <input id="datepicker-autohide-{{ $i }}" name="tanggal_pemeriksaan{{ $i }}" placeholder="({{ $i }})" value="{{ old('tanggal_pemeriksaan'.$i, optional($jobOrder->{'tanggal_pemeriksaan'.$i})->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_pemeriksaan'.$i) valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @else
                         {{-- Petugas Hanya Lihat --}}
@@ -95,8 +95,8 @@
 
             {{-- Jumlah Hari Pemeriksaan --}}
             <div>
-                {{-- Admin/Owner Bisa Edit --}}
-                @role('owner|admin')
+                {{-- SuperAdmin|Admin Bisa Edit --}}
+                @role('superAdmin|admin')
                     <select required name="jumlah_hari_pemeriksaan" id="jumlah_hari_pemeriksaan"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_hari_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         <option value="" class="text-center">--- Jumlah Hari Pemeriksaan ---</option>
@@ -137,8 +137,8 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
+                        {{-- SuperAdmin|Admin Bisa Edit --}}
+                        @role('superAdmin|admin')
                         <input id="datepicker-autohide-7" name="tanggal_dibuat" value="{{ old('tanggal_dibuat', optional($jobOrder->tanggal_dibuat)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_dibuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @else
                         {{-- Petugas Hanya Lihat --}}
@@ -161,8 +161,8 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        {{-- Admin/Owner Bisa Edit --}}
-                        @role('admin|owner')
+                        {{-- SuperAdmin|Admin Bisa Edit --}}
+                        @role('superAdmin|admin')
                         <input id="datepicker-autohide-6" name="tanggal_selesai" value="{{ old('tanggal_selesai', optional($jobOrder->tanggal_selesai)->format('d-m-Y')) }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text"  placeholder="Pilih Tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 @error('tanggal_selesai') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @else
                         {{-- Petugas Hanya Lihat --}}
@@ -238,8 +238,8 @@
                 <label for="responsibles" class="block text-sm font-medium text-gray-700">
                     Penanggung Jawab <span class="text-red-600">*</span>
                 </label>
-                {{-- Admin/Owner Bisa Edit --}}
-                @role('owner|admin')
+                {{-- SuperAdmin|Admin Bisa Edit --}}
+                @role('superAdmin|admin')
                     <select id="responsibles" name="responsibles[]" multiple
                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm sm:text-sm @error('responsibles') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                         @foreach ($petugas as $user)
@@ -283,7 +283,7 @@
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Kapasitas</th>
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Model/Tipe</th>
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Seri/Unit</th>
-                            @role('owner|admin')
+                            @role('superAdmin|admin')
                             <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                             @endrole
                         </tr>
@@ -294,8 +294,8 @@
                         @foreach (old('tools') as $i => $tool)
                             <tr>
                                 <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                    {{-- Admin/Owner Bisa Edit --}}
-                                    @role('owner|admin')
+                                    {{-- SuperAdmin|Admin Bisa Edit --}}
+                                    @role('superAdmin|admin')
                                         <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
                                             class="form-control" required>
                                             <option value="">-- Pilih --</option>
@@ -340,7 +340,7 @@
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][no_seri]" class="bg-gray-100 rounded-md form-control" value="{{ old("tools.$i.no_seri") }}">
                                 </td>
-                                @role('owner|admin')
+                                @role('superAdmin|admin')
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <button type="button" @role('petugas') readonly class="cursor-not-allowed" @endrole class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                                     <!-- SVG hapus -->
@@ -357,8 +357,8 @@
                         @foreach ($jobOrder->tools as $i => $tool)
                             <tr>
                                 <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                {{-- Admin/Owner Bisa Edit --}}
-                                @role('owner|admin')
+                                {{-- SuperAdmin|Admin Bisa Edit --}}
+                                @role('superAdmin|admin')
                                     <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
                                         class="form-control" required>
                                         <option value="">-- Pilih --</option>
@@ -388,8 +388,8 @@
                                     <input type="number" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][qty]" class="bg-gray-100 rounded-md form-control" min="1" required value="{{ $tool->pivot->qty }}">
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                                    {{-- Admin/Owner Bisa Edit --}}
-                                    @role('owner|admin')
+                                    {{-- SuperAdmin|Admin Bisa Edit --}}
+                                    @role('superAdmin|admin')
                                         <select name="tools[{{ $i }}][status]" class="form-control" required>
                                             <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
                                             <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
@@ -415,7 +415,7 @@
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][no_seri]" class="bg-gray-100 rounded-md form-control" value="{{ $tool->pivot->no_seri }}">
                                 </td>
-                                @role('owner|admin')
+                                @role('superAdmin|admin')
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <button type="button" @role('petugas') readonly class="cursor-not-allowed" @endrole class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                                         <!-- SVG hapus -->
@@ -431,7 +431,7 @@
                     @endif
                 </tbody>
                 </table>
-                @role('owner|admin')
+                @role('superAdmin|admin')
                     <button type="button" id="add-tool" class="px-3 py-1 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
                         + Tambah Alat
                     </button>
@@ -448,113 +448,172 @@
                 <label for="kelengkapan" class="block text-sm font-medium text-gray-700">
                     Kelengkapan Alat
                 </label>
-                    <div class="px-3 py-2 mt-1 space-y-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <div class="px-3 py-2 mt-1 space-y-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+
                     {{-- Manual Book --}}
                     <div class="flex items-center gap-3">
                         <label for="kelengkapan_manual_book" class="flex-1 cursor-pointer">
                             Manual Book (Spesifikasi Alat)
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_manual_book" name="kelengkapan_manual_book" value="1"
-                            {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 'checked' : '' }}
-                            class="w-5 h-5">
+
+                        @role('superAdmin|petugas')
+                            <input type="hidden" name="kelengkapan_manual_book" value="0">
+                            <input type="checkbox" 
+                                id="kelengkapan_manual_book" 
+                                name="kelengkapan_manual_book" 
+                                value="1"
+                                {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book ?? 0) ? 'checked' : '' }}
+                                class="w-5 h-5">
                         @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_manual_book" value="{{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book  ?? false) ? 1 : 0 }}">
+                            <input type="checkbox" 
+                                disabled 
+                                class="w-5 h-5 bg-gray-200 cursor-not-allowed"
+                                {{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book ?? 0) ? 'checked' : '' }}>
+                            <input type="hidden" 
+                                name="kelengkapan_manual_book" 
+                                value="{{ old('kelengkapan_manual_book', $jobOrder->kelengkapan_manual_book ?? 0) }}">
                         @endrole
 
-                        <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_manual_book" value="{{ old('qty_manual_book', $jobOrder->qty_manual_book ?? '') }}"
-                            class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_manual_book') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <input type="number"
+                            name="qty_manual_book"
+                            value="{{ old('qty_manual_book', $jobOrder->qty_manual_book ?? '') }}"
+                            placeholder="Qty..."
+                            @role('admin')
+                                readonly 
+                                class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1"
+                            @else
+                                class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_manual_book') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                            @endrole
+                        >
                         @error('qty_manual_book')
-                            <div class="text-xs text-red-600">
-                                {{ $message }}
-                            </div>
+                            <div class="text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                     {{-- Layout --}}
                     <div class="flex items-center gap-3">
                         <label for="kelengkapan_layout" class="flex-1 cursor-pointer">
                             Layout/Diagram Instalasi
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_layout" name="kelengkapan_layout" value="1"
-                            {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 'checked' : '' }}
-                            class="w-5 h-5">
+
+                        @role('superAdmin|petugas')
+                            <input type="hidden" name="kelengkapan_layout" value="0">
+                            <input type="checkbox" 
+                                id="kelengkapan_layout" 
+                                name="kelengkapan_layout" 
+                                value="1"
+                                {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout ?? 0) ? 'checked' : '' }}
+                                class="w-5 h-5">
                         @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_layout" value="{{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout  ?? false) ? 1 : 0 }}">
+                            <input type="checkbox" 
+                                disabled 
+                                class="w-5 h-5 bg-gray-200 cursor-not-allowed"
+                                {{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout ?? 0) ? 'checked' : '' }}>
+                            <input type="hidden" 
+                                name="kelengkapan_layout" 
+                                value="{{ old('kelengkapan_layout', $jobOrder->kelengkapan_layout ?? 0) }}">
                         @endrole
 
-                        <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_layout" value="{{ old('qty_layout', $jobOrder->qty_layout ?? '') }}"
-                            class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_layout') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <input type="number"
+                            name="qty_layout"
+                            value="{{ old('qty_layout', $jobOrder->qty_layout ?? '') }}"
+                            placeholder="Qty..."
+                            @role('admin')
+                                readonly 
+                                class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1"
+                            @else
+                                class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_layout') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                            @endrole
+                        >
                         @error('qty_layout')
-                            <div class="text-xs text-red-600">
-                                {{ $message }}
-                            </div>
+                            <div class="text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                     {{-- Maintenance Report --}}
                     <div class="flex items-center gap-3">
                         <label for="kelengkapan_maintenance_report" class="flex-1 cursor-pointer">
                             Checklist Maintenance Report
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_maintenance_report" name="kelengkapan_maintenance_report" value="1"
-                            {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 'checked' : '' }}
-                            class="w-5 h-5">
+
+                        @role('superAdmin|petugas')
+                            <input type="hidden" name="kelengkapan_maintenance_report" value="0">
+                            <input type="checkbox" 
+                                id="kelengkapan_maintenance_report" 
+                                name="kelengkapan_maintenance_report" 
+                                value="1"
+                                {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report ?? 0) ? 'checked' : '' }}
+                                class="w-5 h-5">
                         @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_maintenance_report" value="{{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report  ?? false) ? 1 : 0 }}">
+                            <input type="checkbox" 
+                                disabled 
+                                class="w-5 h-5 bg-gray-200 cursor-not-allowed"
+                                {{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report ?? 0) ? 'checked' : '' }}>
+                            <input type="hidden" 
+                                name="kelengkapan_maintenance_report" 
+                                value="{{ old('kelengkapan_maintenance_report', $jobOrder->kelengkapan_maintenance_report ?? 0) }}">
                         @endrole
 
-                        <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_maintenance_report" value="{{ old('qty_maintenance_report', $jobOrder->qty_maintenance_report ?? '') }}"
-                            class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_maintenance_report') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <input type="number"
+                            name="qty_maintenance_report"
+                            value="{{ old('qty_maintenance_report', $jobOrder->qty_maintenance_report ?? '') }}"
+                            placeholder="Qty..."
+                            @role('admin')
+                                readonly 
+                                class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1"
+                            @else
+                                class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_maintenance_report') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                            @endrole
+                        >
                         @error('qty_maintenance_report')
-                            <div class="text-xs text-red-600">
-                                {{ $message }}
-                            </div>
+                            <div class="text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                     {{-- Surat Permohonan --}}
                     <div class="flex items-center gap-3">
                         <label for="kelengkapan_surat_permohonan" class="flex-1 cursor-pointer">
                             Surat Permohonan
                         </label>
-                        {{-- Petugas/Owner Bisa Edit --}}
-                        @role('petugas|owner')
-                        <input type="checkbox" id="kelengkapan_surat_permohonan" name="kelengkapan_surat_permohonan" value="1"
-                            {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 'checked' : '' }}
-                            class="w-5 h-5">
+
+                        @role('superAdmin|petugas')
+                            <input type="hidden" name="kelengkapan_surat_permohonan" value="0">
+                            <input type="checkbox" 
+                                id="kelengkapan_surat_permohonan" 
+                                name="kelengkapan_surat_permohonan" 
+                                value="1"
+                                {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan ?? 0) ? 'checked' : '' }}
+                                class="w-5 h-5">
                         @else
-                        {{-- Admin Hanya Lihat --}}
-                        <input type="checkbox" disabled class="w-5 h-5 bg-gray-200 cursor-not-allowed"
-                            {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 'checked' : '' }}>
-                        <input type="hidden" name="kelengkapan_surat_permohonan" value="{{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan  ?? false) ? 1 : 0 }}">
+                            <input type="checkbox" 
+                                disabled 
+                                class="w-5 h-5 bg-gray-200 cursor-not-allowed"
+                                {{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan ?? 0) ? 'checked' : '' }}>
+                            <input type="hidden" 
+                                name="kelengkapan_surat_permohonan" 
+                                value="{{ old('kelengkapan_surat_permohonan', $jobOrder->kelengkapan_surat_permohonan ?? 0) }}">
                         @endrole
 
-                        <input type="number" @role('admin') readonly class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1" @endrole placeholder="Qty..." name="qty_surat_permohonan" value="{{ old('qty_surat_permohonan', $jobOrder->qty_surat_permohonan ?? '') }}"
-                            class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_surat_permohonan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                        <input type="number"
+                            name="qty_surat_permohonan"
+                            value="{{ old('qty_surat_permohonan', $jobOrder->qty_surat_permohonan ?? '') }}"
+                            placeholder="Qty..."
+                            @role('admin')
+                                readonly 
+                                class="w-20 px-2 py-1 text-sm bg-gray-200 border border-gray-400 rounded-md cursor-not-allowed sm:flex-1"
+                            @else
+                                class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-md sm:flex-1 @error('qty_surat_permohonan') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                            @endrole
+                        >
                         @error('qty_surat_permohonan')
-                            <div class="text-xs text-red-600">
-                                {{ $message }}
-                            </div>
+                            <div class="text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+
                 </div>
             </div>
             {{-- End Kelengkapan Alat --}}
+
 
             {{-- Catatan --}}
                 <div>
@@ -667,7 +726,7 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <input type="text" @role('petugas') readonly class="bg-gray-200 rounded-md cursor-not-allowed form-control" @endrole name="tools[${rowCount}][no_seri]" class="bg-gray-100 rounded-md form-control">
                     </td>
-                    @role('owner|admin')
+                    @role('superAdmin|admin')
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <button type="button" class="flex p-2 transition-all duration-500 rounded-full remove-row group item-center">
                             <!-- SVG hapus -->

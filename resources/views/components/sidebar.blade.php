@@ -54,7 +54,7 @@
                     </span>
                 </a>
             </li>
-            @role('owner|admin')
+            @role('superAdmin|admin')
             <li>
                 <a href="{{ route('tools.index') }}" 
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group

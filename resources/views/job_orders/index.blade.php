@@ -7,9 +7,9 @@
         <div 
             x-data="{ show: true }" 
             x-show="show" 
-            x-init="setTimeout(() => show = false, 2500)" 
+            x-init="setTimeout(() => show = false, 3000)" 
             @click.outside="show = false"
-            class="flex items-center p-2 mb-2 text-black bg-blue-300 rounded-lg shadow" 
+            class="flex items-center p-2 mb-2 text-white rounded-lg shadow bg-gradient-to-t from-blue-900 to-blue-500" 
             role="alert" 
             x-transition
         >
@@ -19,7 +19,7 @@
 
             <button type="button" 
                 @click="show = false"
-                class="flex items-center justify-center w-8 h-8 text-black bg-gray-200 rounded-md ms-auto focus:ring-2 focus:ring-blue-300 hover:bg-gray-100" 
+                class="flex items-center justify-center w-8 h-8 text-black bg-gray-200 rounded-md ms-auto focus:ring-2 focus:ring-blue-300 hover:bg-blue-300" 
                 aria-label="Close">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" 
                     viewBox="0 0 14 14">
@@ -36,9 +36,9 @@
         <div 
             x-data="{ show: true }" 
             x-show="show" 
-            x-init="setTimeout(() => show = false, 2500)" 
+            x-init="setTimeout(() => show = false, 3000)" 
             @click.outside="show = false"
-            class="flex items-center p-2 mb-2 text-white bg-red-600 rounded-lg shadow" 
+            class="flex items-center p-2 mb-2 text-white rounded-lg shadow bg-gradient-to-t from-red-700 to-red-500" 
             role="alert" 
             x-transition
         >
@@ -48,7 +48,7 @@
 
             <button type="button" 
                 @click="show = false"
-                class="flex items-center justify-center w-8 h-8 text-white bg-red-700 rounded-md ms-auto focus:ring-2 focus:ring-red-300 hover:bg-red-800" 
+                class="flex items-center justify-center w-8 h-8 text-white bg-gray-200 rounded-md ms-auto focus:ring-2 focus:ring-red-300 hover:bg-red-300" 
                 aria-label="Close">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" 
                     viewBox="0 0 14 14">
@@ -60,7 +60,7 @@
     @endif
     {{-- End Alert Error --}}
 
-    @role('admin|owner')
+    @role('superAdmin|admin')
     {{-- Tambah Alat --}}
     <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
         <a href="{{ route('job_orders.create') }}">+ Tambah Job Order</a>
@@ -91,14 +91,17 @@
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $jo->nama_perusahaan }}</td>
                     <td>
                         @if (($jo->status_jo == 'belum'))
-                            <span class="px-3 py-1 text-sm font-bold text-white bg-gradient-to-t from-red-700 to-red-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                            <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-red-700 to-red-500">{{ ucfirst($jo->status_jo) }}</span>
                         @elseif($jo->status_jo == 'proses')
-                            <span class="px-3 py-2 text-sm font-bold text-white bg-orange-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                            <span class="px-3 py-2 text-sm font-bold text-white rounded-full bg-gradient-to-t from-orange-700 to-orange-500">{{ ucfirst($jo->status_jo) }}</span>
                         @else
-                            <span class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full">{{ ucfirst($jo->status_jo) }}</span>
+                            <span class="px-3 py-2 text-sm font-bold text-white rounded-full bg-gradient-to-t from-green-700 to-green-500">{{ ucfirst($jo->status_jo) }}</span>
                         @endif
                     </td>      
-                    {{-- <td>{{ $jo->tools->count() }} alat</td>               --}}
+                    {{-- 
+                    Total Alat dalam JO
+                    <td>{{ $jo->tools->count() }} alat</td> 
+                    --}}
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <div class="flex items-center gap-1">
                             {{-- Read --}}

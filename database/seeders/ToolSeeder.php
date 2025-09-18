@@ -17,30 +17,26 @@ class ToolSeeder extends Seeder
     {
         Tool::create([
             'nama' => 'Forklift',
-            'jenis'   => 'PUBT',
-            // 'lampiran'    => null,
-            // 'deskripsi'     => 'Alat riksa uji dengan status Resertifikasi',
+            'jenis_riksa_uji_id' => 3, 
+            'sub_jenis_riksa_uji_id' => 12,
         ]);
 
         Tool::create([
             'nama' => 'Hydrant',
-            'jenis'   => 'IPK',
-            // 'lampiran'    => null,
-            // 'deskripsi'     => 'Alat riksa uji dengan status Resertifikasi',
+            'jenis_riksa_uji_id' => 6, 
+            'sub_jenis_riksa_uji_id' => 18,
         ]);
 
         Tool::create([
-            'nama' => 'Boiler',
-            'jenis'   => 'PUBT',
-            // 'lampiran'    => null,
-            // 'deskripsi'     => 'Alat riksa uji dengan status Resertifikasi',
+            'nama' => 'Eskalator',
+            'jenis_riksa_uji_id' => 5, 
+            'sub_jenis_riksa_uji_id' => 16,
         ]);
 
         Tool::create([
-            'nama' => 'Turbin',
-            'jenis'   => 'PTP',
-            // 'lampiran'    => null,
-            // 'deskripsi'     => 'Alat riksa uji dengan status Resertifikasi',
+            'nama' => 'Generator Set',
+            'jenis_riksa_uji_id' => 2, 
+            'sub_jenis_riksa_uji_id' => 4,
         ]);
     }
 }

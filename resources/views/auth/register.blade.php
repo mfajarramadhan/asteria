@@ -9,6 +9,13 @@
             <x-input-error :messages="$errors->get('nama')" class="mt-2" />
         </div>
 
+        <!-- ID User -->
+        <div class="mt-4">
+            <x-input-label for="id_user" :value="__('ID Karyawan')" />
+            <x-text-input id="id_user" class="block w-full mt-1" type="text" name="id_user" :value="old('id_user')" required autocomplete="id_user" />
+            <x-input-error :messages="$errors->get('id_user')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
@@ -16,7 +23,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Position -->
+        <!-- Jabatan -->
         <div class="mt-4">
             <x-input-label for="jabatan" :value="__('Jabatan')" />
             <x-text-input id="jabatan" class="block w-full mt-1" type="text" name="jabatan" :value="old('jabatan')" required autocomplete="jabatan" />

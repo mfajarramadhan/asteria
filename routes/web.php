@@ -20,12 +20,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Tools Route
-    Route::middleware(['auth', 'role:owner|admin'])->group(function () {
+Route::middleware(['auth', 'role:superAdmin|admin'])->group(function () {
+    // endpoint AJAX untuk filter sub-jenis
+    Route::get('tools/sub-jenis/{jenis}', [ToolController::class, 'subJenis'])
+        ->name('tools.subjenis');
+
+    // resource tools (CRUD)
     Route::resource('tools', ToolController::class);
 });
 
 
-Route::middleware(['auth', 'role:owner|admin|petugas'])->group(function () {
+Route::middleware(['auth', 'role:superAdmin|admin|petugas'])->group(function () {
     Route::resource('job_orders', JobOrderController::class);
     Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
     ->name('job-order-tools.selesai');
