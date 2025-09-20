@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
             'id_user' => ['required', 'string', 'max:50', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'jabatan' => ['required', 'string', 'max:255'],
-            'avatar' => ['required', 'image', 'mimes:jpg,png,jpeg'],
+            'avatar' => ['nullable', 'image', 'mimes:jpg,png,jpeg'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

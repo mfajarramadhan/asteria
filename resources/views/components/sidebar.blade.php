@@ -69,6 +69,21 @@
                 </a>
             </li>
             @endrole
+            @role('superAdmin')
+            <li>
+                <a href="{{ route('superadmin.index') }}" 
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('superadmin.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('superadmin.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                        class="transition-opacity duration-300 {{ request()->routeIs('superadmin.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        Kelola Pengguna
+                    </span>
+                </a>
+            </li>
+            @endrole
         </ul>
     </nav>
 </aside>
