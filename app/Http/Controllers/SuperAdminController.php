@@ -15,7 +15,7 @@ class SuperAdminController extends Controller
         // Kirim semua data users kecuali superAdmin
         $users = User::with('roles')->whereDoesntHave('roles', function ($q) {
                 $q->where('name', 'superAdmin');
-            })->orderBy('nama', 'asc')->get();
+            })->orderBy('created_at', 'desc')->get();
 
         return view('superadmin.index', [
             'title' => 'Kelola Pengguna',
@@ -59,6 +59,6 @@ class SuperAdminController extends Controller
 
         $user->delete();
 
-        return redirect()->back()->with('success', "Pengguna dengan nama \"{$user->name}\" berhasil dihapus!");
+        return redirect()->back()->with('success', "Pengguna dengan nama \"{$user->nama}\" berhasil dihapus!");
     }
 }

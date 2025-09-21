@@ -13,13 +13,13 @@
             <p class="text-sm font-light">{{ auth()->user()->jabatan }}</p>
         </div>
         <!-- Image -->
-        <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">
+        <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0 border-2 border-blue-700">
             <form method="POST" action="{{ route('logout') }}" id="logout-form">
                 @csrf
                 <button type="submit" class="w-full h-full">
-                    <img src="{{ asset('assets/profile/meong.jpeg') }}"
-                        class="object-cover w-full h-full"
-                        alt="photo">
+                    <img src="{{ asset('storage/' . (auth()->user()->avatar ?? 'avatars/meong.jpeg')) }}" 
+                    class="object-cover w-full h-full"
+                    alt="photo">
                 </button>
             </form>
         </div>

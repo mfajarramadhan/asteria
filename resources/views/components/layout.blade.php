@@ -36,9 +36,10 @@
                         <p class="font-semibold text-black">{{ auth()->user()->nama }}</p>
                         <p class="text-sm font-light">{{ auth()->user()->jabatan }}</p>
                     </div>
-                    <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">
+                    <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0 border-2 border-blue-900">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('assets/profile/meong.jpeg') }}" class="object-cover w-full h-full" alt="photo">
+                            <img src="{{ asset('storage/' . (auth()->user()->avatar ?? 'avatars/meong.jpeg')) }}" 
+                            class="object-cover w-full h-full" alt="photo">
                         </a>
                     </div>
                 </div>

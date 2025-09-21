@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
             // tambahkan validated avatar nanti
         }else{
-            $avatarPath = 'images/avatar-default.png';
+            $avatarPath = 'avatars/default.jpeg';
         }
 
         $user = User::create([
