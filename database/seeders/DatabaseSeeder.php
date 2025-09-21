@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             JenisRiksaUjiSeeder::class,
             SubJenisRiksaUjiSeeder::class,
             ToolSeeder::class,
+            JobOrderSeeder::class,
         ]);
     }
 }

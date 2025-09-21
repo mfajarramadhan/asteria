@@ -18,7 +18,7 @@ return new class extends Migration
 
         // Detail tambahan
         $table->integer('qty')->default(1);
-        $table->string('status')->default('pertama'); // pertama / resertifikasi
+        $table->string('status')->default('Pertama'); // pertama / resertifikasi
         $table->string('kapasitas')->nullable();
         $table->string('model')->nullable();
         $table->string('no_seri')->nullable();

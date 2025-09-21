@@ -210,7 +210,6 @@
                     <tr>
                         <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama</th>
                         <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jabatan</th>
-                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">ID Petugas</th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -218,7 +217,6 @@
                         <tr>
                             <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $responsible->nama }}</td>
                             <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $responsible->jabatan }}</td>
-                            <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">04</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -240,7 +238,7 @@
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Model/Tipe</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Seri</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
-                    {{-- <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Alat</th> --}}
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -254,12 +252,25 @@
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->model }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->no_seri }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                            @if (($tool->pivot->status_tool == 'belum'))
-                            <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-red-700 to-red-500">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                            @if ($tool->pivot->status_tool == 'belum')
+                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-red-700 to-red-500">
+                                    {{ ucfirst($tool->pivot->status_tool) }}
+                                </span>
                             @else
-                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-green-700 to-green-500">{{ ucfirst($tool->pivot->status_tool) }}</span>
+                                <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-green-700 to-green-500">
+                                    {{ ucfirst($tool->pivot->status_tool) }}
+                                </span>
                             @endif
                         </td>
+                        <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                            @if ($tool->pivot->status_tool === 'belum')
+                            <a href="{{ route($tool->subJenis->routeName(), $tool->pivot->id) }}"
+                                class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-blue-900 to-blue-500">
+                                    + Isi Form KP
+                                </a>
+                            @endif
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>

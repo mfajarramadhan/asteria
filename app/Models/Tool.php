@@ -19,7 +19,9 @@ class Tool extends Model
     // Relasi ke JO
     public function jobOrders()
     {
-        return $this->hasMany(JobOrderTool::class);
+        return $this->belongsToMany(JobOrder::class, 'job_order_tools')
+            ->withPivot(['id', 'qty', 'status', 'status_tool', 'kapasitas', 'model', 'no_seri', 'finished_at'])
+            ->withTimestamps();
     }
 
     // Relasi ke Jenis

@@ -240,6 +240,7 @@ class JobOrderController extends Controller
     public function show(JobOrder $jobOrder)
     {
         $jobOrder->load(['tools', 'responsibles']); // eager load relasi langsung
+        $jobOrder->recalculateStatus(); 
         return view('job_orders.show', [
             'jobOrder' => $jobOrder,
             'title' => 'Job Order',

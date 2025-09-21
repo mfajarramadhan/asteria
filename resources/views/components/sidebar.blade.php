@@ -7,13 +7,11 @@
             <img 
                 src="{{ asset('assets/logo/logo-asteria.png') }}" 
                 alt="PT Asteria" 
-                class="object-contain w-14 h-14"
-            >
+                class="object-contain w-14 h-14 transition-transform transform-gpu hover:scale-[105%]">
             <!-- Text -->
             <h1 
                 :class="{ 'opacity-100': openSidebar || window.innerWidth >= 768, 'opacity-0 hidden': !openSidebar && window.innerWidth < 768 }" 
-                class="text-xl italic font-bold text-black transition-opacity duration-300"
-            >
+                class="text-xl italic font-bold text-black transition-opacity duration-300 cursor-default">
                 PT. Asteria
             </h1>
         </div>
@@ -28,6 +26,7 @@
 
     <nav class="py-4">
         <ul class="space-y-2">
+            {{-- Dashboard --}}
             <li>
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
@@ -41,6 +40,25 @@
                     </span>
                 </a>
             </li>
+
+            {{-- Daftar Alat --}}
+            @role('superAdmin|admin')
+            <li>
+                <a href="{{ route('tools.index') }}" 
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('tools.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('tools.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                        class="transition-opacity duration-300 {{ request()->routeIs('tools.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        Daftar Alat
+                    </span>
+                </a>
+            </li>
+            @endrole
+
+            {{-- Job Order --}}
             <li>
                 <a href="{{ route('job_orders.index') }}" 
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
@@ -54,21 +72,38 @@
                     </span>
                 </a>
             </li>
-            @role('superAdmin|admin')
+
+            {{-- Riksa Uji --}}
             <li>
-                <a href="{{ route('tools.index') }}" 
+                <a href="{{ route('riksa_uji.index') }}" 
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
-                    {{ request()->routeIs('tools.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('tools.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    {{ request()->routeIs('riksa_uji.index') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('riksa_uji.index') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                     </svg>
                     <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
-                        class="transition-opacity duration-300 {{ request()->routeIs('tools.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
-                        Daftar Alat
+                        class="transition-opacity duration-300 {{ request()->routeIs('riksa_uji.index') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        Riksa Uji
                     </span>
                 </a>
             </li>
-            @endrole
+
+            {{-- PAPA --}}
+            <li>
+                <a href="{{ route('form_kp.pubt.index') }}" 
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('form_kp.pubt.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('form_kp.pubt.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                        class="transition-opacity duration-300 {{ request()->routeIs('form_kp.pubt.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        PUBT
+                    </span>
+                </a>
+            </li>
+
+            {{-- Kelola Pengguna --}}
             @role('superAdmin')
             <li>
                 <a href="{{ route('superadmin.index') }}" 

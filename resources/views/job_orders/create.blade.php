@@ -14,7 +14,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Nama Perusahaan --}}
 
                 {{-- Alamat Perusahaan --}}
                 <div>
@@ -25,7 +24,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Alamat Perusahaan --}}
                 
                 {{-- PIC Order --}}
                 <div>
@@ -36,7 +34,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End PIC Order --}}
                 
                 {{-- Email --}}
                 <div>
@@ -47,7 +44,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Email --}}
                 
                 {{-- Contact Person --}}
                 <div>
@@ -58,7 +54,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Contact Person --}}
                 
                 {{-- No Penawaran --}}
                 <div>
@@ -69,7 +64,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End No Penawaran --}}
                 
                 {{-- No Purcash Order --}}
                 <div>
@@ -80,7 +74,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End No Purcash Order --}}
                 
                     {{-- Tanggal Pemeriksaan --}}
                     <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
@@ -166,7 +159,6 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- End Tanggal Pemeriksaan --}}
 
                 {{-- Jumlah Hari Pemeriksaan --}}
                 <div>
@@ -185,7 +177,6 @@
                     </div>
                     @enderror  
                 </div>
-                {{-- End Jumlah Hari Pemeriksaan --}}
 
                 {{-- Tanggal JO Dibuat & Selesai --}}
                 <div class="flex flex-wrap justify-between w-full gap-y-4">
@@ -224,7 +215,6 @@
                         @enderror
                     </div>
                 </div>
-                {{-- End Tanggal Selesai Pemeriksaan --}}
 
                 {{-- Jam --}}
                 <div class="pb-2">
@@ -255,7 +245,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- End Jam Bertemu --}}
 
                 {{-- PIC Ditemui --}}
                 <div>
@@ -266,7 +255,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End PIC Ditemui --}}
 
                 {{-- Contact Person 2 --}}
                 <div>
@@ -277,7 +265,6 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Contact Person 2 --}}
 
                 {{-- ID JO --}}
                 <div>
@@ -288,7 +275,6 @@
                     </div>
                     @enderror       
                 </div>
-                {{-- End ID JO --}}
 
                 {{-- Pilih Petugas --}}
                 <div>
@@ -307,7 +293,6 @@
                         <div class="mt-1 text-xs text-red-600">{{ $message }}</div>
                     @enderror
                 </div>
-                {{-- End Pilih Petugas --}}
                 
                 {{-- Pilih alat --}}
                 <label for="responsibles" class="block text-sm font-medium text-gray-700">List Job Order <span class="text-red-600">*</span></label>
@@ -347,8 +332,8 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                         <select @role('petugas') disabled class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
-                                            <option value="pertama" {{ old("tools.$i.status") == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ old("tools.$i.status") == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                            <option value="Pertama" {{ old("tools.$i.status") == 'Pertama' ? 'selected' : '' }}>Pertama</option>
+                                            <option value="Resertifikasi" {{ old("tools.$i.status") == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
@@ -380,7 +365,6 @@
                     </table>
                     <button type="button" @role('petugas') disabled class="px-3 py-1 font-semibold text-white transition-transform bg-gray-400 rounded-md cursor-not-allowed" @endrole id="add-tool" class="px-3 py-1 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">+ Tambah List</button>
                 </div>
-                {{-- End Pilih alat --}}
 
                 {{-- Kelengkapan Alat --}}
                 <div>
@@ -550,7 +534,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- End Kelengkapan Alat --}}
 
                 {{-- Catatan --}}
                 <div>
@@ -570,13 +553,11 @@
                     </div>
                     @enderror   
                 </div>
-                {{-- End Catatan --}}
 
                 {{-- Submit --}}
                 <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
                     Simpan
                 </button>
-                {{-- End Submit --}}
             </form>
         </div>
         @push('scripts')
@@ -649,8 +630,8 @@
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <select @role('petugas') disabled class="bg-gray-200 cursor-not-allowed form-control" @endrole name="tools[${rowCount}][status]" class="form-control" required>
-                            <option value="pertama">Pertama</option>
-                            <option value="resertifikasi">Resertifikasi</option>
+                            <option value="Pertama">Pertama</option>
+                            <option value="Resertifikasi">Resertifikasi</option>
                         </select>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
