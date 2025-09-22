@@ -11,17 +11,28 @@ class Tool extends Model
     /** @use HasFactory<\Database\Factories\ToolFactory> */
     use HasFactory, HasRoles;
 
+    protected $table = 'tools';
     protected $guarded = [
         'id',
     ];
 
-    // Cast ke array otomatis saat diambil dari DB
-    protected $casts = [
-        'lampiran' => 'array',
-    ];
-
+    // Relasi ke JO
     public function jobOrders()
     {
-        return $this->hasMany(JobOrderTool::class);
+        return $this->belongsToMany(JobOrder::class, 'job_order_tools')
+            ->withPivot(['id', 'qty', 'status', 'status_tool', 'kapasitas', 'model', 'no_seri', 'finished_at'])
+            ->withTimestamps();
+    }
+
+    // Relasi ke Jenis
+    public function jenis()
+    {
+        return $this->belongsTo(JenisRiksaUji::class, 'jenis_riksa_uji_id', 'id');
+    }
+
+    // Relasi ke Sub Jenis
+    public function subJenis()
+    {
+        return $this->belongsTo(SubJenisRiksaUji::class, 'sub_jenis_riksa_uji_id', 'id');
     }
 }

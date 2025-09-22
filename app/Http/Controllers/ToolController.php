@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisRiksaUji;
 use App\Models\Tool;
 use Illuminate\Http\Request;
+use App\Models\SubJenisRiksaUji;
 use Illuminate\Support\Facades\Storage;
 
 class ToolController extends Controller
@@ -26,52 +28,59 @@ class ToolController extends Controller
      */
     public function create()
     {
+        $jenisRiksaUji = JenisRiksaUji::all(['id', 'jenis']);
+        $subJenisRiksaUji = SubJenisRiksaUji::all(['id', 'sub_jenis']);
         return view('tools.create', [
             'title' => 'Tambah Alat', 
-            'subtitle' => 'Tambah alat riksa uji PT. Asteria Riksa Indonesia'
+            'subtitle' => 'Tambah alat riksa uji PT. Asteria Riksa Indonesia',
+            'jenisRiksaUji' => $jenisRiksaUji,
+            'subJenisRiksaUji' => $subJenisRiksaUji,
         ]);
     }
 
+        /**
+     * AJAX: return sub-jenis yang punya jenis_riksa_uji_id = $jenisId
+     */
+    public function subJenis($jenisId)
+    {
+        $sub = SubJenisRiksaUji::where('jenis_riksa_uji_id', $jenisId)
+               ->orderBy('sub_jenis')
+               ->get(['id', 'sub_jenis']);
+
+        return response()->json($sub);
+    }
+
+    
     /**
-     * Store a newly created resource in storage.
+     * Store new tool.
+     * Validasi memastikan jenis dan sub_jenis ada, dan sub_jenis memang milik jenis yang dipilih.
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'nama_alat' => 'required|string|max:255',
-            'jenis' => 'required|string|max:255',
-            'lampiran' => 'nullable|array',
-            'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-            'deskripsi' => 'nullable|string|max:65535'    
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'jenis_riksa_uji_id' => 'required|exists:jenis_riksa_ujis,id',
+            'sub_jenis_riksa_uji_id' => 'required|exists:sub_jenis_riksa_ujis,id',
         ]);
-        // // Untuk menampung 1 foto
-        // if($request->file('lampiran')){
-        //     // simpan ke dalam folder post-images
-        //     $validateData['lampiran'] = $request->file('lampiran')->store('lampiran-images', 'public');
-        // }
 
-        // Untuk menampung json multiple foto gunakan array kosong 
-        $lampiranPaths = [];
-
-        // Default deskripsi "-"
-        $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
-
-        // Jika ada gambar baru (upload)
-        if ($request->hasFile('lampiran')) {
-            foreach ($request->file('lampiran') as $file) {
-                // Simpan tiap file ke storage/app/public/lampiran-images
-                $path = $file->store('lampiran-images', 'public');
-                $lampiranPaths[] = $path;
-            }
+        // Memastikan sub_jenis yg dipilih milik jenis yg sama (cegah manipulasi request)
+        $sub = SubJenisRiksaUji::find($data['sub_jenis_riksa_uji_id']);
+        if (!$sub || $sub->jenis_riksa_uji_id != $data['jenis_riksa_uji_id']) {
+            return back()
+                ->withInput()
+                ->withErrors(['sub_jenis_riksa_uji_id' => 'Sub-jenis tidak valid untuk jenis yang dipilih.']);
         }
-        // Jika tidak ada gambar baru, maka biarkan saja
 
-        // Simpan sebagai JSON ke database
-        $validateData['lampiran'] = json_encode($lampiranPaths);
+        // Buat tool
+        $tool = new Tool();
+        $tool->nama = $data['nama']; 
+        $tool->jenis_riksa_uji_id = $data['jenis_riksa_uji_id']; 
+        $tool->sub_jenis_riksa_uji_id = $data['sub_jenis_riksa_uji_id']; 
+        $tool->save();
 
-        Tool::create($validateData);
         return redirect()->route('tools.index')->with('success', 'Alat berhasil ditambahkan!');
     }
+
 
     /**
      * Display the specified resource.
@@ -90,46 +99,48 @@ class ToolController extends Controller
      */
     public function edit(Tool $tool)
     {
+        $jenisRiksaUji = JenisRiksaUji::all(['id', 'jenis']);
+        $subJenisRiksaUji = SubJenisRiksaUji::all(['id', 'sub_jenis']);
         return view('tools.edit', [
             'tool' => $tool,
             'title' => 'Edit Alat', 
-            'subtitle' => 'Edit alat riksa uji PT. Asteria Riksa Indonesia'
+            'subtitle' => 'Edit alat riksa uji PT. Asteria Riksa Indonesia',
+            'jenisRiksaUji' => $jenisRiksaUji,
+            'subJenisRiksaUji' => $subJenisRiksaUji,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tool $tool)
+    public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'nama_alat' => 'required|string|max:255',
-            'jenis' => 'required|string|max:255',
-            'lampiran' => 'nullable|array',
-            'lampiran.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-            'deskripsi' => 'nullable|string|max:65535'    
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'jenis_riksa_uji_id' => 'required|exists:jenis_riksa_ujis,id',
+            'sub_jenis_riksa_uji_id' => 'required|exists:sub_jenis_riksa_ujis,id',
         ]);
 
-        // Default deskripsi "-"
-        $validateData['deskripsi'] = $validateData['deskripsi'] ?? '-';
-
-        // Ambil lampiran lama dari database
-        $lampiranPaths = $tool->lampiran ? json_decode($tool->lampiran, true) : [];
-
-        // Jika ada gambar baru
-        if ($request->hasFile('lampiran')) {
-            foreach ($request->file('lampiran') as $file) {
-                $path = $file->store('lampiran-images', 'public');
-                $lampiranPaths[] = $path;
-            }
+        // Pastikan sub_jenis valid untuk jenis yg dipilih
+        $sub = SubJenisRiksaUji::find($data['sub_jenis_riksa_uji_id']);
+        if (!$sub || $sub->jenis_riksa_uji_id != $data['jenis_riksa_uji_id']) {
+            return back()
+                ->withInput()
+                ->withErrors(['sub_jenis_riksa_uji_id' => 'Sub-jenis tidak valid untuk jenis yang dipilih.']);
         }
 
-        // Simpan array JSON ke DB
-        $validateData['lampiran'] = json_encode($lampiranPaths);
+        // Cari tool
+        $tool = Tool::findOrFail($id);
 
-        $tool->update($validateData);
-        return redirect()->route('tools.index')->with('success', 'Alat berhasil diperbarui');
+        // Update data
+        $tool->nama = $data['nama'];
+        $tool->jenis_riksa_uji_id = $data['jenis_riksa_uji_id'];
+        $tool->sub_jenis_riksa_uji_id = $data['sub_jenis_riksa_uji_id'];
+        $tool->save();
+
+        return redirect()->route('tools.index')->with('success', 'Alat berhasil diperbarui!');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('tools', function (Blueprint $table) {
         $table->id();
-        $table->string('nama_alat');
-        $table->string('jenis');
-        $table->json('lampiran')->nullable();
-        $table->text('deskripsi')->nullable();
+        $table->string('nama');
+        $table->foreignId('jenis_riksa_uji_id')->constrained('jenis_riksa_ujis')->onDelete('cascade');
+        $table->foreignId('sub_jenis_riksa_uji_id')->constrained('sub_jenis_riksa_ujis')->onDelete('cascade');
         $table->timestamps();
-});
-
+        });
     }
 
     /**

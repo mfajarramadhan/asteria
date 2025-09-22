@@ -33,9 +33,18 @@ return new class extends Migration
         $table->string('contact_person2')->nullable();
         $table->date('tanggal_dibuat')->nullable(); 
         $table->string('nomor_jo')->unique();
-        $table->string('status')->default('belum'); // belum, on proses, selesai
+        $table->string('status_jo')->default('belum'); // belum, proses, selesai
+        $table->boolean('kelengkapan_manual_book')->default(false);
+        $table->integer('qty_manual_book')->nullable();
+        $table->boolean('kelengkapan_layout')->default(false);
+        $table->integer('qty_layout')->nullable();
+        $table->boolean('kelengkapan_maintenance_report')->default(false);
+        $table->integer('qty_maintenance_report')->nullable();
+        $table->boolean('kelengkapan_surat_permohonan')->default(false);
+        $table->integer('qty_surat_permohonan')->nullable();
+        $table->text('catatan')->nullable();
         $table->timestamps();
-});
+    });
 
     }
 

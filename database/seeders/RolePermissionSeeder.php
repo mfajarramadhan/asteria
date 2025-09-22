@@ -7,13 +7,12 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-
 class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
         // 1. Create Roles
-        $ownerRole = Role::create(['name' => 'owner']);
+        $superAdminRole = Role::create(['name' => 'superAdmin']);
         $adminRole = Role::create(['name' => 'admin']);
         $petugasRole = Role::create(['name' => 'petugas']);
         $penyusunLHPRole = Role::create(['name' => 'penyusunLHP']);
@@ -25,21 +24,21 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'manage users']);        // khusus owner
 
         // 3. Assign Permissions to Roles
-        $ownerRole->givePermissionTo(Permission::all()); // Owner punya semua
-
+        $superAdminRole->givePermissionTo(Permission::all()); // Owner punya semua
         $adminRole->givePermissionTo(['manage job orders', 'view only']);
         $petugasRole->givePermissionTo(['manage form_kp']);
         $penyusunLHPRole->givePermissionTo(['view only']);
 
         // 4. Create Super Owner
-        $userOwner = User::create([
+        $userSuperAdmin = User::create([
             'nama' => 'Muh Fajar',
-            'jabatan' => 'Manager',
-            'avatar' => 'images/default-avatar.png',
-            'email' => 'fajar@owner.com',
+            'email' => 'fajar@gmail.com',
+            'id_user' => '1000',
+            'jabatan' => 'Super Admin',
+            'avatar' => 'avatars/default.jpeg',
             'password' => bcrypt('fajar12345'),
         ]);
 
-        $userOwner->assignRole($ownerRole);
+        $userSuperAdmin->assignRole($superAdminRole);
     }
 }

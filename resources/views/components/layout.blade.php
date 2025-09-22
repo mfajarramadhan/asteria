@@ -20,29 +20,55 @@
         <x-sidebar></x-sidebar>
 
         <!-- Main Content -->
-        <main class="flex-1 p-4 overflow-y-auto md:p-6">
+        <main class="flex-1 p-4 overflow-y-auto transition-all duration-300 md:p-6 md:ml-64">
             <!-- Mobile Menu Toggle -->
-            <div class="flex items-center justify-between mb-4 md:hidden">
-                <h1 class="text-xl font-bold text-blue-600">PT. Asteria</h1>
+            <div class="flex items-start justify-between mb-4 md:hidden ">
+                {{-- Hamburger Menu --}}
                 <button @click="openSidebar = !openSidebar" class="p-2 rounded-full hover:bg-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
+                {{-- Icon Profile --}}
+                @auth
+                <div class="flex gap-[10px] items-center">
+                    <div class="flex flex-col items-end justify-center">
+                        <p class="font-semibold text-black">{{ auth()->user()->nama }}</p>
+                        <p class="text-sm font-light">{{ auth()->user()->jabatan }}</p>
+                    </div>
+                    <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0 border-2 border-blue-900">
+                        <a href="{{ route('dashboard') }}">
+                            <img src="{{ asset('storage/' . (auth()->user()->avatar ?? 'avatars/meong.jpeg')) }}" 
+                            class="object-cover w-full h-full" alt="photo">
+                        </a>
+                    </div>
+                </div>
+                @endauth
             </div>
 
             <!-- Dashboard Section -->
             <div class="space-y-6">
-                {{-- Header --}}
                 <x-header>
                     <x-slot:title>{{ $title }}</x-slot:title>
                     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
                 </x-header>
-                {{-- Main Content --}}
                 {{ $slot }}
             </div>
         </main>
     </div>
+
     @stack('scripts')
 </body>
 </html>
+
+
+{{-- Layout --}}
+{{-- 
+<div class="relative inline-block group">
+    <button class="px-4 py-2 text-white transition duration-300 ease-in-out transform bg-teal-500 rounded-lg hover:bg-teal-600 hover:scale-105">Hover Me</button>
+    <div
+        class="absolute z-10 invisible w-48 py-2 mt-2 text-gray-800 bg-white border border-gray-300 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible">
+        <p class="px-4 py-2">This is a popover component.</p>
+        <p class="px-4 py-2">You can customize it with your content.</p>
+    </div>
+</div> --}}
