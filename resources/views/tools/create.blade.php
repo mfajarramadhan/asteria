@@ -3,7 +3,7 @@
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
 
     <div class="p-4 bg-white rounded-lg shadow-md">
-        <form action="{{ route('tools.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
+        <form action="{{ route('tools.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
             @csrf
 
             {{-- Nama Alat --}}

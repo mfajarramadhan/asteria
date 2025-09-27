@@ -46,7 +46,7 @@ class JobOrderTool extends Model
     }
 
      // Relasi ke Form KP Forklift
-    public function formKpForklift()
+    public function formKpBejanaTekan()
     {
         return $this->hasOne(FormKpBejanaTekan::class, 'job_order_tool_id');
     }

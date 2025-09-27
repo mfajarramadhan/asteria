@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('job_orders.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data">
+            <form action="{{ route('job_orders.store') }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
                 @csrf
                 {{-- Nama Perusahaan --}}
                 <h2 class="block text-sm font-bold text-gray-700">General Order</h2>

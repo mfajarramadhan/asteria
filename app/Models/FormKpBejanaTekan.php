@@ -10,14 +10,13 @@ class FormKpBejanaTekan extends Model
 
     protected $table = 'form_kp_bejana_tekan';
 
-    protected $fillable = [
-        'job_order_tool_id',
-        'tanggal_pemeriksaan',
-        'pemeriksa',
-        'pagar_pelindung',
-        'ban_pegangan',
-        'peralatan_pengaman',
-        'catatan',
+    protected $guarded = [
+        'id',
+    ];
+
+    protected $casts = [
+        'tanggal_pemeriksaan' => 'date',
+        'foto_shell' => 'array',
     ];
 
     // Relasi ke job_order_tool
