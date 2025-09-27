@@ -78,7 +78,7 @@ class ToolController extends Controller
         $tool->sub_jenis_riksa_uji_id = $data['sub_jenis_riksa_uji_id']; 
         $tool->save();
 
-        return redirect()->route('tools.index')->with('success', 'Alat berhasil ditambahkan!');
+        return redirect()->route('tools.index')->with('success', 'Alat berhasil disimpan!');
     }
 
 

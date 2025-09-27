@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{jobOrderTool}/create', [FormKpBejanaTekanController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpBejanaTekanController::class, 'store'])->name('store');
             Route::get('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'show'])->name('show');
+            Route::get('/{formKpBejanaTekan}/edit', [FormKpBejanaTekanController::class, 'edit'])->name('edit');
+            Route::put('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'update'])->name('update');
         });
     });
 });
