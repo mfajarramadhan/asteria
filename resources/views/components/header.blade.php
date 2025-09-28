@@ -17,7 +17,7 @@
             <form method="POST" action="{{ route('logout') }}" id="logout-form">
                 @csrf
                 <button type="submit" class="w-full h-full">
-                    <img src="{{ asset('storage/' . (auth()->user()->avatar ?? 'avatars/meong.jpeg')) }}" 
+                    <img src="{{ asset('storage/' . (auth()->user()->avatar ?? 'avatars/default.png')) }}" 
                     class="object-cover w-full h-full"
                     alt="photo">
                 </button>

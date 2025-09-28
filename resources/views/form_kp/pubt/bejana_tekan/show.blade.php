@@ -35,7 +35,7 @@
 
         {{-- Foto Shell --}}
         <div>
-            <label class="block text-sm font-medium text-gray-700">Foto</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
             @php
                 $fotoShell = $formKpBejanaTekan->foto_shell; 
                 if ($fotoShell && is_string($fotoShell)) {

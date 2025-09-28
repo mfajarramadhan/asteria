@@ -35,7 +35,7 @@ class RolePermissionSeeder extends Seeder
             'email' => 'fajar@gmail.com',
             'id_user' => '1000',
             'jabatan' => 'Super Admin',
-            'avatar' => 'avatars/default.jpeg',
+            'avatar' => 'avatars/default.png',
             'password' => bcrypt('fajar12345'),
         ]);
 
