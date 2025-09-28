@@ -47,28 +47,43 @@
                     <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
                     <h2 class="block text-sm font-bold text-gray-700">Shell/Badan</h2>
                 </div>
-
-                {{-- Foto Shell --}}
+                    
+                {{-- Foto foto_shell --}}
                 <div>
-                    <label for="foto_shell" class="block text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
                     
                     {{-- tampilkan foto lama kalau ada --}}
                     @if($formKpBejanaTekan->foto_shell)
                         @php $oldFiles = json_decode($formKpBejanaTekan->foto_shell, true); @endphp
                         @if(is_array($oldFiles))
-                            <div class="flex gap-2 mb-2">
+                            <div class="flex flex-wrap gap-2 mb-2">
                                 @foreach($oldFiles as $oldFile)
-                                    <img src="{{ asset('storage/' . $oldFile) }}" alt="Foto Shell" class="object-contain w-32 border rounded">
+                                    <img src="{{ asset('storage/' . $oldFile) }}" 
+                                        alt="Foto Shell Lama" 
+                                        class="object-contain w-32 border rounded">
                                 @endforeach
                             </div>
                         @endif
                     @endif
 
-                    <input type="file" name="foto_shell[]" id="foto_shell" accept="image/*" multiple class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_shell') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    {{-- preview foto baru --}}
+                    <div id="foto_shell-preview" class="flex flex-wrap gap-2 mb-2"></div>
+
+                    <input 
+                        type="file" 
+                        name="foto_shell[]" 
+                        id="foto_shell" 
+                        accept="image/*" 
+                        multiple
+                        onchange="previewImage()"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
+                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                            @error('foto_shell') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
                     @error('foto_shell')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
                     @enderror   
                 </div>
 
@@ -105,4 +120,42 @@
                 </button>
             </form>
         </div>
+        <script>
+        function previewImage() {
+            const input = document.getElementById('foto_shell');
+            const previewContainer = document.getElementById('foto_shell-preview');
+
+            previewContainer.innerHTML = '';
+
+            if (input.files && input.files.length > 0) {
+                Array.from(input.files).forEach((file) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const wrapper = document.createElement('div');
+                        wrapper.classList = "relative inline-block";
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList = "object-contain w-32 h-32 border rounded";
+
+                        const btn = document.createElement('button');
+                        btn.type = "button";
+                        btn.innerHTML = "✕";
+                        btn.classList = "absolute top-0 right-0 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-700";
+                        btn.onclick = function() {
+                            wrapper.remove();
+                            if (previewContainer.children.length === 0) {
+                                input.value = "";
+                            }
+                        };
+
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(btn);
+                        previewContainer.appendChild(wrapper);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            }
+        }
+        </script>
 </x-layout>
