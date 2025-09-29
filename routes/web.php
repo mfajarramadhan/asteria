@@ -11,6 +11,7 @@ use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\FormKpScrewCompressorController;
+use App\Http\Controllers\FormKpTangkiTimbunController;
 use App\Http\Controllers\RiksaUjiController;
 
 Route::get('/', function () {
@@ -92,6 +93,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'show'])->name('show');
             Route::get('/{formKpScrewCompressor}/edit', [FormKpScrewCompressorController::class, 'edit'])->name('edit');
             Route::put('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'update'])->name('update');
+        });
+
+        // CRUD Tangki Timbun
+        Route::prefix('tangki_timbun')->name('tangki_timbun.')->group(function () {
+            Route::get('/', [FormKpTangkiTimbunController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpTangkiTimbunController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpTangkiTimbunController::class, 'store'])->name('store');
+            Route::get('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'show'])->name('show');
+            Route::get('/{formKpTangkiTimbun}/edit', [FormKpTangkiTimbunController::class, 'edit'])->name('edit');
+            Route::put('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'update'])->name('update');
         });
     });
 });
