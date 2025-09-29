@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
+use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\RiksaUjiController;
 
 Route::get('/', function () {
@@ -70,6 +71,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'show'])->name('show');
             Route::get('/{formKpBejanaTekan}/edit', [FormKpBejanaTekanController::class, 'edit'])->name('edit');
             Route::put('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'update'])->name('update');
+        });
+
+        // CRUD Katel Uap
+        Route::prefix('katel_uap')->name('katel_uap.')->group(function () {
+            Route::get('/', [FormKpKatelUapController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpKatelUapController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpKatelUapController::class, 'store'])->name('store');
+            Route::get('/{formKpKatelUap}', [FormKpKatelUapController::class, 'show'])->name('show');
+            Route::get('/{formKpKatelUap}/edit', [FormKpKatelUapController::class, 'edit'])->name('edit');
+            Route::put('/{formKpKatelUap}', [FormKpKatelUapController::class, 'update'])->name('update');
         });
     });
 });

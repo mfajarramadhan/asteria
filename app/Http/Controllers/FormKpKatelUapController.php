@@ -1,31 +1,31 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\JobOrderTool;
 use Illuminate\Http\Request;
+use App\Models\FormKpKatelUap;
 use Illuminate\Support\Carbon;
-use App\Models\FormKpBejanaTekan;
 use Illuminate\Support\Facades\Storage;
 
-class FormKpBejanaTekanController extends Controller
+class FormKpKatelUapController extends Controller
 {
-
-public function index()
+    public function index()
 {
-    $bejanaTekans = FormKpBejanaTekan::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+    $katelUaps = FormKpKatelUap::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
         ->whereHas('jobOrderTool', function ($q) {
             $q->where('status_tool', 'selesai')
               ->whereHas('tool', function ($q2) {
                   $q2->where('jenis_riksa_uji_id', 1)
-                     ->where('sub_jenis_riksa_uji_id', 1);
+                     ->where('sub_jenis_riksa_uji_id', 2);
               });
         })
         ->get();
 
-    return view('form_kp.pubt.bejana_tekan.index', [
-        'title' => 'Form KP Bejana Tekan',
+    return view('form_kp.pubt.katel_uap.index', [
+        'title' => 'Form KP Katel Uap',
         'subtitle' => 'Daftar alat yang selesai',
-        'bejanaTekans' => $bejanaTekans,
+        'katelUaps' => $katelUaps,
     ]);
 }
 
@@ -36,9 +36,9 @@ public function index()
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')
             ->findOrFail($jobOrderToolId);
 
-        return view('form_kp.pubt.bejana_tekan.create', [
-            'title'         => 'Form KP Bejana Tekan',
-            'subtitle'         => 'Isi Form KP Bejana Tekan',
+        return view('form_kp.pubt.katel_uap.create', [
+            'title'         => 'Form KP Katel Uap',
+            'subtitle'         => 'Isi Form KP Katel Uap',
             'jobOrderTool'  => $jobOrderTool,
         ]);
     }
@@ -68,7 +68,7 @@ public function index()
         if ($request->hasFile('foto_shell')) {
             $paths = [];
             foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('pubt/katel_uap', 'public');
             }
             $validated['foto_shell'] = json_encode($paths);
         } else {
@@ -79,7 +79,7 @@ public function index()
         $validated['job_order_tool_id'] = $jobOrderToolId;
 
         // Simpan data ke tabel
-        FormKpBejanaTekan::create($validated);
+        FormKpKatelUap::create($validated);
 
         // Update status_tool di job_order_tools
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
@@ -88,34 +88,34 @@ public function index()
             'finished_at' => now(),
         ]);
 
-        return redirect()->route('form_kp.pubt.bejana_tekan.index')->with('success', 'Form KP Bejana Tekan berhasil disimpan!');
+        return redirect()->route('form_kp.pubt.katel_uap.index')->with('success', 'Form KP Katel Uap berhasil disimpan!');
     }
 
-    public function show(FormKpBejanaTekan $formKpBejanaTekan)
+    public function show(FormKpKatelUap $formKpKatelUap)
     {
         // load relasi
-        $formKpBejanaTekan->load([
+        $formKpKatelUap->load([
             'jobOrderTool.jobOrder',
             'jobOrderTool.tool'
         ]);
 
-        return view('form_kp.pubt.bejana_tekan.show', [
-            'title' => 'Detail Pemeriksaan Bejana Tekan',
+        return view('form_kp.pubt.katel_uap.show', [
+            'title' => 'Detail Pemeriksaan Katel Uap',
             'subtitle' => '',
-            'formKpBejanaTekan' => $formKpBejanaTekan,
+            'formKpKatelUap' => $formKpKatelUap,
         ]);
     }
 
-    public function edit(FormKpBejanaTekan $formKpBejanaTekan)
+    public function edit(FormKpKatelUap $formKpKatelUap)
     {
-        return view('form_kp.pubt.bejana_tekan.edit', [
-            'title' => 'Edit Form KP Bejana Tekan',
+        return view('form_kp.pubt.katel_uap.edit', [
+            'title' => 'Edit Form KP Katel Uap',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
-            'formKpBejanaTekan' => $formKpBejanaTekan,
+            'formKpKatelUap' => $formKpKatelUap,
         ]);
     }
 
-    public function update(Request $request, FormKpBejanaTekan $formKpBejanaTekan)
+    public function update(Request $request, FormKpKatelUap $formKpKatelUap)
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
@@ -131,10 +131,10 @@ public function index()
         // upload file baru kalau ada
         if ($request->hasFile('foto_shell')) {
             // Hapus file lama
-            if ($formKpBejanaTekan->foto_shell) {
-                $oldFiles = is_string($formKpBejanaTekan->foto_shell)
-                    ? json_decode($formKpBejanaTekan->foto_shell, true)
-                    : $formKpBejanaTekan->foto_shell;
+            if ($formKpKatelUap->foto_shell) {
+                $oldFiles = is_string($formKpKatelUap->foto_shell)
+                    ? json_decode($formKpKatelUap->foto_shell, true)
+                    : $formKpKatelUap->foto_shell;
 
                 foreach ($oldFiles as $oldFile) {
                     if (Storage::disk('public')->exists($oldFile)) {
@@ -150,13 +150,13 @@ public function index()
             }
 
             foreach ($files as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('pubt/katel_uap', 'public');
             }
 
         $validated['foto_shell'] = json_encode($paths);        }
-        $formKpBejanaTekan->update($validated);
+        $formKpKatelUap->update($validated);
 
-        return redirect()->route('form_kp.pubt.bejana_tekan.index', $formKpBejanaTekan->id)
-            ->with('success', 'Form KP Bejana Tekan berhasil diperbarui!');
+        return redirect()->route('form_kp.pubt.katel_uap.index', $formKpKatelUap->id)
+            ->with('success', 'Form KP Katel Uap berhasil diperbarui!');
     }
 }
