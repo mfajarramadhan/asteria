@@ -4,28 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\JobOrderTool;
 use Illuminate\Http\Request;
-use App\Models\FormKpKatelUap;
 use Illuminate\Support\Carbon;
+use App\Models\FormKpTangkiTimbun;
 use Illuminate\Support\Facades\Storage;
 
-class FormKpKatelUapController extends Controller
+class FormKpTangkiTimbunController extends Controller
 {
     public function index()
     {
-        $katelUaps = FormKpKatelUap::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+        $tangkiTimbuns = FormKpTangkiTimbun::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
             ->whereHas('jobOrderTool', function ($q) {
                 $q->where('status_tool', 'selesai')
                 ->whereHas('tool', function ($q2) {
                     $q2->where('jenis_riksa_uji_id', 1)
-                        ->where('sub_jenis_riksa_uji_id', 2);
+                        ->where('sub_jenis_riksa_uji_id', 4);
                 });
             })
             ->get();
 
-        return view('form_kp.pubt.katel_uap.index', [
-            'title' => 'Form KP Katel Uap',
+        return view('form_kp.pubt.tangki_timbun.index', [
+            'title' => 'Form KP Tangki Timbun',
             'subtitle' => 'Daftar alat yang selesai',
-            'katelUaps' => $katelUaps,
+            'tangkiTimbuns' => $tangkiTimbuns,
         ]);
     }
 
@@ -36,9 +36,9 @@ class FormKpKatelUapController extends Controller
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')
             ->findOrFail($jobOrderToolId);
 
-        return view('form_kp.pubt.katel_uap.create', [
-            'title'         => 'Form KP Katel Uap',
-            'subtitle'         => 'Isi Form KP Katel Uap',
+        return view('form_kp.pubt.tangki_timbun.create', [
+            'title'         => 'Form KP Tangki Timbun',
+            'subtitle'         => 'Isi Form KP Tangki Timbun',
             'jobOrderTool'  => $jobOrderTool,
         ]);
     }
@@ -68,7 +68,7 @@ class FormKpKatelUapController extends Controller
         if ($request->hasFile('foto_shell')) {
             $paths = [];
             foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/katel_uap', 'public');
+                $paths[] = $file->store('pubt/tangki_timbun', 'public');
             }
             $validated['foto_shell'] = json_encode($paths);
         } else {
@@ -79,7 +79,7 @@ class FormKpKatelUapController extends Controller
         $validated['job_order_tool_id'] = $jobOrderToolId;
 
         // Simpan data ke tabel
-        FormKpKatelUap::create($validated);
+        FormKpTangkiTimbun::create($validated);
 
         // Update status_tool di job_order_tools
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
@@ -88,34 +88,34 @@ class FormKpKatelUapController extends Controller
             'finished_at' => now(),
         ]);
 
-        return redirect()->route('form_kp.pubt.katel_uap.index')->with('success', 'Form KP Katel Uap berhasil disimpan!');
+        return redirect()->route('form_kp.pubt.tangki_timbun.index')->with('success', 'Form KP Tangki Timbun berhasil disimpan!');
     }
 
-    public function show(FormKpKatelUap $formKpKatelUap)
+    public function show(FormKpTangkiTimbun $formKpTangkiTimbun)
     {
         // load relasi
-        $formKpKatelUap->load([
+        $formKpTangkiTimbun->load([
             'jobOrderTool.jobOrder',
             'jobOrderTool.tool'
         ]);
 
-        return view('form_kp.pubt.katel_uap.show', [
-            'title' => 'Detail Pemeriksaan Katel Uap',
+        return view('form_kp.pubt.tangki_timbun.show', [
+            'title' => 'Detail Pemeriksaan Tangki Timbun',
             'subtitle' => '',
-            'formKpKatelUap' => $formKpKatelUap,
+            'formKpTangkiTimbun' => $formKpTangkiTimbun,
         ]);
     }
 
-    public function edit(FormKpKatelUap $formKpKatelUap)
+    public function edit(FormKpTangkiTimbun $formKpTangkiTimbun)
     {
-        return view('form_kp.pubt.katel_uap.edit', [
-            'title' => 'Edit Form KP Katel Uap',
+        return view('form_kp.pubt.tangki_timbun.edit', [
+            'title' => 'Edit Form KP Tangki Timbun',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
-            'formKpKatelUap' => $formKpKatelUap,
+            'formKpTangkiTimbun' => $formKpTangkiTimbun,
         ]);
     }
 
-    public function update(Request $request, FormKpKatelUap $formKpKatelUap)
+    public function update(Request $request, FormKpTangkiTimbun $formKpTangkiTimbun)
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
@@ -131,10 +131,10 @@ class FormKpKatelUapController extends Controller
         // upload file baru kalau ada
         if ($request->hasFile('foto_shell')) {
             // Hapus file lama
-            if ($formKpKatelUap->foto_shell) {
-                $oldFiles = is_string($formKpKatelUap->foto_shell)
-                    ? json_decode($formKpKatelUap->foto_shell, true)
-                    : $formKpKatelUap->foto_shell;
+            if ($formKpTangkiTimbun->foto_shell) {
+                $oldFiles = is_string($formKpTangkiTimbun->foto_shell)
+                    ? json_decode($formKpTangkiTimbun->foto_shell, true)
+                    : $formKpTangkiTimbun->foto_shell;
 
                 foreach ($oldFiles as $oldFile) {
                     if (Storage::disk('public')->exists($oldFile)) {
@@ -150,13 +150,13 @@ class FormKpKatelUapController extends Controller
             }
 
             foreach ($files as $file) {
-                $paths[] = $file->store('pubt/katel_uap', 'public');
+                $paths[] = $file->store('pubt/tangki_timbun', 'public');
             }
 
         $validated['foto_shell'] = json_encode($paths);        }
-        $formKpKatelUap->update($validated);
+        $formKpTangkiTimbun->update($validated);
 
-        return redirect()->route('form_kp.pubt.katel_uap.index', $formKpKatelUap->id)
-            ->with('success', 'Form KP Katel Uap berhasil diperbarui!');
+        return redirect()->route('form_kp.pubt.tangki_timbun.index', $formKpTangkiTimbun->id)
+            ->with('success', 'Form KP Tangki Timbun berhasil diperbarui!');
     }
 }

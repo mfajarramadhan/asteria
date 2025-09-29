@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('form_kp.pubt.screw_compressor.update', $formKpScrewCompressor->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Update data?')">
+            <form action="{{ route('form_kp.pubt.tangki_timbun.update', $formKpTangkiTimbun->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Update data?')">
                 @csrf
                 @method('PUT')
                 
@@ -17,7 +17,7 @@
                                 </svg>
                             </div>
                             <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" 
-                                value="{{ old('tanggal_pemeriksaan', Carbon::parse($formKpScrewCompressor->tanggal_pemeriksaan)->format('d-m-Y')) }}"
+                                value="{{ old('tanggal_pemeriksaan', Carbon::parse($formKpTangkiTimbun->tanggal_pemeriksaan)->format('d-m-Y')) }}"
                                 datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today 
                                 type="text" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"> 
@@ -35,7 +35,7 @@
                     <label for="nama_perusahaan" class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
                     <input type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" 
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" 
-                        value="{{ old('nama_perusahaan', $formKpScrewCompressor->nama_perusahaan) }}">
+                        value="{{ old('nama_perusahaan', $formKpTangkiTimbun->nama_perusahaan) }}">
                     @error('nama_perusahaan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -53,8 +53,8 @@
                     <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
                     
                     {{-- tampilkan foto lama kalau ada --}}
-                    @if($formKpScrewCompressor->foto_shell)
-                        @php $oldFiles = json_decode($formKpScrewCompressor->foto_shell, true); @endphp
+                    @if($formKpTangkiTimbun->foto_shell)
+                        @php $oldFiles = json_decode($formKpTangkiTimbun->foto_shell, true); @endphp
                         @if(is_array($oldFiles))
                             <div class="flex flex-wrap gap-2 mb-2">
                                 @foreach($oldFiles as $oldFile)
@@ -92,7 +92,7 @@
                     <label for="ketidakbulatan" class="block text-sm font-medium text-gray-700">Ketidak bulatan</label>
                     <input type="text" name="ketidakbulatan" placeholder="Ketidak bulatan" id="ketidakbulatan" 
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ketidakbulatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" 
-                        value="{{ old('ketidakbulatan', $formKpScrewCompressor->ketidakbulatan) }}">
+                        value="{{ old('ketidakbulatan', $formKpTangkiTimbun->ketidakbulatan) }}">
                     @error('ketidakbulatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -106,7 +106,7 @@
                     <textarea name="catatan" id="catatan" placeholder="Catatan" rows="3"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
                             focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                            @error('catatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">{{ old('catatan', $formKpScrewCompressor->catatan) }}</textarea>
+                            @error('catatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">{{ old('catatan', $formKpTangkiTimbun->catatan) }}</textarea>
                     @error('catatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}

@@ -10,24 +10,24 @@ use Illuminate\Support\Facades\Storage;
 
 class FormKpScrewCompressorController extends Controller
 {
-        public function index()
-{
-    $screwCompressors = FormKpScrewCompressor::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
-        ->whereHas('jobOrderTool', function ($q) {
-            $q->where('status_tool', 'selesai')
-              ->whereHas('tool', function ($q2) {
-                  $q2->where('jenis_riksa_uji_id', 1)
-                     ->where('sub_jenis_riksa_uji_id', 3);
-              });
-        })
-        ->get();
+    public function index()
+    {
+        $screwCompressors = FormKpScrewCompressor::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+            ->whereHas('jobOrderTool', function ($q) {
+                $q->where('status_tool', 'selesai')
+                ->whereHas('tool', function ($q2) {
+                    $q2->where('jenis_riksa_uji_id', 1)
+                        ->where('sub_jenis_riksa_uji_id', 3);
+                });
+            })
+            ->get();
 
-    return view('form_kp.pubt.screw_compressor.index', [
-        'title' => 'Form KP Screw Compressor',
-        'subtitle' => 'Daftar alat yang selesai',
-        'screwCompressors' => $screwCompressors,
-    ]);
-}
+        return view('form_kp.pubt.screw_compressor.index', [
+            'title' => 'Form KP Screw Compressor',
+            'subtitle' => 'Daftar alat yang selesai',
+            'screwCompressors' => $screwCompressors,
+        ]);
+    }
 
 
     public function create($jobOrderToolId)
@@ -68,7 +68,7 @@ class FormKpScrewCompressorController extends Controller
         if ($request->hasFile('foto_shell')) {
             $paths = [];
             foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('pubt/screw_compressor', 'public');
             }
             $validated['foto_shell'] = json_encode($paths);
         } else {
@@ -150,7 +150,7 @@ class FormKpScrewCompressorController extends Controller
             }
 
             foreach ($files as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('pubt/screw_compressor', 'public');
             }
 
         $validated['foto_shell'] = json_encode($paths);        }
