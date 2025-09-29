@@ -10,6 +10,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpScrewCompressorController;
 use App\Http\Controllers\RiksaUjiController;
 
 Route::get('/', function () {
@@ -81,6 +82,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpKatelUap}', [FormKpKatelUapController::class, 'show'])->name('show');
             Route::get('/{formKpKatelUap}/edit', [FormKpKatelUapController::class, 'edit'])->name('edit');
             Route::put('/{formKpKatelUap}', [FormKpKatelUapController::class, 'update'])->name('update');
+        });
+
+        // CRUD Screw Compressor
+        Route::prefix('screw_compressor')->name('screw_compressor.')->group(function () {
+            Route::get('/', [FormKpScrewCompressorController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpScrewCompressorController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpScrewCompressorController::class, 'store'])->name('store');
+            Route::get('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'show'])->name('show');
+            Route::get('/{formKpScrewCompressor}/edit', [FormKpScrewCompressorController::class, 'edit'])->name('edit');
+            Route::put('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'update'])->name('update');
         });
     });
 });

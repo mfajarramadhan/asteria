@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('form_kp_katel_uap', function (Blueprint $table) {
             $table->id();
-
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
             $table->date('tanggal_pemeriksaan')->nullable();
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form_kp_katel_uaps');
+        Schema::dropIfExists('form_kp_katel_uap');
     }
 };
