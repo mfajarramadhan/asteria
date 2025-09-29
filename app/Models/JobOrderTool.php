@@ -56,4 +56,10 @@ class JobOrderTool extends Model
     {
         return $this->hasOne(FormKpKatelUap::class, 'job_order_tool_id');
     }
+
+    // Relasi ke Form KP Screw Compressor
+    public function formKpScrewCompressor()
+    {
+        return $this->hasOne(FormKpScrewCompressor::class, 'job_order_tool_id');
+    }
 }

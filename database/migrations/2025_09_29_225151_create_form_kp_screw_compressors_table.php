@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form_kp_bejana_tekan', function (Blueprint $table) {
+        Schema::create('form_kp_screw_compressor', function (Blueprint $table) {
             $table->id();
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
@@ -20,9 +20,7 @@ return new class extends Migration
             $table->json('foto_shell')->nullable();
             $table->decimal('ketidakbulatan', 10, 2)->nullable();
             $table->text('catatan')->nullable();
-            $table->timestamps();
-        });
-
+            $table->timestamps();        });
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form_kp_bejana_tekan');
+        Schema::dropIfExists('form_kp_screw_compressor');
     }
 };
