@@ -5,11 +5,13 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPAPAController;
 use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
 use App\Http\Controllers\FormKpTangkiTimbunController;
 use App\Http\Controllers\RiksaUjiController;
@@ -105,6 +107,30 @@ Route::middleware('auth')->group(function () {
             Route::put('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'update'])->name('update');
         });
     });
+
+    // Rute Form KP PAPA: Semua Role
+    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+        // Dashboard PUBT
+        Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
+
+        // CRUD Bejana Tekan
+        Route::prefix('scissor_lift')->name('scissor_lift.')->group(function () {
+            Route::get('/', [FormKpScissorLiftController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpScissorLiftController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpScissorLiftController::class, 'store'])->name('store');
+            Route::get('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'show'])->name('show');
+            Route::get('/{formKpScissorLift}/edit', [FormKpScissorLiftController::class, 'edit'])->name('edit');
+            Route::put('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'update'])->name('update');
+        });
+
+
+
+        
+
+    });
 });
+
+
+
 
 require __DIR__.'/auth.php';

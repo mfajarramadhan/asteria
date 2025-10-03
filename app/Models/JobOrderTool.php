@@ -68,4 +68,10 @@ class JobOrderTool extends Model
     {
         return $this->hasOne(FormKpTangkiTimbun::class, 'job_order_tool_id');
     }
+
+    // Relasi ke Form KP Tangki Timbun
+    public function formKpScissorLift()
+    {
+        return $this->hasOne(FormKpScissorLift::class, 'job_order_tool_id');
+    }
 }

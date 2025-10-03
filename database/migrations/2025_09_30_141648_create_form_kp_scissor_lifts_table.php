@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form_kp_bejana_tekan', function (Blueprint $table) {
-            $table->id();
+        Schema::create('form_kp_scissor_lift', function (Blueprint $table) {
+             $table->id();
 
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
@@ -24,7 +24,6 @@ return new class extends Migration
 
             $table->timestamps();
         });
-
     }
 
     /**
@@ -32,7 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::dropIfExists('form_kp_bejana_tekan');
+        Schema::dropIfExists('form_kp_scissor_lift');
     }
 };
