@@ -5,10 +5,15 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPAPAController;
 use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
+use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpScissorLiftController;
+use App\Http\Controllers\FormKpScrewCompressorController;
+use App\Http\Controllers\FormKpTangkiTimbunController;
 use App\Http\Controllers\RiksaUjiController;
 
 Route::get('/', function () {
@@ -68,8 +73,64 @@ Route::middleware('auth')->group(function () {
             Route::get('/{jobOrderTool}/create', [FormKpBejanaTekanController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpBejanaTekanController::class, 'store'])->name('store');
             Route::get('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'show'])->name('show');
+            Route::get('/{formKpBejanaTekan}/edit', [FormKpBejanaTekanController::class, 'edit'])->name('edit');
+            Route::put('/{formKpBejanaTekan}', [FormKpBejanaTekanController::class, 'update'])->name('update');
+        });
+
+        // CRUD Katel Uap
+        Route::prefix('katel_uap')->name('katel_uap.')->group(function () {
+            Route::get('/', [FormKpKatelUapController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpKatelUapController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpKatelUapController::class, 'store'])->name('store');
+            Route::get('/{formKpKatelUap}', [FormKpKatelUapController::class, 'show'])->name('show');
+            Route::get('/{formKpKatelUap}/edit', [FormKpKatelUapController::class, 'edit'])->name('edit');
+            Route::put('/{formKpKatelUap}', [FormKpKatelUapController::class, 'update'])->name('update');
+        });
+
+        // CRUD Screw Compressor
+        Route::prefix('screw_compressor')->name('screw_compressor.')->group(function () {
+            Route::get('/', [FormKpScrewCompressorController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpScrewCompressorController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpScrewCompressorController::class, 'store'])->name('store');
+            Route::get('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'show'])->name('show');
+            Route::get('/{formKpScrewCompressor}/edit', [FormKpScrewCompressorController::class, 'edit'])->name('edit');
+            Route::put('/{formKpScrewCompressor}', [FormKpScrewCompressorController::class, 'update'])->name('update');
+        });
+
+        // CRUD Tangki Timbun
+        Route::prefix('tangki_timbun')->name('tangki_timbun.')->group(function () {
+            Route::get('/', [FormKpTangkiTimbunController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpTangkiTimbunController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpTangkiTimbunController::class, 'store'])->name('store');
+            Route::get('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'show'])->name('show');
+            Route::get('/{formKpTangkiTimbun}/edit', [FormKpTangkiTimbunController::class, 'edit'])->name('edit');
+            Route::put('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'update'])->name('update');
         });
     });
+
+    // Rute Form KP PAPA: Semua Role
+    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+        // Dashboard PUBT
+        Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
+
+        // CRUD Bejana Tekan
+        Route::prefix('scissor_lift')->name('scissor_lift.')->group(function () {
+            Route::get('/', [FormKpScissorLiftController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpScissorLiftController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpScissorLiftController::class, 'store'])->name('store');
+            Route::get('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'show'])->name('show');
+            Route::get('/{formKpScissorLift}/edit', [FormKpScissorLiftController::class, 'edit'])->name('edit');
+            Route::put('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'update'])->name('update');
+        });
+
+
+
+        
+
+    });
 });
+
+
+
 
 require __DIR__.'/auth.php';

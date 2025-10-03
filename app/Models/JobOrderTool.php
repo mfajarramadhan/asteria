@@ -45,9 +45,33 @@ class JobOrderTool extends Model
         return $this->belongsTo(JobOrder::class, 'job_order_id');
     }
 
-     // Relasi ke Form KP Forklift
-    public function formKpForklift()
+    // Relasi ke Form KP Bejana Tekan
+    public function formKpBejanaTekan()
     {
         return $this->hasOne(FormKpBejanaTekan::class, 'job_order_tool_id');
+    }
+
+    // Relasi ke Form KP Katel Uap
+    public function formKpKatelUap()
+    {
+        return $this->hasOne(FormKpKatelUap::class, 'job_order_tool_id');
+    }
+
+    // Relasi ke Form KP Screw Compressor
+    public function formKpScrewCompressor()
+    {
+        return $this->hasOne(FormKpScrewCompressor::class, 'job_order_tool_id');
+    }
+
+    // Relasi ke Form KP Tangki Timbun
+    public function formKpTangkiTimbun()
+    {
+        return $this->hasOne(FormKpTangkiTimbun::class, 'job_order_tool_id');
+    }
+
+    // Relasi ke Form KP Tangki Timbun
+    public function formKpScissorLift()
+    {
+        return $this->hasOne(FormKpScissorLift::class, 'job_order_tool_id');
     }
 }

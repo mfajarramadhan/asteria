@@ -234,7 +234,7 @@ class JobOrderController extends Controller
             $jobOrder->responsibles()->sync($request->responsibles);
         }
 
-        return redirect()->route('job_orders.index', $jobOrder->id)->with('success', 'Job Order berhasil dibuat!');
+        return redirect()->route('job_orders.index', $jobOrder->id)->with('success', 'Job Order berhasil disimpan!');
     }
 
     public function show(JobOrder $jobOrder)
@@ -446,7 +446,7 @@ class JobOrderController extends Controller
             $jobOrder->responsibles()->sync([]);
         }
 
-        return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil di update!');
+        return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil diperbarui!');
     }
 
     public function destroy(JobOrder $jobOrder)

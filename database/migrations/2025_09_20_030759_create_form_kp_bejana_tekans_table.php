@@ -16,17 +16,10 @@ return new class extends Migration
 
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
-            // Field standar pemeriksaan
-            $table->date('tanggal_pemeriksaan');
-            $table->string('pemeriksa'); // nama petugas pemeriksa
-
-            // Hasil pemeriksaan teknis (contoh)
-            $table->boolean('pagar_pelindung')->default(false);
-            $table->boolean('ban_pegangan')->default(false);
-            $table->boolean('peralatan_pengaman')->default(false);
-
-            // Catatan tambahan
+            $table->date('tanggal_pemeriksaan')->nullable();
+            $table->string('nama_perusahaan')->nullable();
+            $table->json('foto_shell')->nullable();
+            $table->decimal('ketidakbulatan', 10, 2)->nullable();
             $table->text('catatan')->nullable();
 
             $table->timestamps();
@@ -39,6 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form_kp_bejana_tekans');
+
+        Schema::dropIfExists('form_kp_bejana_tekan');
     }
 };

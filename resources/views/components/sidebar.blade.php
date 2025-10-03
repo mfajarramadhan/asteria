@@ -88,7 +88,7 @@
                 </a>
             </li>
 
-            {{-- PAPA --}}
+            {{-- PUBT --}}
             <li>
                 <a href="{{ route('form_kp.pubt.index') }}" 
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
@@ -99,6 +99,21 @@
                     <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
                         class="transition-opacity duration-300 {{ request()->routeIs('form_kp.pubt.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
                         PUBT
+                    </span>
+                </a>
+            </li>
+
+            {{-- PAPA --}}
+            <li>
+                <a href="{{ route('form_kp.papa.index') }}" 
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('form_kp.papa.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-colors {{ request()->routeIs('form_kp.papa.*') ? 'text-white' : 'text-gray-600 group-hover:text-white' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                        class="transition-opacity duration-300 {{ request()->routeIs('form_kp.papa.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        SLEBEW
                     </span>
                 </a>
             </li>

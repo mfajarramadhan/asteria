@@ -10,7 +10,7 @@ class RiksaUjiController extends Controller
     public function index()
     {
         // ambil semua alat yg sudah selesai diperiksa
-        $tools = JobOrderTool::with(['tool.jenis.subJenis', 'jobOrder'])
+        $tools = JobOrderTool::with(['tool.jenis.subJenis', 'jobOrder',])
             ->where('status_tool', 'selesai')
             ->latest()
             ->get();
