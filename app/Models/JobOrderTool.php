@@ -27,7 +27,7 @@ class JobOrderTool extends Model
     protected $casts = [
         'tool_id'   => 'integer',
         'qty'       => 'integer',
-            'finished_at' => 'datetime',
+        'finished_at' => 'datetime',
     ];
 
     protected $primaryKey = 'id';
@@ -73,5 +73,11 @@ class JobOrderTool extends Model
     public function formKpScissorLift()
     {
         return $this->hasOne(FormKpScissorLift::class, 'job_order_tool_id');
+    }
+
+    // Relasi ke Form Eskalator
+    public function formKpEskalator()
+    {
+        return $this->hasOne(FormKpEskalator::class, 'job_order_tool_id');
     }
 }
