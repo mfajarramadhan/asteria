@@ -67,6 +67,19 @@ class JobOrderSeeder extends Seeder
             'finished_at' => today(),
         ]);
 
+        // Buat Tools ke-3 JO 1  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 9, // Eskalator (PUBT)
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '100L',
+            'model' => 'BT-002',
+            'no_seri' => 'PUBT002',
+            'status_tool' => 'selesai',
+            'finished_at' => today(),
+        ]);
+
         // Buat Penanggung Jawab 1
         $jobOrder->responsibles()->attach([3, 5]);
 
@@ -107,7 +120,7 @@ class JobOrderSeeder extends Seeder
         // Buat Tools ke-1 JO 2  
         JobOrderTool::create([
             'job_order_id' => $jobOrder2->id,
-            'tool_id' => 5, 
+            'tool_id' => 5,
             'qty' => 2,
             'status' => 'Pertama',
             'kapasitas' => '200L',
@@ -118,7 +131,7 @@ class JobOrderSeeder extends Seeder
         // Buat Tools ke-2 JO 2  
         JobOrderTool::create([
             'job_order_id' => $jobOrder2->id,
-            'tool_id' => 5, 
+            'tool_id' => 5,
             'qty' => 1,
             'status' => 'Resertifikasi',
             'kapasitas' => '300L',

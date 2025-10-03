@@ -5,11 +5,13 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardEskalatorController;
 use App\Http\Controllers\DashboardPAPAController;
 use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
+use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
@@ -44,15 +46,15 @@ Route::middleware('auth')->group(function () {
         // Job Orders Resource (CRUD)
         Route::resource('job_orders', JobOrderController::class);
         Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
-        ->name('job-order-tools.selesai');
+            ->name('job-order-tools.selesai');
         Route::patch('/job-order-tools/{jobOrderTool}/belum', [JobOrderToolController::class, 'setBelum'])
-        ->name('job-order-tools.belum');
+            ->name('job-order-tools.belum');
     });
 
     // User Management: Hanya superAdmin
     Route::middleware(['role:superAdmin'])->group(function () {
         Route::get('/superadmin', [SuperAdminController::class, 'index'])
-        ->name('superadmin.index');
+            ->name('superadmin.index');
         Route::patch('/superadmin/update-role/{id}', [SuperAdminController::class, 'updateRole'])
             ->name('superadmin.updateRole');
         Route::delete('/superadmin/delete-user/{id}', [SuperAdminController::class, 'destroyUser'])
@@ -108,12 +110,13 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+
     // Rute Form KP PAPA: Semua Role
     Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
 
-        // CRUD Bejana Tekan
+        // CRUD Scissor Lift
         Route::prefix('scissor_lift')->name('scissor_lift.')->group(function () {
             Route::get('/', [FormKpScissorLiftController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpScissorLiftController::class, 'create'])->name('create');
@@ -122,15 +125,23 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpScissorLift}/edit', [FormKpScissorLiftController::class, 'edit'])->name('edit');
             Route::put('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'update'])->name('update');
         });
+    });
 
+    // Rute Form KP Eskalator: Semua Role
+    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+        // Dashboard PUBT
+        Route::get('/', [DashboardEskalatorController::class, 'index'])->name('index');
 
-
-        
-
+        // CRUD Eskalator
+        Route::prefix('eskalator')->name('eskalator.')->group(function () {
+            Route::get('/', [FormKpEskalatorController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpEskalatorController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpEskalatorController::class, 'store'])->name('store');
+            Route::get('/{formKpEskalator}', [FormKpEskalatorController::class, 'show'])->name('show');
+            Route::get('/{formKpEskalator}/edit', [FormKpEskalatorController::class, 'edit'])->name('edit');
+            Route::put('/{formKpEskalator}', [FormKpEskalatorController::class, 'update'])->name('update');
+        });
     });
 });
 
-
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
