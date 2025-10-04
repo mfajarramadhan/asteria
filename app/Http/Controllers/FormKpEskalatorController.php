@@ -24,7 +24,7 @@ class FormKpEskalatorController extends Controller
 
         return view('form_kp.eskalator.eskalator.index', [
             'title' => 'Form KP Eskalator',
-            'subtitle' => 'Daftar alat yang selesai',
+            'subtitle' => 'Daftar alat selesai diperiksa',
             'eskalators' => $eskalators,
         ]);
     }

@@ -38,7 +38,7 @@ class SubJenisRiksaUjiSeeder extends Seeder
         // PTP
         SubJenisRiksaUji::create([
             'jenis_riksa_uji_id' => 2,
-            'sub_jenis' => 'Pesawat Tenaga & Produksi',
+            'sub_jenis' => 'Pesawat Tenaga Produksi',
         ]);
 
         SubJenisRiksaUji::create([
@@ -96,7 +96,7 @@ class SubJenisRiksaUjiSeeder extends Seeder
         // ESK
         SubJenisRiksaUji::create([
             'jenis_riksa_uji_id' => 5,
-            'sub_jenis' => 'Escalator',
+            'sub_jenis' => 'Eskalator',
         ]);
 
         SubJenisRiksaUji::create([

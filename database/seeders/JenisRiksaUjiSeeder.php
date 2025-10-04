@@ -36,8 +36,8 @@ class JenisRiksaUjiSeeder extends Seeder
         ]);
         
         JenisRiksaUji::create([
-            'jenis' => 'ESK',
-            'nama' => 'Elevator & Escalator', 
+            'jenis' => 'ESKALATOR',
+            'nama' => 'Elevator & Eskalator', 
         ]);
 
         JenisRiksaUji::create([

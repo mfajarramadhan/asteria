@@ -24,7 +24,7 @@ class FormKpTangkiTimbunController extends Controller
 
         return view('form_kp.pubt.tangki_timbun.index', [
             'title' => 'Form KP Tangki Timbun',
-            'subtitle' => 'Daftar alat yang selesai',
+            'subtitle' => 'Daftar alat selesai diperiksa',
             'tangkiTimbuns' => $tangkiTimbuns,
         ]);
     }

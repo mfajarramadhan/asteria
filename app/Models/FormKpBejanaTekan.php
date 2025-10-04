@@ -17,6 +17,9 @@ class FormKpBejanaTekan extends Model
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
         'foto_shell' => 'array',
+        'foto_head' => 'array',
+        'foto_pipa' => 'array',
+        'foto_instalasi' => 'array',
     ];
 
     // Relasi ke job_order_tool
