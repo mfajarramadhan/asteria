@@ -77,7 +77,11 @@
                 @forelse ($bejanaTekans as $bejanaTekan)
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $bejanaTekan->jobOrderTool->jobOrder->nomor_jo }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                        <a href="{{ route('job_orders.show', $bejanaTekan->jobOrderTool->jobOrder->id) }}#list-jo" class="hover:underline hover:text-blue-500">
+                            {{ $bejanaTekan->jobOrderTool->jobOrder->nomor_jo }}
+                        </a>
+                    </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $bejanaTekan->jobOrderTool->tool->nama }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $bejanaTekan->jobOrderTool->status }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">

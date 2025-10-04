@@ -24,7 +24,7 @@ class FormKpKatelUapController extends Controller
 
         return view('form_kp.pubt.katel_uap.index', [
             'title' => 'Form KP Katel Uap',
-            'subtitle' => 'Daftar alat yang selesai',
+            'subtitle' => 'Daftar alat selesai diperiksa',
             'katelUaps' => $katelUaps,
         ]);
     }

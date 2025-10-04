@@ -24,7 +24,7 @@ class FormKpScrewCompressorController extends Controller
 
         return view('form_kp.pubt.screw_compressor.index', [
             'title' => 'Form KP Screw Compressor',
-            'subtitle' => 'Daftar alat yang selesai',
+            'subtitle' => 'Daftar alat selesai diperiksa',
             'screwCompressors' => $screwCompressors,
         ]);
     }

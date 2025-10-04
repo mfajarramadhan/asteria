@@ -9,25 +9,24 @@ use Illuminate\Support\Facades\Storage;
 
 class FormKpBejanaTekanController extends Controller
 {
+    public function index()
+    {
+        $bejanaTekans = FormKpBejanaTekan::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+            ->whereHas('jobOrderTool', function ($q) {
+                $q->where('status_tool', 'selesai')
+                ->whereHas('tool', function ($q2) {
+                    $q2->where('jenis_riksa_uji_id', 1)
+                        ->where('sub_jenis_riksa_uji_id', 1);
+                });
+            })
+            ->get();
 
-public function index()
-{
-    $bejanaTekans = FormKpBejanaTekan::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
-        ->whereHas('jobOrderTool', function ($q) {
-            $q->where('status_tool', 'selesai')
-              ->whereHas('tool', function ($q2) {
-                  $q2->where('jenis_riksa_uji_id', 1)
-                     ->where('sub_jenis_riksa_uji_id', 1);
-              });
-        })
-        ->get();
-
-    return view('form_kp.pubt.bejana_tekan.index', [
-        'title' => 'Form KP Bejana Tekan',
-        'subtitle' => 'Daftar alat yang selesai',
-        'bejanaTekans' => $bejanaTekans,
-    ]);
-}
+        return view('form_kp.pubt.bejana_tekan.index', [
+            'title' => 'Form KP Bejana Tekan',
+            'subtitle' => 'Daftar alat selesai diperiksa',
+            'bejanaTekans' => $bejanaTekans,
+        ]);
+    }
 
 
     public function create($jobOrderToolId)
@@ -46,7 +45,6 @@ public function index()
     public function store(Request $request, $jobOrderToolId)
     {
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
-
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
@@ -54,6 +52,32 @@ public function index()
             'foto_shell'          => 'nullable|array', 
             'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
             'ketidakbulatan'      => 'nullable|numeric',
+            'ketebalan_shell'     => 'nullable|numeric',
+            'diameter_shell'      => 'nullable|numeric',
+            'panjang_shell'       => 'nullable|numeric',
+
+            'foto_head'           => 'nullable|array',
+            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_head'       => 'nullable|numeric',
+            'ketebalan_head'      => 'nullable|numeric',
+
+            'foto_pipa'           => 'nullable|array',
+            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_pipa'       => 'nullable|numeric',
+            'ketebalan_pipa'      => 'nullable|numeric',
+            'panjang_pipa'        => 'nullable|numeric',
+
+            'foto_intalasi'       => 'nullable|array',
+            'foto_intalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_intalasi'   => 'nullable|numeric',
+            'ketebalan_intalasi'  => 'nullable|numeric',
+            'panjang_intalasi'    => 'nullable|numeric',
+
+            'safety_valv_cal'     => 'nullable|boolean',
+            'tekanan_kerja'       => 'nullable|numeric',
+            'set_safety_valv'     => 'nullable|numeric',
+
+            'media_yang_diisikan' => 'nullable|string|max:255',
             'catatan'             => 'nullable|string',
         ]);
 
@@ -64,15 +88,17 @@ public function index()
 
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
-        // Simpan file foto_shell jika ada
-        if ($request->hasFile('foto_shell')) {
-            $paths = [];
-            foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+        // Simpan file jika ada upload foto  
+        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_intalasi'] as $field) {
+            if ($request->hasFile($field)) {
+                $paths = [];
+                foreach ($request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                }
+                $validated[$field] = json_encode($paths);
+            } else {
+                $validated[$field] = null;
             }
-            $validated['foto_shell'] = json_encode($paths);
-        } else {
-            $validated['foto_shell'] = null;
         }
 
         // Tambahkan kolom lain yang tidak berasal dari request

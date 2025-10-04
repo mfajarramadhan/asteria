@@ -16,10 +16,29 @@ return new class extends Migration
 
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
+            
             $table->date('tanggal_pemeriksaan')->nullable();
             $table->string('nama_perusahaan')->nullable();
             $table->json('foto_shell')->nullable();
             $table->decimal('ketidakbulatan', 10, 2)->nullable();
+            $table->decimal('ketebalan_shell', 10, 2)->nullable();
+            $table->decimal('diameter_shell', 10, 2)->nullable();
+            $table->decimal('panjang_shell', 10, 2)->nullable();
+            $table->json('foto_head')->nullable();
+            $table->decimal('diameter_head', 10, 2)->nullable();
+            $table->decimal('ketebalan_head', 10, 2)->nullable();
+            $table->json('foto_pipa')->nullable();
+            $table->decimal('diameter_pipa', 10, 2)->nullable();
+            $table->decimal('ketebalan_pipa', 10, 2)->nullable();
+            $table->decimal('panjang_pipa', 10, 2)->nullable();
+            $table->json('foto_intalasi')->nullable();
+            $table->decimal('diameter_intalasi', 10, 2)->nullable();
+            $table->decimal('ketebalan_intalasi', 10, 2)->nullable();
+            $table->decimal('panjang_intalasi', 10, 2)->nullable();
+            $table->boolean('safety_valv_cal')->nullable()->default(false);
+            $table->decimal('tekanan_kerja', 10, 2)->nullable();
+            $table->decimal('set_safety_valv', 10, 2)->nullable();
+            $table->string('media_yang_diisikan')->nullable();
             $table->text('catatan')->nullable();
 
             $table->timestamps();

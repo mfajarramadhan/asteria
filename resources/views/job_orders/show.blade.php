@@ -225,11 +225,12 @@
         </div>
 
         {{-- Alat --}}
-        <label for="responsibles" class="block text-sm font-medium text-gray-700">List Job Order</label>
+        <label id="list-jo" class="block text-sm font-medium text-gray-700">List Job Order</label>
         <div class="px-4 pb-4 overflow-x-auto bg-white rounded-lg shadow-md">
             <table class="table min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jenis</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Qty</th>
@@ -244,6 +245,7 @@
                 <tbody class="divide-y divide-gray-200">
                 @foreach ($jobOrder->tools as $tool)
                     <tr>
+                        <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->nama }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->jenis->jenis }}</td>
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $tool->pivot->qty }}</td>

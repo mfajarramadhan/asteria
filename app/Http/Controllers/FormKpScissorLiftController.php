@@ -24,7 +24,7 @@ public function index()
 
     return view('form_kp.papa.scissor_lift.index', [
         'title' => 'Form KP Scissor Lift',
-        'subtitle' => 'Daftar alat yang selesai',
+        'subtitle' => 'Daftar alat selesai diperiksa',
         'scissorLifts' => $scissorLifts,
     ]);
 }
@@ -36,7 +36,7 @@ public function index()
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')
             ->findOrFail($jobOrderToolId);
 
-        return view('form-kp.papa.scissor-lift.create', [
+        return view('form_kp.papa.scissor_lift.create', [
             'title'         => 'Form KP Scissor Lift',
             'subtitle'         => 'Isi Form KP Scissor Lift',
             'jobOrderTool'  => $jobOrderTool,
