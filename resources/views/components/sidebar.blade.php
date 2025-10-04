@@ -128,7 +128,7 @@
                     </svg>
                     <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }"
                         class="transition-opacity duration-300 {{ request()->routeIs('form_kp.eskalator.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
-                        Eskalator
+                        ESKALATOR
                     </span>
                 </a>
             </li>

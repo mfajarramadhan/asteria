@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FormKpEskalator;
+use App\Models\JobOrderTool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\FormKpEskalator;
+use Illuminate\Support\Facades\Storage;
 
 class FormKpEskalatorController extends Controller
 {
@@ -19,8 +22,8 @@ class FormKpEskalatorController extends Controller
             })
             ->get();
 
-        return view('form_kp.pubt.bejana_tekan.index', [
-            'title' => 'Form KP Bejana Tekan',
+        return view('form_kp.eskalator.eskalator.index', [
+            'title' => 'Form KP Eskalator',
             'subtitle' => 'Daftar alat yang selesai',
             'eskalators' => $eskalators,
         ]);
@@ -33,9 +36,9 @@ class FormKpEskalatorController extends Controller
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')
             ->findOrFail($jobOrderToolId);
 
-        return view('form_kp.pubt.bejana_tekan.create', [
-            'title'         => 'Form KP Bejana Tekan',
-            'subtitle'         => 'Isi Form KP Bejana Tekan',
+        return view('form_kp.eskalator.eskalator.create', [
+            'title'         => 'Form KP Eskalator',
+            'subtitle'         => 'Isi Form KP Eskalator',
             'jobOrderTool'  => $jobOrderTool,
         ]);
     }
@@ -65,7 +68,7 @@ class FormKpEskalatorController extends Controller
         if ($request->hasFile('foto_shell')) {
             $paths = [];
             foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('eskalator/eskalator', 'public');
             }
             $validated['foto_shell'] = json_encode($paths);
         } else {
@@ -85,7 +88,7 @@ class FormKpEskalatorController extends Controller
             'finished_at' => now(),
         ]);
 
-        return redirect()->route('form_kp.pubt.bejana_tekan.index')->with('success', 'Form KP Bejana Tekan berhasil disimpan!');
+        return redirect()->route('form_kp.eskalator.eskalator.index')->with('success', 'Form KP Eskalator berhasil disimpan!');
     }
 
     public function show(FormKpEskalator $formKpEskalator)
@@ -96,8 +99,8 @@ class FormKpEskalatorController extends Controller
             'jobOrderTool.tool'
         ]);
 
-        return view('form_kp.pubt.bejana_tekan.show', [
-            'title' => 'Detail Pemeriksaan Bejana Tekan',
+        return view('form_kp.eskalator.eskalator.show', [
+            'title' => 'Detail Pemeriksaan Eskalator',
             'subtitle' => '',
             'formKpEskalator' => $formKpEskalator,
         ]);
@@ -105,8 +108,8 @@ class FormKpEskalatorController extends Controller
 
     public function edit(FormKpEskalator $formKpEskalator)
     {
-        return view('form_kp.pubt.bejana_tekan.edit', [
-            'title' => 'Edit Form KP Bejana Tekan',
+        return view('form_kp.eskalator.eskalator.edit', [
+            'title' => 'Edit Form KP Eskalator',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
             'formKpEskalator' => $formKpEskalator,
         ]);
@@ -147,14 +150,14 @@ class FormKpEskalatorController extends Controller
             }
 
             foreach ($files as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $paths[] = $file->store('eskalator/eskalator', 'public');
             }
 
             $validated['foto_shell'] = json_encode($paths);
         }
         $formKpEskalator->update($validated);
 
-        return redirect()->route('form_kp.pubt.bejana_tekan.index', $formKpEskalator->id)
-            ->with('success', 'Form KP Bejana Tekan berhasil diperbarui!');
+        return redirect()->route('form_kp.eskalator.eskalator.index', $formKpEskalator->id)
+            ->with('success', 'Form KP Eskalator berhasil diperbarui!');
     }
 }
