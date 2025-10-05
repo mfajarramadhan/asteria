@@ -117,6 +117,7 @@
                             </button>
                             {{-- End Read --}}
 
+                            @role('superAdmin|admin|petugas')
                             {{-- Update --}}
                             <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
                             <a href="{{ route('job_orders.edit', $jo->id) }}">
@@ -126,7 +127,9 @@
                             </a>
                             </button>
                             {{-- End Update --}}
+                            @endrole
 
+                            @role('superAdmin|admin')
                             {{-- Delete --}}
                             <form action="{{ route('job_orders.destroy', $jo->id) }}" method="POST">
                             @method('DELETE')
@@ -140,6 +143,7 @@
                             </button>
                             </form>
                             {{-- End Delete --}}
+                            @endrole
                         </div>
                     </td>
                 </tr>

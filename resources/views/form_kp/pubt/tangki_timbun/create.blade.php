@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('form_kp.pubt.bejana_tekan.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
+            <form action="{{ route('form_kp.pubt.tangki_timbun.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
                 @csrf
                 
                 {{-- Tanggal Pemeriksaan --}}

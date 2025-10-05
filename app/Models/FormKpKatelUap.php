@@ -18,7 +18,9 @@ class FormKpKatelUap extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_shell' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_safety_valve' => 'array',
+        'foto_pressure_switch' => 'array',
     ];
 
     // Relasi ke job_order_tool
