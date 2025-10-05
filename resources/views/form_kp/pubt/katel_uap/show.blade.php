@@ -37,14 +37,14 @@
         <div>
             <label class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
             @php
-                $fotoShell = $formKpKatelUap->foto_shell; 
-                if ($fotoShell && is_string($fotoShell)) {
-                    $fotoShell = json_decode($fotoShell, true);
+                $fotoInformasiUmum = $formKpKatelUap->foto_informasi_umum; 
+                if ($fotoInformasiUmum && is_string($fotoInformasiUmum)) {
+                    $fotoInformasiUmum = json_decode($fotoInformasiUmum, true);
                 }            
             @endphp
-            @if($fotoShell && count($fotoShell) > 0)
+            @if($fotoInformasiUmum && count($fotoInformasiUmum) > 0)
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                    @foreach($fotoShell as $foto)
+                    @foreach($fotoInformasiUmum as $foto)
                         <div class="relative overflow-hidden rounded-lg group aspect-square">
                             <img src="{{ asset('storage/' . $foto) }}" alt="Foto Shell" class="object-contain w-full h-full transition-transform duration-500 transform group-hover:scale-110">
                             <div class="absolute inset-0 flex items-end p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">

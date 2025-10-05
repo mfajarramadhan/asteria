@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0001',
             'email'     => 'rendi@gmail.com',
             'jabatan'   => 'Pejabat Fungsional AK3',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('rendi12345'), // ganti sesuai kebutuhan
         ]);
 
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0002',
             'email'     => 'bayu@gmail.com',
             'jabatan'   => 'Asisten Muda AK3',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('bayu12345'),
         ]);
 
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0003',
             'email'     => 'alben@gmail.com',
             'jabatan'   => 'Asisten Pertama AK3',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('alben12345'),
         ]);
 
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0004',
             'email'     => 'sarip@gmail.com',
             'jabatan'   => 'Asisten Pertama AK3',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('sarip12345'),
         ]);
 
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0005',
             'email'     => 'maul@gmail.com',
             'jabatan'   => 'Staff Admin',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('maul12345'),
         ]);
 
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0006',
             'email'     => 'heri@gmail.com',
             'jabatan'   => 'Staff Admin',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('heri12345'),
         ]);
 
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0007',
             'email'     => 'intan@gmail.com',
             'jabatan'   => 'Staff Penyusun LHP',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('intan12345'),
         ]);
 
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
             'id_user'     => '0008',
             'email'     => 'sarah@gmail.com',
             'jabatan'   => 'Staff Penyusun LHP',
-            'avatar'    => 'avatars/default.jpeg',
+            'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('sarah12345'),
         ]);
 

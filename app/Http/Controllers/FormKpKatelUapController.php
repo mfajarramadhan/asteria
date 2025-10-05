@@ -45,16 +45,44 @@ class FormKpKatelUapController extends Controller
 
     public function store(Request $request, $jobOrderToolId)
     {
+        // dd($request->all());
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
 
         // Validasi input
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array', 
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'       => 'nullable|date',
+            'nama_perusahaan'           => 'nullable|string|max:255',
+
+            'foto_informasi_umum'       => 'nullable|array',
+            'foto_informasi_umum.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'jenis_alat'                => 'nullable|string|max:255',
+            'merk_model'                => 'nullable|string|max:255',
+            'tempat_tahun_pembuatan'    => 'nullable|string|max:255',
+            'no_seri_unit'              => 'nullable|string|max:255',
+            'tekanan_desain'            => 'nullable|numeric',
+            'tekanan_kerja'             => 'nullable|numeric',
+            'kapasitas_uap'             => 'nullable|string|max:255',
+            'luas_pemanasan'            => 'nullable|numeric',
+            'work_temperature'          => 'nullable|numeric',
+            'bahan_bakar'               => 'nullable|string|max:255',
+            'lokasi'                    => 'nullable|string|max:255',
+
+            'foto_safety_valve'         => 'nullable|array',
+            'foto_safety_valve.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'safety_valve1_membuka'     => 'nullable|numeric',
+            'safety_valve1_menutup'     => 'nullable|numeric',
+            'safety_valve2_membuka'     => 'nullable|numeric',
+            'safety_valve2_menutup'     => 'nullable|numeric',
+            'catatan_safety_valve'      => 'nullable|string',
+
+            'foto_pressure_switch'      => 'nullable|array',
+            'foto_pressure_switch.*'    => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pressure_switch_on_set'    => 'nullable|numeric',
+            'pressure_switch_on_hasil'  => 'nullable|numeric',
+            'pressure_switch_off_set'   => 'nullable|numeric',
+            'pressure_switch_off_hasil' => 'nullable|numeric',
+            'catatan_pressure_switch'   => 'nullable|string',
+            'catatan'                   => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -64,15 +92,17 @@ class FormKpKatelUapController extends Controller
 
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
-        // Simpan file foto_shell jika ada
-        if ($request->hasFile('foto_shell')) {
-            $paths = [];
-            foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/katel_uap', 'public');
+        // Simpan file jika ada upload foto  
+        foreach (['foto_informasi_umum', 'foto_safety_valve', 'foto_pressure_switch'] as $field) {
+            if ($request->hasFile($field)) {
+                $paths = [];
+                foreach ($request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/katel_uap', 'public');
+                }
+                $validated[$field] = json_encode($paths);
+            } else {
+                $validated[$field] = null;
             }
-            $validated['foto_shell'] = json_encode($paths);
-        } else {
-            $validated['foto_shell'] = null;
         }
 
         // Tambahkan kolom lain yang tidak berasal dari request
