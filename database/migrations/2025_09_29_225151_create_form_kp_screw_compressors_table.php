@@ -32,12 +32,16 @@ return new class extends Migration
             $table->json('foto_pondasi_screw')->nullable();
             $table->decimal('panjang_pondasi_screw', 10, 3)->nullable();
             $table->decimal('lebar_pondasi_screw', 10, 3)->nullable();
+            $table->json('foto_safety_device')->nullable();
             $table->decimal('safety_valve_separator_membuka', 10, 3)->nullable();
             $table->decimal('safety_valve_separator_menutup', 10, 3)->nullable();
+            $table->text('catatan_safety_valve')->nullable();
+            $table->json('foto_pressure_switch')->nullable();
             $table->decimal('pressure_switch_on_set', 10, 3)->nullable();
             $table->decimal('pressure_switch_on_hasil', 10, 3)->nullable();
             $table->decimal('pressure_switch_off_set', 10, 3)->nullable();
             $table->decimal('pressure_switch_off_hasil', 10, 3)->nullable();
+            $table->text('catatan_pressure_switch')->nullable();
             $table->text('catatan')->nullable();
             $table->timestamps();        
         });
