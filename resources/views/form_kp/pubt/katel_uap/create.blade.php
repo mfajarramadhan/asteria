@@ -28,8 +28,32 @@
 
                 {{-- Nama Perusahaan --}}
                 <div>
-                    <input type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
-                    @error('nama_perusahaan')
+                    <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
+                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
+                </div>
+                
+                {{-- Kapasitas --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
+                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
+                </div>
+                
+                {{-- Model/Tipe --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
+                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
+                </div>
+                
+                {{-- No.Seri --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
+                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
+                </div>
+                
+                {{-- Pabrik Pembuat --}}
+                <div>
+                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat') }}">
+                    @error('pabrik_pembuat')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -94,7 +118,7 @@
 
                 {{-- Tekanan Desain --}}
                 <div>
-                    <input type="number" step="0.001" name="tekanan_desain" placeholder="Tekanan Desain" id="tekanan_desain" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_desain') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_desain') }}">
+                    <input type="number" step="any" name="tekanan_desain" placeholder="Tekanan Desain" id="tekanan_desain" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_desain') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_desain') }}">
                     @error('tekanan_desain')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -104,7 +128,7 @@
 
                 {{-- Tekanan Kerja --}}
                 <div>
-                    <input type="number" step="0.001" name="tekanan_kerja" placeholder="Tekanan Kerja" id="tekanan_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_kerja') }}">
+                    <input type="number" step="any" name="tekanan_kerja" placeholder="Tekanan Kerja" id="tekanan_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_kerja') }}">
                     @error('tekanan_kerja')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -124,7 +148,7 @@
                 
                 {{-- Luas Pemanasan --}}
                 <div>
-                    <input type="number" step="0.001" name="luas_pemanasan" placeholder="Luas Pemanasan" id="luas_pemanasan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('luas_pemanasan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('luas_pemanasan') }}">
+                    <input type="number" step="any" name="luas_pemanasan" placeholder="Luas Pemanasan" id="luas_pemanasan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('luas_pemanasan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('luas_pemanasan') }}">
                     @error('luas_pemanasan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -134,7 +158,7 @@
                 
                 {{-- Work Temperature --}}
                 <div>
-                    <input type="number" step="0.001" name="work_temperature" placeholder="Work Temperature" id="work_temperature" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('work_temperature') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('work_temperature') }}">
+                    <input type="number" step="any" name="work_temperature" placeholder="Work Temperature" id="work_temperature" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('work_temperature') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('work_temperature') }}">
                     @error('work_temperature')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -193,7 +217,7 @@
                         <label for="safety_valve1_membuka" class="block text-sm text-gray-700">Safety Valve 1</label>
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="safety_valve1_membuka" placeholder="" id="safety_valve1_membuka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve1_membuka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve1_membuka') }}">
+                        <input type="number" step="any" name="safety_valve1_membuka" placeholder="" id="safety_valve1_membuka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve1_membuka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve1_membuka') }}">
                         @error('safety_valve1_membuka')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -201,7 +225,7 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="safety_valve1_menutup" placeholder="" id="safety_valve1_menutup" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve1_menutup') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve1_menutup') }}">
+                        <input type="number" step="any" name="safety_valve1_menutup" placeholder="" id="safety_valve1_menutup" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve1_menutup') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve1_menutup') }}">
                         @error('safety_valve1_menutup')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -214,7 +238,7 @@
                         <label for="safety_valve2_membuka" class="block text-sm text-gray-700">Safety Valve 2</label>
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="safety_valve2_membuka" placeholder="" id="safety_valve2_membuka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve2_membuka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve2_membuka') }}">
+                        <input type="number" step="any" name="safety_valve2_membuka" placeholder="" id="safety_valve2_membuka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve2_membuka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve2_membuka') }}">
                         @error('safety_valve2_membuka')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -222,7 +246,7 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="safety_valve2_menutup" placeholder="" id="safety_valve2_menutup" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve2_menutup') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve2_menutup') }}">
+                        <input type="number" step="any" name="safety_valve2_menutup" placeholder="" id="safety_valve2_menutup" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_valve2_menutup') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_valve2_menutup') }}">
                         @error('safety_valve2_menutup')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -272,7 +296,7 @@
                         <label for="pressure_switch_on_set" class="block text-sm text-gray-700">Pressure Switch On</label>
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="pressure_switch_on_set" placeholder="" id="pressure_switch_on_set" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_on_set') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_on_set') }}">
+                        <input type="number" step="any" name="pressure_switch_on_set" placeholder="" id="pressure_switch_on_set" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_on_set') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_on_set') }}">
                         @error('pressure_switch_on_set')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -280,7 +304,7 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="pressure_switch_on_hasil" placeholder="" id="pressure_switch_on_hasil" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_on_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_on_hasil') }}">
+                        <input type="number" step="any" name="pressure_switch_on_hasil" placeholder="" id="pressure_switch_on_hasil" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_on_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_on_hasil') }}">
                         @error('pressure_switch_on_hasil')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -293,7 +317,7 @@
                         <label for="pressure_switch_off_set" class="block text-sm text-gray-700">Pressure Switch Off</label>
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="pressure_switch_off_set" placeholder="" id="pressure_switch_off_set" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_off_set') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_off_set') }}">
+                        <input type="number" step="any" name="pressure_switch_off_set" placeholder="" id="pressure_switch_off_set" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_off_set') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_off_set') }}">
                         @error('pressure_switch_off_set')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -301,7 +325,7 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="number" step="0.001" name="pressure_switch_off_hasil" placeholder="" id="pressure_switch_off_hasil" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_off_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_off_hasil') }}">
+                        <input type="number" step="any" name="pressure_switch_off_hasil" placeholder="" id="pressure_switch_off_hasil" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pressure_switch_off_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pressure_switch_off_hasil') }}">
                         @error('pressure_switch_off_hasil')
                         <div class="text-xs text-red-600">
                             {{ $message }}
