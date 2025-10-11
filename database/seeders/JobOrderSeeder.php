@@ -147,7 +147,7 @@ class JobOrderSeeder extends Seeder
             'model' => 'SL-001',
             'no_seri' => 'PAPA001',
         ]);
-        
+
         // // Buat Tools ke-2 PAPA  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
@@ -158,7 +158,7 @@ class JobOrderSeeder extends Seeder
         //     'model' => 'WL-001',
         //     'no_seri' => 'PAPA002',
         // ]);
-        
+
         // // Buat Tools ke-3 PAPA  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
@@ -169,7 +169,7 @@ class JobOrderSeeder extends Seeder
         //     'model' => 'DL-001',
         //     'no_seri' => 'PAPA003',
         // ]);
-        
+
         // // Buat Tools ke-4 PAPA  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
@@ -180,7 +180,7 @@ class JobOrderSeeder extends Seeder
         //     'model' => 'CC-001',
         //     'no_seri' => 'PAPA004',
         // ]);
-        
+
         // // Buat Tools ke-5 PAPA  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
@@ -191,7 +191,7 @@ class JobOrderSeeder extends Seeder
         //     'model' => 'FK-001',
         //     'no_seri' => 'PAPA005',
         // ]);
-        
+
         // // Buat Tools ke-6 PAPA  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
@@ -240,16 +240,16 @@ class JobOrderSeeder extends Seeder
             'no_seri' => 'ESK001',
         ]);
 
-        // // Buat Tools ke-2 ESK  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 17, // Elevator Penumpang
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => '1000 Kg / 13 orang',
-        //     'model' => 'ELV-001',
-        //     'no_seri' => 'ESK002',
-        // ]);
+        // Buat Tools ke-2 ESK  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 17, // Elevator Penumpang
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '1000 Kg / 13 orang',
+            'model' => 'ELV-001',
+            'no_seri' => 'ESK002',
+        ]);
 
 
 

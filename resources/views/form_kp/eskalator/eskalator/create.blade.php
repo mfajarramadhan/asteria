@@ -27,9 +27,8 @@
             </div>
 
             {{-- Nama Perusahaan --}}
-            <h2 class="block text-sm font-bold text-gray-700">Nama Perusahaan</h2>
             <div>
-                <input type="text" name="nama_perusahaan" placeholder="ID Job Order" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
+                <input type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
                 @error('nama_perusahaan')
                 <div class="text-xs text-red-600">
                     {{ $message }}
@@ -68,6 +67,27 @@
                 </div>
                 @enderror
             </div>
+
+            {{-- Asal Negara Pembuat --}}
+            <div>
+                <input type="text" name="asal_negara_pembuat" placeholder="Asal Negara Pembuat" id="asal_negara_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('asal_negara_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('asal_negara_pembuat') }}">
+                @error('asal_negara_pembuat')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Tahun Pembuatan --}}
+            <div>
+                <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                @error('tahun_pembuatan')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
 
             {{-- Kapasitas --}}
             <div>
@@ -137,7 +157,7 @@
 
                         @foreach ($items as $name => $data)
                         <tr class="relative">
-                            <td class="px-3 py-2 border font-medium">
+                            <td class="px-3 py-2 border font-medium w-[50%]">
                                 <div class="flex items-center justify-between gap-2">
                                     {{ $data['label'] }}
                                     <button type="button"
@@ -224,7 +244,7 @@
 
                         @foreach ($items as $name => $data)
                         <tr class="relative">
-                            <td class="px-3 py-2 border font-medium">
+                            <td class="px-3 py-2 border font-medium w-[50%]">
                                 <div class="flex items-center justify-between gap-2">
                                     {{ $data['label'] }}
                                     <button type="button"
@@ -343,7 +363,7 @@
                         @foreach ($items as $name => $data)
                         <tr class="relative">
                             {{-- Nama komponen + tooltip tanda tanya --}}
-                            <td class="px-3 py-2 border font-medium">
+                            <td class="px-3 py-2 border font-medium w-[50%]">
                                 <div class="flex items-center justify-between gap-2">
                                     {{ $data['label'] }}
                                     <button type="button"
