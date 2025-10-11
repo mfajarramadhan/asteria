@@ -19,23 +19,52 @@
             </div>
         </div>
 
-
         {{-- Nama Perusahaan --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
             <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
-                {{ $formKpBejanaTekan->nama_perusahaan ?? '-' }}
+                {{ $formKpBejanaTekan->jobOrderTool->jobOrder->nama_perusahaan ?? '-' }}
             </div>
         </div>
 
-        <div class="flex flex-col gap-2">
-            <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
-            <h2 class="block text-sm font-bold text-gray-700">Shell / Badan</h2>
+        {{-- Kapasitas --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->jobOrderTool->kapasitas ?? '-' }}
+            </div>
         </div>
+
+        {{-- Model/Tipe --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->jobOrderTool->model ?? '-' }}
+            </div>
+        </div>
+
+        {{-- No. Seri/Unit --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->jobOrderTool->no_seri ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Pabrik Pembuat --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->pabrik_pembuat ?? '-' }}
+            </div>
+        </div>
+
+        <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
 
         {{-- Foto Shell --}}
         <div>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
             @php
                 $fotoShell = $formKpBejanaTekan->foto_shell; 
                 if ($fotoShell && is_string($fotoShell)) {
@@ -55,10 +84,9 @@
                     @endforeach
                 </div>
             @else
-                <p class="text-sm text-gray-500">Tidak ada foto</p>
+                <p class="text-sm italic text-gray-500">Tidak ada foto</p>
             @endif
         </div>
-
 
         {{-- Ketidakbulatan --}}
         <div>
@@ -67,7 +95,239 @@
                 {{ $formKpBejanaTekan->ketidakbulatan ?? '-' }}
             </div>
         </div>
+        
+        {{-- Ketebalan shell --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->ketebalan_shell ?? '-' }}
+            </div>
+        </div>
 
+        {{-- Diameter shell --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->diameter_shell ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Panjang shell --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Panjang</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->panjang_shell ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Foto foto_head --}}
+        <div>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Head/Tutup Ujung</h2>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Head/Tutup Ujung</label>
+            @php
+                $fotoHead = $formKpBejanaTekan->foto_head; 
+                if ($fotoHead && is_string($fotoHead)) {
+                    $fotoHead = json_decode($fotoHead, true);
+                }            
+            @endphp
+            @if($fotoHead && count($fotoHead) > 0)
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    @foreach($fotoHead as $foto)
+                        <div class="relative overflow-hidden rounded-lg group aspect-square">
+                            <img src="{{ asset('storage/' . $foto) }}" alt="Foto Shell" class="object-contain w-full h-full transition-transform duration-500 transform group-hover:scale-110">
+                            <div class="absolute inset-0 flex items-end p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
+                                <div class="transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-sm italic text-gray-500">Tidak ada foto</p>
+            @endif
+        </div>
+
+        {{-- Diameter_head --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->diameter_head ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Ketebalan head --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->ketebalan_head ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Foto foto_pipa --}}
+        <div>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Pipa-pipa/Channel</h2>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Pipa-pipa/Channel</label>
+            @php
+                $fotoPipa = $formKpBejanaTekan->foto_pipa; 
+                if ($fotoPipa && is_string($fotoPipa)) {
+                    $fotoPipa = json_decode($fotoPipa, true);
+                }            
+            @endphp
+            @if($fotoPipa && count($fotoPipa) > 0)
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    @foreach($fotoPipa as $foto)
+                        <div class="relative overflow-hidden rounded-lg group aspect-square">
+                            <img src="{{ asset('storage/' . $foto) }}" alt="Foto Shell" class="object-contain w-full h-full transition-transform duration-500 transform group-hover:scale-110">
+                            <div class="absolute inset-0 flex items-end p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
+                                <div class="transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-sm italic text-gray-500">Tidak ada foto</p>
+            @endif
+        </div>
+
+        {{-- Diameter Pipa --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->diameter_pipa ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Ketebalan Pipa --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->ketebalan_pipa ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Panjang Pipa --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Panjang</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->panjang_pipa ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Foto foto_instalasi --}}
+        <div>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
+            @php
+                $fotoInstalasiPipa = $formKpBejanaTekan->foto_intalasi; 
+                if ($fotoInstalasiPipa && is_string($fotoInstalasiPipa)) {
+                    $fotoInstalasiPipa = json_decode($fotoInstalasiPipa, true);
+                }            
+            @endphp
+            @if($fotoInstalasiPipa && count($fotoInstalasiPipa) > 0)
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    @foreach($fotoInstalasiPipa as $foto)
+                        <div class="relative overflow-hidden rounded-lg group aspect-square">
+                            <img src="{{ asset('storage/' . $foto) }}" alt="Foto Shell" class="object-contain w-full h-full transition-transform duration-500 transform group-hover:scale-110">
+                            <div class="absolute inset-0 flex items-end p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
+                                <div class="transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-sm italic text-gray-500">Tidak ada foto</p>
+            @endif
+        </div>
+
+        {{-- Diameter Instalasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->diameter_intalasi ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Ketebalan Instalasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->ketebalan_intalasi ?? '-' }}
+            </div>
+        </div>
+        
+        {{-- Panjang Instalasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Panjang</label>
+            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+                {{ $formKpBejanaTekan->panjang_intalasi ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Safety value cal --}}
+        <div class="flex justify-center">
+            <div class="flex items-center w-full md:w-5/6">
+                <label for="safety_valv_cal" class="w-[70%] md:w-[75%] text-sm text-gray-700">
+                    • Safety Valve & Pressure Gauge apakah sudah dikalibrasi? 
+                </label>
+                <div class="w-[30%] md:w-[25%] flex items-center justify-between">
+                    <span class="text-sm text-gray-900">
+                        @if($formKpBejanaTekan->safety_valv_cal === 1)
+                            Ya
+                        @elseif($formKpBejanaTekan->safety_valv_cal === 0)
+                            Tidak
+                        @else
+                            -
+                        @endif
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        {{-- Tekanan kerja --}}
+        <div class="flex justify-center">
+            <div class="flex items-center w-full md:w-5/6">
+                <label for="tekanan_kerja" class="w-[70%] md:w-[75%] text-sm text-gray-700">
+                    • Tekanan kerja
+                </label>
+                <div class="w-[30%] md:w-[25%]">
+                    <input type="number" step="any" name="tekanan_kerja" id="tekanan_kerja"
+                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        value="{{ $formKpBejanaTekan->tekanan_kerja ?? '-' }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        {{-- Setting safety valve --}}
+        <div class="flex justify-center">
+            <div class="flex items-center w-full md:w-5/6">                    
+                <label for="set_safety_valv" class="w-[70%] md:w-[75%] text-sm text-gray-700">
+                    • Settingan safety valve?
+                </label>
+                <div class="w-[30%] md:w-[25%]">
+                    <input type="number" step="any" name="set_safety_valv" id="set_safety_valv"
+                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        value="{{ $formKpBejanaTekan->set_safety_valv ?? '-' }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        {{-- Media --}}
+        <div class="flex justify-center">
+            <div class="flex items-center w-full md:w-5/6">
+                <label for="media_yang_diisikan" class="w-[70%] md:w-[75%] text-sm text-gray-700">
+                    • Media yang diisikan?
+                </label>
+                <div class="w-[30%] md:w-[25%]">
+                    <input type="text" name="media_yang_diisikan" id="media_yang_diisikan"
+                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        value="{{ $formKpBejanaTekan->media_yang_diisikan ?? '-' }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        
         {{-- Catatan --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Catatan</label>

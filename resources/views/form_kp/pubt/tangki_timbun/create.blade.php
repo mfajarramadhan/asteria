@@ -29,25 +29,25 @@
                 {{-- Nama Perusahaan --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
                 </div>
                 
                 {{-- Kapasitas --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
                 </div>
                 
                 {{-- Model/Tipe --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
                 </div>
                 
                 {{-- No.Seri --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
                 </div>
                 
                 {{-- Pabrik Pembuat --}}
@@ -78,44 +78,44 @@
                 </div>
 
                 {{-- Tipe Tangki --}}
-                <div>
+                {{-- <div>
                     <input type="text" name="tipe_tangki" placeholder="Tipe Tangki" id="tipe_tangki" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tipe_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tipe_tangki') }}">
                     @error('tipe_tangki')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
-                </div>
+                </div> --}}
 
                 {{-- Nomor Seri --}}
-                <div>
+                {{-- <div>
                     <input type="text" name="nomor_seri" placeholder="Nomor Seri" id="nomor_seri" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_seri') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_seri') }}">
                     @error('nomor_seri')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
-                </div>
+                </div> --}}
 
                 {{-- Pabrik Pembuat --}}
-                <div>
+                {{-- <div>
                     <input type="text" name="tempat_tahun_pembuat" placeholder="Pabrik Pembuat" id="tempat_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat_tahun_pembuat') }}">
                     @error('tempat_tahun_pembuat')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
-                </div>
+                </div> --}}
 
                 {{-- Kapasitas --}}
-                <div>
+                {{-- <div>
                     <input type="text" name="kapasitas" placeholder="Tempat/Tahun Pembuat" id="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas') }}">
                     @error('kapasitas')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
-                </div>
+                </div> --}}
 
                 {{-- Media yang diisikan --}}
                 <div>

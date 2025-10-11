@@ -208,7 +208,7 @@
                 <table class="table min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama</th>
+                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama Petugas</th>
                         <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Jabatan</th>
                     </tr>
                     </thead>

@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <!-- Alpine.js CDN -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- Iconify CDN --}}
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body class="min-h-screen font-sans bg-gray-100">
     <div x-data="{ openSidebar: false }" class="flex flex-col min-h-screen md:flex-row">

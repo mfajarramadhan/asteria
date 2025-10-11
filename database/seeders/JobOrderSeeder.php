@@ -300,7 +300,7 @@ class JobOrderSeeder extends Seeder
         // ]);
 
         // Buat Penanggung Jawab 1
-        $jobOrder->responsibles()->attach([3, 5]);
+        $jobOrder->responsibles()->attach([2, 3, 5]);
 
 
 

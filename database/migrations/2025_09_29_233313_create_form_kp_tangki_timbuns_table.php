@@ -18,11 +18,10 @@ return new class extends Migration
             $table->date('tanggal_pemeriksaan')->nullable();
             $table->string('pabrik_pembuat')->nullable();
             $table->json('foto_visual')->nullable();
-            $table->string('tipe_tangki')->nullable();
-            $table->string('nomor_seri')->nullable();
-            $table->string('pabrik_pembuat')->nullable();
+            // $table->string('tipe_tangki')->nullable();
+            // $table->string('nomor_seri')->nullable();
             $table->string('tempat_tahun_pembuat')->nullable();
-            $table->string('kapasitas')->nullable();
+            // $table->string('kapasitas')->nullable();
             $table->string('media_yang_diisikan')->nullable();
             $table->string('lokasi_tangki')->nullable();
             $table->string('tanda_kebocoran')->nullable();

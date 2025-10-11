@@ -19,7 +19,7 @@ return new class extends Migration
         $table->string('email')->nullable();
         $table->string('contact_person')->nullable();
         $table->string('no_penawaran')->nullable();
-        $table->string('no_purcash_order')->nullable();
+        $table->string('no_purcash_order')->nullable()->unique();
         $table->date('tanggal_pemeriksaan1')->nullable();
         $table->date('tanggal_pemeriksaan2')->nullable();
         $table->date('tanggal_pemeriksaan3')->nullable();

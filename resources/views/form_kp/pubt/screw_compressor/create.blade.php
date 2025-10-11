@@ -29,25 +29,25 @@
                 {{-- Nama Perusahaan --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
                 </div>
                 
                 {{-- Kapasitas --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
                 </div>
                 
                 {{-- Model/Tipe --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
                 </div>
                 
                 {{-- No.Seri --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
                 </div>
                 
                 {{-- Pabrik Pembuat --}}
@@ -245,16 +245,16 @@
                 </div>
 
                 {{-- Safety Valve Saparator Tank --}}
-                <div class="grid grid-cols-3 gap-4 items-center">
+                <div class="grid items-center grid-cols-3 gap-4">
                     {{-- Baris 1 --}}
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Item</label>
+                        <label class="block text-sm font-bold text-gray-700">Item</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Membuka</label>
+                        <label class="block text-sm font-bold text-gray-700">Membuka</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Menutup</label>
+                        <label class="block text-sm font-bold text-gray-700">Menutup</label>
                     </div>
 
                     {{-- Baris 2 --}}
@@ -291,7 +291,7 @@
 
                 {{-- Foto foto_pressure_switch --}}
                 <div>
-                    <label for="foto_pressure_switch" class="block mb-1 mt-10 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
+                    <label for="foto_pressure_switch" class="block mt-10 mb-1 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
                     <div id="foto_pressure_switch-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pressure_switch[]" id="foto_pressure_switch" accept="image/*" multiple onchange="previewImage(this, 'foto_pressure_switch-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pressure_switch') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -303,16 +303,16 @@
                 </div>
 
                 {{-- Pressure Switch --}}
-                <div class="grid grid-cols-3 gap-4 items-center">
+                <div class="grid items-center grid-cols-3 gap-4">
                     {{-- Baris 1 --}}
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Deskripsi</label>
+                        <label class="block text-sm font-bold text-gray-700">Deskripsi</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Tekanan Setting</label>
+                        <label class="block text-sm font-bold text-gray-700">Tekanan Setting</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm text-gray-700 font-bold">Hasil</label>
+                        <label class="block text-sm font-bold text-gray-700">Hasil</label>
                     </div>
 
                     {{-- Baris 2 --}}
