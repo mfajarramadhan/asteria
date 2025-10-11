@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
+use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\FormKpScissorLiftController;
@@ -140,6 +141,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpEskalator}', [FormKpEskalatorController::class, 'show'])->name('show');
             Route::get('/{formKpEskalator}/edit', [FormKpEskalatorController::class, 'edit'])->name('edit');
             Route::put('/{formKpEskalator}', [FormKpEskalatorController::class, 'update'])->name('update');
+        });
+
+        // CRUD Elevator
+        Route::prefix('elevator')->name('elevator.')->group(function () {
+            Route::get('/', [FormKpElevatorController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpElevatorController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpElevatorController::class, 'store'])->name('store');
+            Route::get('/{formKpElevator}', [FormKpElevatorController::class, 'show'])->name('show');
+            Route::get('/{formKpElevator}/edit', [FormKpElevatorController::class, 'edit'])->name('edit');
+            Route::put('/{formKpElevator}', [FormKpElevatorController::class, 'update'])->name('update');
         });
     });
 });
