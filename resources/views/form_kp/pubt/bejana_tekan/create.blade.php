@@ -29,25 +29,25 @@
                 {{-- Nama Perusahaan --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
                 </div>
                 
                 {{-- Kapasitas --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
                 </div>
                 
                 {{-- Model/Tipe --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
                 </div>
                 
                 {{-- No.Seri --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                    <input type="text" disabled class="cursor-not-allowed block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
                 </div>
                 
                 {{-- Pabrik Pembuat --}}
