@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/riksa_uji', [RiksaUjiController::class, 'index'])->name('riksa_uji.index');
 
     // Rute Form KP Bejana Tekan: Semua Role
-    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPUBTController::class, 'index'])->name('index');
 
@@ -113,7 +113,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Rute Form KP PAPA: Semua Role
-    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
 
@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Form KP Eskalator: Semua Role
-    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin'])->group(function () {
+    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardEskalatorController::class, 'index'])->name('index');
 

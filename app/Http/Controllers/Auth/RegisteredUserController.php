@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
             // tambahkan validated avatar nanti
         }else{
-            $avatarPath = 'avatars/default.jpeg';
+            $avatarPath = 'avatars/default.png';
         }
 
         $user = User::create([
@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // default role = petugas
-        $user->assignRole('petugas');
+        $user->assignRole('penyusunLHP');
 
         event(new Registered($user));
 

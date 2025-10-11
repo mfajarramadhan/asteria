@@ -16,7 +16,7 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" value="{{ old('tanggal_pemeriksaan') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border shadow-md border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan') }}"> 
+                            <input required id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" value="{{ old('tanggal_pemeriksaan') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border shadow-md border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan') }}"> 
                         </div>
                         @error('tanggal_pemeriksaan')
                         <div class="text-xs text-red-600">
@@ -66,7 +66,7 @@
                 {{-- Foto foto_shell --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
-                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
                     <div id="foto_shell-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_shell[]" id="foto_shell" accept="image/*" multiple onchange="previewImage(this, 'foto_shell-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_shell') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -120,7 +120,7 @@
                 {{-- Foto foto_head --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Head/Tutup Ujung</h2>
-                    <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto Head/Tutup Ujung</label>
                     <div id="foto_head-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_head[]" id="foto_head" accept="image/*" multiple onchange="previewImage(this, 'foto_head-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_head') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -154,7 +154,7 @@
                 {{-- Foto foto_pipa --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pipa-pipa/Channel</h2>
-                    <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto Pipa-pipa/Channel</label>
                     <div id="foto_pipa-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pipa[]" id="foto_pipa" accept="image/*" multiple onchange="previewImage(this, 'foto_pipa-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pipa') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -198,7 +198,7 @@
                 {{-- Foto foto_instalasi --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-                    <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
                     <div id="foto_instalasi-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_instalasi[]" id="foto_instalasi" accept="image/*" multiple onchange="previewImage(this, 'foto_instalasi-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_instalasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -241,7 +241,7 @@
 
                 {{-- Safety value cal --}}
                 <div class="flex justify-center">
-                    <div class="flex items-center md:w-5/6">
+                    <div class="flex items-center w-full md:w-5/6">
                         <label for="safety_valv_cal" class="w-[70%] md:w-[75%] text-sm text-gray-700">
                             • Safety Valve & Pressure Gauge apakah sudah dikalibrasi? 
                         </label>
@@ -265,7 +265,7 @@
                 
                 {{-- Tekanan kerja --}}
                 <div class="flex justify-center">
-                    <div class="flex items-center md:w-5/6">
+                    <div class="flex items-center w-full md:w-5/6">
                         <label for="tekanan_kerja" class="w-[70%] md:w-[75%] text-sm text-gray-700">
                             • Tekanan kerja
                         </label>
@@ -282,7 +282,7 @@
 
                 {{-- Setting safety valve --}}
                 <div class="flex justify-center">
-                    <div class="flex items-center md:w-5/6">                    
+                    <div class="flex items-center w-full md:w-5/6">                    
                         <label for="set_safety_valv" class="w-[70%] md:w-[75%] text-sm text-gray-700">
                             • Settingan safety valve?
                         </label>
@@ -299,7 +299,7 @@
 
                 {{-- Media --}}
                 <div class="flex justify-center">
-                    <div class="flex items-center md:w-5/6">
+                    <div class="flex items-center w-full md:w-5/6">
                         <label for="media_yang_diisikan" class="w-[70%] md:w-[75%] text-sm text-gray-700">
                             • Media yang diisikan?
                         </label>

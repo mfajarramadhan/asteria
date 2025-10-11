@@ -35,7 +35,7 @@
                     <label for="nama_perusahaan" class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
                     <input type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" 
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" 
-                        value="{{ old('nama_perusahaan', $formKpKatelUap->nama_perusahaan) }}">
+                        value="{{ old('nama_perusahaan', $formKpKatelUap->pabrik_pembuat) }}">
                     @error('nama_perusahaan')
                     <div class="text-xs text-red-600">
                         {{ $message }}

@@ -51,17 +51,17 @@ class FormKpKatelUapController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'       => 'nullable|date',
-            'nama_perusahaan'           => 'nullable|string|max:255',
+            'pabrik_pembuat'           => 'nullable|string|max:255',
 
             'foto_informasi_umum'       => 'nullable|array',
             'foto_informasi_umum.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
             'jenis_alat'                => 'nullable|string|max:255',
-            'merk_model'                => 'nullable|string|max:255',
+            // 'merk_model'                => 'nullable|string|max:255',
             'tempat_tahun_pembuatan'    => 'nullable|string|max:255',
-            'no_seri_unit'              => 'nullable|string|max:255',
+            // 'no_seri_unit'              => 'nullable|string|max:255',
             'tekanan_desain'            => 'nullable|numeric',
             'tekanan_kerja'             => 'nullable|numeric',
-            'kapasitas_uap'             => 'nullable|string|max:255',
+            // 'kapasitas_uap'             => 'nullable|string|max:255',
             'luas_pemanasan'            => 'nullable|numeric',
             'work_temperature'          => 'nullable|numeric',
             'bahan_bakar'               => 'nullable|string|max:255',
@@ -149,7 +149,7 @@ class FormKpKatelUapController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
+            'pabrik_pembuat'     => 'nullable|string|max:255',
             'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
             'ketidakbulatan'      => 'nullable|numeric',
             'catatan'             => 'nullable|string',
