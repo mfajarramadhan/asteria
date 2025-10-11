@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('jenis_eskalator')->nullable();
             $table->string('merk_eskalator')->nullable();
             $table->string('nomor_seri')->nullable();
+            $table->string('asal_negara_pembuat')->nullable();
+            $table->string('tahun_pembuatan')->nullable();
             $table->string('kapasitas')->nullable();
             $table->string('melayani')->nullable();
             $table->string('lokasi_eskalator')->nullable();

@@ -5,27 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\JobOrderTool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Models\FormKpEskalator;
+use App\Models\FormKpElevator;
 use Illuminate\Support\Facades\Storage;
 
-class FormKpEskalatorController extends Controller
+class FormKpElevatorController extends Controller
 {
     public function index()
     {
-        $eskalators = FormKpEskalator::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+        $elevators = FormKpElevator::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
             ->whereHas('jobOrderTool', function ($q) {
                 $q->where('status_tool', 'selesai')
                     ->whereHas('tool', function ($q2) {
                         $q2->where('jenis_riksa_uji_id', 5)
-                            ->where('sub_jenis_riksa_uji_id', 16);
+                            ->where('sub_jenis_riksa_uji_id', 17);
                     });
             })
             ->get();
 
-        return view('form_kp.eskalator.eskalator.index', [
-            'title' => 'Form KP Eskalator',
+        return view('form_kp.eskalator.elevator.index', [
+            'title' => 'Form KP Elevator',
             'subtitle' => 'Daftar alat selesai diperiksa',
-            'eskalators' => $eskalators,
+            'elevators' => $elevators,
         ]);
     }
 
@@ -34,9 +34,9 @@ class FormKpEskalatorController extends Controller
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')
             ->findOrFail($jobOrderToolId);
 
-        return view('form_kp.eskalator.eskalator.create', [
-            'title' => 'Form KP Eskalator',
-            'subtitle' => 'Isi Form KP Eskalator',
+        return view('form_kp.eskalator.elevator.create', [
+            'title' => 'Form KP Elevator',
+            'subtitle' => 'Isi Form KP Elevator',
             'jobOrderTool' => $jobOrderTool,
         ]);
     }
@@ -52,8 +52,6 @@ class FormKpEskalatorController extends Controller
             'jenis_eskalator' => 'nullable|string|max:255',
             'merk_eskalator' => 'nullable|string|max:255',
             'nomor_seri' => 'nullable|string|max:255',
-            'asal_negara_pembuat' => 'nullable|string|max:255',
-            'tahun_pembuatan' => 'nullable|string|max:255',
             'kapasitas' => 'nullable|string|max:255',
             'melayani' => 'nullable|string|max:255',
             'lokasi_eskalator' => 'nullable|string|max:255',
@@ -90,24 +88,22 @@ class FormKpEskalatorController extends Controller
         }
 
         // ✅ Upload semua array foto
-        $fotoFields = ['pagar_pelindung', 'ban_pegangan_foto', 'peralatan_pengaman_foto'];
-        foreach ($fotoFields as $field) {
+        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_intalasi'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
-                    $paths[] = $file->store("eskalator/{$field}", 'public');
+                    $paths[] = $file->store('eskalator/elevator', 'public');
                 }
                 $validated[$field] = json_encode($paths);
             } else {
                 $validated[$field] = null;
             }
         }
-
         // Tambahkan relasi ke JobOrderTool
         $validated['job_order_tool_id'] = $jobOrderToolId;
 
         // Simpan data
-        FormKpEskalator::create($validated);
+        FormKpElevator::create($validated);
 
         // Update status alat
         $jobOrderTool->update([
@@ -115,30 +111,30 @@ class FormKpEskalatorController extends Controller
             'finished_at' => now(),
         ]);
 
-        return redirect()->route('form_kp.eskalator.eskalator.index')->with('success', 'Form KP Eskalator berhasil disimpan!');
+        return redirect()->route('form_kp.eskalator.elevator.index')->with('success', 'Form KP Eskalator berhasil disimpan!');
     }
 
-    public function show(FormKpEskalator $formKpEskalator)
+    public function show(FormKpElevator $formKpElevator)
     {
-        $formKpEskalator->load(['jobOrderTool.jobOrder', 'jobOrderTool.tool']);
+        $formKpElevator->load(['jobOrderTool.jobOrder', 'jobOrderTool.tool']);
 
-        return view('form_kp.eskalator.eskalator.show', [
+        return view('form_kp.eskalator.elevator.show', [
             'title' => 'Detail Pemeriksaan Eskalator',
             'subtitle' => '',
-            'formKpEskalator' => $formKpEskalator,
+            'formKpEskalator' => $formKpElevator,
         ]);
     }
 
-    public function edit(FormKpEskalator $formKpEskalator)
+    public function edit(FormKpElevator $formKpElevator)
     {
-        return view('form_kp.eskalator.eskalator.edit', [
-            'title' => 'Edit Form KP Eskalator',
+        return view('form_kp.eskalator.elevator.edit', [
+            'title' => 'Edit Form KP Elevator',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
-            'formKpEskalator' => $formKpEskalator,
+            'formKpElevator' => $formKpElevator,
         ]);
     }
 
-    public function update(Request $request, FormKpEskalator $formKpEskalator)
+    public function update(Request $request, FormKpElevator $formKpElevator)
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
@@ -170,10 +166,10 @@ class FormKpEskalatorController extends Controller
         foreach ($fotoFields as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama hanya untuk field ini
-                if ($formKpEskalator->$field) {
-                    $oldFiles = is_string($formKpEskalator->$field)
-                        ? json_decode($formKpEskalator->$field, true)
-                        : $formKpEskalator->$field;
+                if ($formKpElevator->$field) {
+                    $oldFiles = is_string($formKpElevator->$field)
+                        ? json_decode($formKpElevator->$field, true)
+                        : $formKpElevator->$field;
 
                     foreach ($oldFiles as $oldFile) {
                         if (Storage::disk('public')->exists($oldFile)) {
@@ -192,9 +188,9 @@ class FormKpEskalatorController extends Controller
         }
 
         // ✅ Update field biasa
-        $formKpEskalator->update($validated);
+        $formKpElevator->update($validated);
 
-        return redirect()->route('form_kp.eskalator.eskalator.index', $formKpEskalator->id)
-            ->with('success', 'Form KP Eskalator berhasil diperbarui!');
+        return redirect()->route('form_kp.eskalator.elevator.index', $formKpElevator->id)
+            ->with('success', 'Form KP Elevator berhasil diperbarui!');
     }
 }

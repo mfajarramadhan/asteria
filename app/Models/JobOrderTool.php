@@ -80,4 +80,9 @@ class JobOrderTool extends Model
     {
         return $this->hasOne(FormKpEskalator::class, 'job_order_tool_id');
     }
+
+    public function formKpElevator()
+    {
+        return $this->hasOne(FormKpElevator::class, 'job_order_tool_id');
+    }
 }
