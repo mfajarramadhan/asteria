@@ -130,7 +130,7 @@ Route::middleware('auth')->group(function () {
 
     // Rute Form KP Eskalator: Semua Role
     Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
-        // Dashboard PUBT
+        // Dashboard Eskalator
         Route::get('/', [DashboardEskalatorController::class, 'index'])->name('index');
 
         // CRUD Eskalator
