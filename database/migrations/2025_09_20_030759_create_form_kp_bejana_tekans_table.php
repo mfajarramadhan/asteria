@@ -31,10 +31,10 @@ return new class extends Migration
             $table->decimal('diameter_pipa', 10, 4)->nullable();
             $table->decimal('ketebalan_pipa', 10, 4)->nullable();
             $table->decimal('panjang_pipa', 10, 4)->nullable();
-            $table->json('foto_intalasi')->nullable();
-            $table->decimal('diameter_intalasi', 10, 4)->nullable();
-            $table->decimal('ketebalan_intalasi', 10, 4)->nullable();
-            $table->decimal('panjang_intalasi', 10, 4)->nullable();
+            $table->json('foto_instalasi')->nullable();
+            $table->decimal('diameter_instalasi', 10, 4)->nullable();
+            $table->decimal('ketebalan_instalasi', 10, 4)->nullable();
+            $table->decimal('panjang_instalasi', 10, 4)->nullable();
             $table->boolean('safety_valv_cal')->nullable()->default(false);
             $table->decimal('tekanan_kerja', 10, 4)->nullable();
             $table->decimal('set_safety_valv', 10, 4)->nullable();

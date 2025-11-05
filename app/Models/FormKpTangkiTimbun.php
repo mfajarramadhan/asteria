@@ -18,7 +18,10 @@ class FormKpTangkiTimbun extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_shell' => 'array',
+        'foto_visual' => 'array',
+        'foto_pengukuran' => 'array',
+        'foto_komponen' => 'array',
+        'foto_tangki' => 'array',
     ];
 
     // Relasi ke job_order_tool

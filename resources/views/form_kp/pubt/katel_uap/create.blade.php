@@ -86,16 +86,6 @@
                     @enderror   
                 </div>
 
-                {{-- Merk Model --}}
-                {{-- <div>
-                    <input type="text" name="merk_model" placeholder="Merk/Model" id="merk_model" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('merk_model') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('merk_model') }}">
-                    @error('merk_model')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
-
                 {{-- Tempat & Tahun Pembuatan --}}
                 <div>
                     <input type="text" name="tempat_tahun_pembuatan" placeholder="Tempat & Tahun Pembuatan" id="tempat_tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat_tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat_tahun_pembuatan') }}">
@@ -105,16 +95,6 @@
                     </div>
                     @enderror   
                 </div>
-
-                {{-- No. Seri/No. Unit --}}
-                {{-- <div>
-                    <input type="text" name="no_seri_unit" placeholder="No. Seri/No. Unit" id="no_seri_unit" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_seri_unit') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_seri_unit') }}">
-                    @error('no_seri_unit')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
 
                 {{-- Tekanan Desain --}}
                 <div>
@@ -135,16 +115,6 @@
                     </div>
                     @enderror   
                 </div>
-                
-                {{-- Kapasitas Uap --}}
-                {{-- <div>
-                    <input type="text" name="kapasitas_uap" placeholder="Kapasitas Uap" id="kapasitas_uap" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas_uap') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas_uap') }}">
-                    @error('kapasitas_uap')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
                 
                 {{-- Luas Pemanasan --}}
                 <div>

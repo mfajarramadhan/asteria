@@ -198,7 +198,7 @@
                 {{-- Pondasi Screw Compressor --}}
                 {{-- Foto foto_pondasi_screw --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
                     <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
                     <div id="foto_pondasi_screw-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pondasi_screw[]" id="foto_pondasi_screw" accept="image/*" multiple onchange="previewImage(this, 'foto_pondasi_screw-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pondasi_screw') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -232,7 +232,7 @@
                 {{-- Safety Device --}}
                 {{-- Foto foto_safety_device --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device:</h2>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
                     <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
                     <div id="foto_safety_device-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_safety_device[]" id="foto_safety_device" accept="image/*" multiple onchange="previewImage(this, 'foto_safety_device-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_safety_device') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
