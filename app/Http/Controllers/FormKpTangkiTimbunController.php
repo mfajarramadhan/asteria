@@ -45,16 +45,97 @@ class FormKpTangkiTimbunController extends Controller
 
     public function store(Request $request, $jobOrderToolId)
     {
+        // dd($request->all());
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
 
         // Validasi input
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array', 
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'                 => 'nullable|date',
+            'pabrik_pembuat'                      => 'nullable|string|max:255',
+            'foto_visual'                         => 'nullable|array',
+            'foto_visual.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'tempat_tahun_pembuat'                => 'nullable|string|max:500',
+            'media_yang_diisikan'                 => 'nullable|string|max:500',
+            'lokasi_tangki'                       => 'nullable|string|max:500',
+
+            'tanda_kebocoran'                     => 'nullable|string|max:255',
+            'tanda_kebocoran_keterangan'          => 'nullable|string|max:500',
+            'kondisi_tangki'                      => 'nullable|string|max:255',
+            'kondisi_tangki_keterangan'           => 'nullable|string|max:500',
+            'komponen_sambungan'                  => 'nullable|string|max:255',
+            'komponen_sambungan_keterangan'       => 'nullable|string|max:500',
+            'penopang_tangki'                     => 'nullable|string|max:255',
+            'penopang_tangki_keterangan'          => 'nullable|string|max:500',
+            'pondasi_tangki'                      => 'nullable|string|max:255',
+            'pondasi_tangki_keterangan'           => 'nullable|string|max:500',
+
+            'pengukur_ketinggian'                 => 'nullable|string|max:255',
+            'pengukur_ketinggian_keterangan'      => 'nullable|string|max:500',
+            'ventilasi_terhalang'                 => 'nullable|string|max:255',
+            'ventilasi_terhalang_keterangan'      => 'nullable|string|max:500',
+            'segel_katup'                         => 'nullable|string|max:255',
+            'segel_katup_keterangan'              => 'nullable|string|max:500',
+
+            'jalur_pemipaan'                      => 'nullable|string|max:255',
+            'jalur_pemipaan_keterangan'           => 'nullable|string|max:500',
+            'jalur_pipa'                          => 'nullable|string|max:255',
+            'jalur_pipa_keterangan'               => 'nullable|string|max:500',
+            'area_bongkar'                        => 'nullable|string|max:255',
+            'area_bongkar_keterangan'             => 'nullable|string|max:500',
+            'sambungan_flense'                    => 'nullable|string|max:255',
+            'sambungan_flense_keterangan'         => 'nullable|string|max:500',
+
+            'secondary_containtment_rusak'        => 'nullable|string|max:255',
+            'secondary_containtment_keterangan'   => 'nullable|string|max:500',
+            'katup_drainase'                      => 'nullable|string|max:255',
+            'katup_drainase_keterangan'           => 'nullable|string|max:500',
+            'pagar_gerbang'                       => 'nullable|string|max:255',
+            'pagar_gerbang_keterangan'            => 'nullable|string|max:500',
+            'kotak_peralatan'                     => 'nullable|string|max:255',
+            'kotak_peralatan_keterangan'          => 'nullable|string|max:500',
+
+            'foto_pengukuran'                     => 'nullable|array',
+            'foto_pengukuran.*'                   => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'grounding1_hasil'                    => 'nullable|string|max:255',
+            'grounding2_hasil'                    => 'nullable|string|max:255',
+
+            'foto_komponen'                       => 'nullable|array',
+            'foto_komponen.*'                     => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'shell1'                              => 'nullable|string|max:255',
+            'shell2'                              => 'nullable|string|max:255',
+            'shell3'                              => 'nullable|string|max:255',
+            'shell4'                              => 'nullable|string|max:255',
+            'shell5'                              => 'nullable|string|max:255',
+            'shell6'                              => 'nullable|string|max:255',
+
+            'tebal_pelat_atap1'                   => 'nullable|string|max:255',
+            'tebal_pelat_atap2'                   => 'nullable|string|max:255',
+            'tebal_pelat_bottom1'                 => 'nullable|string|max:255',
+            'tebal_pelat_bottom2'                 => 'nullable|string|max:255',
+            'tebal_pipa_channel'                  => 'nullable|string|max:255',
+            'tebal_instalasi_pipa'                => 'nullable|string|max:255',
+
+            'foto_tangki'                         => 'nullable|array',
+            'foto_tangki.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'diameter_tangki'                     => 'nullable|numeric',
+            'tinggi_tangki'                       => 'nullable|numeric',
+            'secondary_containtment'              => 'nullable|numeric',
+            'tinggi_pagar_atap'                   => 'nullable|numeric',
+            'tinggi_panjang_pipa'                 => 'nullable|numeric',
+            'tinggi_panjang_instalasi_pipa'       => 'nullable|numeric',
+
+            'tinggi_panjang_shell1'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell2'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell3'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell4'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell5'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell6'               => 'nullable|string|max:255',
+
+            'catatan'                             => 'nullable|string|max:500',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -64,15 +145,17 @@ class FormKpTangkiTimbunController extends Controller
 
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
-        // Simpan file foto_shell jika ada
-        if ($request->hasFile('foto_shell')) {
-            $paths = [];
-            foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('pubt/tangki_timbun', 'public');
+        // Simpan file jika ada upload foto  
+        foreach (['foto_visual', 'foto_pengukuran', 'foto_komponen', 'foto_tangki'] as $field) {
+            if ($request->hasFile($field)) {
+                $paths = [];
+                foreach ($request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/tangki_timbun', 'public');
+                }
+                $validated[$field] = json_encode($paths);
+            } else {
+                $validated[$field] = null;
             }
-            $validated['foto_shell'] = json_encode($paths);
-        } else {
-            $validated['foto_shell'] = null;
         }
 
         // Tambahkan kolom lain yang tidak berasal dari request
@@ -118,42 +201,123 @@ class FormKpTangkiTimbunController extends Controller
     public function update(Request $request, FormKpTangkiTimbun $formKpTangkiTimbun)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'                 => 'nullable|date',
+            'pabrik_pembuat'                      => 'nullable|string|max:255',
+            'foto_visual'                         => 'nullable|array',
+            'foto_visual.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'tempat_tahun_pembuat'                => 'nullable|string|max:500',
+            'media_yang_diisikan'                 => 'nullable|string|max:500',
+            'lokasi_tangki'                       => 'nullable|string|max:500',
+
+            'tanda_kebocoran'                     => 'nullable|string|max:255',
+            'tanda_kebocoran_keterangan'          => 'nullable|string|max:500',
+            'kondisi_tangki'                      => 'nullable|string|max:255',
+            'kondisi_tangki_keterangan'           => 'nullable|string|max:500',
+            'komponen_sambungan'                  => 'nullable|string|max:255',
+            'komponen_sambungan_keterangan'       => 'nullable|string|max:500',
+            'penopang_tangki'                     => 'nullable|string|max:255',
+            'penopang_tangki_keterangan'          => 'nullable|string|max:500',
+            'pondasi_tangki'                      => 'nullable|string|max:255',
+            'pondasi_tangki_keterangan'           => 'nullable|string|max:500',
+
+            'pengukur_ketinggian'                 => 'nullable|string|max:255',
+            'pengukur_ketinggian_keterangan'      => 'nullable|string|max:500',
+            'ventilasi_terhalang'                 => 'nullable|string|max:255',
+            'ventilasi_terhalang_keterangan'      => 'nullable|string|max:500',
+            'segel_katup'                         => 'nullable|string|max:255',
+            'segel_katup_keterangan'              => 'nullable|string|max:500',
+
+            'jalur_pemipaan'                      => 'nullable|string|max:255',
+            'jalur_pemipaan_keterangan'           => 'nullable|string|max:500',
+            'jalur_pipa'                          => 'nullable|string|max:255',
+            'jalur_pipa_keterangan'               => 'nullable|string|max:500',
+            'area_bongkar'                        => 'nullable|string|max:255',
+            'area_bongkar_keterangan'             => 'nullable|string|max:500',
+            'sambungan_flense'                    => 'nullable|string|max:255',
+            'sambungan_flense_keterangan'         => 'nullable|string|max:500',
+
+            'secondary_containtment_rusak'        => 'nullable|string|max:255',
+            'secondary_containtment_keterangan'   => 'nullable|string|max:500',
+            'katup_drainase'                      => 'nullable|string|max:255',
+            'katup_drainase_keterangan'           => 'nullable|string|max:500',
+            'pagar_gerbang'                       => 'nullable|string|max:255',
+            'pagar_gerbang_keterangan'            => 'nullable|string|max:500',
+            'kotak_peralatan'                     => 'nullable|string|max:255',
+            'kotak_peralatan_keterangan'          => 'nullable|string|max:500',
+
+            'foto_pengukuran'                     => 'nullable|array',
+            'foto_pengukuran.*'                   => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'grounding1_hasil'                    => 'nullable|string|max:255',
+            'grounding2_hasil'                    => 'nullable|string|max:255',
+
+            'foto_komponen'                       => 'nullable|array',
+            'foto_komponen.*'                     => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'shell1'                              => 'nullable|string|max:255',
+            'shell2'                              => 'nullable|string|max:255',
+            'shell3'                              => 'nullable|string|max:255',
+            'shell4'                              => 'nullable|string|max:255',
+            'shell5'                              => 'nullable|string|max:255',
+            'shell6'                              => 'nullable|string|max:255',
+
+            'tebal_pelat_atap1'                   => 'nullable|string|max:255',
+            'tebal_pelat_atap2'                   => 'nullable|string|max:255',
+            'tebal_pelat_bottom1'                 => 'nullable|string|max:255',
+            'tebal_pelat_bottom2'                 => 'nullable|string|max:255',
+            'tebal_pipa_channel'                  => 'nullable|string|max:255',
+            'tebal_instalasi_pipa'                => 'nullable|string|max:255',
+
+            'foto_tangki'                         => 'nullable|array',
+            'foto_tangki.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'diameter_tangki'                     => 'nullable|numeric',
+            'tinggi_tangki'                       => 'nullable|numeric',
+            'secondary_containtment'              => 'nullable|numeric',
+            'tinggi_pagar_atap'                   => 'nullable|numeric',
+            'tinggi_panjang_pipa'                 => 'nullable|numeric',
+            'tinggi_panjang_instalasi_pipa'       => 'nullable|numeric',
+
+            'tinggi_panjang_shell1'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell2'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell3'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell4'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell5'               => 'nullable|string|max:255',
+            'tinggi_panjang_shell6'               => 'nullable|string|max:255',
+
+            'catatan'                             => 'nullable|string|max:500',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        if ($request->hasFile('foto_shell')) {
-            // Hapus file lama
-            if ($formKpTangkiTimbun->foto_shell) {
-                $oldFiles = is_string($formKpTangkiTimbun->foto_shell)
-                    ? json_decode($formKpTangkiTimbun->foto_shell, true)
-                    : $formKpTangkiTimbun->foto_shell;
-
-                foreach ($oldFiles as $oldFile) {
-                    if (Storage::disk('public')->exists($oldFile)) {
-                        Storage::disk('public')->delete($oldFile);
+        foreach (['foto_visual', 'foto_pengukuran', 'foto_komponen', 'foto_tangki'] as $field) {
+            if ($request->hasFile($field)) {
+                // Hapus file lama
+                if ($formKpTangkiTimbun->$field) {
+                    $oldFiles = json_decode($formKpTangkiTimbun->$field, true) ?? [];
+                    foreach ($oldFiles as $oldFile) {
+                        if (Storage::disk('public')->exists($oldFile)) {
+                            Storage::disk('public')->delete($oldFile);
+                        }
                     }
                 }
-            }
 
-            $paths = [];
-            $files = $request->file('foto_shell');
-            if (!is_array($files)) {
-                $files = [$files];
-            }
+                // Upload file baru
+                $paths = [];
+                foreach ((array) $request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/tangki_timbun', 'public');
+                }
 
-            foreach ($files as $file) {
-                $paths[] = $file->store('pubt/tangki_timbun', 'public');
+                $validated[$field] = json_encode($paths);
+            } else {
+                // Jika tidak upload baru, pertahankan lama
+                $validated[$field] = $formKpTangkiTimbun->$field;
             }
+        }
 
-        $validated['foto_shell'] = json_encode($paths);        }
         $formKpTangkiTimbun->update($validated);
 
         return redirect()->route('form_kp.pubt.tangki_timbun.index', $formKpTangkiTimbun->id)

@@ -148,42 +148,70 @@ class FormKpKatelUapController extends Controller
     public function update(Request $request, FormKpKatelUap $formKpKatelUap)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'       => 'nullable|date',
+            'pabrik_pembuat'           => 'nullable|string|max:255',
+
+            'foto_informasi_umum'       => 'nullable|array',
+            'foto_informasi_umum.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'jenis_alat'                => 'nullable|string|max:255',
+            // 'merk_model'                => 'nullable|string|max:255',
+            'tempat_tahun_pembuatan'    => 'nullable|string|max:255',
+            // 'no_seri_unit'              => 'nullable|string|max:255',
+            'tekanan_desain'            => 'nullable|numeric',
+            'tekanan_kerja'             => 'nullable|numeric',
+            // 'kapasitas_uap'             => 'nullable|string|max:255',
+            'luas_pemanasan'            => 'nullable|numeric',
+            'work_temperature'          => 'nullable|numeric',
+            'bahan_bakar'               => 'nullable|string|max:255',
+            'lokasi'                    => 'nullable|string|max:255',
+
+            'foto_safety_valve'         => 'nullable|array',
+            'foto_safety_valve.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'safety_valve1_membuka'     => 'nullable|numeric',
+            'safety_valve1_menutup'     => 'nullable|numeric',
+            'safety_valve2_membuka'     => 'nullable|numeric',
+            'safety_valve2_menutup'     => 'nullable|numeric',
+            'catatan_safety_valve'      => 'nullable|string',
+
+            'foto_pressure_switch'      => 'nullable|array',
+            'foto_pressure_switch.*'    => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pressure_switch_on_set'    => 'nullable|numeric',
+            'pressure_switch_on_hasil'  => 'nullable|numeric',
+            'pressure_switch_off_set'   => 'nullable|numeric',
+            'pressure_switch_off_hasil' => 'nullable|numeric',
+            'catatan_pressure_switch'   => 'nullable|string',
+            'catatan'                   => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        if ($request->hasFile('foto_shell')) {
-            // Hapus file lama
-            if ($formKpKatelUap->foto_shell) {
-                $oldFiles = is_string($formKpKatelUap->foto_shell)
-                    ? json_decode($formKpKatelUap->foto_shell, true)
-                    : $formKpKatelUap->foto_shell;
-
-                foreach ($oldFiles as $oldFile) {
-                    if (Storage::disk('public')->exists($oldFile)) {
-                        Storage::disk('public')->delete($oldFile);
+        foreach (['foto_informasi_umum', 'foto_safety_valve', 'foto_pressure_switch'] as $field) {
+            if ($request->hasFile($field)) {
+                // Hapus file lama
+                if ($formKpKatelUap->$field) {
+                    $oldFiles = json_decode($formKpKatelUap->$field, true) ?? [];
+                    foreach ($oldFiles as $oldFile) {
+                        if (Storage::disk('public')->exists($oldFile)) {
+                            Storage::disk('public')->delete($oldFile);
+                        }
                     }
                 }
-            }
 
-            $paths = [];
-            $files = $request->file('foto_shell');
-            if (!is_array($files)) {
-                $files = [$files];
-            }
+                // Upload file baru
+                $paths = [];
+                foreach ((array) $request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/katel_uap', 'public');
+                }
 
-            foreach ($files as $file) {
-                $paths[] = $file->store('pubt/katel_uap', 'public');
+                $validated[$field] = json_encode($paths);
+            } else {
+                // Jika tidak upload baru, pertahankan lama
+                $validated[$field] = $formKpKatelUap->$field;
             }
+        }
 
-        $validated['foto_shell'] = json_encode($paths);        }
         $formKpKatelUap->update($validated);
 
         return redirect()->route('form_kp.pubt.katel_uap.index', $formKpKatelUap->id)
