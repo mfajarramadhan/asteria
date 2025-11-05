@@ -22,7 +22,7 @@ class FormKpBejanaTekanController extends Controller
             ->get();
 
         return view('form_kp.pubt.bejana_tekan.index', [
-            'title' => 'Form KP Bejana Tekan',
+            'title' => 'Hasil Kartu Pemeriksaan Bejana Tekan',
             'subtitle' => 'Daftar alat selesai diperiksa',
             'bejanaTekans' => $bejanaTekans,
         ]);
@@ -36,7 +36,7 @@ class FormKpBejanaTekanController extends Controller
             ->findOrFail($jobOrderToolId);
 
         return view('form_kp.pubt.bejana_tekan.create', [
-            'title'         => 'Form KP Bejana Tekan',
+            'title'         => 'Form Kartu Pemeriksaan Bejana Tekan',
             'subtitle'         => 'Isi Form KP Bejana Tekan',
             'jobOrderTool'  => $jobOrderTool,
         ]);
@@ -67,11 +67,11 @@ class FormKpBejanaTekanController extends Controller
             'ketebalan_pipa'      => 'nullable|numeric',
             'panjang_pipa'        => 'nullable|numeric',
 
-            'foto_intalasi'       => 'nullable|array',
-            'foto_intalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_intalasi'   => 'nullable|numeric',
-            'ketebalan_intalasi'  => 'nullable|numeric',
-            'panjang_intalasi'    => 'nullable|numeric',
+            'foto_instalasi'       => 'nullable|array',
+            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_instalasi'   => 'nullable|numeric',
+            'ketebalan_instalasi'  => 'nullable|numeric',
+            'panjang_instalasi'    => 'nullable|numeric',
 
             'safety_valv_cal'     => 'nullable|boolean',
             'tekanan_kerja'       => 'nullable|numeric',
@@ -89,7 +89,7 @@ class FormKpBejanaTekanController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_intalasi'] as $field) {
+        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -126,7 +126,7 @@ class FormKpBejanaTekanController extends Controller
         ]);
 
         return view('form_kp.pubt.bejana_tekan.show', [
-            'title' => 'Detail Pemeriksaan Bejana Tekan',
+            'title' => 'Detail Hasil Kartu Pemeriksaan Bejana Tekan',
             'subtitle' => '',
             'formKpBejanaTekan' => $formKpBejanaTekan,
         ]);
@@ -135,7 +135,7 @@ class FormKpBejanaTekanController extends Controller
     public function edit(FormKpBejanaTekan $formKpBejanaTekan)
     {
         return view('form_kp.pubt.bejana_tekan.edit', [
-            'title' => 'Edit Form KP Bejana Tekan',
+            'title' => 'Edit Hasil Kartu Pemeriksaan Bejana Tekan',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
             'formKpBejanaTekan' => $formKpBejanaTekan,
         ]);
@@ -146,8 +146,35 @@ class FormKpBejanaTekanController extends Controller
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
             'pabrik_pembuat'     => 'nullable|string|max:255',
+            'foto_shell'          => 'nullable|array', 
             'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
             'ketidakbulatan'      => 'nullable|numeric',
+            'ketebalan_shell'     => 'nullable|numeric',
+            'diameter_shell'      => 'nullable|numeric',
+            'panjang_shell'       => 'nullable|numeric',
+
+            'foto_head'           => 'nullable|array',
+            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_head'       => 'nullable|numeric',
+            'ketebalan_head'      => 'nullable|numeric',
+
+            'foto_pipa'           => 'nullable|array',
+            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_pipa'       => 'nullable|numeric',
+            'ketebalan_pipa'      => 'nullable|numeric',
+            'panjang_pipa'        => 'nullable|numeric',
+
+            'foto_instalasi'       => 'nullable|array',
+            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'diameter_instalasi'   => 'nullable|numeric',
+            'ketebalan_instalasi'  => 'nullable|numeric',
+            'panjang_instalasi'    => 'nullable|numeric',
+
+            'safety_valv_cal'     => 'nullable|boolean',
+            'tekanan_kerja'       => 'nullable|numeric',
+            'set_safety_valv'     => 'nullable|numeric',
+
+            'media_yang_diisikan' => 'nullable|string|max:255',
             'catatan'             => 'nullable|string',
         ]);
 
@@ -155,31 +182,31 @@ class FormKpBejanaTekanController extends Controller
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        if ($request->hasFile('foto_shell')) {
-            // Hapus file lama
-            if ($formKpBejanaTekan->foto_shell) {
-                $oldFiles = is_string($formKpBejanaTekan->foto_shell)
-                    ? json_decode($formKpBejanaTekan->foto_shell, true)
-                    : $formKpBejanaTekan->foto_shell;
-
-                foreach ($oldFiles as $oldFile) {
-                    if (Storage::disk('public')->exists($oldFile)) {
-                        Storage::disk('public')->delete($oldFile);
+        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+            if ($request->hasFile($field)) {
+                // Hapus file lama
+                if ($formKpBejanaTekan->$field) {
+                    $oldFiles = json_decode($formKpBejanaTekan->$field, true) ?? [];
+                    foreach ($oldFiles as $oldFile) {
+                        if (Storage::disk('public')->exists($oldFile)) {
+                            Storage::disk('public')->delete($oldFile);
+                        }
                     }
                 }
-            }
 
-            $paths = [];
-            $files = $request->file('foto_shell');
-            if (!is_array($files)) {
-                $files = [$files];
-            }
+                // Upload file baru
+                $paths = [];
+                foreach ((array) $request->file($field) as $file) {
+                    $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                }
 
-            foreach ($files as $file) {
-                $paths[] = $file->store('pubt/bejana_tekan', 'public');
+                $validated[$field] = json_encode($paths);
+            } else {
+                // Jika tidak upload baru, pertahankan lama
+                $validated[$field] = $formKpBejanaTekan->$field;
             }
+        }
 
-        $validated['foto_shell'] = json_encode($paths);        }
         $formKpBejanaTekan->update($validated);
 
         return redirect()->route('form_kp.pubt.bejana_tekan.index', $formKpBejanaTekan->id)

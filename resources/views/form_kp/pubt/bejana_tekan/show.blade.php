@@ -14,7 +14,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide" value="{{ optional($formKpBejanaTekan->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
+                    <input disabled id="datepicker-autohide" value="{{ optional($formKpBejanaTekan->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
         {{-- Nama Perusahaan --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->jobOrderTool->jobOrder->nama_perusahaan ?? '-' }}
             </div>
         </div>
@@ -30,7 +30,7 @@
         {{-- Kapasitas --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->jobOrderTool->kapasitas ?? '-' }}
             </div>
         </div>
@@ -38,7 +38,7 @@
         {{-- Model/Tipe --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->jobOrderTool->model ?? '-' }}
             </div>
         </div>
@@ -46,7 +46,7 @@
         {{-- No. Seri/Unit --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->jobOrderTool->no_seri ?? '-' }}
             </div>
         </div>
@@ -54,7 +54,7 @@
         {{-- Pabrik Pembuat --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->pabrik_pembuat ?? '-' }}
             </div>
         </div>
@@ -91,7 +91,7 @@
         {{-- Ketidakbulatan --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketidak bulatan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->ketidakbulatan ?? '-' }}
             </div>
         </div>
@@ -99,7 +99,7 @@
         {{-- Ketebalan shell --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->ketebalan_shell ?? '-' }}
             </div>
         </div>
@@ -107,7 +107,7 @@
         {{-- Diameter shell --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->diameter_shell ?? '-' }}
             </div>
         </div>
@@ -115,7 +115,7 @@
         {{-- Panjang shell --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Panjang</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->panjang_shell ?? '-' }}
             </div>
         </div>
@@ -150,7 +150,7 @@
         {{-- Diameter_head --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->diameter_head ?? '-' }}
             </div>
         </div>
@@ -158,7 +158,7 @@
         {{-- Ketebalan head --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->ketebalan_head ?? '-' }}
             </div>
         </div>
@@ -193,7 +193,7 @@
         {{-- Diameter Pipa --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->diameter_pipa ?? '-' }}
             </div>
         </div>
@@ -201,7 +201,7 @@
         {{-- Ketebalan Pipa --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->ketebalan_pipa ?? '-' }}
             </div>
         </div>
@@ -209,7 +209,7 @@
         {{-- Panjang Pipa --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Panjang</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->panjang_pipa ?? '-' }}
             </div>
         </div>
@@ -219,7 +219,7 @@
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
             <label class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
             @php
-                $fotoInstalasiPipa = $formKpBejanaTekan->foto_intalasi; 
+                $fotoInstalasiPipa = $formKpBejanaTekan->foto_instalasi; 
                 if ($fotoInstalasiPipa && is_string($fotoInstalasiPipa)) {
                     $fotoInstalasiPipa = json_decode($fotoInstalasiPipa, true);
                 }            
@@ -244,7 +244,7 @@
         {{-- Diameter Instalasi --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->diameter_intalasi ?? '-' }}
             </div>
         </div>
@@ -252,7 +252,7 @@
         {{-- Ketebalan Instalasi --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->ketebalan_intalasi ?? '-' }}
             </div>
         </div>
@@ -260,7 +260,7 @@
         {{-- Panjang Instalasi --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Panjang</label>
-            <div class="px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm bg-gray-50">
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->panjang_intalasi ?? '-' }}
             </div>
         </div>
@@ -293,7 +293,7 @@
                 </label>
                 <div class="w-[30%] md:w-[25%]">
                     <input type="number" step="any" name="tekanan_kerja" id="tekanan_kerja"
-                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        class="block w-full px-3 py-1 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-md sm:text-sm"
                         value="{{ $formKpBejanaTekan->tekanan_kerja ?? '-' }}" disabled>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                 </label>
                 <div class="w-[30%] md:w-[25%]">
                     <input type="number" step="any" name="set_safety_valv" id="set_safety_valv"
-                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        class="block w-full px-3 py-1 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-md sm:text-sm"
                         value="{{ $formKpBejanaTekan->set_safety_valv ?? '-' }}" disabled>
                 </div>
             </div>
@@ -321,20 +321,17 @@
                 </label>
                 <div class="w-[30%] md:w-[25%]">
                     <input type="text" name="media_yang_diisikan" id="media_yang_diisikan"
-                        class="block w-full px-3 py-1 text-gray-900 border border-gray-300 rounded-md shadow-md bg-gray-50 sm:text-sm"
+                        class="block w-full px-3 py-1 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-md sm:text-sm"
                         value="{{ $formKpBejanaTekan->media_yang_diisikan ?? '-' }}" disabled>
                 </div>
             </div>
         </div>
 
-        
         {{-- Catatan --}}
         <div>
             <label class="block text-sm font-medium text-gray-700">Catatan</label>
             <textarea name="catatan" id="catatan" placeholder="Catatan" rows="3" disabled
-                class="block w-full px-3 py-2 mt-1 leading-normal border border-gray-300 rounded-md shadow-sm bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpBejanaTekan->catatan ?? '-' }}</textarea>
+                class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpBejanaTekan->catatan ?? '-' }}</textarea>
         </div>
-
-
     </div>
 </x-layout>
