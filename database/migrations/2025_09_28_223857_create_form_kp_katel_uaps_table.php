@@ -19,12 +19,9 @@ return new class extends Migration
             $table->string('pabrik_pembuat')->nullable();
             $table->json('foto_informasi_umum')->nullable();
             $table->string('jenis_alat')->nullable();
-            // $table->string('merk_model')->nullable();
             $table->string('tempat_tahun_pembuatan')->nullable();
-            // $table->string('no_seri_unit')->nullable();
             $table->decimal('tekanan_desain', 10, 4)->nullable();
             $table->decimal('tekanan_kerja', 10, 4)->nullable();
-            // $table->string('kapasitas_uap')->nullable();
             $table->decimal('luas_pemanasan', 10, 4)->nullable();
             $table->decimal('work_temperature', 10, 4)->nullable();
             $table->string('bahan_bakar')->nullable();

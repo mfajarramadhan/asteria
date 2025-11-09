@@ -85,4 +85,9 @@ class JobOrderTool extends Model
     {
         return $this->hasOne(FormKpElevator::class, 'job_order_tool_id');
     }
+
+    public function formKpPesawatTenagaProduksi()
+    {
+        return $this->hasOne(formKpPesawatTenagaProduksi::class, 'job_order_tool_id');
+    }
 }
