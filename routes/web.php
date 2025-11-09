@@ -7,6 +7,7 @@ use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardEskalatorController;
 use App\Http\Controllers\DashboardPAPAController;
+use App\Http\Controllers\DashboardPTPController;
 use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpPesawatTenagaProduksiController;
 use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
 use App\Http\Controllers\FormKpTangkiTimbunController;
@@ -108,6 +110,22 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'show'])->name('show');
             Route::get('/{formKpTangkiTimbun}/edit', [FormKpTangkiTimbunController::class, 'edit'])->name('edit');
             Route::put('/{formKpTangkiTimbun}', [FormKpTangkiTimbunController::class, 'update'])->name('update');
+        });
+    });
+
+    // Rute Form KP PTP: Semua Role
+    Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+        // Dashboard PTP
+        Route::get('/', [DashboardPTPController::class, 'index'])->name('index');
+
+        // CRUD Pesawat Tenaga Produksi
+        Route::prefix('pesawat_tenaga_produksi')->name('pesawat_tenaga_produksi.')->group(function () {
+            Route::get('/', [FormKpPesawatTenagaProduksiController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpPesawatTenagaProduksiController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpPesawatTenagaProduksiController::class, 'store'])->name('store');
+            Route::get('/{formKpPesawatTenagaProduksi}', [FormKpPesawatTenagaProduksiController::class, 'show'])->name('show');
+            Route::get('/{formKpPesawatTenagaProduksi}/edit', [FormKpPesawatTenagaProduksiController::class, 'edit'])->name('edit');
+            Route::put('/{formKpPesawatTenagaProduksi}', [FormKpPesawatTenagaProduksiController::class, 'update'])->name('update');
         });
     });
 
