@@ -43,6 +43,7 @@ class FormKpEskalatorController extends Controller
 
     public function store(Request $request, $jobOrderToolId)
     {
+        dd($request->all());
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
 
         // ✅ Validasi lengkap
@@ -69,16 +70,16 @@ class FormKpEskalatorController extends Controller
             'peralatan_pengaman_foto.*' => 'image|mimes:jpg,jpeg,png|max:10240',
 
             // Pemeriksaan Dimensi dan Keamanan
-            'tinggi' => 'nullable|numeric',
-            'tekanan_samping' => 'nullable|numeric',
-            'tekanan_vertikal' => 'nullable|numeric',
+            'tinggi' => 'nullable|string|max:255',
+            'tekanan_samping' => 'nullable|string|max:255',
+            'tekanan_vertikal' => 'nullable|string|max:255',
             'pelindung_bawah' => 'nullable|string',
             'kelenturan_pelindung_bawah' => 'nullable|string',
             'celah_anak_tangga' => 'nullable|string',
 
             // Ban Pegangan
-            'kecepatan_ban_pegangan' => 'nullable|numeric',
-            'lebar_ban_pegangan' => 'nullable|numeric',
+            'kecepatan_ban_pegangan' => 'nullable|string|max:255',
+            'lebar_ban_pegangan' => 'nullable|string|max:255',
 
             // Catatan / deskripsi lain
             'catatan' => 'nullable|string',

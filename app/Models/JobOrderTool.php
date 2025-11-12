@@ -85,4 +85,10 @@ class JobOrderTool extends Model
     {
         return $this->hasOne(FormKpElevator::class, 'job_order_tool_id');
     }
+
+    // Relasi ke Form Eskalator
+    public function FormKpInstalasiFireAlarm()
+    {
+        return $this->hasOne(FormKpInstalasiFireAlarm::class, 'job_order_tool_id');
+    }
 }
