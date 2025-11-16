@@ -88,6 +88,16 @@ class JobOrderTool extends Model
 
     public function formKpPesawatTenagaProduksi()
     {
-        return $this->hasOne(formKpPesawatTenagaProduksi::class, 'job_order_tool_id');
+        return $this->hasOne(FormKpPesawatTenagaProduksi::class, 'job_order_tool_id');
+    }
+
+    public function formKpMotorDiesel()
+    {
+        return $this->hasOne(FormKpMotorDiesel::class, 'job_order_tool_id');
+    }
+
+    public function formKpHeatTreatment()
+    {
+        return $this->hasOne(FormKpHeatTreatment::class, 'job_order_tool_id');
     }
 }

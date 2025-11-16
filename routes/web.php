@@ -14,7 +14,9 @@ use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
+use App\Http\Controllers\FormKpHeatTreatmentController;
 use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpMotorDieselController;
 use App\Http\Controllers\FormKpPesawatTenagaProduksiController;
 use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
@@ -126,6 +128,26 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpPesawatTenagaProduksi}', [FormKpPesawatTenagaProduksiController::class, 'show'])->name('show');
             Route::get('/{formKpPesawatTenagaProduksi}/edit', [FormKpPesawatTenagaProduksiController::class, 'edit'])->name('edit');
             Route::put('/{formKpPesawatTenagaProduksi}', [FormKpPesawatTenagaProduksiController::class, 'update'])->name('update');
+        });
+
+        // CRUD Motor Diesel
+        Route::prefix('motor_diesel')->name('motor_diesel.')->group(function () {
+            Route::get('/', [FormKpMotorDieselController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpMotorDieselController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpMotorDieselController::class, 'store'])->name('store');
+            Route::get('/{formKpMotorDiesel}', [FormKpMotorDieselController::class, 'show'])->name('show');
+            Route::get('/{formKpMotorDiesel}/edit', [FormKpMotorDieselController::class, 'edit'])->name('edit');
+            Route::put('/{formKpMotorDiesel}', [FormKpMotorDieselController::class, 'update'])->name('update');
+        });
+
+        // CRUD Heat Treatment
+        Route::prefix('heat_treatment')->name('heat_treatment.')->group(function () {
+            Route::get('/', [FormKpHeatTreatmentController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpHeatTreatmentController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpHeatTreatmentController::class, 'store'])->name('store');
+            Route::get('/{formKpHeatTreatment}', [FormKpHeatTreatmentController::class, 'show'])->name('show');
+            Route::get('/{formKpHeatTreatment}/edit', [FormKpHeatTreatmentController::class, 'edit'])->name('edit');
+            Route::put('/{formKpHeatTreatment}', [FormKpHeatTreatmentController::class, 'update'])->name('update');
         });
     });
 

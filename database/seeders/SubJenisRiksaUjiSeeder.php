@@ -48,7 +48,7 @@ class SubJenisRiksaUjiSeeder extends Seeder
         
         SubJenisRiksaUji::create([
             'jenis_riksa_uji_id' => 2,
-            'sub_jenis' => 'Heat Treatment/Oven',
+            'sub_jenis' => 'Heat Treatment',
         ]);
 
         // PAPA

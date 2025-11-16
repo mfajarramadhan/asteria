@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('form_kp.ptp.pesawat_tenaga_produksi.update', $formKpPesawatTenagaProduksi->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Update data?')">
+            <form action="{{ route('form_kp.ptp.heat_treatment.update', $formKpHeatTreatment->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Update data?')">
                 @csrf
                 @method('PUT')
                 
@@ -17,7 +17,7 @@
                                 </svg>
                             </div>
                             <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" 
-                                value="{{ old('tanggal_pemeriksaan', optional($formKpPesawatTenagaProduksi->tanggal_pemeriksaan)->format('d-m-Y')) }}"
+                                value="{{ old('tanggal_pemeriksaan', optional($formKpHeatTreatment->tanggal_pemeriksaan)->format('d-m-Y')) }}"
                                 datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today 
                                 type="text" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"> 
@@ -33,31 +33,31 @@
                 {{-- Nama Perusahaan --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpPesawatTenagaProduksi->jobOrderTool->jobOrder->nama_perusahaan }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpHeatTreatment->jobOrderTool->jobOrder->nama_perusahaan }}">
                 </div>
                 
                 {{-- Kapasitas --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpPesawatTenagaProduksi->jobOrderTool->kapasitas }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpHeatTreatment->jobOrderTool->kapasitas }}">
                 </div>
                 
                 {{-- Model/Tipe --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpPesawatTenagaProduksi->jobOrderTool->model }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpHeatTreatment->jobOrderTool->model }}">
                 </div>
                 
                 {{-- No.Seri --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpPesawatTenagaProduksi->jobOrderTool->no_seri }}">
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpHeatTreatment->jobOrderTool->no_seri }}">
                 </div>
                 
                 {{-- Pabrik Pembuat --}}
                 <div>
                     <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpPesawatTenagaProduksi->pabrik_pembuat) }}">
+                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpHeatTreatment->pabrik_pembuat) }}">
                     @error('pabrik_pembuat')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -74,8 +74,8 @@
                     <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
 
                     {{-- foto lama --}}
-                    @if($formKpPesawatTenagaProduksi->foto_shell)
-                        @php $oldFiles = json_decode($formKpPesawatTenagaProduksi->foto_shell, true); @endphp
+                    @if($formKpHeatTreatment->foto_shell)
+                        @php $oldFiles = json_decode($formKpHeatTreatment->foto_shell, true); @endphp
                         @if(is_array($oldFiles))
                             <div class="flex flex-wrap gap-2 mb-2">
                                 @foreach($oldFiles as $oldFile)
@@ -114,7 +114,7 @@
                     <textarea name="catatan" id="catatan" placeholder="Catatan" rows="4"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
                             focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                            @error('catatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">{{ old('catatan', $formKpPesawatTenagaProduksi->catatan) }}</textarea>
+                            @error('catatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">{{ old('catatan', $formKpHeatTreatment->catatan) }}</textarea>
                     @error('catatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
