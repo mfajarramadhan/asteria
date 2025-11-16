@@ -86,8 +86,14 @@ class JobOrderTool extends Model
         return $this->hasOne(FormKpElevator::class, 'job_order_tool_id');
     }
 
+    // Relasi ke Form IPK
+    public function formKpInstalasiFireAlarm()
+    {
+        return $this->hasOne(FormKpInstalasiFireAlarm::class, 'job_order_tool_id');
+    }
+
     public function formKpPesawatTenagaProduksi()
     {
-        return $this->hasOne(formKpPesawatTenagaProduksi::class, 'job_order_tool_id');
+        return $this->hasOne(FormKpPesawatTenagaProduksi::class, 'job_order_tool_id');
     }
 }

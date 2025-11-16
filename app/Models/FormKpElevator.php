@@ -11,46 +11,24 @@ class FormKpElevator extends Model
 
     protected $table = 'form_kp_elevator';
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id',
+    ];
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
+
+        // Foto (JSON)
+        'foto_mesin' => 'array',
+        'foto_tali_penggantung' => 'array',
+        'foto_teromol' => 'array',
+        'foto_bangun_ruang_luncur' => 'array',
         'foto_komponen_kereta' => 'array',
-        'foto_panel_operasi' => 'array',
-        'foto_atap_kereta' => 'array',
-        'foto_governor_rem' => 'array',
-        'foto_bobot_imbang' => 'array',
     ];
 
-    // Relasi ke JobOrderTool
+    // Relasi ke job_order_tools
     public function jobOrderTool()
     {
-        return $this->belongsTo(JobOrderTool::class);
-    }
-
-    // Optional: Helper untuk memudahkan akses foto
-    public function getFotoKomponenKeretaUrlsAttribute()
-    {
-        return $this->foto_komponen_kereta ? array_map(fn($f) => asset("storage/$f"), $this->foto_komponen_kereta) : [];
-    }
-
-    public function getFotoPanelOperasiUrlsAttribute()
-    {
-        return $this->foto_panel_operasi ? array_map(fn($f) => asset("storage/$f"), $this->foto_panel_operasi) : [];
-    }
-
-    public function getFotoAtapKeretaUrlsAttribute()
-    {
-        return $this->foto_atap_kereta ? array_map(fn($f) => asset("storage/$f"), $this->foto_atap_kereta) : [];
-    }
-
-    public function getFotoGovernorRemUrlsAttribute()
-    {
-        return $this->foto_governor_rem ? array_map(fn($f) => asset("storage/$f"), $this->foto_governor_rem) : [];
-    }
-
-    public function getFotoBobotImbangUrlsAttribute()
-    {
-        return $this->foto_bobot_imbang ? array_map(fn($f) => asset("storage/$f"), $this->foto_bobot_imbang) : [];
+        return $this->belongsTo(JobOrderTool::class, 'job_order_tool_id');
     }
 }

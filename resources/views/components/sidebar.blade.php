@@ -164,6 +164,23 @@
                 </a>
             </li>
 
+            {{-- IPK --}}
+            <li>
+                <a href="{{ route('form_kp.ipk.index') }}"
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('form_kp.ipk.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24"
+                        class="w-6 h-6 transition-colors {{ request()->routeIs('form_kp.ipk.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2V5a2 2 0 0 0-2-2m0 16H5V9h14zM5 7V5h14v2zm5.56 10.46l5.94-5.93l-1.07-1.06l-4.87 4.87l-2.11-2.11l-1.06 1.06z" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }"
+                        class="transition-opacity duration-300 {{ request()->routeIs('form_kp.ipk.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        IPK
+                    </span>
+                </a>
+            </li>
+
             {{-- Kelola Pengguna --}}
             @role('superAdmin')
             <li>
