@@ -53,6 +53,7 @@ class FormKpElevatorController extends Controller
             ],
             // Foto multiple
             $this->generateFotoValidation([
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
@@ -127,6 +128,7 @@ class FormKpElevatorController extends Controller
         // Upload semua foto
         foreach (
             [
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
@@ -180,6 +182,7 @@ class FormKpElevatorController extends Controller
                 'lokasi_lift' => 'nullable|string|max:255',
             ],
             $this->generateFotoValidation([
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
