@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormKpPesawatTenagaProduksi extends Model
+class FormKpMotorDiesel extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_kp_pesawat_tenaga_produksi';
+    protected $table = 'form_kp_motor_diesel';
 
     protected $guarded = [
         'id',
@@ -17,8 +17,8 @@ class FormKpPesawatTenagaProduksi extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        'foto_informasi_umum' => 'array',
-        'foto_device' => 'array',
+        'foto_mesin' => 'array',
+        'foto_generator' => 'array',
         'foto_pengukuran' => 'array',
         'foto_pengujian' => 'array',
     ];

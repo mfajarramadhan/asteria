@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // default role = petugas
-        $user->assignRole('penyusunLHP');
+        $user->assignRole('Penyusun LHP');
 
         event(new Registered($user));
 

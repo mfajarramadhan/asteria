@@ -100,27 +100,27 @@ class JobOrderSeeder extends Seeder
             'no_seri' => 'PTP001',
         ]);
 
-        // // Buat Tools ke-2 PTP  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 6, // Motor Diesel Generator
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => '500 kVA',
-        //     'model' => 'MD-001',
-        //     'no_seri' => 'PTP002',
-        // ]);
+        // Buat Tools ke-2 PTP  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 6, // Motor Diesel Generator
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '500 kVA',
+            'model' => 'MD-001',
+            'no_seri' => 'PTP002',
+        ]);
 
-        // // Buat Tools ke-3 PTP  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 7, // Oven Heat Treatment
-        //     'qty' => 1,
-        //     'status' => 'Pertama',
-        //     'kapasitas' => '1000 °C',
-        //     'model' => 'OT-001',
-        //     'no_seri' => 'PTP003',
-        // ]);
+        // Buat Tools ke-3 PTP  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 7, // Oven Heat Treatment
+            'qty' => 1,
+            'status' => 'Pertama',
+            'kapasitas' => '1000 °C',
+            'model' => 'OT-001',
+            'no_seri' => 'PTP003',
+        ]);
 
 
 

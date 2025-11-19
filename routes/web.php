@@ -16,7 +16,9 @@ use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpInstalasiFireAlarmController;
+use App\Http\Controllers\FormKpHeatTreatmentController;
 use App\Http\Controllers\FormKpKatelUapController;
+use App\Http\Controllers\FormKpMotorDieselController;
 use App\Http\Controllers\FormKpPesawatTenagaProduksiController;
 use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
@@ -37,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Rute Daftar Alat: Hanya SuperAdmin & Admin
-    Route::middleware(['role:superAdmin|admin'])->group(function () {
+    Route::middleware(['role:Super Admin|Admin Riksa Uji'])->group(function () {
         // endpoint AJAX untuk filter sub-jenis
         Route::get('tools/sub-jenis/{jenis}', [ToolController::class, 'subJenis'])
             ->name('tools.subjenis');
@@ -47,7 +49,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Job Order: Semua Role
-    Route::middleware(['role:superAdmin|admin|petugas|penyusunLHP'])->group(function () {
+    Route::middleware(['role:Super Admin|Admin Riksa Uji|Tim Riksa Uji|Penyusun LHP'])->group(function () {
         // Job Orders Resource (CRUD)
         Route::resource('job_orders', JobOrderController::class);
         Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
@@ -57,7 +59,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // User Management: Hanya superAdmin
-    Route::middleware(['role:superAdmin'])->group(function () {
+    Route::middleware(['role:Super Admin'])->group(function () {
         Route::get('/superadmin', [SuperAdminController::class, 'index'])
             ->name('superadmin.index');
         Route::patch('/superadmin/update-role/{id}', [SuperAdminController::class, 'updateRole'])
@@ -70,7 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/riksa_uji', [RiksaUjiController::class, 'index'])->name('riksa_uji.index');
 
     // Rute Form KP Bejana Tekan: Semua Role
-    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPUBTController::class, 'index'])->name('index');
 
@@ -116,7 +118,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Form KP PTP: Semua Role
-    Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PTP
         Route::get('/', [DashboardPTPController::class, 'index'])->name('index');
 
@@ -129,11 +131,31 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpPesawatTenagaProduksi}/edit', [FormKpPesawatTenagaProduksiController::class, 'edit'])->name('edit');
             Route::put('/{formKpPesawatTenagaProduksi}', [FormKpPesawatTenagaProduksiController::class, 'update'])->name('update');
         });
+
+        // CRUD Motor Diesel
+        Route::prefix('motor_diesel')->name('motor_diesel.')->group(function () {
+            Route::get('/', [FormKpMotorDieselController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpMotorDieselController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpMotorDieselController::class, 'store'])->name('store');
+            Route::get('/{formKpMotorDiesel}', [FormKpMotorDieselController::class, 'show'])->name('show');
+            Route::get('/{formKpMotorDiesel}/edit', [FormKpMotorDieselController::class, 'edit'])->name('edit');
+            Route::put('/{formKpMotorDiesel}', [FormKpMotorDieselController::class, 'update'])->name('update');
+        });
+
+        // CRUD Heat Treatment
+        Route::prefix('heat_treatment')->name('heat_treatment.')->group(function () {
+            Route::get('/', [FormKpHeatTreatmentController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpHeatTreatmentController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpHeatTreatmentController::class, 'store'])->name('store');
+            Route::get('/{formKpHeatTreatment}', [FormKpHeatTreatmentController::class, 'show'])->name('show');
+            Route::get('/{formKpHeatTreatment}/edit', [FormKpHeatTreatmentController::class, 'edit'])->name('edit');
+            Route::put('/{formKpHeatTreatment}', [FormKpHeatTreatmentController::class, 'update'])->name('update');
+        });
     });
 
 
     // Rute Form KP PAPA: Semua Role
-    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
 
@@ -149,7 +171,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Form KP Eskalator: Semua Role
-    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard Eskalator
         Route::get('/', [DashboardEskalatorController::class, 'index'])->name('index');
 
@@ -174,7 +196,7 @@ Route::middleware('auth')->group(function () {
         });
     });
     // Rute Form KP IPK: Semua Role
-    Route::prefix('form_kp/ipk')->name('form_kp.ipk.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/ipk')->name('form_kp.ipk.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard IPK
         Route::get('/', [DashboardIPKController::class, 'index'])->name('index');
 

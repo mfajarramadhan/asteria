@@ -14,7 +14,7 @@
                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                         </svg>
                     </div>
-                    <input disabled id="datepicker-autohide" value="{{ optional($formKpPesawatTenagaProduksi->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
+                    <input disabled id="datepicker-autohide" value="{{ optional($formKpMotorDiesel->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpPesawatTenagaProduksi->jobOrderTool->jobOrder->nama_perusahaan ?? '-' }}
+                {{ $formKpMotorDiesel->jobOrderTool->jobOrder->nama_perusahaan ?? '-' }}
             </div>
         </div>
 
@@ -31,7 +31,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpPesawatTenagaProduksi->jobOrderTool->kapasitas ?? '-' }}
+                {{ $formKpMotorDiesel->jobOrderTool->kapasitas ?? '-' }}
             </div>
         </div>
 
@@ -39,7 +39,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpPesawatTenagaProduksi->jobOrderTool->model ?? '-' }}
+                {{ $formKpMotorDiesel->jobOrderTool->model ?? '-' }}
             </div>
         </div>
 
@@ -47,7 +47,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpPesawatTenagaProduksi->jobOrderTool->no_seri ?? '-' }}
+                {{ $formKpMotorDiesel->jobOrderTool->no_seri ?? '-' }}
             </div>
         </div>
 
@@ -55,7 +55,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpPesawatTenagaProduksi->pabrik_pembuat ?? '-' }}
+                {{ $formKpMotorDiesel->pabrik_pembuat ?? '-' }}
             </div>
         </div>
 
@@ -66,7 +66,7 @@
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
             <label class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
             @php
-                $fotoShell = $formKpPesawatTenagaProduksi->foto_shell; 
+                $fotoShell = $formKpMotorDiesel->foto_shell; 
                 if ($fotoShell && is_string($fotoShell)) {
                     $fotoShell = json_decode($fotoShell, true);
                 }            
@@ -92,7 +92,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Catatan</label>
             <textarea name="catatan" id="catatan" placeholder="Catatan" rows="3" disabled
-                class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpPesawatTenagaProduksi->catatan ?? '-' }}</textarea>
+                class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpMotorDiesel->catatan ?? '-' }}</textarea>
         </div>
     </div>
 </x-layout>

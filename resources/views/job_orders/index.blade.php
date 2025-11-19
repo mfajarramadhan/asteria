@@ -60,7 +60,7 @@
     @endif
     {{-- End Alert Error --}}
 
-    @role('superAdmin|admin')
+    @role('Super Admin|Admin Riksa Uji')
     {{-- Tambah Alat --}}
     <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%]">
         <a href="{{ route('job_orders.create') }}">+ Tambah Job Order</a>
@@ -120,7 +120,7 @@
                             </button>
                             {{-- End Read --}}
 
-                            @role('superAdmin|admin|petugas')
+                            @role('Super Admin|Admin Riksa Uji|Tim Riksa Uji')
                             {{-- Update --}}
                             <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
                                 <a href="{{ route('job_orders.edit', $jo->id) }}">
@@ -132,7 +132,7 @@
                             {{-- End Update --}}
                             @endrole
 
-                            @role('superAdmin|admin')
+                            @role('Super Admin|Admin Riksa Uji')
                             {{-- Delete --}}
                             <form action="{{ route('job_orders.destroy', $jo->id) }}" method="POST">
                             @method('DELETE')
