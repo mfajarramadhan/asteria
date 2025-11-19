@@ -17,10 +17,10 @@ class FormKpMotorDiesel extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_shell' => 'array',
-        // 'foto_head' => 'array',
-        // 'foto_pipa' => 'array',
-        // 'foto_instalasi' => 'array',
+        'foto_mesin' => 'array',
+        'foto_generator' => 'array',
+        'foto_pengukuran' => 'array',
+        'foto_pengujian' => 'array',
     ];
 
     // Relasi ke job_order_tool

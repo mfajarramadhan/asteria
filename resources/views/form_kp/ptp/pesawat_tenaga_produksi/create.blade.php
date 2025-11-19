@@ -423,29 +423,6 @@
                     @enderror
                 </div>
 
-                {{-- Pengujian --}}
-                <div class="grid items-center grid-cols-2 gap-4">
-                    {{-- Baris 1 --}}
-                    <div>
-                        <input type="number" placeholder="Grounding" step="any" name="pengukuran_grounding" id="pengukuran_grounding" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pengukuran_grounding') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pengukuran_grounding') }}">
-                        @error('pengujian_grounding') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                    </div>
-                    <div>
-                        <input type="number" placeholder="Suhu" step="any" name="pengujian_pencahayaan" id="pengujian_pencahayaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pengujian_pencahayaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pengujian_pencahayaan') }}">
-                        @error('pengujian_pencahayaan') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                    </div>
-
-                    {{-- Baris 2 --}}
-                    <div>
-                        <input type="number" placeholder="Pencahayaan" step="any" name="pengujian_suhu" id="pengujian_suhu" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pengujian_suhu') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pengujian_suhu') }}">
-                        @error('pengujian_suhu') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                    </div>
-                    <div>
-                        <input type="number" placeholder="Kebisingan" step="any" name="pengujian_kebisingan" id="pengujian_kebisingan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pengujian_kebisingan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pengujian_kebisingan') }}">
-                        @error('pengujian_kebisingan') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                    </div>
-                </div>
-
                 {{-- Proteksi --}}
                 <div class="grid items-center grid-cols-3 gap-4">
                     {{-- Baris 1 --}}
@@ -453,32 +430,78 @@
                         <label class="block text-sm font-bold text-gray-700">Jenis Proteksi</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm font-bold text-gray-700">Komponen Utama</label>
+                        <label class="block text-sm font-bold text-gray-700">Hasil Pengujian</label>
                     </div>
                     <div class="text-center">
-                        <label class="block text-sm font-bold text-gray-700">Pendukung Mesin</label>
+                        <label class="block text-sm font-bold text-gray-700">Keterangan</label>
                     </div>
 
                     {{-- Baris 2 --}}
                     <div>
-                        <input type="text" name="safety_device1" placeholder="" id="safety_device1" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('safety_device1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('safety_device1') }}">
-                        @error('safety_device1')
+                        <input type="text" name="emergency_stop" placeholder="Emergency Stop" id="emergency_stop" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('emergency_stop') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('emergency_stop') }}">
+                        @error('emergency_stop')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
+
                     <div>
-                        <input type="text" name="komponen_utama1" placeholder="" id="komponen_utama1" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('komponen_utama1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('komponen_utama1') }}">
-                        @error('komponen_utama1')
+                        <select name="emergency_stop_hasil" id="emergency_stop_hasil"
+                            class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('emergency_stop_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                            
+                            <option value="-" {{ old('emergency_stop_hasil') == '-' ? 'selected' : '' }}>-</option>
+                            <option value="Berfungsi" {{ old('emergency_stop_hasil') == 'Berfungsi' ? 'selected' : '' }}>Berfungsi</option>
+                            <option value="Tidak Berfungsi" {{ old('emergency_stop_hasil') == 'Tidak Berfungsi' ? 'selected' : '' }}>Tidak Berfungsi</option>
+                            
+                        </select>
+
+                        @error('emergency_stop_hasil')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
+                    
                     <div>
-                        <input type="text" name="pendukung_mesin1" placeholder="" id="pendukung_mesin1" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pendukung_mesin1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pendukung_mesin1') }}">
-                        @error('pendukung_mesin1')
+                        <input type="text" name="ket_emergency_stop" placeholder="" id="ket_emergency_stop" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ket_emergency_stop') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('ket_emergency_stop') }}">
+                        @error('ket_emergency_stop')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    {{-- Baris 3 --}}
+                    <div>
+                        <input type="text" name="blank" placeholder="" id="blank" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('blank') }}">
+                        @error('blank')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <select name="blank_hasil" id="blank_hasil"
+                            class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                            
+                            <option value="-" {{ old('blank_hasil') == '-' ? 'selected' : '' }}>-</option>
+                            <option value="Berfungsi" {{ old('blank_hasil') == 'Berfungsi' ? 'selected' : '' }}>Berfungsi</option>
+                            <option value="Tidak Berfungsi" {{ old('blank_hasil') == 'Tidak Berfungsi' ? 'selected' : '' }}>Tidak Berfungsi</option>
+                            
+                        </select>
+
+                        @error('blank_hasil')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <input type="text" name="ket_blank" placeholder="" id="ket_blank" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ket_blank') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('ket_blank') }}">
+                        @error('ket_blank')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
@@ -486,48 +509,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
                 {{-- Catatan --}}
                 <div>
                     <textarea name="catatan" id="catatan" placeholder="Catatan" rows="4"

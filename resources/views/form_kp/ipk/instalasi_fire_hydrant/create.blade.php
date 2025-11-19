@@ -28,32 +28,8 @@
 
             {{-- Nama Perusahaan --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
-            </div>
-
-            {{-- Kapasitas --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
-            </div>
-
-            {{-- Model/Tipe --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->model }}">
-            </div>
-
-            {{-- No.Seri --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
-            </div>
-
-            {{-- Pabrik Pembuat --}}
-            <div>
-                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat') }}">
-                @error('pabrik_pembuat')
+                <input type="text" name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
+                @error('nama_perusahaan')
                 <div class="text-xs text-red-600">
                     {{ $message }}
                 </div>
@@ -72,11 +48,41 @@
                 @enderror
             </div>
 
+            {{-- Pabrik Pembuat --}}
+            <div>
+                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat') }}">
+                @error('pabrik_pembuat')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
 
             {{-- Negara Tahun Pembuat --}}
             <div>
                 <input type="text" name="negara_tahun_pembuat" placeholder="Negara/tahun Pembuat" id="negara_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara_tahun_pembuat') }}">
                 @error('negara_tahun_pembuat')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+
+            {{-- Nomor Seri --}}
+            <div>
+                <input type="text" name="nomor_seri" placeholder="Nomor Seri" id="nomor_seri" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_seri') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_seri') }}">
+                @error('nomor_seri')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Kapasitas --}}
+            <div>
+                <input type="text" name="kapasitas" placeholder="Kapasitas" id="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas') }}">
+                @error('kapasitas')
                 <div class="text-xs text-red-600">
                     {{ $message }}
                 </div>

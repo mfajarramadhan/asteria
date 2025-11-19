@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardEskalatorController;
+use App\Http\Controllers\DashboardIPKController;
 use App\Http\Controllers\DashboardPAPAController;
 use App\Http\Controllers\DashboardPTPController;
 use App\Http\Controllers\DashboardPUBTController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
 use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
+use App\Http\Controllers\FormKpInstalasiFireAlarmController;
 use App\Http\Controllers\FormKpHeatTreatmentController;
 use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\FormKpMotorDieselController;
@@ -37,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Rute Daftar Alat: Hanya SuperAdmin & Admin
-    Route::middleware(['role:superAdmin|admin'])->group(function () {
+    Route::middleware(['role:Super Admin|Admin Riksa Uji'])->group(function () {
         // endpoint AJAX untuk filter sub-jenis
         Route::get('tools/sub-jenis/{jenis}', [ToolController::class, 'subJenis'])
             ->name('tools.subjenis');
@@ -47,7 +49,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Job Order: Semua Role
-    Route::middleware(['role:superAdmin|admin|petugas|penyusunLHP'])->group(function () {
+    Route::middleware(['role:Super Admin|Admin Riksa Uji|Tim Riksa Uji|Penyusun LHP'])->group(function () {
         // Job Orders Resource (CRUD)
         Route::resource('job_orders', JobOrderController::class);
         Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
@@ -57,7 +59,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // User Management: Hanya superAdmin
-    Route::middleware(['role:superAdmin'])->group(function () {
+    Route::middleware(['role:Super Admin'])->group(function () {
         Route::get('/superadmin', [SuperAdminController::class, 'index'])
             ->name('superadmin.index');
         Route::patch('/superadmin/update-role/{id}', [SuperAdminController::class, 'updateRole'])
@@ -70,7 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/riksa_uji', [RiksaUjiController::class, 'index'])->name('riksa_uji.index');
 
     // Rute Form KP Bejana Tekan: Semua Role
-    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPUBTController::class, 'index'])->name('index');
 
@@ -116,7 +118,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Form KP PTP: Semua Role
-    Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PTP
         Route::get('/', [DashboardPTPController::class, 'index'])->name('index');
 
@@ -153,7 +155,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Rute Form KP PAPA: Semua Role
-    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/papa')->name('form_kp.papa.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPAPAController::class, 'index'])->name('index');
 
@@ -169,7 +171,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Rute Form KP Eskalator: Semua Role
-    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:petugas|admin|superAdmin|penyusunLHP'])->group(function () {
+    Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard Eskalator
         Route::get('/', [DashboardEskalatorController::class, 'index'])->name('index');
 
@@ -191,6 +193,30 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpElevator}', [FormKpElevatorController::class, 'show'])->name('show');
             Route::get('/{formKpElevator}/edit', [FormKpElevatorController::class, 'edit'])->name('edit');
             Route::put('/{formKpElevator}', [FormKpElevatorController::class, 'update'])->name('update');
+        });
+    });
+    // Rute Form KP IPK: Semua Role
+    Route::prefix('form_kp/ipk')->name('form_kp.ipk.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
+        // Dashboard IPK
+        Route::get('/', [DashboardIPKController::class, 'index'])->name('index');
+
+        // // CRUD IPK
+        // Route::prefix('instalasi_fire_hydrant')->name('instalasi_fire_hydrant.')->group(function () {
+        //     Route::get('/', [FormKpInstalasiFireHydrantController::class, 'index'])->name('index');
+        //     Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireHydrantController::class, 'create'])->name('create');
+        //     Route::post('/{jobOrderTool}', [FormKpInstalasiFireHydrantController::class, 'store'])->name('store');
+        //     Route::get('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'show'])->name('show');
+        //     Route::get('/{formKpInstalasiFireHydrant}/edit', [FormKpInstalasiFireHydrantController::class, 'edit'])->name('edit');
+        //     Route::put('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'update'])->name('update');
+        // });
+
+        Route::prefix('instalasi_fire_alarm')->name('instalasi_fire_alarm.')->group(function () {
+            Route::get('/', [FormKpInstalasiFireAlarmController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireAlarmController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpInstalasiFireAlarmController::class, 'store'])->name('store');
+            Route::get('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireAlarmController::class, 'show'])->name('show');
+            Route::get('/{formKpInstalasiFireHydrant}/edit', [FormKpInstalasiFireAlarmController::class, 'edit'])->name('edit');
+            Route::put('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireAlarmController::class, 'update'])->name('update');
         });
     });
 });

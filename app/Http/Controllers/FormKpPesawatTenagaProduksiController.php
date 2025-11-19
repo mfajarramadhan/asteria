@@ -45,13 +45,13 @@ class FormKpPesawatTenagaProduksiController extends Controller
 
     public function store(Request $request, $jobOrderToolId)
     {
+        // dd($request->all());
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
             'pabrik_pembuat'                => 'nullable|string|max:255',
 
-            
             // FOTO INFORMASI UMUM
             'foto_informasi_umum'           => 'nullable|array',
             'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
@@ -139,7 +139,7 @@ class FormKpPesawatTenagaProduksiController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_device', 'foto_pengukuran', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {

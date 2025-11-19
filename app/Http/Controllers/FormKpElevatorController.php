@@ -20,7 +20,7 @@ class FormKpElevatorController extends Controller
             })
             ->get();
 
-        return view('form_kp.elevator.index', [
+        return view('form_kp.eskalator.elevator.index', [
             'title' => 'Form KP Elevator',
             'subtitle' => 'Daftar alat selesai diperiksa',
             'elevators' => $elevators,
@@ -31,7 +31,7 @@ class FormKpElevatorController extends Controller
     {
         $jobOrderTool = JobOrderTool::with('tool', 'jobOrder')->findOrFail($jobOrderToolId);
 
-        return view('form_kp.elevator.create', [
+        return view('form_kp.eskalator.elevator.create', [
             'title' => 'Form KP Elevator',
             'subtitle' => 'Isi Form KP Elevator',
             'jobOrderTool' => $jobOrderTool,
@@ -53,6 +53,7 @@ class FormKpElevatorController extends Controller
             ],
             // Foto multiple
             $this->generateFotoValidation([
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
@@ -127,6 +128,7 @@ class FormKpElevatorController extends Controller
         // Upload semua foto
         foreach (
             [
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
@@ -148,14 +150,14 @@ class FormKpElevatorController extends Controller
             'finished_at' => now(),
         ]);
 
-        return redirect()->route('form_kp.elevator.index')->with('success', 'Form KP Elevator berhasil disimpan!');
+        return redirect()->route('form_kp.eskalator.elevator.index')->with('success', 'Form KP Elevator berhasil disimpan!');
     }
 
     public function show(FormKpElevator $formKpElevator)
     {
         $formKpElevator->load(['jobOrderTool.jobOrder', 'jobOrderTool.tool']);
 
-        return view('form_kp.elevator.show', [
+        return view('form_kp.eskalator.elevator.show', [
             'title' => 'Detail Pemeriksaan Elevator',
             'subtitle' => '',
             'formKpElevator' => $formKpElevator,
@@ -164,7 +166,7 @@ class FormKpElevatorController extends Controller
 
     public function edit(FormKpElevator $formKpElevator)
     {
-        return view('form_kp.elevator.edit', [
+        return view('form_kp.eskalator.elevator.edit', [
             'title' => 'Edit Form KP Elevator',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
             'formKpElevator' => $formKpElevator,
@@ -180,6 +182,7 @@ class FormKpElevatorController extends Controller
                 'lokasi_lift' => 'nullable|string|max:255',
             ],
             $this->generateFotoValidation([
+                'foto_mesin',
                 'foto_komponen_kereta',
                 'foto_panel_operasi',
                 'foto_atap_kereta',
@@ -210,7 +213,7 @@ class FormKpElevatorController extends Controller
 
         $formKpElevator->update($validated);
 
-        return redirect()->route('form_kp.elevator.index')->with('success', 'Form KP Elevator berhasil diperbarui!');
+        return redirect()->route('form_kp.eskalator.elevator.index')->with('success', 'Form KP Elevator berhasil diperbarui!');
     }
 
     // Helper untuk validasi foto

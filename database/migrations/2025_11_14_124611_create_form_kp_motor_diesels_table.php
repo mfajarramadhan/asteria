@@ -23,8 +23,6 @@ return new class extends Migration
             $table->decimal('daya_mesin', 10, 4)->nullable();
             $table->decimal('jumlah_silinder', 10, 4)->nullable();
             $table->json('foto_generator')->nullable();
-            $table->string('nama_pabrik_pembuat')->nullable();
-            $table->string('no_seri_generator')->nullable();
             $table->json('foto_pengukuran')->nullable();        
             $table->string('grounding1')->nullable();
             $table->string('grounding2')->nullable();

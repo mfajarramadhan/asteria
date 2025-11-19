@@ -106,45 +106,25 @@
                 </div>
                 
                 {{-- Generator --}}
-                {{-- Foto foto_pengujian --}}
+                {{-- Foto foto_generator --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Generator</h2>
-                    <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
-                    <div id="foto_pengujian-preview" class="flex flex-wrap gap-2"></div>
-                    <input type="file" name="foto_pengujian[]" id="foto_pengujian" accept="image/*" multiple onchange="previewImage(this, 'foto_pengujian-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengujian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    <label for="foto_generator" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <div id="foto_generator-preview" class="flex flex-wrap gap-2"></div>
+                    <input type="file" name="foto_generator[]" id="foto_generator" accept="image/*" multiple onchange="previewImage(this, 'foto_generator-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_generator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
-                    @error('foto_pengujian')
+                    @error('foto_generator')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
 
-                {{-- Nama Pabrik Pembuat --}}
-                <div>
-                    <input type="text" name="nama_pabrik_pembuat" placeholder="Nama Pabrik Pembuat" id="nama_pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_pabrik_pembuat') }}">
-                    @error('nama_pabrik_pembuat')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div>
-
-                {{-- No Seri Generator --}}
-                <div>
-                    <input type="number" step="any" name="no_seri_generator" placeholder="No Seri" id="no_seri_generator" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('no_seri_generator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('no_seri_generator') }}">
-                    @error('no_seri_generator')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div>
-
                 {{-- Pengukuran --}}
                 {{-- Foto foto_pengukuran --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran</h2>
-                    <label for="foto_generator" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
                     <div id="foto_pengukuran-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengukuran[]" id="foto_pengukuran" accept="image/*" multiple onchange="previewImage(this, 'foto_pengukuran-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengukuran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -190,7 +170,7 @@
                         <label for="pondasi" class="block text-sm text-gray-700">Pondasi</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="pondasi" placeholder="" id="pondasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pondasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pondasi') }}">
+                        <input type="text" name="pondasi" placeholder="" id="pondasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pondasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pondasi') }}">
                         @error('pondasi')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -203,7 +183,7 @@
                         <label for="rangka" class="block text-sm text-gray-700">Rangka</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="rangka" placeholder="" id="rangka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('rangka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('rangka') }}">
+                        <input type="text" name="rangka" placeholder="" id="rangka" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('rangka') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('rangka') }}">
                         @error('rangka')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -216,7 +196,7 @@
                         <label for="cover_kipas" class="block text-sm text-gray-700">Cover Kipas</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="cover_kipas" placeholder="" id="cover_kipas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('cover_kipas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('cover_kipas') }}">
+                        <input type="text" name="cover_kipas" placeholder="" id="cover_kipas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('cover_kipas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('cover_kipas') }}">
                         @error('cover_kipas')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -240,7 +220,7 @@
                         <label for="pencahayaan_depan" class="block text-sm text-gray-700">Bagian Depan Diesel</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="pencahayaan_depan" placeholder="" id="pencahayaan_depan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_depan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_depan') }}">
+                        <input type="text" name="pencahayaan_depan" placeholder="" id="pencahayaan_depan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_depan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_depan') }}">
                         @error('pencahayaan_depan')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -253,7 +233,7 @@
                         <label for="pencahayaan_belakang" class="block text-sm text-gray-700">Bagian Belakang</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="pencahayaan_belakang" placeholder="" id="pencahayaan_belakang" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_belakang') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_belakang') }}">
+                        <input type="text" name="pencahayaan_belakang" placeholder="" id="pencahayaan_belakang" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_belakang') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_belakang') }}">
                         @error('pencahayaan_belakang')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -266,7 +246,7 @@
                         <label for="pencahayaan_tengah" class="block text-sm text-gray-700">Bagian Tengah</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="pencahayaan_tengah" placeholder="" id="pencahayaan_tengah" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_tengah') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_tengah') }}">
+                        <input type="text" name="pencahayaan_tengah" placeholder="" id="pencahayaan_tengah" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_tengah') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_tengah') }}">
                         @error('pencahayaan_tengah')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -279,7 +259,7 @@
                         <label for="pencahayaan_depan_panel" class="block text-sm text-gray-700">Depan Panel</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="pencahayaan_depan_panel" placeholder="" id="pencahayaan_depan_panel" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_depan_panel') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_depan_panel') }}">
+                        <input type="text" name="pencahayaan_depan_panel" placeholder="" id="pencahayaan_depan_panel" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pencahayaan_depan_panel') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pencahayaan_depan_panel') }}">
                         @error('pencahayaan_depan_panel')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -303,7 +283,7 @@
                         <label for="kebisingan_ruang_pltd" class="block text-sm text-gray-700">Dalam Ruang PLTD</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="kebisingan_ruang_pltd" placeholder="" id="kebisingan_ruang_pltd" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_ruang_pltd') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_ruang_pltd') }}">
+                        <input type="text" name="kebisingan_ruang_pltd" placeholder="" id="kebisingan_ruang_pltd" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_ruang_pltd') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_ruang_pltd') }}">
                         @error('kebisingan_ruang_pltd')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -316,7 +296,7 @@
                         <label for="kebisingan_ruang_kontrol" class="block text-sm text-gray-700">Ruang Kontrol</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="kebisingan_ruang_kontrol" placeholder="" id="kebisingan_ruang_kontrol" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_ruang_kontrol') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_ruang_kontrol') }}">
+                        <input type="text" name="kebisingan_ruang_kontrol" placeholder="" id="kebisingan_ruang_kontrol" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_ruang_kontrol') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_ruang_kontrol') }}">
                         @error('kebisingan_ruang_kontrol')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -329,7 +309,7 @@
                         <label for="kebisingan_luar_ruang_pltd" class="block text-sm text-gray-700">Diluar Area PLTD</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="kebisingan_luar_ruang_pltd" placeholder="" id="kebisingan_luar_ruang_pltd" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_luar_ruang_pltd') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_luar_ruang_pltd') }}">
+                        <input type="text" name="kebisingan_luar_ruang_pltd" placeholder="" id="kebisingan_luar_ruang_pltd" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_luar_ruang_pltd') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_luar_ruang_pltd') }}">
                         @error('kebisingan_luar_ruang_pltd')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -342,7 +322,7 @@
                         <label for="kebisingan_area_kerja" class="block text-sm text-gray-700">Aream Kerja</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="kebisingan_area_kerja" placeholder="" id="kebisingan_area_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_area_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_area_kerja') }}">
+                        <input type="text" name="kebisingan_area_kerja" placeholder="" id="kebisingan_area_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kebisingan_area_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kebisingan_area_kerja') }}">
                         @error('kebisingan_area_kerja')
                         <div class="text-xs text-red-600">
                             {{ $message }}
@@ -356,10 +336,10 @@
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengujian</h2>
                     <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
-                    <div id="foto_pengukuran-preview" class="flex flex-wrap gap-2"></div>
-                    <input type="file" name="foto_pengukuran[]" id="foto_pengukuran" accept="image/*" multiple onchange="previewImage(this, 'foto_pengukuran-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengukuran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    <div id="foto_pengujian-preview" class="flex flex-wrap gap-2"></div>
+                    <input type="file" name="foto_pengujian[]" id="foto_pengujian" accept="image/*" multiple onchange="previewImage(this, 'foto_pengujian-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengujian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
-                    @error('foto_pengukuran')
+                    @error('foto_pengujian')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>

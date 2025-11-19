@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormKpPesawatTenagaProduksi extends Model
+class FormKpInstalasiFireAlarm extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_kp_pesawat_tenaga_produksi';
+    protected $table = 'form_kp_instalasi_fire_alarm';
 
     protected $guarded = [
         'id',
@@ -17,10 +17,10 @@ class FormKpPesawatTenagaProduksi extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        'foto_informasi_umum' => 'array',
-        'foto_device' => 'array',
-        'foto_pengukuran' => 'array',
-        'foto_pengujian' => 'array',
+        'foto_shell' => 'array',
+        'foto_head' => 'array',
+        'foto_pipa' => 'array',
+        'foto_instalasi' => 'array',
     ];
 
     // Relasi ke job_order_tool

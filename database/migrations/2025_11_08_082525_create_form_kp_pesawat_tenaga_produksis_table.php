@@ -59,10 +59,10 @@ return new class extends Migration
             $table->decimal('pengukuran_suhu', 10, 4)->nullable();
             $table->decimal('pengukuran_kebisingan', 10, 4)->nullable();
             $table->json('foto_pengujian')->nullable();
-            $table->decimal('pengujian_grounding', 10, 4)->nullable();
-            $table->decimal('pengujian_pencahayaan', 10, 4)->nullable();
-            $table->decimal('pengujian_suhu', 10, 4)->nullable();
-            $table->decimal('pengujian_kebisingan', 10, 4)->nullable();
+            // $table->decimal('pengujian_grounding', 10, 4)->nullable();
+            // $table->decimal('pengujian_pencahayaan', 10, 4)->nullable();
+            // $table->decimal('pengujian_suhu', 10, 4)->nullable();
+            // $table->decimal('pengujian_kebisingan', 10, 4)->nullable();
             $table->string('emergency_stop')->nullable();
             $table->string('emergency_stop_hasil')->nullable();
             $table->text('ket_emergency_stop_tutup')->nullable();
