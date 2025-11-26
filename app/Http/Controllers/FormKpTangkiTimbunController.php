@@ -52,10 +52,14 @@ class FormKpTangkiTimbunController extends Controller
         $validated = $request->validate([
             'tanggal_pemeriksaan'                 => 'nullable|date',
             'pabrik_pembuat'                      => 'nullable|string|max:255',
+            'tipe_tangki'                         => 'nullable|string|max:255',
             'foto_visual'                         => 'nullable|array',
             'foto_visual.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'tempat_tahun_pembuat'                => 'nullable|string|max:500',
+            'tempat'                              => 'nullable|string|max:500',
+            'tahun_pembuat'                       => 'nullable|string|max:500',
+            'tekanan'                             => 'nullable|string|max:500',
+            'suhu'                                => 'nullable|string|max:500',
             'media_yang_diisikan'                 => 'nullable|string|max:500',
             'lokasi_tangki'                       => 'nullable|string|max:500',
 
@@ -203,10 +207,14 @@ class FormKpTangkiTimbunController extends Controller
         $validated = $request->validate([
             'tanggal_pemeriksaan'                 => 'nullable|date',
             'pabrik_pembuat'                      => 'nullable|string|max:255',
+            'tipe_tangki'                         => 'nullable|string|max:255',
             'foto_visual'                         => 'nullable|array',
             'foto_visual.*'                       => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'tempat_tahun_pembuat'                => 'nullable|string|max:500',
+            'tempat'                              => 'nullable|string|max:500',
+            'tahun_pembuat'                       => 'nullable|string|max:500',
+            'tekanan'                             => 'nullable|string|max:500',
+            'suhu'                                => 'nullable|string|max:500',
             'media_yang_diisikan'                 => 'nullable|string|max:500',
             'lokasi_tangki'                       => 'nullable|string|max:500',
 

@@ -49,7 +49,7 @@
                     <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
                     <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->no_seri }}">
                 </div>
-                
+
                 {{-- Pabrik Pembuat --}}
                 <div>
                     <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat') }}">
@@ -60,65 +60,50 @@
                     @enderror   
                 </div>
                 
-                {{-- Informasi Umum --}}
-                {{-- Foto foto_visual --}}
-                <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
-                    <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
-                    <div id="foto_visual-preview" class="flex flex-wrap gap-2"></div>
-                    <input type="file" name="foto_visual[]" id="foto_visual" accept="image/*" multiple onchange="previewImage(this, 'foto_visual-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_visual') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                    
-                    @error('foto_visual')
-                        <div class="text-xs text-red-600">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
                 {{-- Tipe Tangki --}}
-                {{-- <div>
-                    <input type="text" name="tipe_tangki" placeholder="Tipe Tangki" id="tipe_tangki" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tipe_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tipe_tangki') }}">
+                <div>
+                    <input type="text" name="tipe_tangki" placeholder="Tipe Tangki" id="tipe_tangki" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tipe_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tipe_tangki') }}">
                     @error('tipe_tangki')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
-                </div> --}}
-
-                {{-- Nomor Seri --}}
-                {{-- <div>
-                    <input type="text" name="nomor_seri" placeholder="Nomor Seri" id="nomor_seri" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_seri') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_seri') }}">
-                    @error('nomor_seri')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
-
-                {{-- Pabrik Pembuat --}}
-                {{-- <div>
-                    <input type="text" name="tempat_tahun_pembuat" placeholder="Pabrik Pembuat" id="tempat_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat_tahun_pembuat') }}">
-                    @error('tempat_tahun_pembuat')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
-
-                {{-- Kapasitas --}}
-                {{-- <div>
-                    <input type="text" name="kapasitas" placeholder="Tempat/Tahun Pembuat" id="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas') }}">
-                    @error('kapasitas')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div> --}}
-
-                {{-- Tempat/Tahun Pembuat --}}
+                </div>
+                
+                {{-- Tempat --}}
                 <div>
-                    <input type="text" name="tempat_tahun_pembuat" placeholder="Tempat/Tahun Pembuat" id="tempat_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat_tahun_pembuat') }}">
-                    @error('tempat_tahun_pembuat')
+                    <input type="text" name="tempat" placeholder="Tempat" id="tempat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat') }}">
+                    @error('tempat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tahun Pembuat --}}
+                <div>
+                    <input type="text" name="tahun_pembuat" placeholder="Tahun Pembuat" id="tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuat') }}">
+                    @error('tahun_pembuat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Tekanan --}}
+                <div>
+                    <input type="text" name="tekanan" placeholder="Tekanan" id="tekanan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan') }}">
+                    @error('tekanan')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Suhu --}}
+                <div>
+                    <input type="text" name="suhu" placeholder="Suhu" id="suhu" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('suhu') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('suhu') }}">
+                    @error('suhu')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -145,7 +130,20 @@
                     @enderror   
                 </div>
 
-                <h2 class="block text-sm font-bold text-gray-700">Visual</h2>
+                {{-- foto_visual --}}
+                <div>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Visual</h2>
+                    <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
+                    <div id="foto_visual-preview" class="flex flex-wrap gap-2"></div>
+                    <input type="file" name="foto_visual[]" id="foto_visual" accept="image/*" multiple onchange="previewImage(this, 'foto_visual-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_visual') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    
+                    @error('foto_visual')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm text-left border border-gray-300">
                         <thead class="text-gray-700 bg-gray-100">
@@ -222,10 +220,10 @@
                     </table>
                 </div>
                 
-                {{-- Foto foto_pengukuran --}}
+                {{-- foto_pengukuran --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran/Pengujian</h2>
-                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto Pengukuran/Pengujian</label>
+                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengukuran-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengukuran[]" id="foto_pengukuran" accept="image/*" multiple onchange="previewImage(this, 'foto_pengukuran-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengukuran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -256,9 +254,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_komponen --}}
+                {{-- foto_komponen --}}
                 <div>
-                    <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto Komponen</label>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran Ketebalan</h2>
+                    <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_komponen-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_komponen[]" id="foto_komponen" accept="image/*" multiple onchange="previewImage(this, 'foto_komponen-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_komponen') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -436,9 +435,10 @@
                     </div>
                 </div>
 
-                {{-- Foto foto_tangki --}}
+                {{-- foto_tangki --}}
                 <div>
-                    <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran Dimensi</h2>
+                    <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_tangki-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_tangki[]" id="foto_tangki" accept="image/*" multiple onchange="previewImage(this, 'foto_tangki-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     

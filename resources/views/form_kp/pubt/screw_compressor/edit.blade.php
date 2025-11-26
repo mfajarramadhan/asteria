@@ -57,21 +57,64 @@
                 {{-- Pabrik Pembuat --}}
                 <div>
                     <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpScrewCompressor->pabrik_pembuat) }}">
+                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat', $formKpScrewCompressor->pabrik_pembuat) }}">
                     @error('pabrik_pembuat')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
                     @enderror   
                 </div>
-
+                
+                {{-- Lokasi --}}
+                <div>
+                    <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                    <input type="text" name="lokasi" placeholder="Pabrik Pembuat" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi', $formKpScrewCompressor->lokasi) }}">
+                    @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Negara --}}
+                <div>
+                    <label for="negara" class="block text-sm font-medium text-gray-700">Negara</label>
+                    <input type="text" name="negara" placeholder="Pabrik Pembuat" id="negara" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara', $formKpScrewCompressor->negara) }}">
+                    @error('negara')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tahun --}}
+                <div>
+                    <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
+                    <input type="text" name="tahun" placeholder="Pabrik Pembuat" id="tahun" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun', $formKpScrewCompressor->tahun) }}">
+                    @error('tahun')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tekanan Kerja --}}
+                <div>
+                    <label for="tekanan_kerja" class="block text-sm font-medium text-gray-700">Tekanan Kerja</label>
+                    <input type="text" name="tekanan_kerja" placeholder="Pabrik Pembuat" id="tekanan_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_kerja', $formKpScrewCompressor->tekanan_kerja) }}">
+                    @error('tekanan_kerja')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
                 <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
                 
-                {{-- Shell/Badan --}}
-                {{-- Foto foto_shell_separator --}}
+                {{-- foto_shell_separator --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
-                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_shell_separator)
@@ -153,10 +196,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_instalasi_pipa --}}
+                {{-- foto_instalasi_pipa --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_instalasi_pipa)
@@ -238,10 +281,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_casing_screw --}}
+                {{-- foto_casing_screw --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
-                    <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_casing_screw)
@@ -323,10 +366,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_pondasi_screw --}}
+                {{-- foto_pondasi_screw --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
-                    <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_pondasi_screw)
@@ -393,10 +436,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_safety_device --}}
+                {{-- foto_safety_device --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
-                    <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_safety_device)
@@ -490,9 +533,9 @@
                     @enderror
                 </div>
 
-                {{-- Foto foto_pressure_switch --}}
+                {{-- foto_pressure_switch --}}
                 <div>
-                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpScrewCompressor->foto_pressure_switch)

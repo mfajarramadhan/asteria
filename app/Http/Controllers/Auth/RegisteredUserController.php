@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // default role = petugas
+        // default role = Penyusun LHP
         $user->assignRole('Penyusun LHP');
 
         event(new Registered($user));

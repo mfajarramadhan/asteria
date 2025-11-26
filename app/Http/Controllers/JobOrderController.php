@@ -25,7 +25,7 @@ class JobOrderController extends Controller
     public function create()
     {
         $tools = Tool::all(); 
-        $petugas = User::role('petugas')->get(); // ambil user role petugas
+        $petugas = User::role('Tim Riksa Uji')->get(); // ambil user role petugas
 
         return view('job_orders.create', [
             'tools' => $tools,
@@ -37,6 +37,7 @@ class JobOrderController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
         'nama_perusahaan'                   => 'required|string|max:255',
         'alamat_perusahaan'                 => 'required|string|max:255',
@@ -44,7 +45,7 @@ class JobOrderController extends Controller
         'email'                             => 'nullable|email|max:255',
         'contact_person'                    => 'nullable|string|max:255',
         'no_penawaran'                      => 'nullable|string|max:255',
-        'no_purcash_order'                  => 'nullable|string|max:255',
+        'no_purcash_order'                  => 'nullable|string|max:255|unique:job_orders,no_purcash_order',
 
         'tanggal_pemeriksaan1'              => 'nullable|date',
         'tanggal_pemeriksaan2'              => 'nullable|date',
@@ -251,7 +252,7 @@ class JobOrderController extends Controller
     public function edit(JobOrder $jobOrder)
     {
         $jobOrder->load(['tools', 'responsibles']); // eager load relasi langsung
-        $petugas = User::role('petugas')->get(); // ambil user role petugas
+        $petugas = User::role('Tim Riksa Uji')->get(); // ambil user role Tim Riksa Uji
         $tools = Tool::all(); 
         return view('job_orders.edit', [
             'jobOrder' => $jobOrder,

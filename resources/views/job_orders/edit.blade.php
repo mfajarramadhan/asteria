@@ -456,7 +456,7 @@
                             Manual Book (Spesifikasi Alat)
                         </label>
 
-                        @role('Super Admin|petugas')
+                        @role('Super Admin|Tim Riksa Uji')
                             <input type="hidden" name="kelengkapan_manual_book" value="0">
                             <input type="checkbox" 
                                 id="kelengkapan_manual_book" 
@@ -496,7 +496,7 @@
                             Layout/Diagram Instalasi
                         </label>
 
-                        @role('Super Admin|petugas')
+                        @role('Super Admin|Tim Riksa Uji')
                             <input type="hidden" name="kelengkapan_layout" value="0">
                             <input type="checkbox" 
                                 id="kelengkapan_layout" 
@@ -536,7 +536,7 @@
                             Checklist Maintenance Report
                         </label>
 
-                        @role('Super Admin|petugas')
+                        @role('Super Admin|Tim Riksa Uji')
                             <input type="hidden" name="kelengkapan_maintenance_report" value="0">
                             <input type="checkbox" 
                                 id="kelengkapan_maintenance_report" 
@@ -576,7 +576,7 @@
                             Surat Permohonan
                         </label>
 
-                        @role('Super Admin|petugas')
+                        @role('Super Admin|Tim Riksa Uji')
                             <input type="hidden" name="kelengkapan_surat_permohonan" value="0">
                             <input type="checkbox" 
                                 id="kelengkapan_surat_permohonan" 

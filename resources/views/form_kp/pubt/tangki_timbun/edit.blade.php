@@ -54,6 +54,17 @@
                     <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpTangkiTimbun->jobOrderTool->no_seri }}">
                 </div>
                 
+                {{-- Tipe Tangki --}}
+                <div>
+                    <label for="tipe_tangki" class="block text-sm font-medium text-gray-700">Tipe Tangki</label>
+                    <input type="text" name="tipe_tangki" placeholder="Pabrik Pembuat" id="tipe_tangki" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tipe_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpTangkiTimbun->tipe_tangki) }}">
+                    @error('tipe_tangki')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 {{-- Pabrik Pembuat --}}
                 <div>
                     <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
@@ -65,57 +76,60 @@
                     @enderror   
                 </div>
 
-                {{-- <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2> --}}
-                
-                {{-- Foto foto_visual --}}
+                {{-- Tempat--}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
-                    <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
-
-                    {{-- foto lama --}}
-                    @if($formKpTangkiTimbun->foto_visual)
-                        @php $oldFiles = json_decode($formKpTangkiTimbun->foto_visual, true); @endphp
-                        @if(is_array($oldFiles))
-                            <div class="flex flex-wrap gap-2 mb-2">
-                                @foreach($oldFiles as $oldFile)
-                                    <img src="{{ asset('storage/' . $oldFile) }}" 
-                                        alt="Foto Shell Lama" 
-                                        class="object-contain w-32 border rounded">
-                                @endforeach
-                            </div>
-                        @endif
-                    @endif
-
-                    {{-- preview baru --}}
-                    <div id="foto_visual-preview" class="flex flex-wrap gap-2 mb-2"></div>
-
-                    <input 
-                        type="file" 
-                        name="foto_visual[]" 
-                        id="foto_visual" 
-                        accept="image/*" 
-                        multiple
-                        onchange="previewImageDynamic(this, 'foto_visual-preview')"
-                        class="block w-full px-3 py-2 mt-1 lg:w-[50%] border border-gray-300 rounded-md shadow-sm 
-                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                            @error('foto_visual') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-
-                    @error('foto_visual')
-                        <div class="text-xs text-red-600">
-                            {{ $message }}
-                        </div>
-                    @enderror   
-                </div>
-
-                {{-- Tempat/Tahun Pembuat --}}
-                <div>
-                    <label for="tempat_tahun_pembuat" class="block text-sm font-medium text-gray-700">Tempat/Tahun Pembuat</label>
-                    <input type="text" name="tempat_tahun_pembuat" placeholder="Tempat/Tahun Pembuat" id="tempat_tahun_pembuat"
+                    <label for="tempat" class="block text-sm font-medium text-gray-700">Tempat</label>
+                    <input type="text" name="tempat" placeholder="Tempat" id="tempat"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                        @error('tempat_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('tempat_tahun_pembuat', $formKpTangkiTimbun->tempat_tahun_pembuat) }}">
-                    @error('tempat_tahun_pembuat')
+                        @error('tempat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tempat', $formKpTangkiTimbun->tempat) }}">
+                    @error('tempat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                {{-- Tahun Pembuat --}}
+                <div>
+                    <label for="tahun_pembuat" class="block text-sm font-medium text-gray-700">Tahun Pembuat</label>
+                    <input type="text" name="tahun_pembuat" placeholder="Tahun Pembuat" id="tahun_pembuat"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
+                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                        @error('tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tahun_pembuat', $formKpTangkiTimbun->tahun_pembuat) }}">
+                    @error('tahun_pembuat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                {{-- Tekanan --}}
+                <div>
+                    <label for="tekanan" class="block text-sm font-medium text-gray-700">Tekanan</label>
+                    <input type="text" name="tekanan" placeholder="Tempat/Tahun Pembuat" id="tekanan"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
+                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                        @error('tekanan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tekanan', $formKpTangkiTimbun->tekanan) }}">
+                    @error('tekanan')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                {{-- Suhu --}}
+                <div>
+                    <label for="suhu" class="block text-sm font-medium text-gray-700">Suhu</label>
+                    <input type="text" name="suhu" placeholder="Tempat/Tahun Pembuat" id="suhu"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm 
+                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                        @error('suhu') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('suhu', $formKpTangkiTimbun->suhu) }}">
+                    @error('suhu')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -152,7 +166,46 @@
                     @enderror
                 </div>
 
-                <h2 class="block text-sm font-bold text-gray-700">Visual</h2>
+                {{-- foto_visual --}}
+                <div>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Visual</h2>
+                    <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
+
+                    {{-- foto lama --}}
+                    @if($formKpTangkiTimbun->foto_visual)
+                        @php $oldFiles = json_decode($formKpTangkiTimbun->foto_visual, true); @endphp
+                        @if(is_array($oldFiles))
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                @foreach($oldFiles as $oldFile)
+                                    <img src="{{ asset('storage/' . $oldFile) }}" 
+                                        alt="Foto Shell Lama" 
+                                        class="object-contain w-32 border rounded">
+                                @endforeach
+                            </div>
+                        @endif
+                    @endif
+
+                    {{-- preview baru --}}
+                    <div id="foto_visual-preview" class="flex flex-wrap gap-2 mb-2"></div>
+
+                    <input 
+                        type="file" 
+                        name="foto_visual[]" 
+                        id="foto_visual" 
+                        accept="image/*" 
+                        multiple
+                        onchange="previewImageDynamic(this, 'foto_visual-preview')"
+                        class="block w-full px-3 py-2 mt-1 lg:w-[50%] border border-gray-300 rounded-md shadow-sm 
+                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                            @error('foto_visual') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
+                    @error('foto_visual')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror   
+                </div>
+                
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm text-left border border-gray-300">
                         <thead class="text-gray-700 bg-gray-100">
@@ -220,10 +273,10 @@
                     </table>
                 </div>
 
-                {{-- Foto foto_pengukuran --}}
+                {{-- foto_pengukuran --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran/Pengujian</h2>
-                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto Pengukuran/Pengujian</label>
+                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpTangkiTimbun->foto_pengukuran)
@@ -298,10 +351,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_komponen --}}
+                {{-- foto_komponen --}}
                 <div>
-                    {{-- <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran/Pengujian</h2> --}}
-                    <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto Komponen</label>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran Ketebalan</h2>
+                    <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpTangkiTimbun->foto_komponen)
@@ -529,10 +582,10 @@
                     </div>
                 </div>
 
-                {{-- Foto foto_tangki --}}
+                {{-- foto_tangki --}}
                 <div>
-                    {{-- <h2 class="block mb-1 text-sm font-bold text-gray-700">Foto</h2> --}}
-                    <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran Dimensi</h2>
+                    <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpTangkiTimbun->foto_tangki)

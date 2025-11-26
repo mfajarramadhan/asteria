@@ -71,10 +71,10 @@
                 </div>
                 
                 {{-- Engine --}}
-                {{-- Foto foto_mesin --}}
+                {{-- foto_mesin --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Engine</h2>
-                    <label for="foto_mesin" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_mesin" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_mesin-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_mesin[]" id="foto_mesin" accept="image/*" multiple onchange="previewImage(this, 'foto_mesin-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_mesin') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -106,10 +106,10 @@
                 </div>
                 
                 {{-- Generator --}}
-                {{-- Foto foto_generator --}}
+                {{-- foto_generator --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Generator</h2>
-                    <label for="foto_generator" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_generator" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_generator-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_generator[]" id="foto_generator" accept="image/*" multiple onchange="previewImage(this, 'foto_generator-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_generator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -121,10 +121,10 @@
                 </div>
 
                 {{-- Pengukuran --}}
-                {{-- Foto foto_pengukuran --}}
+                {{-- foto_pengukuran --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran</h2>
-                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengukuran-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengukuran[]" id="foto_pengukuran" accept="image/*" multiple onchange="previewImage(this, 'foto_pengukuran-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengukuran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -335,7 +335,7 @@
                 {{-- Foto --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengujian</h2>
-                    <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengujian-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengujian[]" id="foto_pengujian" accept="image/*" multiple onchange="previewImage(this, 'foto_pengujian-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengujian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -346,7 +346,7 @@
                     @enderror
                 </div>
 
-                {{-- Pressure Switch --}}
+                {{-- Jenis Proteksi --}}
                 <div class="grid items-center grid-cols-3 gap-4">
                     {{-- Baris 1 --}}
                     <div class="text-center">

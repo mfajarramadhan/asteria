@@ -332,8 +332,8 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                         <select @role('Tim Riksa Uji') disabled class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
-                                            <option value="Pertama" {{ old("tools.$i.status") == 'Pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="Resertifikasi" {{ old("tools.$i.status") == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                            <option value="pertama" {{ old("tools.$i.status") == 'pertama' ? 'selected' : '' }}>Pertama</option>
+                                            <option value="resertifikasi" {{ old("tools.$i.status") == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
@@ -630,8 +630,8 @@
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <select @role('Tim Riksa Uji') disabled class="bg-gray-200 cursor-not-allowed form-control" @endrole name="tools[${rowCount}][status]" class="form-control" required>
-                            <option value="Pertama">Pertama</option>
-                            <option value="Resertifikasi">Resertifikasi</option>
+                            <option value="pertama">Pertama</option>
+                            <option value="resertifikasi">Resertifikasi</option>
                         </select>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">

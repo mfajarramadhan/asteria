@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'nama'      => 'Heri',
             'id_user'     => '0006',
             'email'     => 'heri@gmail.com',
-            'jabatan'   => 'Staff Admin',
+            'jabatan'   => 'Ahli K3',
             'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('heri12345'),
         ]);
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'nama'      => 'Sarip',
             'id_user'     => '0004',
             'email'     => 'sarip@gmail.com',
-            'jabatan'   => 'Asisten Pertama AK3',
+            'jabatan'   => 'Asisten Muda AK3',
             'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('sarip12345'),
         ]);
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
             'nama'      => 'Bayu',
             'id_user'     => '0002',
             'email'     => 'bayu@gmail.com',
-            'jabatan'   => 'Asisten Muda AK3',
+            'jabatan'   => 'Staff Penyusun LHP',
             'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('bayu12345'),
         ]);
