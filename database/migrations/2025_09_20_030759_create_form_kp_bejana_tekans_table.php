@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->date('tanggal_pemeriksaan');
             $table->string('pabrik_pembuat')->nullable();
+            $table->string('jenis_bejana')->nullable();
+            $table->string('lokasi')->nullable();
             $table->json('foto_shell')->nullable();
             $table->decimal('ketidakbulatan', 10, 4)->nullable();
             $table->decimal('ketebalan_shell', 10, 4)->nullable();

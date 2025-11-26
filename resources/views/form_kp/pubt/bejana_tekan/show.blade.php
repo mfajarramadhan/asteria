@@ -59,12 +59,28 @@
             </div>
         </div>
 
+        {{-- Jenis Bejana --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Jenis Bejana</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpBejanaTekan->jenis_bejana ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Lokasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpBejanaTekan->lokasi ?? '-' }}
+            </div>
+        </div>
+
         <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
 
         {{-- Foto Shell --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoShell = $formKpBejanaTekan->foto_shell; 
                 if ($fotoShell && is_string($fotoShell)) {
@@ -123,7 +139,7 @@
         {{-- Foto foto_head --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Head/Tutup Ujung</h2>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Head/Tutup Ujung</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoHead = $formKpBejanaTekan->foto_head; 
                 if ($fotoHead && is_string($fotoHead)) {
@@ -166,7 +182,7 @@
         {{-- Foto foto_pipa --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Pipa-pipa/Channel</h2>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Pipa-pipa/Channel</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoPipa = $formKpBejanaTekan->foto_pipa; 
                 if ($fotoPipa && is_string($fotoPipa)) {
@@ -217,7 +233,7 @@
         {{-- Foto foto_instalasi --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-            <label class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoInstalasiPipa = $formKpBejanaTekan->foto_instalasi; 
                 if ($fotoInstalasiPipa && is_string($fotoInstalasiPipa)) {
@@ -245,7 +261,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Diameter (keliling)</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpBejanaTekan->diameter_intalasi ?? '-' }}
+                {{ $formKpBejanaTekan->diameter_instalasi ?? '-' }}
             </div>
         </div>
         
@@ -253,7 +269,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Ketebalan</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpBejanaTekan->ketebalan_intalasi ?? '-' }}
+                {{ $formKpBejanaTekan->ketebalan_instalasi ?? '-' }}
             </div>
         </div>
         
@@ -261,7 +277,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Panjang</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpBejanaTekan->panjang_intalasi ?? '-' }}
+                {{ $formKpBejanaTekan->panjang_instalasi ?? '-' }}
             </div>
         </div>
 

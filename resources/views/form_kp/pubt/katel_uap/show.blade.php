@@ -59,12 +59,10 @@
             </div>
         </div>
 
-        <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2>
-        
-        {{-- Informasi Umum --}}
-        {{-- Foto foto_informasi_umum --}}
+        {{-- foto_informasi_umum --}}
         <div>
-            <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto Informasi Umum</label>
+            <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2>
+            <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoInformasiUmum = $formKpKatelUap->foto_informasi_umum; 
                 if ($fotoInformasiUmum && is_string($fotoInformasiUmum)) {
@@ -96,11 +94,19 @@
             </div>
         </div>
 
-        {{-- Tempat & Tahun Pembuatan --}}
+        {{-- Tempat --}}
         <div>
-            <label class="block text-sm font-medium text-gray-700">Tempat & Tahun Pembuatan</label>
+            <label class="block text-sm font-medium text-gray-700">Tempat</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpKatelUap->tempat_tahun_pembuatan ?? '-' }}
+                {{ $formKpKatelUap->tempat ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tahun Pembuatan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpKatelUap->tahun_pembuatan ?? '-' }}
             </div>
         </div>
 
@@ -117,6 +123,14 @@
             <label class="block text-sm font-medium text-gray-700">Tekanan Kerja</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpKatelUap->tekanan_kerja ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Kapasitas Uap --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Kapasitas Uap</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpKatelUap->kapasitas_uap ?? '-' }}
             </div>
         </div>
 
@@ -153,9 +167,10 @@
         </div>
 
 
-        {{-- Foto foto_safety_valve --}}
+        {{-- foto_safety_valve --}}
         <div>
-            <label for="foto_safety_valve" class="block mt-10 mb-1 text-sm font-medium text-gray-700">Foto Safety Valve</label>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
+            <label for="foto_safety_valve" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoSafetyValve = $formKpKatelUap->foto_safety_valve; 
                 if ($fotoSafetyValve && is_string($fotoSafetyValve)) {
@@ -231,9 +246,10 @@
             </div>
         </div>
 
-        {{-- Foto foto_pressure_switch --}}
+        {{-- foto_pressure_switch --}}
         <div>
-            <label for="foto_pressure_switch" class="block mt-10 mb-1 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
+            <h2 class="block mb-1 text-sm font-bold text-gray-700">Pressure Switch</h2>
+            <label for="foto_pressure_switch" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoPressureSwitch = $formKpKatelUap->foto_pressure_switch; 
                 if ($fotoPressureSwitch && is_string($fotoPressureSwitch)) {

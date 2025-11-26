@@ -16,11 +16,15 @@ return new class extends Migration
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
             $table->date('tanggal_pemeriksaan')->nullable();
+            $table->string('tipe_tangki')->nullable();
             $table->string('pabrik_pembuat')->nullable();
-            $table->json('foto_visual')->nullable();
-            $table->string('tempat_tahun_pembuat')->nullable();
+            $table->string('tempat')->nullable();
+            $table->string('tahun_pembuat')->nullable();
+            $table->string('tekanan')->nullable();
+            $table->string('suhu')->nullable();
             $table->string('media_yang_diisikan')->nullable();
             $table->string('lokasi_tangki')->nullable();
+            $table->json('foto_visual')->nullable();
             $table->string('tanda_kebocoran')->nullable();
             $table->string('tanda_kebocoran_keterangan')->nullable();
             $table->string('kondisi_tangki')->nullable();

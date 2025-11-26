@@ -51,7 +51,11 @@ class FormKpScrewCompressorController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'              => 'nullable|date',
-            'pabrik_pembuat'                  => 'nullable|string|max:255',
+            'pabrik_pembuat'                   => 'nullable|string|max:255',
+            'lokasi'                           => 'nullable|string|max:255',
+            'negara'                           => 'nullable|string|max:255',
+            'tahun'                            => 'nullable|string|max:255',
+            'tekanan_kerja'                    => 'nullable|string|max:255',
 
             'foto_shell_separator'             => 'nullable|array',
             'foto_shell_separator.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
@@ -156,7 +160,11 @@ class FormKpScrewCompressorController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'              => 'nullable|date',
-            'pabrik_pembuat'                  => 'nullable|string|max:255',
+            'pabrik_pembuat'                   => 'nullable|string|max:255',
+            'lokasi'                           => 'nullable|string|max:255',
+            'negara'                           => 'nullable|string|max:255',
+            'tahun'                            => 'nullable|string|max:255',
+            'tekanan_kerja'                    => 'nullable|string|max:255',
 
             'foto_shell_separator'             => 'nullable|array',
             'foto_shell_separator.*'           => 'image|mimes:jpg,jpeg,png|max:10240',

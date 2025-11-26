@@ -65,13 +65,35 @@
                 @enderror
             </div>
 
+            {{-- Jenis Bejana--}}
+            <div>
+                <label for="jenis_bejana" class="block text-sm font-medium text-gray-700">Jenis Bejana</label>
+                <input type="text" name="jenis_bejana" placeholder="Jenis Bejana" id="jenis_bejana" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_bejana') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpBejanaTekan->jenis_bejana) }}">
+                @error('jenis_bejana')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Lokasi--}}
+            <div>
+                <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpBejanaTekan->lokasi) }}">
+                @error('lokasi')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
 
             {{-- Shell/Badan --}}
-            {{-- Foto foto_shell --}}
+            {{-- foto_shell --}}
             <div>
                 <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
-                <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
+                <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                 {{-- foto lama --}}
                 @if($formKpBejanaTekan->foto_shell)
@@ -166,10 +188,10 @@
                 @enderror
             </div>
 
-            {{-- Foto foto_head --}}
+            {{-- foto_head --}}
             <div>
                 <h2 class="block mb-1 text-sm font-bold text-gray-700">Head/Tutup Ujung</h2>
-                <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto Head/Tutup Ujung</label>
+                <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                 {{-- foto lama --}}
                 @if($formKpBejanaTekan->foto_head)
@@ -236,10 +258,10 @@
                 @enderror
             </div>
 
-            {{-- Foto foto_pipa --}}
+            {{-- foto_pipa --}}
             <div>
                 <h2 class="block mb-1 text-sm font-bold text-gray-700">Pipa-pipa/Channel</h2>
-                <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto Pipa-pipa/Channel</label>
+                <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                 {{-- foto lama --}}
                 @if($formKpBejanaTekan->foto_pipa)
@@ -321,10 +343,10 @@
                 @enderror
             </div>
 
-            {{-- Foto foto_instalasi --}}
+            {{-- foto_instalasi --}}
             <div>
                 <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-                <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
+                <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                 {{-- foto lama --}}
                 @if($formKpBejanaTekan->foto_instalasi)

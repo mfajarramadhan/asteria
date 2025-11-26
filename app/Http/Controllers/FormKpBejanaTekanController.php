@@ -48,7 +48,9 @@ class FormKpBejanaTekanController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
+            'pabrik_pembuat'      => 'nullable|string|max:255',
+            'jenis_bejana'        => 'nullable|string|max:255',
+            'lokasi'              => 'nullable|string|max:255',
             'foto_shell'          => 'nullable|array', 
             'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
             'ketidakbulatan'      => 'nullable|numeric',
@@ -146,6 +148,8 @@ class FormKpBejanaTekanController extends Controller
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
             'pabrik_pembuat'     => 'nullable|string|max:255',
+            'jenis_bejana'        => 'nullable|string|max:255',
+            'lokasi'              => 'nullable|string|max:255',
             'foto_shell'          => 'nullable|array', 
             'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
             'ketidakbulatan'      => 'nullable|numeric',

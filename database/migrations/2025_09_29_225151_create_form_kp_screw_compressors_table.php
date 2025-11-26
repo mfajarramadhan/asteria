@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
             $table->date('tanggal_pemeriksaan')->nullable();
             $table->string('pabrik_pembuat')->nullable();
+            $table->string('lokasi')->nullable();
+            $table->string('negara')->nullable();
+            $table->string('tahun')->nullable();
+            $table->string('tekanan_kerja')->nullable();
             $table->json('foto_shell_separator')->nullable();
             $table->decimal('ketebalan_shell_separator', 10, 4)->nullable();
             $table->decimal('diameter_shell_separator', 10, 4)->nullable();

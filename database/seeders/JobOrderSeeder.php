@@ -54,38 +54,38 @@ class JobOrderSeeder extends Seeder
             'no_seri' => 'PUBT001',
         ]);
 
-        // // Buat Tool ke-2 PUBT
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 2, // Katel Uap Industri
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => '100L',
-        //     'model' => 'KU-001',
-        //     'no_seri' => 'PUBT002',
-        // ]);
+        // Buat Tool ke-2 PUBT
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 2, // Katel Uap Industri
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '100L',
+            'model' => 'KU-001',
+            'no_seri' => 'PUBT002',
+        ]);
 
-        // // Buat Tool ke-3 PUBT
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 3, // Ingersoll Screw Compressor
-        //     'qty' => 1,
-        //     'status' => 'Pertama',
-        //     'kapasitas' => '45 kW, 10 bar',
-        //     'model' => 'SC-001',
-        //     'no_seri' => 'PUBT003',
-        // ]);
+        // Buat Tool ke-3 PUBT
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 3, // Ingersoll Screw Compressor
+            'qty' => 1,
+            'status' => 'Pertama',
+            'kapasitas' => '45 kW, 10 bar',
+            'model' => 'SC-001',
+            'no_seri' => 'PUBT003',
+        ]);
 
-        // // Buat Tool ke-4 PUBT
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 4, // Tangki Timbun Solar
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => '50.000 Liter',
-        //     'model' => 'TT-001',
-        //     'no_seri' => 'PUBT004',
-        // ]);
+        // Buat Tool ke-4 PUBT
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 4, // Tangki Timbun Solar
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '50.000 Liter',
+            'model' => 'TT-001',
+            'no_seri' => 'PUBT004',
+        ]);
 
 
 
@@ -240,7 +240,7 @@ class JobOrderSeeder extends Seeder
 
 
 
-        // // Buat Tools ke-1 IPK  
+        // Buat Tools ke-1 IPK  
         // JobOrderTool::create([
         //     'job_order_id' => $jobOrder->id,
         //     'tool_id' => 18, // Hydrant Basement

@@ -128,6 +128,12 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'blank'                         => 'nullable|string|max:255',
             'blank_hasil'                   => 'nullable|string|max:255',
             'ket_blank_tutup'               => 'nullable|string',
+            'blank2'                         => 'nullable|string|max:255',
+            'blank2_hasil'                   => 'nullable|string|max:255',
+            'ket_blank2_tutup'               => 'nullable|string',
+            'blank3'                         => 'nullable|string|max:255',
+            'blank3_hasil'                   => 'nullable|string|max:255',
+            'ket_blank3_tutup'               => 'nullable|string',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -194,45 +200,99 @@ class FormKpPesawatTenagaProduksiController extends Controller
     public function update(Request $request, FormKpPesawatTenagaProduksi $formKpPesawatTenagaProduksi)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array', 
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'pabrik_pembuat'                => 'nullable|string|max:255',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            // FOTO INFORMASI UMUM
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'nama_mesin'                    => 'nullable|string|max:255',
+            'fungsi'                        => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            // FOTO DEVICE
+            'foto_device'                   => 'nullable|array',
+            'foto_device.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            // SAFETY DEVICE 1–10
+            'safety_device1'                => 'nullable|string|max:255',
+            'safety_device2'                => 'nullable|string|max:255',
+            'safety_device3'                => 'nullable|string|max:255',
+            'safety_device4'                => 'nullable|string|max:255',
+            'safety_device5'                => 'nullable|string|max:255',
+            'safety_device6'                => 'nullable|string|max:255',
+            'safety_device7'                => 'nullable|string|max:255',
+            'safety_device8'                => 'nullable|string|max:255',
+            'safety_device9'                => 'nullable|string|max:255',
+            'safety_device10'               => 'nullable|string|max:255',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
+            // KOMPONEN UTAMA 1–10
+            'komponen_utama1'               => 'nullable|string|max:255',
+            'komponen_utama2'               => 'nullable|string|max:255',
+            'komponen_utama3'               => 'nullable|string|max:255',
+            'komponen_utama4'               => 'nullable|string|max:255',
+            'komponen_utama5'               => 'nullable|string|max:255',
+            'komponen_utama6'               => 'nullable|string|max:255',
+            'komponen_utama7'               => 'nullable|string|max:255',
+            'komponen_utama8'               => 'nullable|string|max:255',
+            'komponen_utama9'               => 'nullable|string|max:255',
+            'komponen_utama10'              => 'nullable|string|max:255',
 
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            // PENDUKUNG MESIN 1–10
+            'pendukung_mesin1'              => 'nullable|string|max:255',
+            'pendukung_mesin2'              => 'nullable|string|max:255',
+            'pendukung_mesin3'              => 'nullable|string|max:255',
+            'pendukung_mesin4'              => 'nullable|string|max:255',
+            'pendukung_mesin5'              => 'nullable|string|max:255',
+            'pendukung_mesin6'              => 'nullable|string|max:255',
+            'pendukung_mesin7'              => 'nullable|string|max:255',
+            'pendukung_mesin8'              => 'nullable|string|max:255',
+            'pendukung_mesin9'              => 'nullable|string|max:255',
+            'pendukung_mesin10'             => 'nullable|string|max:255',
+
+            // FOTO PENGUKURAN
+            'foto_pengukuran'               => 'nullable|array',
+            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // DATA PENGUKURAN
+            'pengukuran_grounding'          => 'nullable|numeric',
+            'pengukuran_pencahayaan'        => 'nullable|numeric',
+            'pengukuran_suhu'               => 'nullable|numeric',
+            'pengukuran_kebisingan'         => 'nullable|numeric',
+
+            // FOTO PENGUJIAN
+            'foto_pengujian'                => 'nullable|array',
+            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // DATA PENGUJIAN
+            'pengujian_grounding'           => 'nullable|numeric',
+            'pengujian_pencahayaan'         => 'nullable|numeric',
+            'pengujian_suhu'                => 'nullable|numeric',
+            'pengujian_kebisingan'          => 'nullable|numeric',
+
+            // EMERGENCY STOP
+            'emergency_stop'                => 'nullable|string|max:255',
+            'emergency_stop_hasil'          => 'nullable|string|max:255',
+            'ket_emergency_stop_tutup'      => 'nullable|string',
+
+            // BLANK FIELD
+            'blank'                         => 'nullable|string|max:255',
+            'blank_hasil'                   => 'nullable|string|max:255',
+            'ket_blank_tutup'               => 'nullable|string',
+            'blank2'                         => 'nullable|string|max:255',
+            'blank2_hasil'                   => 'nullable|string|max:255',
+            'ket_blank2_tutup'               => 'nullable|string',
+            'blank3'                         => 'nullable|string|max:255',
+            'blank3_hasil'                   => 'nullable|string|max:255',
+            'ket_blank3_tutup'               => 'nullable|string',
+            'catatan'                       => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_device', 'foto_pengukuran', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpPesawatTenagaProduksi->$field) {

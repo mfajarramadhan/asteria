@@ -60,13 +60,33 @@
                     @enderror   
                 </div>
 
+                {{-- Jenis Bejana --}}
+                <div>
+                    <input type="text" name="jenis_bejana" placeholder="Jenis Bejana" id="jenis_bejana" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_bejana') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis_bejana') }}">
+                    @error('jenis_bejana')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Lokasi --}}
+                <div>
+                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
+                    @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
                 
                 {{-- Shell/Badan --}}
-                {{-- Foto foto_shell --}}
+                {{-- foto_shell --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan</h2>
-                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto Shell/Badan</label>
+                    <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_shell-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_shell[]" id="foto_shell" accept="image/*" multiple onchange="previewImage(this, 'foto_shell-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_shell') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -117,10 +137,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_head --}}
+                {{-- foto_head --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Head/Tutup Ujung</h2>
-                    <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto Head/Tutup Ujung</label>
+                    <label for="foto_head" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_head-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_head[]" id="foto_head" accept="image/*" multiple onchange="previewImage(this, 'foto_head-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_head') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -151,10 +171,10 @@
                     @enderror   
                 </div>
 
-                {{-- Foto foto_pipa --}}
+                {{-- foto_pipa --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pipa-pipa/Channel</h2>
-                    <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto Pipa-pipa/Channel</label>
+                    <label for="foto_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pipa-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pipa[]" id="foto_pipa" accept="image/*" multiple onchange="previewImage(this, 'foto_pipa-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pipa') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -195,10 +215,10 @@
                     @enderror   
                 </div>
                 
-                {{-- Foto foto_instalasi --}}
+                {{-- foto_instalasi --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-                    <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto Instalasi Pipa</label>
+                    <label for="foto_instalasi" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_instalasi-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_instalasi[]" id="foto_instalasi" accept="image/*" multiple onchange="previewImage(this, 'foto_instalasi-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_instalasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -304,7 +324,7 @@
                             • Media yang diisikan?
                         </label>
                         <div class="w-[30%] md:w-[25%]">
-                            <input type="number" step="any" name="media_yang_diisikan" id="media_yang_diisikan" class="block w-full border px-3 py-1 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('media_yang_diisikan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('media_yang_diisikan') }}">
+                            <input type="text" name="media_yang_diisikan" id="media_yang_diisikan" class="block w-full border px-3 py-1 border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('media_yang_diisikan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('media_yang_diisikan') }}">
                             @error('media_yang_diisikan')
                             <div class="text-xs text-red-600">
                                 {{ $message }}

@@ -143,52 +143,56 @@ class FormKpMotorDieselController extends Controller
         return view('form_kp.ptp.motor_diesel.edit', [
             'title' => 'Edit Hasil Kartu Pemeriksaan Motor Diesel',
             'subtitle' => 'Perbarui data hasil pemeriksaan',
-            'FormKpMotorDiesel' => $formKpMotorDiesel,
+            'formKpMotorDiesel' => $formKpMotorDiesel,
         ]);
     }
 
     public function update(Request $request, FormKpMotorDiesel $formKpMotorDiesel)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array', 
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'pabrik_pembuat'                => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            'foto_mesin'                    => 'nullable|array',
+            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            'daya_mesin'                    => 'nullable|numeric',
+            'jumlah_silinder'               => 'nullable|numeric',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            'foto_generator'                => 'nullable|array',
+            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
+            'foto_pengukuran'               => 'nullable|array',
+            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            'grounding1'                    => 'nullable|string|max:255',
+            'grounding2'                    => 'nullable|string|max:255',
+            'pondasi'                       => 'nullable|string|max:255',
+            'rangka'                        => 'nullable|string|max:255',
+            'cover_kipas'                   => 'nullable|string|max:255',
+            'pencahayaan_depan'             => 'nullable|string|max:255',
+            'pencahayaan_belakang'          => 'nullable|string|max:255',
+            'pencahayaan_tengah'            => 'nullable|string|max:255',
+            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
+            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
+            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
+            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
+            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+
+            'foto_pengujian'                => 'nullable|array',
+            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'emergency_stop'                => 'nullable|string|max:255',
+            'emergency_stop_ket'            => 'nullable|string|max:255',
+            'catatan'                       => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpMotorDiesel->$field) {

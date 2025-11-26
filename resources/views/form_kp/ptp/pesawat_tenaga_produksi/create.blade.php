@@ -60,11 +60,10 @@
                     @enderror   
                 </div>
 
-                <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2>
-                
                 {{-- Foto --}}
                 <div>
-                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2>
+                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_informasi_umum[]" id="foto_informasi_umum" accept="image/*" multiple onchange="previewImage(this, 'foto_informasi_umum-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_informasi_umum') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -119,7 +118,8 @@
 
                 {{-- Foto Device --}}
                 <div>
-                    <label for="foto_device" class="block mb-1 text-sm font-medium text-gray-700">Foto Device</label>
+                    <h2 class="block text-sm font-bold text-gray-700">Safety Device</h2>
+                    <label for="foto_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_device-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_device[]" id="foto_device" accept="image/*" multiple onchange="previewImage(this, 'foto_device-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_device') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -375,7 +375,7 @@
                 {{-- Foto Pengukuran --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran</h2>
-                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto Pengukuran</label>
+                    <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengukuran-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengukuran[]" id="foto_pengukuran" accept="image/*" multiple onchange="previewImage(this, 'foto_pengukuran-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengukuran') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -412,7 +412,7 @@
                 {{-- Foto Pengujian --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengujian</h2>
-                    <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto Pengujian</label>
+                    <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengujian-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengujian[]" id="foto_pengujian" accept="image/*" multiple onchange="previewImage(this, 'foto_pengujian-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengujian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -502,6 +502,78 @@
                     <div>
                         <input type="text" name="ket_blank" placeholder="" id="ket_blank" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ket_blank') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('ket_blank') }}">
                         @error('ket_blank')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    {{-- Baris 3 --}}
+                    <div>
+                        <input type="text" name="blank2" placeholder="" id="blank2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('blank2') }}">
+                        @error('blank2')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <select name="blank2_hasil" id="blank2_hasil"
+                            class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank2_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                            
+                            <option value="-" {{ old('blank2_hasil') == '-' ? 'selected' : '' }}>-</option>
+                            <option value="Berfungsi" {{ old('blank2_hasil') == 'Berfungsi' ? 'selected' : '' }}>Berfungsi</option>
+                            <option value="Tidak Berfungsi" {{ old('blank2_hasil') == 'Tidak Berfungsi' ? 'selected' : '' }}>Tidak Berfungsi</option>
+                            
+                        </select>
+
+                        @error('blank2_hasil')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <input type="text" name="ket_blank2" placeholder="" id="ket_blank2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ket_blank2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('ket_blank2') }}">
+                        @error('ket_blank2')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    {{-- Baris 4 --}}
+                    <div>
+                        <input type="text" name="blank3" placeholder="" id="blank3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('blank3') }}">
+                        @error('blank3')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <select name="blank3_hasil" id="blank3_hasil"
+                            class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('blank3_hasil') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                            
+                            <option value="-" {{ old('blank3_hasil') == '-' ? 'selected' : '' }}>-</option>
+                            <option value="Berfungsi" {{ old('blank3_hasil') == 'Berfungsi' ? 'selected' : '' }}>Berfungsi</option>
+                            <option value="Tidak Berfungsi" {{ old('blank3_hasil') == 'Tidak Berfungsi' ? 'selected' : '' }}>Tidak Berfungsi</option>
+                            
+                        </select>
+
+                        @error('blank3_hasil')
+                        <div class="text-xs text-red-600">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <input type="text" name="ket_blank3" placeholder="" id="ket_blank3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('ket_blank3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('ket_blank3') }}">
+                        @error('ket_blank3')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>

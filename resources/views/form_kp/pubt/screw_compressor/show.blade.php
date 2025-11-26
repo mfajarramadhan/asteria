@@ -64,13 +64,44 @@
             </div>
         </div>
 
+        {{-- Lokasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpScrewCompressor->lokasi ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Negara --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Negara</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpScrewCompressor->negara ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tahun --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tahun</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpScrewCompressor->tahun ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tekanan Kerja --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tekanan Kerja</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpScrewCompressor->tekanan_kerja ?? '-' }}
+            </div>
+        </div>
+
         <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
         
-        {{-- Shell/Badan Saparator Tank --}}
-        {{-- Foto foto_shell_separator --}}
+        {{-- foto_shell_separator --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
-            <label for="foto_shell_separator" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label for="foto_shell_separator" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoShellSeparator = $formKpScrewCompressor->foto_shell_separator; 
                 if ($fotoShellSeparator && is_string($fotoShellSeparator)) {
@@ -120,10 +151,10 @@
 
 
         {{-- Instalasi Pipa --}}
-        {{-- Foto foto_instalasi_pipa --}}
+        {{-- foto_instalasi_pipa --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-            <label for="foto_instalasi_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label for="foto_instalasi_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoInstalasiPipa = $formKpScrewCompressor->foto_instalasi_pipa; 
                 if ($fotoInstalasiPipa && is_string($fotoInstalasiPipa)) {
@@ -173,10 +204,10 @@
 
 
         {{-- Casing/Cover Screw Compressor --}}
-        {{-- Foto foto_casing_screw --}}
+        {{-- foto_casing_screw --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
-            <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoCasingScrew = $formKpScrewCompressor->foto_casing_screw; 
                 if ($fotoCasingScrew && is_string($fotoCasingScrew)) {
@@ -226,10 +257,10 @@
 
 
         {{-- Pondasi Screw Compressor --}}
-        {{-- Foto foto_pondasi_screw --}}
+        {{-- foto_pondasi_screw --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
-            <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoPondasiScrew = $formKpScrewCompressor->foto_pondasi_screw; 
                 if ($fotoPondasiScrew && is_string($fotoPondasiScrew)) {
@@ -271,10 +302,10 @@
 
         
         {{-- Safety Device --}}
-        {{-- Foto foto_safety_device --}}
+        {{-- foto_safety_device --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
-            <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $foto_safety_device = $formKpScrewCompressor->foto_safety_device; 
                 if ($foto_safety_device && is_string($foto_safety_device)) {
@@ -334,7 +365,7 @@
                 class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpScrewCompressor->catatan_safety_valve ?? '-' }}</textarea>
         </div>
 
-        {{-- Foto foto_pressure_switch --}}
+        {{-- foto_pressure_switch --}}
         <div>
             <label for="foto_pressure_switch" class="block mt-10 mb-1 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
             @php

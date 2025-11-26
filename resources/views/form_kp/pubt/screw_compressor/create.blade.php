@@ -59,14 +59,53 @@
                     </div>
                     @enderror   
                 </div>
+                
+                {{-- Lokasi --}}
+                <div>
+                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
+                    @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Negara --}}
+                <div>
+                    <input type="text" name="negara" placeholder="Negara" id="negara" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara') }}">
+                    @error('negara')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tahun --}}
+                <div>
+                    <input type="text" name="tahun" placeholder="Tahun" id="tahun" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun') }}">
+                    @error('tahun')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tekanan Kerja --}}
+                <div>
+                    <input type="text" name="tekanan_kerja" placeholder="Tekanan Kerja" id="tekanan_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_kerja') }}">
+                    @error('tekanan_kerja')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
 
                 <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
                 
-                {{-- Shell/Badan Saparator Tank --}}
-                {{-- Foto foto_shell_separator --}}
+                {{-- foto_shell_separator --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
-                    <label for="foto_shell_separator" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_shell_separator" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_shell_separator-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_shell_separator[]" id="foto_shell_separator" accept="image/*" multiple onchange="previewImage(this, 'foto_shell_separator-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_shell_separator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -108,10 +147,10 @@
                 </div>
 
                 {{-- Instalasi Pipa --}}
-                {{-- Foto foto_instalasi_pipa --}}
+                {{-- foto_instalasi_pipa --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
-                    <label for="foto_instalasi_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_instalasi_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_instalasi_pipa-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_instalasi_pipa[]" id="foto_instalasi_pipa" accept="image/*" multiple onchange="previewImage(this, 'foto_instalasi_pipa-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_instalasi_pipa') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     @error('foto_instalasi_pipa')
@@ -152,10 +191,10 @@
                 </div>
 
                 {{-- Casing/Cover Screw Compressor --}}
-                {{-- Foto foto_casing_screw --}}
+                {{-- foto_casing_screw --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
-                    <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_casing_screw-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_casing_screw[]" id="foto_casing_screw" accept="image/*" multiple onchange="previewImage(this, 'foto_casing_screw-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_casing_screw') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     @error('foto_casing_screw')
@@ -196,10 +235,10 @@
                 </div>
 
                 {{-- Pondasi Screw Compressor --}}
-                {{-- Foto foto_pondasi_screw --}}
+                {{-- foto_pondasi_screw --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
-                    <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pondasi_screw-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pondasi_screw[]" id="foto_pondasi_screw" accept="image/*" multiple onchange="previewImage(this, 'foto_pondasi_screw-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pondasi_screw') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     @error('foto_pondasi_screw')
@@ -230,10 +269,10 @@
                 </div>
                 
                 {{-- Safety Device --}}
-                {{-- Foto foto_safety_device --}}
+                {{-- foto_safety_device --}}
                 <div>
                     <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
-                    <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+                    <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_safety_device-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_safety_device[]" id="foto_safety_device" accept="image/*" multiple onchange="previewImage(this, 'foto_safety_device-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_safety_device') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
@@ -289,9 +328,10 @@
                     @enderror
                 </div>
 
-                {{-- Foto foto_pressure_switch --}}
+                {{-- foto_pressure_switch --}}
                 <div>
-                    <label for="foto_pressure_switch" class="block mt-10 mb-1 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
+                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pressure Switch</h2>
+                    <label for="foto_pressure_switch" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pressure_switch-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pressure_switch[]" id="foto_pressure_switch" accept="image/*" multiple onchange="previewImage(this, 'foto_pressure_switch-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pressure_switch') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                     
