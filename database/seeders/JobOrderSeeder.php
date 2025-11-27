@@ -43,49 +43,49 @@ class JobOrderSeeder extends Seeder
             'catatan' => 'Job Order Pertama',
         ]);
 
-        // Buat Tool ke-1 PUBT
-        JobOrderTool::create([
-            'job_order_id' => $jobOrder->id,
-            'tool_id' => 1, // Bejana Tekan Air
-            'qty' => 1,
-            'status' => 'Pertama',
-            'kapasitas' => '500L',
-            'model' => 'BT-001',
-            'no_seri' => 'PUBT001',
-        ]);
+        // // Buat Tool ke-1 PUBT
+        // JobOrderTool::create([
+        //     'job_order_id' => $jobOrder->id,
+        //     'tool_id' => 1, // Bejana Tekan Air
+        //     'qty' => 1,
+        //     'status' => 'Pertama',
+        //     'kapasitas' => '500L',
+        //     'model' => 'BT-001',
+        //     'no_seri' => 'PUBT001',
+        // ]);
 
-        // Buat Tool ke-2 PUBT
-        JobOrderTool::create([
-            'job_order_id' => $jobOrder->id,
-            'tool_id' => 2, // Katel Uap Industri
-            'qty' => 1,
-            'status' => 'Resertifikasi',
-            'kapasitas' => '100L',
-            'model' => 'KU-001',
-            'no_seri' => 'PUBT002',
-        ]);
+        // // Buat Tool ke-2 PUBT
+        // JobOrderTool::create([
+        //     'job_order_id' => $jobOrder->id,
+        //     'tool_id' => 2, // Katel Uap Industri
+        //     'qty' => 1,
+        //     'status' => 'Resertifikasi',
+        //     'kapasitas' => '100L',
+        //     'model' => 'KU-001',
+        //     'no_seri' => 'PUBT002',
+        // ]);
 
-        // Buat Tool ke-3 PUBT
-        JobOrderTool::create([
-            'job_order_id' => $jobOrder->id,
-            'tool_id' => 3, // Ingersoll Screw Compressor
-            'qty' => 1,
-            'status' => 'Pertama',
-            'kapasitas' => '45 kW, 10 bar',
-            'model' => 'SC-001',
-            'no_seri' => 'PUBT003',
-        ]);
+        // // Buat Tool ke-3 PUBT
+        // JobOrderTool::create([
+        //     'job_order_id' => $jobOrder->id,
+        //     'tool_id' => 3, // Ingersoll Screw Compressor
+        //     'qty' => 1,
+        //     'status' => 'Pertama',
+        //     'kapasitas' => '45 kW, 10 bar',
+        //     'model' => 'SC-001',
+        //     'no_seri' => 'PUBT003',
+        // ]);
 
-        // Buat Tool ke-4 PUBT
-        JobOrderTool::create([
-            'job_order_id' => $jobOrder->id,
-            'tool_id' => 4, // Tangki Timbun Solar
-            'qty' => 1,
-            'status' => 'Resertifikasi',
-            'kapasitas' => '50.000 Liter',
-            'model' => 'TT-001',
-            'no_seri' => 'PUBT004',
-        ]);
+        // // Buat Tool ke-4 PUBT
+        // JobOrderTool::create([
+        //     'job_order_id' => $jobOrder->id,
+        //     'tool_id' => 4, // Tangki Timbun Solar
+        //     'qty' => 1,
+        //     'status' => 'Resertifikasi',
+        //     'kapasitas' => '50.000 Liter',
+        //     'model' => 'TT-001',
+        //     'no_seri' => 'PUBT004',
+        // ]);
 
 
 
@@ -125,15 +125,15 @@ class JobOrderSeeder extends Seeder
 
 
         // Buat Tools ke-1 PAPA  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder->id,
-        //     'tool_id' => 8, // Genie Scissor Lift
-        //     'qty' => 1,
-        //     'status' => 'Pertama',
-        //     'kapasitas' => '350 Kg',
-        //     'model' => 'SL-001',
-        //     'no_seri' => 'PAPA001',
-        // ]);
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder->id,
+            'tool_id' => 8, // Genie Scissor Lift
+            'qty' => 1,
+            'status' => 'Pertama',
+            'kapasitas' => '350 Kg',
+            'model' => 'SL-001',
+            'no_seri' => 'PAPA001',
+        ]);
 
         // // Buat Tools ke-2 PAPA  
         // JobOrderTool::create([

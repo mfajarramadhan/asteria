@@ -481,7 +481,7 @@ class FormKpHeatTreatmentController extends Controller
 
     public function update(Request $request, FormKpHeatTreatment $formKpHeatTreatment)
     {
-        dd($request->all());
+        // dd($request->all());
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
             'pabrik_pembuat' => 'nullable|string|max:255',

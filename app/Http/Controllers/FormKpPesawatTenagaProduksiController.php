@@ -127,13 +127,13 @@ class FormKpPesawatTenagaProduksiController extends Controller
             // BLANK FIELD
             'blank'                         => 'nullable|string|max:255',
             'blank_hasil'                   => 'nullable|string|max:255',
-            'ket_blank_tutup'               => 'nullable|string',
-            'blank2'                         => 'nullable|string|max:255',
-            'blank2_hasil'                   => 'nullable|string|max:255',
-            'ket_blank2_tutup'               => 'nullable|string',
-            'blank3'                         => 'nullable|string|max:255',
-            'blank3_hasil'                   => 'nullable|string|max:255',
-            'ket_blank3_tutup'               => 'nullable|string',
+            'ket_blank'                     => 'nullable|string',
+            'blank2'                        => 'nullable|string|max:255',
+            'blank2_hasil'                  => 'nullable|string|max:255',
+            'ket_blank2'                    => 'nullable|string',
+            'blank3'                        => 'nullable|string|max:255',
+            'blank3_hasil'                  => 'nullable|string|max:255',
+            'ket_blank3'                    => 'nullable|string',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -278,13 +278,13 @@ class FormKpPesawatTenagaProduksiController extends Controller
             // BLANK FIELD
             'blank'                         => 'nullable|string|max:255',
             'blank_hasil'                   => 'nullable|string|max:255',
-            'ket_blank_tutup'               => 'nullable|string',
-            'blank2'                         => 'nullable|string|max:255',
-            'blank2_hasil'                   => 'nullable|string|max:255',
-            'ket_blank2_tutup'               => 'nullable|string',
-            'blank3'                         => 'nullable|string|max:255',
-            'blank3_hasil'                   => 'nullable|string|max:255',
-            'ket_blank3_tutup'               => 'nullable|string',
+            'ket_blank'                     => 'nullable|string',
+            'blank2'                        => 'nullable|string|max:255',
+            'blank2_hasil'                  => 'nullable|string|max:255',
+            'ket_blank2'                    => 'nullable|string',
+            'blank3'                        => 'nullable|string|max:255',
+            'blank3_hasil'                  => 'nullable|string|max:255',
+            'ket_blank3'                    => 'nullable|string',
             'catatan'                       => 'nullable|string',
         ]);
 
