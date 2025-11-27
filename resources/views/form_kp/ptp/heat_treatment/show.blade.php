@@ -61,12 +61,12 @@
 
         {{-- <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2> --}}
 
-        {{-- foto_billet --}}
+        {{-- foto_informasi_umum --}}
         <div>
             <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
             <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
-                $fotoInformasiUmum = $formKpHeatTreatment->foto_billet; 
+                $fotoInformasiUmum = $formKpHeatTreatment->foto_informasi_umum; 
                 if ($fotoInformasiUmum && is_string($fotoInformasiUmum)) {
                     $fotoInformasiUmum = json_decode($fotoInformasiUmum, true);
                 }            
