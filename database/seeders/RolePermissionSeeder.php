@@ -33,7 +33,7 @@ class RolePermissionSeeder extends Seeder
         $userSuperAdmin = User::create([
             'nama' => 'Muh Fajar',
             'email' => 'fajar@gmail.com',
-            'id_user' => '1000',
+            'id_user' => '0001',
             'jabatan' => 'Admin Utama',
             'avatar' => 'avatars/default.png',
             'password' => bcrypt('fajar12345'),

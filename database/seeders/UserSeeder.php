@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
 
         $userPetugas = User::create([
             'nama'      => 'Heri',
-            'id_user'     => '0006',
+            'id_user'     => '0002',
             'email'     => 'heri@gmail.com',
             'jabatan'   => 'Ahli K3',
             'avatar'    => 'avatars/default.png',
@@ -56,25 +56,25 @@ class UserSeeder extends Seeder
 
         $userAdmin2 = User::create([
             'nama'      => 'Intan',
-            'id_user'     => '0007',
+            'id_user'     => '0006',
             'email'     => 'intan@gmail.com',
-            'jabatan'   => 'Staff Penyusun LHP',
+            'jabatan'   => 'Staff Admin',
             'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('intan12345'),
         ]);
 
         $userAdmin3 = User::create([
             'nama'      => 'Sarah',
-            'id_user'     => '0008',
+            'id_user'     => '0007',
             'email'     => 'sarah@gmail.com',
-            'jabatan'   => 'Staff Penyusun LHP',
+            'jabatan'   => 'Staff Admin',
             'avatar'    => 'avatars/default.png',
             'password'  => Hash::make('sarah12345'),
         ]);
 
         $userPenyusunLHP = User::create([
             'nama'      => 'Bayu',
-            'id_user'     => '0002',
+            'id_user'     => '0008',
             'email'     => 'bayu@gmail.com',
             'jabatan'   => 'Staff Penyusun LHP',
             'avatar'    => 'avatars/default.png',
