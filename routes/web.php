@@ -13,8 +13,12 @@ use App\Http\Controllers\DashboardPUBTController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\JobOrderToolController;
 use App\Http\Controllers\FormKpBejanaTekanController;
+use App\Http\Controllers\FormKpCargoLiftController;
+use App\Http\Controllers\FormKpCraneController;
+use App\Http\Controllers\FormKpDumpTrailerController;
 use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
+use App\Http\Controllers\FormKpForkliftController;
 use App\Http\Controllers\FormKpInstalasiFireAlarmController;
 use App\Http\Controllers\FormKpHeatTreatmentController;
 use App\Http\Controllers\FormKpKatelUapController;
@@ -23,6 +27,7 @@ use App\Http\Controllers\FormKpPesawatTenagaProduksiController;
 use App\Http\Controllers\FormKpScissorLiftController;
 use App\Http\Controllers\FormKpScrewCompressorController;
 use App\Http\Controllers\FormKpTangkiTimbunController;
+use App\Http\Controllers\FormKpWheelLoaderController;
 use App\Http\Controllers\RiksaUjiController;
 
 Route::get('/', function () {
@@ -167,6 +172,56 @@ Route::middleware('auth')->group(function () {
             Route::get('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'show'])->name('show');
             Route::get('/{formKpScissorLift}/edit', [FormKpScissorLiftController::class, 'edit'])->name('edit');
             Route::put('/{formKpScissorLift}', [FormKpScissorLiftController::class, 'update'])->name('update');
+        });
+
+        // CRUD Wheel Loader
+        Route::prefix('wheel_loader')->name('wheel_loader.')->group(function () {
+            Route::get('/', [FormKpWheelLoaderController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpWheelLoaderController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpWheelLoaderController::class, 'store'])->name('store');
+            Route::get('/{formKpWheelLoader}', [FormKpWheelLoaderController::class, 'show'])->name('show');
+            Route::get('/{formKpWheelLoader}/edit', [FormKpWheelLoaderController::class, 'edit'])->name('edit');
+            Route::put('/{formKpWheelLoader}', [FormKpWheelLoaderController::class, 'update'])->name('update');
+        });
+
+        // CRUD Dump Trailer
+        Route::prefix('dump_trailer')->name('dump_trailer.')->group(function () {
+            Route::get('/', [FormKpDumpTrailerController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpDumpTrailerController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpDumpTrailerController::class, 'store'])->name('store');
+            Route::get('/{formKpDumpTrailer}', [FormKpDumpTrailerController::class, 'show'])->name('show');
+            Route::get('/{formKpDumpTrailer}/edit', [FormKpDumpTrailerController::class, 'edit'])->name('edit');
+            Route::put('/{formKpDumpTrailer}', [FormKpDumpTrailerController::class, 'update'])->name('update');
+        });
+
+        // CRUD Crane
+        Route::prefix('crane')->name('crane.')->group(function () {
+            Route::get('/', [FormKpCraneController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpCraneController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpCraneController::class, 'store'])->name('store');
+            Route::get('/{formKpCrane}', [FormKpCraneController::class, 'show'])->name('show');
+            Route::get('/{formKpCrane}/edit', [FormKpCraneController::class, 'edit'])->name('edit');
+            Route::put('/{formKpCrane}', [FormKpCraneController::class, 'update'])->name('update');
+        });
+
+        // CRUD Forklift
+        Route::prefix('forklift')->name('forklift.')->group(function () {
+            Route::get('/', [FormKpForkliftController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpForkliftController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpForkliftController::class, 'store'])->name('store');
+            Route::get('/{formKpForklift}', [FormKpForkliftController::class, 'show'])->name('show');
+            Route::get('/{formKpForklift}/edit', [FormKpForkliftController::class, 'edit'])->name('edit');
+            Route::put('/{formKpForklift}', [FormKpForkliftController::class, 'update'])->name('update');
+        });
+
+        // CRUD Cargo Lift
+        Route::prefix('cargo_lift')->name('cargo_lift.')->group(function () {
+            Route::get('/', [FormKpCargoLiftController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpCargoLiftController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpCargoLiftController::class, 'store'])->name('store');
+            Route::get('/{formKpCargoLift}', [FormKpCargoLiftController::class, 'show'])->name('show');
+            Route::get('/{formKpCargoLift}/edit', [FormKpCargoLiftController::class, 'edit'])->name('edit');
+            Route::put('/{formKpCargoLift}', [FormKpCargoLiftController::class, 'update'])->name('update');
         });
     });
 
