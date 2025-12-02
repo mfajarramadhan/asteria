@@ -477,27 +477,27 @@ class JobOrderSeeder extends Seeder
 
 
 
-        // // Buat Tools ke-1 Listrik  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder2->id,
-        //     'tool_id' => 14, // Genset Diesel
-        //     'qty' => 1,
-        //     'status' => 'Pertama',
-        //     'kapasitas' => '100 kVA',
-        //     'model' => 'IL-001',
-        //     'no_seri' => 'LTK001',
-        // ]);
+        // Buat Tools ke-1 Listrik  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder2->id,
+            'tool_id' => 14, // Genset Diesel
+            'qty' => 1,
+            'status' => 'Pertama',
+            'kapasitas' => '100 kVA',
+            'model' => 'IL-001',
+            'no_seri' => 'LTK001',
+        ]);
 
-        // // Buat Tools ke-2 Listrik  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder2->id,
-        //     'tool_id' => 15, // Penangkal Petir Elektrostatis
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => 'Radius proteksi 79 m',
-        //     'model' => 'PP-001',
-        //     'no_seri' => 'LTK002',
-        // ]);
+        // Buat Tools ke-2 Listrik  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder2->id,
+            'tool_id' => 15, // Penangkal Petir Elektrostatis
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => 'Radius proteksi 79 m',
+            'model' => 'PP-001',
+            'no_seri' => 'LTK002',
+        ]);
 
 
 

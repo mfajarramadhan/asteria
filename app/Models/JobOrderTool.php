@@ -113,6 +113,17 @@ class JobOrderTool extends Model
         return $this->hasOne(formKpCargoLift::class, 'job_order_tool_id');
     }
     
+    // Relasi ke Form Listrik
+    public function formKpInstalasiListrik()
+    {
+        return $this->hasOne(FormKpInstalasiListrik::class, 'job_order_tool_id');
+    }
+    
+    public function formKpInstalasiPenyalurPetir()
+    {
+        return $this->hasOne(FormKpInstalasiPenyalurPetir::class, 'job_order_tool_id');
+    }
+
     // Relasi ke Form Eskalator
     public function formKpEskalator()
     {

@@ -48,6 +48,8 @@ class FormKpBejanaTekanController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
+            'foto_informasi_umum'    => 'nullable|array', 
+            'foto_informasi_umum.*'  => 'image|mimes:jpg,jpeg,png|max:10240',
             'pabrik_pembuat'      => 'nullable|string|max:255',
             'jenis_bejana'        => 'nullable|string|max:255',
             'lokasi'              => 'nullable|string|max:255',
@@ -91,7 +93,7 @@ class FormKpBejanaTekanController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -147,6 +149,8 @@ class FormKpBejanaTekanController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
+            'foto_informasi_umum'    => 'nullable|array', 
+            'foto_informasi_umum.*'  => 'image|mimes:jpg,jpeg,png|max:10240',
             'pabrik_pembuat'     => 'nullable|string|max:255',
             'jenis_bejana'        => 'nullable|string|max:255',
             'lokasi'              => 'nullable|string|max:255',
@@ -186,7 +190,7 @@ class FormKpBejanaTekanController extends Controller
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpBejanaTekan->$field) {

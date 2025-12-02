@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
 
             $table->date('tanggal_pemeriksaan');
+            $table->json('foto_informasi_umum')->nullable();
             $table->string('pabrik_pembuat')->nullable();
             $table->string('jenis_bejana')->nullable();
             $table->string('lokasi')->nullable();

@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class FormKpBejanaTekan extends Model
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FormKpInstalasiPenyalurPetir extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_kp_bejana_tekan';
+    protected $table = 'form_kp_instalasi_penyalur_petir';
 
     protected $guarded = [
         'id',
@@ -16,11 +17,10 @@ class FormKpBejanaTekan extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        'foto_informasi_umum' => 'array',
-        'foto_shell' => 'array',
-        'foto_head' => 'array',
-        'foto_pipa' => 'array',
-        'foto_instalasi' => 'array',
+        // 'foto_informasi_umum' => 'array',
+        // 'foto_device' => 'array',
+        // 'foto_pengukuran' => 'array',
+        // 'foto_pengujian' => 'array',
     ];
 
     // Relasi ke job_order_tool
@@ -29,4 +29,3 @@ class FormKpBejanaTekan extends Model
         return $this->belongsTo(JobOrderTool::class);
     }
 }
-

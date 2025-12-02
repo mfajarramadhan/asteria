@@ -7,6 +7,7 @@ use App\Http\Controllers\JobOrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardEskalatorController;
 use App\Http\Controllers\DashboardIPKController;
+use App\Http\Controllers\DashboardListrikController;
 use App\Http\Controllers\DashboardPAPAController;
 use App\Http\Controllers\DashboardPTPController;
 use App\Http\Controllers\DashboardPUBTController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpForkliftController;
 use App\Http\Controllers\FormKpInstalasiFireAlarmController;
 use App\Http\Controllers\FormKpHeatTreatmentController;
+use App\Http\Controllers\FormKpInstalasiListrikController;
+use App\Http\Controllers\FormKpInstalasiPenyalurPetirController;
 use App\Http\Controllers\FormKpKatelUapController;
 use App\Http\Controllers\FormKpMotorDieselController;
 use App\Http\Controllers\FormKpPesawatTenagaProduksiController;
@@ -122,6 +125,8 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+
+
     // Rute Form KP PTP: Semua Role
     Route::prefix('form_kp/ptp')->name('form_kp.ptp.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PTP
@@ -157,6 +162,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/{formKpHeatTreatment}', [FormKpHeatTreatmentController::class, 'update'])->name('update');
         });
     });
+
 
 
     // Rute Form KP PAPA: Semua Role
@@ -224,6 +230,36 @@ Route::middleware('auth')->group(function () {
             Route::put('/{formKpCargoLift}', [FormKpCargoLiftController::class, 'update'])->name('update');
         });
     });
+    
+
+
+    // Rute Form KP Listrik Semua Role
+    Route::prefix('form_kp/listrik')->name('form_kp.listrik.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
+        // Dashboard PTP
+        Route::get('/', [DashboardListrikController::class, 'index'])->name('index');
+
+        // CRUD Instalasi Listrik
+        Route::prefix('instalasi_listrik')->name('instalasi_listrik.')->group(function () {
+            Route::get('/', [FormKpInstalasiListrikController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpInstalasiListrikController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpInstalasiListrikController::class, 'store'])->name('store');
+            Route::get('/{formKpInstalasiListrik}', [FormKpInstalasiListrikController::class, 'show'])->name('show');
+            Route::get('/{formKpInstalasiListrik}/edit', [FormKpInstalasiListrikController::class, 'edit'])->name('edit');
+            Route::put('/{formKpInstalasiListrik}', [FormKpInstalasiListrikController::class, 'update'])->name('update');
+        });
+
+        // CRUD Instalasi Penyalur Petir
+        Route::prefix('instalasi_penyalur_petir')->name('instalasi_penyalur_petir.')->group(function () {
+            Route::get('/', [FormKpInstalasiPenyalurPetirController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpInstalasiPenyalurPetirController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpInstalasiPenyalurPetirController::class, 'store'])->name('store');
+            Route::get('/{formKpInstalasiPenyalurPetir}', [FormKpInstalasiPenyalurPetirController::class, 'show'])->name('show');
+            Route::get('/{formKpInstalasiPenyalurPetir}/edit', [FormKpInstalasiPenyalurPetirController::class, 'edit'])->name('edit');
+            Route::put('/{formKpInstalasiPenyalurPetir}', [FormKpInstalasiPenyalurPetirController::class, 'update'])->name('update');
+        });
+    });
+
+
 
     // Rute Form KP Eskalator: Semua Role
     Route::prefix('form_kp/eskalator')->name('form_kp.eskalator.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
@@ -250,6 +286,9 @@ Route::middleware('auth')->group(function () {
             Route::put('/{formKpElevator}', [FormKpElevatorController::class, 'update'])->name('update');
         });
     });
+
+
+
     // Rute Form KP IPK: Semua Role
     Route::prefix('form_kp/ipk')->name('form_kp.ipk.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard IPK
