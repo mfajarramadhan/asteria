@@ -50,41 +50,99 @@ class FormKpForkliftController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            // FOTO & INFORMASI UMUM
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            // KECEPATAN
+            'foto_kecepatan'                => 'nullable|array',
+            'foto_kecepatan.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'kecepatan_angkat'              => 'nullable|string|max:25',
+            'kecepatan_ungkit'              => 'nullable|string|max:25',
+            'kecepatan_jalan'               => 'nullable|string|max:25',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // UMUM & OPERATOR
+            'foto_radius'                   => 'nullable|array',
+            'foto_radius.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+            'radius_putaran_kiri'           => 'nullable|string|max:25',
+            'radius_putaran_kanan'          => 'nullable|string|max:25',
+            'penggerak'                     => 'nullable|string|max:100',
+            'nama_operator'                 => 'nullable|string|max:100',
+            'sertifikat_operator_sio'       => 'nullable|string|max:100',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // DIMENSI FORKLIFT
+            'foto_dimensi_forklift'         => 'nullable|array',
+            'foto_dimensi_forklift.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_dimensi_forklift'      => 'nullable|string|max:25',
+            'lebar_dimensi_forklift'        => 'nullable|string|max:25',
+            'tinggi_dimensi_forklift'       => 'nullable|string|max:25',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // DIMENSI GARPU
+            'foto_garpu'                    => 'nullable|array',
+            'foto_garpu.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_garpu'                  => 'nullable|string|max:50',
+            'lebar_garpu'                   => 'nullable|string|max:50',
+            'tebal_garpu1'                  => 'nullable|string|max:50',
+            'tebal_garpu2'                  => 'nullable|string|max:50',
+            'tebal_garpu3'                  => 'nullable|string|max:50',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // BACK REST (PAGAR)
+            'foto_pagar'                    => 'nullable|array',
+            'foto_pagar.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_pagar'                  => 'nullable|string|max:50',
+            'lebar_pagar'                   => 'nullable|string|max:50',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // MAST (TIANG)
+            'foto_mast'                     => 'nullable|array',
+            'foto_mast.*'                   => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_mast'                   => 'nullable|string|max:50',
+            'lebar_mast'                    => 'nullable|string|max:50',
+            'tebal_mast'                    => 'nullable|string|max:50',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // TORAK
+            'foto_torak'                    => 'nullable|array',
+            'foto_torak.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'torak_dalam'                   => 'nullable|string|max:50',
+            'torak_luar'                    => 'nullable|string|max:50',
+            'tinggi_torak'                  => 'nullable|string|max:50',
+
+            // JARAK RODA
+            'foto_jarak_antarroda'          => 'nullable|array',
+            'foto_jarak_antarroda.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
+            'jarak_roda_depan'              => 'nullable|string|max:50',
+            'jarak_roda_belakang'           => 'nullable|string|max:50',
+            'jarak_as_roda_depan_belakang'  => 'nullable|string|max:50',
+
+            // LOAD TEST
+            'foto_load_test'                => 'nullable|array',
+            'foto_load_test.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_angkat_hook1'           => 'nullable|string|max:100',
+            'swl_beban_uji1'                => 'nullable|string|max:100',
+            'travelling_kecepatan1'         => 'nullable|string|max:100',
+            'gerakan1'                       => 'nullable|string|max:100',
+            'hasil1'                         => 'nullable|string|max:100',
+            'keterangan1'                    => 'nullable|string|max:100',
+
+            'tinggi_angkat_hook2'           => 'nullable|string|max:100',
+            'swl_beban_uji2'                => 'nullable|string|max:100',
+            'travelling_kecepatan2'         => 'nullable|string|max:100',
+            'gerakan2'                       => 'nullable|string|max:100',
+            'hasil2'                         => 'nullable|string|max:100',
+            'keterangan2'                    => 'nullable|string|max:100',
+
+            'tinggi_angkat_hook3'           => 'nullable|string|max:100',
+            'swl_beban_uji3'                => 'nullable|string|max:100',
+            'travelling_kecepatan3'         => 'nullable|string|max:100',
+            'gerakan3'                       => 'nullable|string|max:100',
+            'hasil3'                         => 'nullable|string|max:100',
+            'keterangan3'                    => 'nullable|string|max:100',
+
+            // CATATAN
+            'catatan'                        => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -95,7 +153,7 @@ class FormKpForkliftController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_kecepatan', 'foto_radius', 'foto_dimensi_forklift', 'foto_garpu', 'foto_pagar', 'foto_mast', 'foto_torak', 'foto_jarak_antarroda', 'foto_load_test'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -151,48 +209,106 @@ class FormKpForkliftController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            // FOTO & INFORMASI UMUM
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            // KECEPATAN
+            'foto_kecepatan'                => 'nullable|array',
+            'foto_kecepatan.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'kecepatan_angkat'              => 'nullable|string|max:25',
+            'kecepatan_ungkit'              => 'nullable|string|max:25',
+            'kecepatan_jalan'               => 'nullable|string|max:25',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // UMUM & OPERATOR
+            'foto_radius'                   => 'nullable|array',
+            'foto_radius.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+            'radius_putaran_kiri'           => 'nullable|string|max:25',
+            'radius_putaran_kanan'          => 'nullable|string|max:25',
+            'penggerak'                     => 'nullable|string|max:100',
+            'nama_operator'                 => 'nullable|string|max:100',
+            'sertifikat_operator_sio'       => 'nullable|string|max:100',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // DIMENSI FORKLIFT
+            'foto_dimensi_forklift'         => 'nullable|array',
+            'foto_dimensi_forklift.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_dimensi_forklift'      => 'nullable|string|max:25',
+            'lebar_dimensi_forklift'        => 'nullable|string|max:25',
+            'tinggi_dimensi_forklift'       => 'nullable|string|max:25',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // DIMENSI GARPU
+            'foto_garpu'                    => 'nullable|array',
+            'foto_garpu.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_garpu'                  => 'nullable|string|max:50',
+            'lebar_garpu'                   => 'nullable|string|max:50',
+            'tebal_garpu1'                  => 'nullable|string|max:50',
+            'tebal_garpu2'                  => 'nullable|string|max:50',
+            'tebal_garpu3'                  => 'nullable|string|max:50',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // BACK REST (PAGAR)
+            'foto_pagar'                    => 'nullable|array',
+            'foto_pagar.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_pagar'                  => 'nullable|string|max:50',
+            'lebar_pagar'                   => 'nullable|string|max:50',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // MAST (TIANG)
+            'foto_mast'                     => 'nullable|array',
+            'foto_mast.*'                   => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_mast'                   => 'nullable|string|max:50',
+            'lebar_mast'                    => 'nullable|string|max:50',
+            'tebal_mast'                    => 'nullable|string|max:50',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // TORAK
+            'foto_torak'                    => 'nullable|array',
+            'foto_torak.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'torak_dalam'                   => 'nullable|string|max:50',
+            'torak_luar'                    => 'nullable|string|max:50',
+            'tinggi_torak'                  => 'nullable|string|max:50',
+
+            // JARAK RODA
+            'foto_jarak_antarroda'          => 'nullable|array',
+            'foto_jarak_antarroda.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
+            'jarak_roda_depan'              => 'nullable|string|max:50',
+            'jarak_roda_belakang'           => 'nullable|string|max:50',
+            'jarak_as_roda_depan_belakang'  => 'nullable|string|max:50',
+
+            // LOAD TEST
+            'foto_load_test'                => 'nullable|array',
+            'foto_load_test.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_angkat_hook1'           => 'nullable|string|max:100',
+            'swl_beban_uji1'                => 'nullable|string|max:100',
+            'travelling_kecepatan1'         => 'nullable|string|max:100',
+            'gerakan1'                       => 'nullable|string|max:100',
+            'hasil1'                         => 'nullable|string|max:100',
+            'keterangan1'                    => 'nullable|string|max:100',
+
+            'tinggi_angkat_hook2'           => 'nullable|string|max:100',
+            'swl_beban_uji2'                => 'nullable|string|max:100',
+            'travelling_kecepatan2'         => 'nullable|string|max:100',
+            'gerakan2'                       => 'nullable|string|max:100',
+            'hasil2'                         => 'nullable|string|max:100',
+            'keterangan2'                    => 'nullable|string|max:100',
+
+            'tinggi_angkat_hook3'           => 'nullable|string|max:100',
+            'swl_beban_uji3'                => 'nullable|string|max:100',
+            'travelling_kecepatan3'         => 'nullable|string|max:100',
+            'gerakan3'                       => 'nullable|string|max:100',
+            'hasil3'                         => 'nullable|string|max:100',
+            'keterangan3'                    => 'nullable|string|max:100',
+
+            // CATATAN
+            'catatan'                        => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_kecepatan', 'foto_radius', 'foto_dimensi_forklift', 'foto_garpu', 'foto_pagar', 'foto_mast', 'foto_torak', 'foto_jarak_antarroda', 'foto_load_test'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpForklift->$field) {

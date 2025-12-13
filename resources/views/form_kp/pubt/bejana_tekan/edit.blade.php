@@ -99,7 +99,7 @@
             {{-- Pabrik Pembuat --}}
             <div>
                 <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpBejanaTekan->pabrik_pembuat) }}">
+                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat', $formKpBejanaTekan->pabrik_pembuat) }}">
                 @error('pabrik_pembuat')
                 <div class="text-xs text-red-600">
                     {{ $message }}
@@ -109,9 +109,9 @@
 
             {{-- Jenis Bejana--}}
             <div>
-                <label for="jenis_bejana" class="block text-sm font-medium text-gray-700">Jenis Bejana</label>
-                <input type="text" name="jenis_bejana" placeholder="Jenis Bejana" id="jenis_bejana" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_bejana') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpBejanaTekan->jenis_bejana) }}">
-                @error('jenis_bejana')
+                <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Bejana</label>
+                <input type="text" name="jenis" placeholder="Jenis Bejana" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis', $formKpBejanaTekan->jenis) }}">
+                @error('jenis')
                 <div class="text-xs text-red-600">
                     {{ $message }}
                 </div>
@@ -121,8 +121,19 @@
             {{-- Lokasi--}}
             <div>
                 <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
-                <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpBejanaTekan->lokasi) }}">
+                <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi', $formKpBejanaTekan->lokasi) }}">
                 @error('lokasi')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Tahun Pembuatan--}}
+            <div>
+                <label for="tahun_pembuatan" class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan', $formKpBejanaTekan->tahun_pembuatan) }}">
+                @error('tahun_pembuatan')
                 <div class="text-xs text-red-600">
                     {{ $message }}
                 </div>

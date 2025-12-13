@@ -50,90 +50,39 @@ class FormKpInstalasiPenyalurPetirController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-
-            // FOTO INFORMASI UMUM
             'foto_informasi_umum'           => 'nullable|array',
-            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'nama_mesin'                    => 'nullable|string|max:255',
-            'fungsi'                        => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'foto_informasi_umum.*'         => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
 
-            // FOTO DEVICE
-            'foto_device'                   => 'nullable|array',
-            'foto_device.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+            'air_terminal1'                 => 'nullable|string|max:100',
+            'air_terminal2'                 => 'nullable|string|max:100',
+            'jarak_radius_proteksi'         => 'nullable|string|max:100',
+            'tinggi_tiang'                  => 'nullable|string|max:100',
+            'jumlah_dan_jarak'              => 'nullable|string|max:100',
+            'keadaan_visual_air'            => 'nullable|string|max:100',
 
-            // SAFETY DEVICE 1–10
-            'safety_device1'                => 'nullable|string|max:255',
-            'safety_device2'                => 'nullable|string|max:255',
-            'safety_device3'                => 'nullable|string|max:255',
-            'safety_device4'                => 'nullable|string|max:255',
-            'safety_device5'                => 'nullable|string|max:255',
-            'safety_device6'                => 'nullable|string|max:255',
-            'safety_device7'                => 'nullable|string|max:255',
-            'safety_device8'                => 'nullable|string|max:255',
-            'safety_device9'                => 'nullable|string|max:255',
-            'safety_device10'               => 'nullable|string|max:255',
+            'down_conductor'                => 'nullable|string|max:100',
+            'jumlah_down_conductor'         => 'nullable|string|max:100',
+            'jarak_antar_kaki_penerima'     => 'nullable|string|max:100',
 
-            // KOMPONEN UTAMA 1–10
-            'komponen_utama1'               => 'nullable|string|max:255',
-            'komponen_utama2'               => 'nullable|string|max:255',
-            'komponen_utama3'               => 'nullable|string|max:255',
-            'komponen_utama4'               => 'nullable|string|max:255',
-            'komponen_utama5'               => 'nullable|string|max:255',
-            'komponen_utama6'               => 'nullable|string|max:255',
-            'komponen_utama7'               => 'nullable|string|max:255',
-            'komponen_utama8'               => 'nullable|string|max:255',
-            'komponen_utama9'               => 'nullable|string|max:255',
-            'komponen_utama10'              => 'nullable|string|max:255',
+            'titik_percabangan'             => 'nullable|string|max:100',
+            'luas_penampang'                => 'nullable|string|max:100',
+            'tebal_penampang'               => 'nullable|string|max:100',
 
-            // PENDUKUNG MESIN 1–10
-            'pendukung_mesin1'              => 'nullable|string|max:255',
-            'pendukung_mesin2'              => 'nullable|string|max:255',
-            'pendukung_mesin3'              => 'nullable|string|max:255',
-            'pendukung_mesin4'              => 'nullable|string|max:255',
-            'pendukung_mesin5'              => 'nullable|string|max:255',
-            'pendukung_mesin6'              => 'nullable|string|max:255',
-            'pendukung_mesin7'              => 'nullable|string|max:255',
-            'pendukung_mesin8'              => 'nullable|string|max:255',
-            'pendukung_mesin9'              => 'nullable|string|max:255',
-            'pendukung_mesin10'             => 'nullable|string|max:255',
+            'jarak_antar_penghantar'        => 'nullable|string|max:100',
+            'jenis_penghantar'              => 'nullable|string|max:100',
+            'tinggi_bangunan'               => 'nullable|string|max:100',
 
-            // FOTO PENGUKURAN
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            'luas_bangunan'                 => 'nullable|string|max:100',
+            'earth_electrode'               => 'nullable|string|max:100',
 
-            // DATA PENGUKURAN
-            'pengukuran_grounding'          => 'nullable|numeric',
-            'pengukuran_pencahayaan'        => 'nullable|numeric',
-            'pengukuran_suhu'               => 'nullable|numeric',
-            'pengukuran_kebisingan'         => 'nullable|numeric',
+            'batang_pita_mesh'              => 'nullable|string|max:100',
+            'diameter_penampang'            => 'nullable|string|max:100',
+            'kedalaman_elektroda'           => 'nullable|string|max:100',
 
-            // FOTO PENGUJIAN
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUJIAN
-            'pengujian_grounding'           => 'nullable|numeric',
-            'pengujian_pencahayaan'         => 'nullable|numeric',
-            'pengujian_suhu'                => 'nullable|numeric',
-            'pengujian_kebisingan'          => 'nullable|numeric',
-
-            // EMERGENCY STOP
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_hasil'          => 'nullable|string|max:255',
-            'ket_emergency_stop_tutup'      => 'nullable|string',
-
-            // BLANK FIELD
-            'blank'                         => 'nullable|string|max:255',
-            'blank_hasil'                   => 'nullable|string|max:255',
-            'ket_blank'                     => 'nullable|string',
-            'blank2'                        => 'nullable|string|max:255',
-            'blank2_hasil'                  => 'nullable|string|max:255',
-            'ket_blank2'                    => 'nullable|string',
-            'blank3'                        => 'nullable|string|max:255',
-            'blank3_hasil'                  => 'nullable|string|max:255',
-            'ket_blank3'                    => 'nullable|string',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -145,7 +94,7 @@ class FormKpInstalasiPenyalurPetirController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_informasi_umum', 'foto_device', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -201,90 +150,39 @@ class FormKpInstalasiPenyalurPetirController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-
-            // FOTO INFORMASI UMUM
             'foto_informasi_umum'           => 'nullable|array',
-            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'nama_mesin'                    => 'nullable|string|max:255',
-            'fungsi'                        => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'foto_informasi_umum.*'         => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
 
-            // FOTO DEVICE
-            'foto_device'                   => 'nullable|array',
-            'foto_device.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+            'air_terminal1'                 => 'nullable|string|max:100',
+            'air_terminal2'                 => 'nullable|string|max:100',
+            'jarak_radius_proteksi'         => 'nullable|string|max:100',
+            'tinggi_tiang'                  => 'nullable|string|max:100',
+            'jumlah_dan_jarak'              => 'nullable|string|max:100',
+            'keadaan_visual_air'            => 'nullable|string|max:100',
 
-            // SAFETY DEVICE 1–10
-            'safety_device1'                => 'nullable|string|max:255',
-            'safety_device2'                => 'nullable|string|max:255',
-            'safety_device3'                => 'nullable|string|max:255',
-            'safety_device4'                => 'nullable|string|max:255',
-            'safety_device5'                => 'nullable|string|max:255',
-            'safety_device6'                => 'nullable|string|max:255',
-            'safety_device7'                => 'nullable|string|max:255',
-            'safety_device8'                => 'nullable|string|max:255',
-            'safety_device9'                => 'nullable|string|max:255',
-            'safety_device10'               => 'nullable|string|max:255',
+            'down_conductor'                => 'nullable|string|max:100',
+            'jumlah_down_conductor'         => 'nullable|string|max:100',
+            'jarak_antar_kaki_penerima'     => 'nullable|string|max:100',
 
-            // KOMPONEN UTAMA 1–10
-            'komponen_utama1'               => 'nullable|string|max:255',
-            'komponen_utama2'               => 'nullable|string|max:255',
-            'komponen_utama3'               => 'nullable|string|max:255',
-            'komponen_utama4'               => 'nullable|string|max:255',
-            'komponen_utama5'               => 'nullable|string|max:255',
-            'komponen_utama6'               => 'nullable|string|max:255',
-            'komponen_utama7'               => 'nullable|string|max:255',
-            'komponen_utama8'               => 'nullable|string|max:255',
-            'komponen_utama9'               => 'nullable|string|max:255',
-            'komponen_utama10'              => 'nullable|string|max:255',
+            'titik_percabangan'             => 'nullable|string|max:100',
+            'luas_penampang'                => 'nullable|string|max:100',
+            'tebal_penampang'               => 'nullable|string|max:100',
 
-            // PENDUKUNG MESIN 1–10
-            'pendukung_mesin1'              => 'nullable|string|max:255',
-            'pendukung_mesin2'              => 'nullable|string|max:255',
-            'pendukung_mesin3'              => 'nullable|string|max:255',
-            'pendukung_mesin4'              => 'nullable|string|max:255',
-            'pendukung_mesin5'              => 'nullable|string|max:255',
-            'pendukung_mesin6'              => 'nullable|string|max:255',
-            'pendukung_mesin7'              => 'nullable|string|max:255',
-            'pendukung_mesin8'              => 'nullable|string|max:255',
-            'pendukung_mesin9'              => 'nullable|string|max:255',
-            'pendukung_mesin10'             => 'nullable|string|max:255',
+            'jarak_antar_penghantar'        => 'nullable|string|max:100',
+            'jenis_penghantar'              => 'nullable|string|max:100',
+            'tinggi_bangunan'               => 'nullable|string|max:100',
 
-            // FOTO PENGUKURAN
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            'luas_bangunan'                 => 'nullable|string|max:100',
+            'earth_electrode'               => 'nullable|string|max:100',
 
-            // DATA PENGUKURAN
-            'pengukuran_grounding'          => 'nullable|numeric',
-            'pengukuran_pencahayaan'        => 'nullable|numeric',
-            'pengukuran_suhu'               => 'nullable|numeric',
-            'pengukuran_kebisingan'         => 'nullable|numeric',
+            'batang_pita_mesh'              => 'nullable|string|max:100',
+            'diameter_penampang'            => 'nullable|string|max:100',
+            'kedalaman_elektroda'           => 'nullable|string|max:100',
 
-            // FOTO PENGUJIAN
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUJIAN
-            'pengujian_grounding'           => 'nullable|numeric',
-            'pengujian_pencahayaan'         => 'nullable|numeric',
-            'pengujian_suhu'                => 'nullable|numeric',
-            'pengujian_kebisingan'          => 'nullable|numeric',
-
-            // EMERGENCY STOP
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_hasil'          => 'nullable|string|max:255',
-            'ket_emergency_stop_tutup'      => 'nullable|string',
-
-            // BLANK FIELD
-            'blank'                         => 'nullable|string|max:255',
-            'blank_hasil'                   => 'nullable|string|max:255',
-            'ket_blank'                     => 'nullable|string',
-            'blank2'                        => 'nullable|string|max:255',
-            'blank2_hasil'                  => 'nullable|string|max:255',
-            'ket_blank2'                    => 'nullable|string',
-            'blank3'                        => 'nullable|string|max:255',
-            'blank3_hasil'                  => 'nullable|string|max:255',
-            'ket_blank3'                    => 'nullable|string',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -292,7 +190,7 @@ class FormKpInstalasiPenyalurPetirController extends Controller
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_informasi_umum', 'foto_device', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpInstalasiPenyalurPetir->$field) {

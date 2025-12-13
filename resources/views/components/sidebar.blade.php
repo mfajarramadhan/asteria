@@ -1,6 +1,8 @@
 {{-- class md:static dihilangkan aga fixed --}}
-<aside class="fixed inset-y-0 left-0 z-50 w-20 transition-all duration-300 ease-in-out bg-white shadow-lg md:w-64"
-    :class="{ 'w-64': openSidebar, 'hidden md:block': !openSidebar }">
+<aside
+    class="fixed inset-y-0 left-0 z-50 flex flex-col w-64 transition-transform duration-300 ease-in-out -translate-x-full bg-white shadow-lg md:translate-x-0"
+    :class="{ 'translate-x-0': openSidebar }">
+
     <div class="flex items-center justify-between h-16 p-4 border-b">
         <div class="flex items-center gap-2">
             <!-- Logo -->
@@ -24,7 +26,7 @@
         </button>
     </div>
 
-    <nav class="py-4">
+    <nav class="flex-1 py-4 overflow-y-auto ">
         <ul class="space-y-2">
             {{-- Dashboard --}}
             <li>
@@ -114,7 +116,7 @@
             </li>
 
             {{-- PTP --}}
-            {{-- <li>
+            <li>
                 <a href="{{ route('form_kp.ptp.index') }}"
                     class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
                     {{ request()->routeIs('form_kp.ptp.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
@@ -128,7 +130,7 @@
                         PTP
                     </span>
                 </a>
-            </li> --}}
+            </li>
             
             {{-- PAPA --}}
             <li>
@@ -143,6 +145,23 @@
                     <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }"
                         class="transition-opacity duration-300 {{ request()->routeIs('form_kp.papa.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
                         PAPA
+                    </span>
+                </a>
+            </li>
+            
+            {{-- Listrik --}}
+            <li>
+                <a href="{{ route('form_kp.listrik.index') }}"
+                    class="flex items-center px-4 py-2 space-x-3 font-semibold transition-colors rounded-lg hover:bg-gradient-to-t hover:from-blue-900 hover:to-blue-500 group
+                    {{ request()->routeIs('form_kp.listrik.*') ? 'bg-gradient-to-t from-blue-900 to-blue-500' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24"
+                        class="w-6 h-6 transition-colors {{ request()->routeIs('form_kp.listrik.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2V5a2 2 0 0 0-2-2m0 16H5V9h14zM5 7V5h14v2zm5.56 10.46l5.94-5.93l-1.07-1.06l-4.87 4.87l-2.11-2.11l-1.06 1.06z" />
+                    </svg>
+                    <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }"
+                        class="transition-opacity duration-300 {{ request()->routeIs('form_kp.listrik.*') ? 'text-white' : 'text-gray-700 group-hover:text-white' }}">
+                        LISTRIK
                     </span>
                 </a>
             </li>

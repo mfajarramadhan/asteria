@@ -17,10 +17,10 @@ class FormKpWheelLoader extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_mesin' => 'array',
-        // 'foto_generator' => 'array',
-        // 'foto_pengukuran' => 'array',
-        // 'foto_pengujian' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_mesin' => 'array',
+        'foto_pompa_hydraulik' => 'array',
+        'foto_pengujian' => 'array',
     ];
 
     // Relasi ke job_order_tool

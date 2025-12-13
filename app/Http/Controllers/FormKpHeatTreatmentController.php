@@ -49,19 +49,17 @@ class FormKpHeatTreatmentController extends Controller
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
         // Validasi input
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat' => 'nullable|string|max:255',
-
-            'foto_informasi_umum' => 'nullable|array',
-            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            'jenis_bejana' => 'nullable|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
-            'jenis_tipe' => 'nullable|string|max:255',
-
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:255',
+            'jenis'                         => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
+            'tahun_pembuatan'               => 'nullable|string|max:255',
+            'jenis_tipe'                    => 'nullable|string|max:255',
+            
             'foto_billet' => 'nullable|array',
             'foto_billet.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-
             'dimensi_billet_maks' => 'nullable|numeric',
             'berat_billet_maks' => 'nullable|numeric',
             'kapasitas_maks' => 'nullable|numeric',
@@ -483,19 +481,17 @@ class FormKpHeatTreatmentController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat' => 'nullable|string|max:255',
-
-            'foto_informasi_umum' => 'nullable|array',
-            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            'jenis_bejana' => 'nullable|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
-            'jenis_tipe' => 'nullable|string|max:255',
-
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'                => 'nullable|string|max:255',
+            'jenis'                         => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
+            'tahun_pembuatan'               => 'nullable|string|max:255',
+            'jenis_tipe'                    => 'nullable|string|max:255',
+            
             'foto_billet' => 'nullable|array',
             'foto_billet.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-
             'dimensi_billet_maks' => 'nullable|numeric',
             'berat_billet_maks' => 'nullable|numeric',
             'kapasitas_maks' => 'nullable|numeric',

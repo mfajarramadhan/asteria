@@ -92,7 +92,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Jenis Bejana</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpBejanaTekan->jenis_bejana ?? '-' }}
+                {{ $formKpBejanaTekan->jenis ?? '-' }}
             </div>
         </div>
 
@@ -101,6 +101,14 @@
             <label class="block text-sm font-medium text-gray-700">Lokasi</label>
             <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
                 {{ $formKpBejanaTekan->lokasi ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tahun Pembuatan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpBejanaTekan->tahun_pembuatan ?? '-' }}
             </div>
         </div>
 

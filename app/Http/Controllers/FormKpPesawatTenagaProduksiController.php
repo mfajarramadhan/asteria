@@ -50,20 +50,18 @@ class FormKpPesawatTenagaProduksiController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-
-            // FOTO INFORMASI UMUM
             'foto_informasi_umum'           => 'nullable|array',
             'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                => 'nullable|string|max:255',
+            'jenis'                         => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
+            'tahun_pembuatan'               => 'nullable|string|max:255',
             'nama_mesin'                    => 'nullable|string|max:255',
             'fungsi'                        => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
 
-            // FOTO DEVICE
             'foto_device'                   => 'nullable|array',
             'foto_device.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // SAFETY DEVICE 1–10
             'safety_device1'                => 'nullable|string|max:255',
             'safety_device2'                => 'nullable|string|max:255',
             'safety_device3'                => 'nullable|string|max:255',
@@ -75,7 +73,6 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'safety_device9'                => 'nullable|string|max:255',
             'safety_device10'               => 'nullable|string|max:255',
 
-            // KOMPONEN UTAMA 1–10
             'komponen_utama1'               => 'nullable|string|max:255',
             'komponen_utama2'               => 'nullable|string|max:255',
             'komponen_utama3'               => 'nullable|string|max:255',
@@ -87,7 +84,6 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'komponen_utama9'               => 'nullable|string|max:255',
             'komponen_utama10'              => 'nullable|string|max:255',
 
-            // PENDUKUNG MESIN 1–10
             'pendukung_mesin1'              => 'nullable|string|max:255',
             'pendukung_mesin2'              => 'nullable|string|max:255',
             'pendukung_mesin3'              => 'nullable|string|max:255',
@@ -99,32 +95,23 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'pendukung_mesin9'              => 'nullable|string|max:255',
             'pendukung_mesin10'             => 'nullable|string|max:255',
 
-            // FOTO PENGUKURAN
             'foto_pengukuran'               => 'nullable|array',
             'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUKURAN
             'pengukuran_grounding'          => 'nullable|numeric',
             'pengukuran_pencahayaan'        => 'nullable|numeric',
             'pengukuran_suhu'               => 'nullable|numeric',
             'pengukuran_kebisingan'         => 'nullable|numeric',
 
-            // FOTO PENGUJIAN
             'foto_pengujian'                => 'nullable|array',
             'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUJIAN
             'pengujian_grounding'           => 'nullable|numeric',
             'pengujian_pencahayaan'         => 'nullable|numeric',
             'pengujian_suhu'                => 'nullable|numeric',
             'pengujian_kebisingan'          => 'nullable|numeric',
-
-            // EMERGENCY STOP
+            
             'emergency_stop'                => 'nullable|string|max:255',
             'emergency_stop_hasil'          => 'nullable|string|max:255',
             'ket_emergency_stop_tutup'      => 'nullable|string',
-
-            // BLANK FIELD
             'blank'                         => 'nullable|string|max:255',
             'blank_hasil'                   => 'nullable|string|max:255',
             'ket_blank'                     => 'nullable|string',
@@ -201,20 +188,18 @@ class FormKpPesawatTenagaProduksiController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-
-            // FOTO INFORMASI UMUM
             'foto_informasi_umum'           => 'nullable|array',
             'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                => 'nullable|string|max:255',
+            'jenis'                         => 'nullable|string|max:255',
+            'lokasi'                        => 'nullable|string|max:255',
+            'tahun_pembuatan'               => 'nullable|string|max:255',
             'nama_mesin'                    => 'nullable|string|max:255',
             'fungsi'                        => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
 
-            // FOTO DEVICE
             'foto_device'                   => 'nullable|array',
             'foto_device.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // SAFETY DEVICE 1–10
             'safety_device1'                => 'nullable|string|max:255',
             'safety_device2'                => 'nullable|string|max:255',
             'safety_device3'                => 'nullable|string|max:255',
@@ -226,7 +211,6 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'safety_device9'                => 'nullable|string|max:255',
             'safety_device10'               => 'nullable|string|max:255',
 
-            // KOMPONEN UTAMA 1–10
             'komponen_utama1'               => 'nullable|string|max:255',
             'komponen_utama2'               => 'nullable|string|max:255',
             'komponen_utama3'               => 'nullable|string|max:255',
@@ -238,7 +222,6 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'komponen_utama9'               => 'nullable|string|max:255',
             'komponen_utama10'              => 'nullable|string|max:255',
 
-            // PENDUKUNG MESIN 1–10
             'pendukung_mesin1'              => 'nullable|string|max:255',
             'pendukung_mesin2'              => 'nullable|string|max:255',
             'pendukung_mesin3'              => 'nullable|string|max:255',
@@ -250,32 +233,23 @@ class FormKpPesawatTenagaProduksiController extends Controller
             'pendukung_mesin9'              => 'nullable|string|max:255',
             'pendukung_mesin10'             => 'nullable|string|max:255',
 
-            // FOTO PENGUKURAN
             'foto_pengukuran'               => 'nullable|array',
             'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUKURAN
             'pengukuran_grounding'          => 'nullable|numeric',
             'pengukuran_pencahayaan'        => 'nullable|numeric',
             'pengukuran_suhu'               => 'nullable|numeric',
             'pengukuran_kebisingan'         => 'nullable|numeric',
 
-            // FOTO PENGUJIAN
             'foto_pengujian'                => 'nullable|array',
             'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
-
-            // DATA PENGUJIAN
             'pengujian_grounding'           => 'nullable|numeric',
             'pengujian_pencahayaan'         => 'nullable|numeric',
             'pengujian_suhu'                => 'nullable|numeric',
             'pengujian_kebisingan'          => 'nullable|numeric',
-
-            // EMERGENCY STOP
+            
             'emergency_stop'                => 'nullable|string|max:255',
             'emergency_stop_hasil'          => 'nullable|string|max:255',
             'ket_emergency_stop_tutup'      => 'nullable|string',
-
-            // BLANK FIELD
             'blank'                         => 'nullable|string|max:255',
             'blank_hasil'                   => 'nullable|string|max:255',
             'ket_blank'                     => 'nullable|string',

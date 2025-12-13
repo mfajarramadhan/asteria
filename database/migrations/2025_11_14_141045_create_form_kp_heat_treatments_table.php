@@ -13,52 +13,59 @@ return new class extends Migration
     {
         Schema::create('form_kp_heat_treatment', function (Blueprint $table) {
             $table->id();
+
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
             $table->date('tanggal_pemeriksaan');
-            $table->string('pabrik_pembuat')->nullable();
+
             $table->json('foto_informasi_umum')->nullable();
-            $table->string('jenis_bejana')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->string('jenis_tipe')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+            $table->string('jenis_tipe', 100)->nullable();
+
             $table->json('foto_billet')->nullable();
-            $table->decimal('dimensi_billet_maks', 10, 4)->nullable();
-            $table->decimal('berat_billet_maks', 10, 4)->nullable();
-            $table->decimal('kapasitas_maks', 10, 4)->nullable();
-            $table->decimal('kapasitas_efektif', 10, 4)->nullable();
+            $table->decimal('dimensi_billet_maks', 15, 4)->nullable();
+            $table->decimal('berat_billet_maks', 15, 4)->nullable();
+            $table->decimal('kapasitas_maks', 15, 4)->nullable();
+            $table->decimal('kapasitas_efektif', 15, 4)->nullable();
+
             $table->json('foto_shell')->nullable();
-            $table->decimal('tebal_dinding_shell', 10, 4)->nullable();
-            $table->string('material_shell')->nullable();
-            $table->decimal('tebal_refractory_shaped', 10, 4)->nullable();
-            $table->decimal('tebal_refractory_unshaped', 10, 4)->nullable();
-            $table->decimal('jarak_antar_refractory', 10, 4)->nullable();
+            $table->decimal('tebal_dinding_shell', 15, 4)->nullable();
+            $table->string('material_shell', 100)->nullable();
+            $table->decimal('tebal_refractory_shaped', 15, 4)->nullable();
+            $table->decimal('tebal_refractory_unshaped', 15, 4)->nullable();
+            $table->decimal('jarak_antar_refractory', 15, 4)->nullable();
+
             $table->json('foto_jalur_furnace')->nullable();
             $table->integer('jumlah_jalur_operasi')->nullable();
-            $table->decimal('panjang_jalur_operasi', 10, 4)->nullable();
-            $table->string('dimensi_total_furnace')->nullable();
-            $table->string('dimensi_efektif_furnace')->nullable();
+            $table->decimal('panjang_jalur_operasi', 15, 4)->nullable();
+            $table->string('dimensi_total_furnace', 100)->nullable();
+            $table->string('dimensi_efektif_furnace', 100)->nullable();
+
             $table->json('foto_pembakaran')->nullable();
-            $table->string('bahan_bakar')->nullable();
-            $table->decimal('temp_awal', 10, 4)->nullable();
-            $table->decimal('temp_akhir', 10, 4)->nullable();
-            $table->decimal('tekanan_nozel_ng', 10, 4)->nullable();
-            $table->decimal('kapasitas_nozel_ng', 10, 4)->nullable();
-            $table->decimal('tekanan_nozel_oksigen', 10, 4)->nullable();
-            $table->decimal('kapasitas_nozel_oksigen', 10, 4)->nullable();
-            $table->decimal('tekanan_nozel_n2', 10, 4)->nullable();
-            $table->decimal('kapasitas_nozel_n2', 10, 4)->nullable();
-            $table->decimal('tebal_pipa_bakar', 10, 4)->nullable();
-            $table->decimal('diameter_pipa_bakar', 10, 4)->nullable();
-            $table->string('jenis_pipa')->nullable();
-            $table->string('dimensi_pondasi')->nullable();
+            $table->string('bahan_bakar', 100)->nullable();
+            $table->decimal('temp_awal', 15, 4)->nullable();
+            $table->decimal('temp_akhir', 15, 4)->nullable();
+            $table->decimal('tekanan_nozel_ng', 15, 4)->nullable();
+            $table->decimal('kapasitas_nozel_ng', 15, 4)->nullable();
+            $table->decimal('tekanan_nozel_oksigen', 15, 4)->nullable();
+            $table->decimal('kapasitas_nozel_oksigen', 15, 4)->nullable();
+            $table->decimal('tekanan_nozel_n2', 15, 4)->nullable();
+            $table->decimal('kapasitas_nozel_n2', 15, 4)->nullable();
+            $table->decimal('tebal_pipa_bakar', 15, 4)->nullable();
+            $table->decimal('diameter_pipa_bakar', 15, 4)->nullable();
+            $table->string('jenis_pipa', 100)->nullable();
+            $table->string('dimensi_pondasi', 100)->nullable();
+
             $table->json('foto_pendingin')->nullable();
-            $table->decimal('temp_air_masuk', 10, 4)->nullable();
-            $table->decimal('temp_air_keluar', 10, 4)->nullable();
-            $table->decimal('tekanan_air', 10, 4)->nullable();
-            $table->decimal('laju_aliran_air', 10, 4)->nullable();
-            $table->decimal('diameter_pipa_pendingin', 10, 4)->nullable();
-            $table->decimal('tebal_pipa_pendingin', 10, 4)->nullable();
+            $table->decimal('temp_air_masuk', 15, 4)->nullable();
+            $table->decimal('temp_air_keluar', 15, 4)->nullable();
+            $table->decimal('tekanan_air', 15, 4)->nullable();
+            $table->decimal('laju_aliran_air', 15, 4)->nullable();
+            $table->decimal('diameter_pipa_pendingin', 15, 4)->nullable();
+            $table->decimal('tebal_pipa_pendingin', 15, 4)->nullable();
             $table->string('konstruksi_pondasi_furnace', 100)->nullable();
             $table->text('keterangan_konstruksi_pondasi_furnace')->nullable();
             $table->json('foto_konstruksi_pondasi_furnace')->nullable();

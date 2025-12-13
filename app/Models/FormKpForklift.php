@@ -17,10 +17,16 @@ class FormKpForklift extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_mesin' => 'array',
-        // 'foto_generator' => 'array',
-        // 'foto_pengukuran' => 'array',
-        // 'foto_pengujian' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_kecepatan' => 'array',
+        'foto_radius' => 'array',
+        'foto_dimensi_forklift' => 'array',
+        'foto_garpu' => 'array',
+        'foto_pagar' => 'array',
+        'foto_mast' => 'array',
+        'foto_torak' => 'array',
+        'foto_jarak_antarroda' => 'array',
+        'foto_load_test' => 'array',
     ];
 
     // Relasi ke job_order_tool

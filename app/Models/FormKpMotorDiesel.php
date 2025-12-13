@@ -17,6 +17,7 @@ class FormKpMotorDiesel extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
+        'foto_informasi_umum' => 'array',
         'foto_mesin' => 'array',
         'foto_generator' => 'array',
         'foto_pengukuran' => 'array',

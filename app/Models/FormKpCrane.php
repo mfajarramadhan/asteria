@@ -17,10 +17,13 @@ class FormKpCrane extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_mesin' => 'array',
-        // 'foto_generator' => 'array',
-        // 'foto_pengukuran' => 'array',
-        // 'foto_pengujian' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_rantai' => 'array',
+        'foto_wire_rope' => 'array',
+        'foto_hook' => 'array',
+        'foto_pulley' => 'array',
+        'foto_loadtest' => 'array',
+        'foto_defleksi' => 'array',
     ];
 
     // Relasi ke job_order_tool

@@ -51,11 +51,15 @@ class FormKpScrewCompressorController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'              => 'nullable|date',
-            'pabrik_pembuat'                   => 'nullable|string|max:255',
-            'lokasi'                           => 'nullable|string|max:255',
-            'negara'                           => 'nullable|string|max:255',
-            'tahun'                            => 'nullable|string|max:255',
-            'tekanan_kerja'                    => 'nullable|string|max:255',
+            'foto_informasi_umum'              => 'nullable|array',
+            'foto_informasi_umum.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                   => 'nullable|string|max:100',
+            'jenis'                            => 'nullable|string|max:100',
+            'lokasi'                           => 'nullable|string|max:100',
+            'tahun_pembuatan'                  => 'nullable|string|max:100',
+            'negara'                           => 'nullable|string|max:100',
+            'tekanan_kerja'                    => 'nullable|string|max:100',
 
             'foto_shell_separator'             => 'nullable|array',
             'foto_shell_separator.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
@@ -104,7 +108,7 @@ class FormKpScrewCompressorController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_shell_separator', 'foto_instalasi_pipa', 'foto_casing_screw', 'foto_pondasi_screw', 'foto_safety_device', 'foto_pressure_switch'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_shell_separator', 'foto_instalasi_pipa', 'foto_casing_screw', 'foto_pondasi_screw', 'foto_safety_device', 'foto_pressure_switch'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -160,11 +164,15 @@ class FormKpScrewCompressorController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'              => 'nullable|date',
-            'pabrik_pembuat'                   => 'nullable|string|max:255',
-            'lokasi'                           => 'nullable|string|max:255',
-            'negara'                           => 'nullable|string|max:255',
-            'tahun'                            => 'nullable|string|max:255',
-            'tekanan_kerja'                    => 'nullable|string|max:255',
+            'foto_informasi_umum'              => 'nullable|array',
+            'foto_informasi_umum.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                   => 'nullable|string|max:100',
+            'jenis'                            => 'nullable|string|max:100',
+            'lokasi'                           => 'nullable|string|max:100',
+            'tahun_pembuatan'                  => 'nullable|string|max:100',
+            'negara'                           => 'nullable|string|max:100',
+            'tekanan_kerja'                    => 'nullable|string|max:100',
 
             'foto_shell_separator'             => 'nullable|array',
             'foto_shell_separator.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
@@ -209,7 +217,7 @@ class FormKpScrewCompressorController extends Controller
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_shell_separator', 'foto_instalasi_pipa', 'foto_casing_screw', 'foto_pondasi_screw', 'foto_safety_device', 'foto_pressure_switch'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_shell_separator', 'foto_instalasi_pipa', 'foto_casing_screw', 'foto_pondasi_screw', 'foto_safety_device', 'foto_pressure_switch'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpScrewCompressor->$field) {

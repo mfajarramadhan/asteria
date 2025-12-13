@@ -17,7 +17,7 @@ class FormKpInstalasiPenyalurPetir extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_informasi_umum' => 'array',
+        'foto_informasi_umum' => 'array',
         // 'foto_device' => 'array',
         // 'foto_pengukuran' => 'array',
         // 'foto_pengujian' => 'array',

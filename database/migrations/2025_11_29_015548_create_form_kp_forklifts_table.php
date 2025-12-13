@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('form_kp_forklift', function (Blueprint $table) {
             $table->id();
+
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
             $table->date('tanggal_pemeriksaan');
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('jenis')->nullable();
-            $table->string('lokasi')->nullable();
+
             $table->json('foto_informasi_umum')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
             
             // Kolom Kecepatan
             $table->json('foto_kecepatan')->nullable();
@@ -98,6 +100,8 @@ return new class extends Migration
             $table->string('gerakan3', 100)->nullable();
             $table->string('hasil3', 100)->nullable();
             $table->string('keterangan3', 100)->nullable();
+            
+            $table->text('catatan')->nullable();
             $table->timestamps();
         });
     }

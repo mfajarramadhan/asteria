@@ -18,7 +18,9 @@ class FormKpScissorLift extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_shell' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_engine' => 'array',
+        'foto_loadtest' => 'array',
     ];
 
     // Relasi ke job_order_tool

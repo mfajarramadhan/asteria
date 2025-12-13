@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('form_kp.papa.crane.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
+            <form action="{{ route('form_kp.papa.forklift.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
                 @csrf
                 
                 {{-- Tanggal Pemeriksaan --}}
@@ -90,6 +90,16 @@
                 <div>
                     <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
                     @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -484,8 +494,8 @@
                         </div>
 
                         <div>
-                            <input type="number" step="any" name="beban_uji_load1" id="beban_uji_load1" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('beban_uji_load1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('beban_uji_load1') }}">
-                            @error('beban_uji_load1') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="number" step="any" name="swl_beban_uji1" id="swl_beban_uji1" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('swl_beban_uji1') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('swl_beban_uji1') }}">
+                            @error('swl_beban_uji1') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>
@@ -514,8 +524,8 @@
                             @error('tinggi_angkat_hook2') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
                         <div>
-                            <input type="number" step="any" name="beban_uji_load2" id="beban_uji_load2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('beban_uji_load2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('beban_uji_load2') }}">
-                            @error('beban_uji_load2') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="number" step="any" name="swl_beban_uji2" id="swl_beban_uji2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('swl_beban_uji2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('swl_beban_uji2') }}">
+                            @error('swl_beban_uji2') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
                         <div>
                             <input type="number" step="any" name="travelling_kecepatan2" id="travelling_kecepatan2" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('travelling_kecepatan2') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('travelling_kecepatan2') }}">
@@ -540,8 +550,8 @@
                             @error('tinggi_angkat_hook3') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
                         <div>
-                            <input type="number" step="any" name="beban_uji_load3" id="beban_uji_load3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('beban_uji_load3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('beban_uji_load3') }}">
-                            @error('beban_uji_load3') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="number" step="any" name="swl_beban_uji3" id="swl_beban_uji3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('swl_beban_uji3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('swl_beban_uji3') }}">
+                            @error('swl_beban_uji3') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
                         <div>
                             <input type="number" step="any" name="travelling_kecepatan3" id="travelling_kecepatan3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('travelling_kecepatan3') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('travelling_kecepatan3') }}">
