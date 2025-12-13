@@ -3,7 +3,7 @@
     class="fixed inset-y-0 left-0 z-50 flex flex-col w-64 transition-transform duration-300 ease-in-out -translate-x-full bg-white shadow-lg md:translate-x-0"
     :class="{ 'translate-x-0': openSidebar }">
 
-    <div class="flex items-center justify-between h-16 p-4 border-b">
+    <div class="flex items-center justify-between h-16 py-4 border-b pl-9">
         <div class="flex items-center gap-2">
             <!-- Logo -->
             <img
@@ -14,7 +14,7 @@
             <h1
                 :class="{ 'opacity-100': openSidebar || window.innerWidth >= 768, 'opacity-0 hidden': !openSidebar && window.innerWidth < 768 }"
                 class="text-xl italic font-bold text-black transition-opacity duration-300 cursor-default">
-                PT. Asteria
+                Asteria
             </h1>
         </div>
 

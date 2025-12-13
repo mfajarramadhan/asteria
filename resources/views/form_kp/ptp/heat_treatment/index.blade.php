@@ -115,6 +115,7 @@
                             {{-- End Read --}}
 
                             {{-- Update --}}
+                            @role('Super Admin|Admin Riksa Uji|Tim Riksa Uji')
                             <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
                             <a href="{{ route('form_kp.ptp.heat_treatment.edit' , $heatTreatment->id) }}">
                                 <svg class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,6 +123,7 @@
                                 </svg>
                             </a>
                             </button>
+                            @endrole
                             {{-- End Update --}}
                         </div>
                     </td>
