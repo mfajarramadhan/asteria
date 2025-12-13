@@ -50,40 +50,94 @@ class FormKpWheelLoaderController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
 
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
+
+            'panjang_keseluruhan'           => 'nullable|numeric',
+            'tinggi_keseluruhan'            => 'nullable|numeric',
+            'lebar_keseluruhan'             => 'nullable|numeric',
+            'jarak_track_roda'              => 'nullable|numeric',
+            'ukuran_lebar_roda'             => 'nullable|numeric',
+            'kecepatan_maks_travelling'     => 'nullable|numeric',
+            'kecepatan_mundur'              => 'nullable|numeric',
+
+            'rem_macam'                     => 'nullable|string|max:50',
+            'rem_type'                      => 'nullable|string|max:50',
+
+            'radius_putaran_kiri'           => 'nullable|numeric',
+            'radius_putaran_kanan'          => 'nullable|numeric',
+
+
+            // Foto Mesin
             'foto_mesin'                    => 'nullable|array',
             'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'daya_mesin'                    => 'nullable|numeric',
+            'tipe_mesin'                    => 'nullable|string|max:50',
+            'nomor_seri'                    => 'nullable|string|max:50',
             'jumlah_silinder'               => 'nullable|numeric',
+            'daya_bersih'                   => 'nullable|numeric',
+            'merek'                         => 'nullable|string|max:50',
+            'tahun_pembuatan_mesin'         => 'nullable|string|max:50',
+            'pabrik_pembuat_mesin'          => 'nullable|string|max:50',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // Foto Pompa Hydraulik
+            'foto_pompa_hydraulik'          => 'nullable|array',
+            'foto_pompa_hydraulik.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            'pompa_hydraulik_type'          => 'nullable|string|max:50',
+            'pompa_hydraulik_tekanan'       => 'nullable|string|max:50',
 
+
+            // Foto Pengujian
             'foto_pengujian'                => 'nullable|array',
             'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
+
+            // Pengujian Travelling
+            'fungsi_travelling_kecepatan'   => 'nullable|string|max:100',
+            'travelling_gerakan_maju'       => 'nullable|string|max:100',
+            'travelling_gerakan_mundur'     => 'nullable|string|max:100',
+            'travelling_beban'              => 'nullable|string|max:100',
+            'travelling_hasil'              => 'nullable|string|max:100',
+            'travelling_keterangan'         => 'nullable|string|max:100',
+
+            // Pengujian Belok
+            'fungsi_belok_kecepatan'        => 'nullable|string|max:100',
+            'belok_gerakan_maju'            => 'nullable|string|max:100',
+            'belok_gerakan_mundur'          => 'nullable|string|max:100',
+            'belok_beban'                   => 'nullable|string|max:100',
+            'belok_hasil'                   => 'nullable|string|max:100',
+            'belok_keterangan'              => 'nullable|string|max:100',
+
+            // Pengujian Lengan
+            'fungsi_lengan_kecepatan'       => 'nullable|string|max:100',
+            'lengan_gerakan_maju'           => 'nullable|string|max:100',
+            'lengan_gerakan_mundur'         => 'nullable|string|max:100',
+            'lengan_beban'                  => 'nullable|string|max:100',
+            'lengan_hasil'                  => 'nullable|string|max:100',
+            'lengan_keterangan'             => 'nullable|string|max:100',
+
+            // Pengujian Bucket
+            'fungsi_bucket_kecepatan'       => 'nullable|string|max:100',
+            'bucket_gerakan_maju'           => 'nullable|string|max:100',
+            'bucket_gerakan_mundur'         => 'nullable|string|max:100',
+            'bucket_beban'                  => 'nullable|string|max:100',
+            'bucket_hasil'                  => 'nullable|string|max:100',
+            'bucket_keterangan'             => 'nullable|string|max:100',
+
+            // Pengujian Loading
+            'fungsi_loading_kecepatan'      => 'nullable|string|max:100',
+            'loading_gerakan_maju'          => 'nullable|string|max:100',
+            'loading_gerakan_mundur'        => 'nullable|string|max:100',
+            'loading_beban'                 => 'nullable|string|max:100',
+            'loading_hasil'                 => 'nullable|string|max:100',
+            'loading_keterangan'            => 'nullable|string|max:100',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -95,7 +149,7 @@ class FormKpWheelLoaderController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_mesin', 'foto_pompa_hydraulik', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -151,40 +205,94 @@ class FormKpWheelLoaderController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
 
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
+
+            'panjang_keseluruhan'           => 'nullable|numeric',
+            'tinggi_keseluruhan'            => 'nullable|numeric',
+            'lebar_keseluruhan'             => 'nullable|numeric',
+            'jarak_track_roda'              => 'nullable|numeric',
+            'ukuran_lebar_roda'             => 'nullable|numeric',
+            'kecepatan_maks_travelling'     => 'nullable|numeric',
+            'kecepatan_mundur'              => 'nullable|numeric',
+
+            'rem_macam'                     => 'nullable|string|max:50',
+            'rem_type'                      => 'nullable|string|max:50',
+
+            'radius_putaran_kiri'           => 'nullable|numeric',
+            'radius_putaran_kanan'          => 'nullable|numeric',
+
+
+            // Foto Mesin
             'foto_mesin'                    => 'nullable|array',
             'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'daya_mesin'                    => 'nullable|numeric',
+            'tipe_mesin'                    => 'nullable|string|max:50',
+            'nomor_seri'                    => 'nullable|string|max:50',
             'jumlah_silinder'               => 'nullable|numeric',
+            'daya_bersih'                   => 'nullable|numeric',
+            'merek'                         => 'nullable|string|max:50',
+            'tahun_pembuatan_mesin'         => 'nullable|string|max:50',
+            'pabrik_pembuat_mesin'          => 'nullable|string|max:50',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // Foto Pompa Hydraulik
+            'foto_pompa_hydraulik'          => 'nullable|array',
+            'foto_pompa_hydraulik.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            'pompa_hydraulik_type'          => 'nullable|string|max:50',
+            'pompa_hydraulik_tekanan'       => 'nullable|string|max:50',
 
+
+            // Foto Pengujian
             'foto_pengujian'                => 'nullable|array',
             'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
+
+            // Pengujian Travelling
+            'fungsi_travelling_kecepatan'   => 'nullable|string|max:100',
+            'travelling_gerakan_maju'       => 'nullable|string|max:100',
+            'travelling_gerakan_mundur'     => 'nullable|string|max:100',
+            'travelling_beban'              => 'nullable|string|max:100',
+            'travelling_hasil'              => 'nullable|string|max:100',
+            'travelling_keterangan'         => 'nullable|string|max:100',
+
+            // Pengujian Belok
+            'fungsi_belok_kecepatan'        => 'nullable|string|max:100',
+            'belok_gerakan_maju'            => 'nullable|string|max:100',
+            'belok_gerakan_mundur'          => 'nullable|string|max:100',
+            'belok_beban'                   => 'nullable|string|max:100',
+            'belok_hasil'                   => 'nullable|string|max:100',
+            'belok_keterangan'              => 'nullable|string|max:100',
+
+            // Pengujian Lengan
+            'fungsi_lengan_kecepatan'       => 'nullable|string|max:100',
+            'lengan_gerakan_maju'           => 'nullable|string|max:100',
+            'lengan_gerakan_mundur'         => 'nullable|string|max:100',
+            'lengan_beban'                  => 'nullable|string|max:100',
+            'lengan_hasil'                  => 'nullable|string|max:100',
+            'lengan_keterangan'             => 'nullable|string|max:100',
+
+            // Pengujian Bucket
+            'fungsi_bucket_kecepatan'       => 'nullable|string|max:100',
+            'bucket_gerakan_maju'           => 'nullable|string|max:100',
+            'bucket_gerakan_mundur'         => 'nullable|string|max:100',
+            'bucket_beban'                  => 'nullable|string|max:100',
+            'bucket_hasil'                  => 'nullable|string|max:100',
+            'bucket_keterangan'             => 'nullable|string|max:100',
+
+            // Pengujian Loading
+            'fungsi_loading_kecepatan'      => 'nullable|string|max:100',
+            'loading_gerakan_maju'          => 'nullable|string|max:100',
+            'loading_gerakan_mundur'        => 'nullable|string|max:100',
+            'loading_beban'                 => 'nullable|string|max:100',
+            'loading_hasil'                 => 'nullable|string|max:100',
+            'loading_keterangan'            => 'nullable|string|max:100',
             'catatan'                       => 'nullable|string',
         ]);
 
@@ -192,7 +300,7 @@ class FormKpWheelLoaderController extends Controller
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_mesin', 'foto_pompa_hydraulik', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpWheelLoader->$field) {

@@ -19,28 +19,30 @@ return new class extends Migration
 
             $table->date('tanggal_pemeriksaan');
             $table->json('foto_informasi_umum')->nullable();
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->decimal('panjang_keseluruhan', 10, 4)->nullable();
-            $table->decimal('tinggi_keseluruhan', 10, 4)->nullable();
-            $table->decimal('lebar_keseluruhan', 10, 4)->nullable();
-            $table->decimal('kapasitas_bucket', 10, 4)->nullable();
-            $table->decimal('jarak_track_roda', 10, 4)->nullable();
-            $table->decimal('ukuran_lebar_roda', 10, 4)->nullable();
-            $table->decimal('kecepatan_maks_travelling', 10, 4)->nullable();
-            $table->decimal('kecepatan_mundur', 10, 4)->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+            $table->decimal('panjang_keseluruhan', 15, 4)->nullable();
+            $table->decimal('tinggi_keseluruhan', 15, 4)->nullable();
+            $table->decimal('lebar_keseluruhan', 15, 4)->nullable();
+            // $table->decimal('kapasitas_bucket', 15, 4)->nullable();
+            $table->decimal('jarak_track_roda', 15, 4)->nullable();
+            $table->decimal('ukuran_lebar_roda', 15, 4)->nullable();
+            $table->decimal('kecepatan_maks_travelling', 15, 4)->nullable();
+            $table->decimal('kecepatan_mundur', 15, 4)->nullable();
             $table->string('rem_macam', 50)->nullable();
             $table->string('rem_type', 50)->nullable();
-            $table->decimal('radius_putaran_kiri', 10, 4)->nullable();
-            $table->decimal('radius_putaran_kanan', 10, 4)->nullable();
+            $table->decimal('radius_putaran_kiri', 15, 4)->nullable();
+            $table->decimal('radius_putaran_kanan', 15, 4)->nullable();
             
             $table->json('foto_mesin')->nullable();
             $table->string('tipe_mesin', 50)->nullable();
             $table->string('nomor_seri', 50)->nullable();
             $table->bigInteger('jumlah_silinder')->unsigned()->nullable();
-            $table->decimal('daya_bersih', 10, 4)->nullable();
+            $table->decimal('daya_bersih', 15, 4)->nullable();
             $table->string('merek', 50)->nullable();
-            $table->string('tahun_pembuatan', 50)->nullable();
+            $table->string('tahun_pembuatan_mesin', 50)->nullable();
             $table->string('pabrik_pembuat_mesin', 50)->nullable();
             
             $table->json('foto_pompa_hydraulik')->nullable();

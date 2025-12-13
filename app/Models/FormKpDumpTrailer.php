@@ -17,10 +17,13 @@ class FormKpDumpTrailer extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        // 'foto_mesin' => 'array',
-        // 'foto_generator' => 'array',
-        // 'foto_pengukuran' => 'array',
-        // 'foto_pengujian' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_penggerak_utama' => 'array',
+        'foto_tekanan_roda' => 'array',
+        'foto_roda_penggerak' => 'array',
+        'foto_roda_kemudi' => 'array',
+        'foto_pompa_hidrolik' => 'array',
+        'foto_pengujian' => 'array',
     ];
 
     // Relasi ke job_order_tool

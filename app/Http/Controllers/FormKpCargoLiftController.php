@@ -50,41 +50,129 @@ class FormKpCargoLiftController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            // FOTO INFORMASI UMUM
+            'foto_informasi_umum'        => 'nullable|array',
+            'foto_informasi_umum.*'      => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'             => 'nullable|string|max:100',
+            'jenis_alat'                 => 'nullable|string|max:100',
+            'lokasi'                     => 'nullable|string|max:100',
+            'tahun_pembuatan'            => 'nullable|string|max:100',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            'tinggi_angkat_meter'        => 'nullable|numeric',
+            'tinggi_angkat_lantai'       => 'nullable|numeric',
+            'kecepatan_angkat'           => 'nullable|numeric',
+            'dimensi_pondasi'            => 'nullable|string|max:100',
+            'dimensi_sangkar'            => 'nullable|string|max:100',
+            'dimensi_ruang_luncur'       => 'nullable|string|max:100',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO RANTAI
+            'foto_rantai'                => 'nullable|array',
+            'foto_rantai.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_rantai1'            => 'nullable|numeric',
+            'panjang_rantai2'            => 'nullable|numeric',
+            'panjang_rantai3'            => 'nullable|numeric',
+            'panjang_rantai4'            => 'nullable|numeric',
+            'panjang_rantai5'            => 'nullable|numeric',
+            'panjang_rantai6'            => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO WIRE ROPE
+            'foto_wire_rope'             => 'nullable|array',
+            'foto_wire_rope.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_wire_rope1'         => 'nullable|numeric',
+            'panjang_wire_rope2'         => 'nullable|numeric',
+            'panjang_wire_rope3'         => 'nullable|numeric',
+            'panjang_wire_rope4'         => 'nullable|numeric',
+            'panjang_wire_rope5'         => 'nullable|numeric',
+            'panjang_wire_rope6'         => 'nullable|numeric',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO HOOK
+            'foto_hook'                  => 'nullable|array',
+            'foto_hook.*'                => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_hookA'              => 'nullable|numeric',
+            'panjang_hookAi'             => 'nullable|numeric',
+            'panjang_hookHa'             => 'nullable|numeric',
+            'panjang_hookB'              => 'nullable|numeric',
+            'panjang_hookBi'             => 'nullable|numeric',
+            'panjang_hookHb'             => 'nullable|numeric',
+            'panjang_hookW_C'            => 'nullable|numeric',
+            'panjang_hookD'              => 'nullable|numeric',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO PULLEY
+            'foto_pulley'                => 'nullable|array',
+            'foto_pulley.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_pulleyA'            => 'nullable|numeric',
+            'panjang_pulleyB'            => 'nullable|numeric',
+            'panjang_pulleyC'            => 'nullable|numeric',
+            'panjang_pulleyD'            => 'nullable|numeric',
+            'panjang_pulleyE'            => 'nullable|numeric',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // FOTO PERFORMANCE
+            'foto_performance'           => 'nullable|array',
+            'foto_performance.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'hoisting_naik_turun1'       => 'nullable|string|max:100',
+            'jenis_uji1'                 => 'nullable|string|max:100',
+            'bobot_beban1'               => 'nullable|string|max:100',
+            'indikasi_kerusakan1'        => 'nullable|string|max:100',
+            'hasil_performance1'         => 'nullable|string|max:100',
+
+            'hoisting_naik_turun2'       => 'nullable|string|max:100',
+            'jenis_uji2'                 => 'nullable|string|max:100',
+            'bobot_beban2'               => 'nullable|string|max:100',
+            'indikasi_kerusakan2'        => 'nullable|string|max:100',
+            'hasil_performance2'         => 'nullable|string|max:100',
+
+            'hoisting_naik_turun3'       => 'nullable|string|max:100',
+            'jenis_uji3'                 => 'nullable|string|max:100',
+            'bobot_beban3'               => 'nullable|string|max:100',
+            'indikasi_kerusakan3'        => 'nullable|string|max:100',
+            'hasil_performance3'         => 'nullable|string|max:100',
+
+            // FOTO LOADTEST
+            'foto_loadtest'              => 'nullable|array',
+            'foto_loadtest.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // LOADTEST 1
+            'statis_dinamis1'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook1'        => 'nullable|string|max:100',
+            'swl_beban_uji1'             => 'nullable|string|max:100',
+            'hoisting1'                  => 'nullable|string|max:100',
+            'hasil1'                     => 'nullable|string|max:100',
+            'keterangan1'                => 'nullable|string|max:100',
+
+            // LOADTEST 2
+            'statis_dinamis2'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook2'        => 'nullable|string|max:100',
+            'swl_beban_uji2'             => 'nullable|string|max:100',
+            'hoisting2'                  => 'nullable|string|max:100',
+            'hasil2'                     => 'nullable|string|max:100',
+            'keterangan2'                => 'nullable|string|max:100',
+
+            // LOADTEST 3
+            'statis_dinamis3'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook3'        => 'nullable|string|max:100',
+            'swl_beban_uji3'             => 'nullable|string|max:100',
+            'hoisting3'                  => 'nullable|string|max:100',
+            'hasil3'                     => 'nullable|string|max:100',
+            'keterangan3'                => 'nullable|string|max:100',
+
+            // FOTO DEFLEKSI
+            'foto_defleksi'              => 'nullable|array',
+            'foto_defleksi.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'posisi_defleksi'            => 'nullable|string|max:255',
+            'single_girder_beban'        => 'nullable|string|max:100',
+            'single_girder_tanpa_beban'  => 'nullable|string|max:100',
+            'posisi_defleksi_dua'        => 'nullable|string|max:255',
+            'double_girder_beban'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban'  => 'nullable|string|max:100',
+            'double_girder_beban_dua'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban_dua'  => 'nullable|string|max:100',
+            'pengujian_ntd'              => 'nullable|string|max:100',
+            'hasil_uji'                  => 'nullable|string|max:100',
+
+            'catatan'                    => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -95,7 +183,7 @@ class FormKpCargoLiftController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_rantai', 'foto_wire_rope', 'foto_hook', 'foto_pulley', 'foto_performance' ,'foto_loadtest', 'foto_defleksi'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -151,48 +239,136 @@ class FormKpCargoLiftController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            // FOTO INFORMASI UMUM
+            'foto_informasi_umum'        => 'nullable|array',
+            'foto_informasi_umum.*'      => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'             => 'nullable|string|max:100',
+            'jenis_alat'                 => 'nullable|string|max:100',
+            'lokasi'                     => 'nullable|string|max:100',
+            'tahun_pembuatan'            => 'nullable|string|max:100',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            'tinggi_angkat_meter'        => 'nullable|numeric',
+            'tinggi_angkat_lantai'       => 'nullable|numeric',
+            'kecepatan_angkat'           => 'nullable|numeric',
+            'dimensi_pondasi'            => 'nullable|string|max:100',
+            'dimensi_sangkar'            => 'nullable|string|max:100',
+            'dimensi_ruang_luncur'       => 'nullable|string|max:100',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO RANTAI
+            'foto_rantai'                => 'nullable|array',
+            'foto_rantai.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_rantai1'            => 'nullable|numeric',
+            'panjang_rantai2'            => 'nullable|numeric',
+            'panjang_rantai3'            => 'nullable|numeric',
+            'panjang_rantai4'            => 'nullable|numeric',
+            'panjang_rantai5'            => 'nullable|numeric',
+            'panjang_rantai6'            => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO WIRE ROPE
+            'foto_wire_rope'             => 'nullable|array',
+            'foto_wire_rope.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_wire_rope1'         => 'nullable|numeric',
+            'panjang_wire_rope2'         => 'nullable|numeric',
+            'panjang_wire_rope3'         => 'nullable|numeric',
+            'panjang_wire_rope4'         => 'nullable|numeric',
+            'panjang_wire_rope5'         => 'nullable|numeric',
+            'panjang_wire_rope6'         => 'nullable|numeric',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO HOOK
+            'foto_hook'                  => 'nullable|array',
+            'foto_hook.*'                => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_hookA'              => 'nullable|numeric',
+            'panjang_hookAi'             => 'nullable|numeric',
+            'panjang_hookHa'             => 'nullable|numeric',
+            'panjang_hookB'              => 'nullable|numeric',
+            'panjang_hookBi'             => 'nullable|numeric',
+            'panjang_hookHb'             => 'nullable|numeric',
+            'panjang_hookW_C'            => 'nullable|numeric',
+            'panjang_hookD'              => 'nullable|numeric',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO PULLEY
+            'foto_pulley'                => 'nullable|array',
+            'foto_pulley.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_pulleyA'            => 'nullable|numeric',
+            'panjang_pulleyB'            => 'nullable|numeric',
+            'panjang_pulleyC'            => 'nullable|numeric',
+            'panjang_pulleyD'            => 'nullable|numeric',
+            'panjang_pulleyE'            => 'nullable|numeric',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
-        ]);
+            // FOTO PERFORMANCE
+            'foto_performance'           => 'nullable|array',
+            'foto_performance.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'hoisting_naik_turun1'       => 'nullable|string|max:100',
+            'jenis_uji1'                 => 'nullable|string|max:100',
+            'bobot_beban1'               => 'nullable|string|max:100',
+            'indikasi_kerusakan1'        => 'nullable|string|max:100',
+            'hasil_performance1'         => 'nullable|string|max:100',
+
+            'hoisting_naik_turun2'       => 'nullable|string|max:100',
+            'jenis_uji2'                 => 'nullable|string|max:100',
+            'bobot_beban2'               => 'nullable|string|max:100',
+            'indikasi_kerusakan2'        => 'nullable|string|max:100',
+            'hasil_performance2'         => 'nullable|string|max:100',
+
+            'hoisting_naik_turun3'       => 'nullable|string|max:100',
+            'jenis_uji3'                 => 'nullable|string|max:100',
+            'bobot_beban3'               => 'nullable|string|max:100',
+            'indikasi_kerusakan3'        => 'nullable|string|max:100',
+            'hasil_performance3'         => 'nullable|string|max:100',
+
+            // FOTO LOADTEST
+            'foto_loadtest'              => 'nullable|array',
+            'foto_loadtest.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // LOADTEST 1
+            'statis_dinamis1'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook1'        => 'nullable|string|max:100',
+            'swl_beban_uji1'             => 'nullable|string|max:100',
+            'hoisting1'                  => 'nullable|string|max:100',
+            'hasil1'                     => 'nullable|string|max:100',
+            'keterangan1'                => 'nullable|string|max:100',
+
+            // LOADTEST 2
+            'statis_dinamis2'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook2'        => 'nullable|string|max:100',
+            'swl_beban_uji2'             => 'nullable|string|max:100',
+            'hoisting2'                  => 'nullable|string|max:100',
+            'hasil2'                     => 'nullable|string|max:100',
+            'keterangan2'                => 'nullable|string|max:100',
+
+            // LOADTEST 3
+            'statis_dinamis3'            => 'nullable|string|max:100',
+            'tinggi_angkat_hook3'        => 'nullable|string|max:100',
+            'swl_beban_uji3'             => 'nullable|string|max:100',
+            'hoisting3'                  => 'nullable|string|max:100',
+            'hasil3'                     => 'nullable|string|max:100',
+            'keterangan3'                => 'nullable|string|max:100',
+
+            // FOTO DEFLEKSI
+            'foto_defleksi'              => 'nullable|array',
+            'foto_defleksi.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'posisi_defleksi'            => 'nullable|string|max:255',
+            'single_girder_beban'        => 'nullable|string|max:100',
+            'single_girder_tanpa_beban'  => 'nullable|string|max:100',
+            'posisi_defleksi_dua'        => 'nullable|string|max:255',
+            'double_girder_beban'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban'  => 'nullable|string|max:100',
+            'double_girder_beban_dua'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban_dua'  => 'nullable|string|max:100',
+            'pengujian_ntd'              => 'nullable|string|max:100',
+            'hasil_uji'                  => 'nullable|string|max:100',
+
+            'catatan'                    => 'nullable|string',
+    ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_rantai', 'foto_wire_rope', 'foto_hook', 'foto_pulley', 'foto_performance' ,'foto_loadtest', 'foto_defleksi'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpCargoLift->$field) {

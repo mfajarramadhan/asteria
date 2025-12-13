@@ -50,41 +50,101 @@ class FormKpCraneController extends Controller
         // Validasi input
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+             // FOTO INFORMASI UMUM
+            'foto_informasi_umum'        => 'nullable|array',
+            'foto_informasi_umum.*'      => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'             => 'nullable|string|max:100',
+            'jenis_alat'                 => 'nullable|string|max:100',
+            'lokasi'                     => 'nullable|string|max:100',
+            'tahun_pembuatan'            => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_angkat_maksimum'    => 'nullable|numeric',
+            'kecepatan_hosting'          => 'nullable|numeric',
+            'kecepatan_treversing'       => 'nullable|numeric',
+            'kecepatan_travelling'       => 'nullable|numeric',
+            'panjang_span'               => 'nullable|numeric',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // FOTO RANTAI
+            'foto_rantai'                => 'nullable|array',
+            'foto_rantai.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_rantai1'            => 'nullable|numeric',
+            'panjang_rantai2'            => 'nullable|numeric',
+            'panjang_rantai3'            => 'nullable|numeric',
+            'panjang_rantai4'            => 'nullable|numeric',
+            'panjang_rantai5'            => 'nullable|numeric',
+            'panjang_rantai6'            => 'nullable|numeric',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO WIRE ROPE
+            'foto_wire_rope'             => 'nullable|array',
+            'foto_wire_rope.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_wire_rope1'         => 'nullable|numeric',
+            'panjang_wire_rope2'         => 'nullable|numeric',
+            'panjang_wire_rope3'         => 'nullable|numeric',
+            'panjang_wire_rope4'         => 'nullable|numeric',
+            'panjang_wire_rope5'         => 'nullable|numeric',
+            'panjang_wire_rope6'         => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO HOOK
+            'foto_hook'                  => 'nullable|array',
+            'foto_hook.*'                => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_hookA'              => 'nullable|numeric',
+            'panjang_hookAi'             => 'nullable|numeric',
+            'panjang_hookHa'             => 'nullable|numeric',
+            'panjang_hookB'              => 'nullable|numeric',
+            'panjang_hookBi'             => 'nullable|numeric',
+            'panjang_hookHb'             => 'nullable|numeric',
+            'panjang_hookW_C'            => 'nullable|numeric',
+            'panjang_hookD'              => 'nullable|numeric',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO PULLEY
+            'foto_pulley'                => 'nullable|array',
+            'foto_pulley.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_pulleyA'            => 'nullable|numeric',
+            'panjang_pulleyB'            => 'nullable|numeric',
+            'panjang_pulleyC'            => 'nullable|numeric',
+            'panjang_pulleyD'            => 'nullable|numeric',
+            'panjang_pulleyE'            => 'nullable|numeric',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO LOADTEST
+            'foto_loadtest'              => 'nullable|array',
+            'foto_loadtest.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // LOAD TEST 1
+            'swl_tinggi_angkat_hook1'   => 'nullable|string|max:25',
+            'beban_uji_load_chard1'     => 'nullable|string|max:25',
+            'travelling1'               => 'nullable|string|max:25',
+            'traversing1'               => 'nullable|string|max:25',
+            'hasil1'                     => 'nullable|string|max:25',
+            'keterangan1'                => 'nullable|string',
+
+            // LOAD TEST 2
+            'swl_tinggi_angkat_hook2'   => 'nullable|string|max:25',
+            'beban_uji_load_chard2'     => 'nullable|string|max:25',
+            'travelling2'               => 'nullable|string|max:25',
+            'traversing2'               => 'nullable|string|max:25',
+            'hasil2'                     => 'nullable|string|max:25',
+            'keterangan2'                => 'nullable|string',
+
+            // LOAD TEST 3
+            'swl_tinggi_angkat_hook3'   => 'nullable|string|max:25',
+            'beban_uji_load_chard3'     => 'nullable|string|max:25',
+            'travelling3'               => 'nullable|string|max:25',
+            'traversing3'               => 'nullable|string|max:25',
+            'hasil3'                     => 'nullable|string|max:25',
+            'keterangan3'                => 'nullable|string',
+
+            // FOTO DEFLEKSI
+            'foto_defleksi'              => 'nullable|array',
+            'foto_defleksi.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+            'posisi_defleksi'            => 'nullable|string|max:255',
+            'single_girder_beban'        => 'nullable|string|max:100',
+            'single_girder_tanpa_beban' => 'nullable|string|max:100',
+            'posisi_defleksi_dua'        => 'nullable|string|max:255',
+            'double_girder_beban'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban' => 'nullable|string|max:100',
+
+            // CATATAN UMUM
+            'catatan'                    => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -95,7 +155,7 @@ class FormKpCraneController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_rantai', 'foto_wire_rope', 'foto_hook', 'foto_pulley', 'foto_loadtest', 'foto_defleksi'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -151,48 +211,108 @@ class FormKpCraneController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+             // FOTO INFORMASI UMUM
+            'foto_informasi_umum'        => 'nullable|array',
+            'foto_informasi_umum.*'      => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'             => 'nullable|string|max:100',
+            'jenis_alat'                 => 'nullable|string|max:100',
+            'lokasi'                     => 'nullable|string|max:100',
+            'tahun_pembuatan'            => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tinggi_angkat_maksimum'    => 'nullable|numeric',
+            'kecepatan_hosting'          => 'nullable|numeric',
+            'kecepatan_treversing'       => 'nullable|numeric',
+            'kecepatan_travelling'       => 'nullable|numeric',
+            'panjang_span'               => 'nullable|numeric',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // FOTO RANTAI
+            'foto_rantai'                => 'nullable|array',
+            'foto_rantai.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_rantai1'            => 'nullable|numeric',
+            'panjang_rantai2'            => 'nullable|numeric',
+            'panjang_rantai3'            => 'nullable|numeric',
+            'panjang_rantai4'            => 'nullable|numeric',
+            'panjang_rantai5'            => 'nullable|numeric',
+            'panjang_rantai6'            => 'nullable|numeric',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO WIRE ROPE
+            'foto_wire_rope'             => 'nullable|array',
+            'foto_wire_rope.*'           => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_wire_rope1'         => 'nullable|numeric',
+            'panjang_wire_rope2'         => 'nullable|numeric',
+            'panjang_wire_rope3'         => 'nullable|numeric',
+            'panjang_wire_rope4'         => 'nullable|numeric',
+            'panjang_wire_rope5'         => 'nullable|numeric',
+            'panjang_wire_rope6'         => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO HOOK
+            'foto_hook'                  => 'nullable|array',
+            'foto_hook.*'                => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_hookA'              => 'nullable|numeric',
+            'panjang_hookAi'             => 'nullable|numeric',
+            'panjang_hookHa'             => 'nullable|numeric',
+            'panjang_hookB'              => 'nullable|numeric',
+            'panjang_hookBi'             => 'nullable|numeric',
+            'panjang_hookHb'             => 'nullable|numeric',
+            'panjang_hookW_C'            => 'nullable|numeric',
+            'panjang_hookD'              => 'nullable|numeric',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO PULLEY
+            'foto_pulley'                => 'nullable|array',
+            'foto_pulley.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_pulleyA'            => 'nullable|numeric',
+            'panjang_pulleyB'            => 'nullable|numeric',
+            'panjang_pulleyC'            => 'nullable|numeric',
+            'panjang_pulleyD'            => 'nullable|numeric',
+            'panjang_pulleyE'            => 'nullable|numeric',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO LOADTEST
+            'foto_loadtest'              => 'nullable|array',
+            'foto_loadtest.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // LOAD TEST 1
+            'swl_tinggi_angkat_hook1'   => 'nullable|string|max:25',
+            'beban_uji_load_chard1'     => 'nullable|string|max:25',
+            'travelling1'               => 'nullable|string|max:25',
+            'traversing1'               => 'nullable|string|max:25',
+            'hasil1'                     => 'nullable|string|max:25',
+            'keterangan1'                => 'nullable|string',
+
+            // LOAD TEST 2
+            'swl_tinggi_angkat_hook2'   => 'nullable|string|max:25',
+            'beban_uji_load_chard2'     => 'nullable|string|max:25',
+            'travelling2'               => 'nullable|string|max:25',
+            'traversing2'               => 'nullable|string|max:25',
+            'hasil2'                     => 'nullable|string|max:25',
+            'keterangan2'                => 'nullable|string',
+
+            // LOAD TEST 3
+            'swl_tinggi_angkat_hook3'   => 'nullable|string|max:25',
+            'beban_uji_load_chard3'     => 'nullable|string|max:25',
+            'travelling3'               => 'nullable|string|max:25',
+            'traversing3'               => 'nullable|string|max:25',
+            'hasil3'                     => 'nullable|string|max:25',
+            'keterangan3'                => 'nullable|string',
+
+            // FOTO DEFLEKSI
+            'foto_defleksi'              => 'nullable|array',
+            'foto_defleksi.*'            => 'image|mimes:jpg,jpeg,png|max:10240',
+            'posisi_defleksi'            => 'nullable|string|max:255',
+            'single_girder_beban'        => 'nullable|string|max:100',
+            'single_girder_tanpa_beban' => 'nullable|string|max:100',
+            'posisi_defleksi_dua'        => 'nullable|string|max:255',
+            'double_girder_beban'        => 'nullable|string|max:100',
+            'double_girder_tanpa_beban' => 'nullable|string|max:100',
+
+            // CATATAN UMUM
+            'catatan'                    => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_rantai', 'foto_wire_rope', 'foto_hook', 'foto_pulley', 'foto_loadtest', 'foto_defleksi'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpCrane->$field) {

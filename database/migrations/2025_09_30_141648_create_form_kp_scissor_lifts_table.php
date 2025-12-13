@@ -16,13 +16,15 @@ return new class extends Migration
 
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
             $table->date('tanggal_pemeriksaan');
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('jenis')->nullable();
-            $table->string('lokasi')->nullable();
 
-            $table->json('foto_data_scissor_lift')->nullable();
+            $table->json('foto_informasi_umum')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+
+            // $table->json('foto_data_scissor_lift')->nullable();
             $table->string('kapasitas_angkat', 50)->nullable();
             $table->string('tinggi_angkat_maksimum', 50)->nullable();
             $table->string('kecepatan_angkat_naik', 50)->nullable();

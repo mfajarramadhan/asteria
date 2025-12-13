@@ -49,12 +49,77 @@ public function index()
 
         // Validasi input
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array', 
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
+
+            // DATA SCISSOR LIFT
+            'kapasitas_angkat'              => 'nullable|string|max:50',
+            'tinggi_angkat_maksimum'        => 'nullable|string|max:50',
+            'kecepatan_angkat_naik'         => 'nullable|string|max:50',
+            'kecepatan_angkat_turun'        => 'nullable|string|max:50',
+
+            'tiang_penyangga_panjang'       => 'nullable|string|max:50',
+            'tiang_penyangga_lebar'         => 'nullable|string|max:50',
+            'tiang_penyangga_tebal'         => 'nullable|string|max:50',
+
+            'platform_panjang'              => 'nullable|string|max:50',
+            'platform_lebar'                => 'nullable|string|max:50',
+            'platform_tinggi'               => 'nullable|string|max:50',
+
+            'torak_hidrolik_dalam'          => 'nullable|string|max:50',
+            'torak_hidrolik_luar'           => 'nullable|string|max:50',
+            'torak_hidrolik_tinggi'         => 'nullable|string|max:50',
+
+            'jig_panjang'                   => 'nullable|string|max:50',
+            'jig_lebar'                     => 'nullable|string|max:50',
+            'jig_tebal'                     => 'nullable|string|max:50',
+            'jig_diameter'                  => 'nullable|string|max:50',
+
+            'rem_macam'                     => 'nullable|string|max:50',
+            'rem_type'                      => 'nullable|string|max:50',
+
+            // ENGINE
+            'foto_engine'                   => 'nullable|array',
+            'foto_engine.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'item'                          => 'nullable|string|max:50',
+            'voltage'                       => 'nullable|string|max:50',
+            'daya'                          => 'nullable|string|max:50',
+            'frequency'                     => 'nullable|string|max:50',
+            'phase'                         => 'nullable|string|max:50',
+            'arus'                          => 'nullable|string|max:50',
+            'beban'                         => 'nullable|string|max:50',
+            'putaran'                       => 'nullable|string|max:50',
+
+            // LOAD TEST
+            'foto_loadtest'                 => 'nullable|array',
+            'foto_loadtest.*'               => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'swl_tinggi_angkat1'            => 'nullable|string|max:50',
+            'beban_uji_load_chard1'         => 'nullable|string|max:50',
+            'lifting1'                      => 'nullable|string|max:50',
+            'hasil1'                        => 'nullable|string|max:50',
+            'keterangan1'                   => 'nullable|string|max:50',
+
+            'swl_tinggi_angkat2'            => 'nullable|string|max:50',
+            'beban_uji_load_chard2'         => 'nullable|string|max:50',
+            'lifting2'                      => 'nullable|string|max:50',
+            'hasil2'                        => 'nullable|string|max:50',
+            'keterangan2'                   => 'nullable|string|max:50',
+            'radius_putaran_kiri'           => 'nullable|string|max:25',
+
+            'swl_tinggi_angkat3'            => 'nullable|string|max:50',
+            'beban_uji_load_chard3'         => 'nullable|string|max:50',
+            'lifting3'                      => 'nullable|string|max:50',
+            'hasil3'                        => 'nullable|string|max:50',
+            'keterangan3'                   => 'nullable|string|max:50',
+            'catatan'                       => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -64,15 +129,17 @@ public function index()
 
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
-        // Simpan file foto_shell jika ada
-        if ($request->hasFile('foto_shell')) {
-            $paths = [];
-            foreach ($request->file('foto_shell') as $file) {
-                $paths[] = $file->store('papa/scissor_lift', 'public');
+        // Simpan file jika ada upload foto  
+        foreach (['foto_informasi_umum', 'foto_engine', 'foto_loadtest'] as $field) {
+            if ($request->hasFile($field)) {
+                $paths = [];
+                foreach ($request->file($field) as $file) {
+                    $paths[] = $file->store('papa/scissor_lift', 'public');
+                }
+                $validated[$field] = json_encode($paths);
+            } else {
+                $validated[$field] = null;
             }
-            $validated['foto_shell'] = json_encode($paths);
-        } else {
-            $validated['foto_shell'] = null;
         }
 
         // Tambahkan kolom lain yang tidak berasal dari request
@@ -99,7 +166,7 @@ public function index()
             'jobOrderTool.tool'
         ]);
 
-        return view('form-kp.papa.scissor-lift.show', [
+        return view('form_kp.papa.scissor_lift.show', [
             'title' => 'Detail Pemeriksaan Scissor Lift',
             'subtitle' => '',
             'formKpScissorLift' => $formKpScissorLift,
@@ -118,42 +185,108 @@ public function index()
     public function update(Request $request, FormKpScissorLift $formKpScissorLift)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'nama_perusahaan'     => 'nullable|string|max:255',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'catatan'             => 'nullable|string',
+            'tanggal_pemeriksaan'           => 'nullable|date',
+            'foto_informasi_umum'           => 'nullable|array',
+            'foto_informasi_umum.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'pabrik_pembuat'                => 'nullable|string|max:100',
+            'jenis'                         => 'nullable|string|max:100',
+            'lokasi'                        => 'nullable|string|max:100',
+            'tahun_pembuatan'               => 'nullable|string|max:100',
+
+            // DATA SCISSOR LIFT
+            'kapasitas_angkat'              => 'nullable|string|max:50',
+            'tinggi_angkat_maksimum'        => 'nullable|string|max:50',
+            'kecepatan_angkat_naik'         => 'nullable|string|max:50',
+            'kecepatan_angkat_turun'        => 'nullable|string|max:50',
+
+            'tiang_penyangga_panjang'       => 'nullable|string|max:50',
+            'tiang_penyangga_lebar'         => 'nullable|string|max:50',
+            'tiang_penyangga_tebal'         => 'nullable|string|max:50',
+
+            'platform_panjang'              => 'nullable|string|max:50',
+            'platform_lebar'                => 'nullable|string|max:50',
+            'platform_tinggi'               => 'nullable|string|max:50',
+
+            'torak_hidrolik_dalam'          => 'nullable|string|max:50',
+            'torak_hidrolik_luar'           => 'nullable|string|max:50',
+            'torak_hidrolik_tinggi'         => 'nullable|string|max:50',
+
+            'jig_panjang'                   => 'nullable|string|max:50',
+            'jig_lebar'                     => 'nullable|string|max:50',
+            'jig_tebal'                     => 'nullable|string|max:50',
+            'jig_diameter'                  => 'nullable|string|max:50',
+
+            'rem_macam'                     => 'nullable|string|max:50',
+            'rem_type'                      => 'nullable|string|max:50',
+
+            // ENGINE
+            'foto_engine'                   => 'nullable|array',
+            'foto_engine.*'                 => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'item'                          => 'nullable|string|max:50',
+            'voltage'                       => 'nullable|string|max:50',
+            'daya'                          => 'nullable|string|max:50',
+            'frequency'                     => 'nullable|string|max:50',
+            'phase'                         => 'nullable|string|max:50',
+            'arus'                          => 'nullable|string|max:50',
+            'beban'                         => 'nullable|string|max:50',
+            'putaran'                       => 'nullable|string|max:50',
+
+            // LOAD TEST
+            'foto_loadtest'                 => 'nullable|array',
+            'foto_loadtest.*'               => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            'swl_tinggi_angkat1'            => 'nullable|string|max:50',
+            'beban_uji_load_chard1'         => 'nullable|string|max:50',
+            'lifting1'                      => 'nullable|string|max:50',
+            'hasil1'                        => 'nullable|string|max:50',
+            'keterangan1'                   => 'nullable|string|max:50',
+
+            'swl_tinggi_angkat2'            => 'nullable|string|max:50',
+            'beban_uji_load_chard2'         => 'nullable|string|max:50',
+            'lifting2'                      => 'nullable|string|max:50',
+            'hasil2'                        => 'nullable|string|max:50',
+            'keterangan2'                   => 'nullable|string|max:50',
+            'radius_putaran_kiri'           => 'nullable|string|max:25',
+
+            'swl_tinggi_angkat3'            => 'nullable|string|max:50',
+            'beban_uji_load_chard3'         => 'nullable|string|max:50',
+            'lifting3'                      => 'nullable|string|max:50',
+            'hasil3'                        => 'nullable|string|max:50',
+            'keterangan3'                   => 'nullable|string|max:50',
+            'catatan'                       => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        if ($request->hasFile('foto_shell')) {
-            // Hapus file lama
-            if ($formKpScissorLift->foto_shell) {
-                $oldFiles = is_string($formKpScissorLift->foto_shell)
-                    ? json_decode($formKpScissorLift->foto_shell, true)
-                    : $formKpScissorLift->foto_shell;
-
-                foreach ($oldFiles as $oldFile) {
-                    if (Storage::disk('public')->exists($oldFile)) {
-                        Storage::disk('public')->delete($oldFile);
+        foreach (['foto_informasi_umum', 'foto_engine', 'foto_loadtest'] as $field) {
+            if ($request->hasFile($field)) {
+                // Hapus file lama
+                if ($formKpScissorLift->$field) {
+                    $oldFiles = json_decode($formKpScissorLift->$field, true) ?? [];
+                    foreach ($oldFiles as $oldFile) {
+                        if (Storage::disk('public')->exists($oldFile)) {
+                            Storage::disk('public')->delete($oldFile);
+                        }
                     }
                 }
-            }
 
-            $paths = [];
-            $files = $request->file('foto_shell');
-            if (!is_array($files)) {
-                $files = [$files];
-            }
+                // Upload file baru
+                $paths = [];
+                foreach ((array) $request->file($field) as $file) {
+                    $paths[] = $file->store('papa/scissor_lift', 'public');
+                }
 
-            foreach ($files as $file) {
-                $paths[] = $file->store('papa/scissor_lift', 'public');
+                $validated[$field] = json_encode($paths);
+            } else {
+                // Jika tidak upload baru, pertahankan lama
+                $validated[$field] = $formKpScissorLift->$field;
             }
+        }
 
-        $validated['foto_shell'] = json_encode($paths);        }
         $formKpScissorLift->update($validated);
 
         return redirect()->route('form_kp.papa.scissor_lift.index', $formKpScissorLift->id)

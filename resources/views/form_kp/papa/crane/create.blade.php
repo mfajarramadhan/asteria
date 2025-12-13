@@ -96,6 +96,16 @@
                     @enderror   
                 </div>
 
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 {{-- Tinggi Angkat Maksimum --}}
                 <div>
                     <input type="number" step="any" name="tinggi_angkat_maksimum" placeholder="Tinggi Angkat Maksimum" id="tinggi_angkat_maksimum" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tinggi_angkat_maksimum') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tinggi_angkat_maksimum') }}">

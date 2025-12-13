@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
             $table->date('tanggal_pemeriksaan');
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('jenis_alat')->nullable();
-            $table->string('lokasi')->nullable();
-            // $table->string('kapasitas')->nullable();
+
+            $table->json('foto_informasi_umum')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis_alat', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
 
             $table->decimal('tinggi_angkat_maksimum', 10, 4)->nullable();
             $table->decimal('kecepatan_hosting', 10, 4)->nullable();
@@ -64,8 +65,8 @@ return new class extends Migration
             $table->decimal('panjang_pulleyC', 10, 4)->nullable();
             $table->decimal('panjang_pulleyD', 10, 4)->nullable();
             $table->decimal('panjang_pulleyE', 10, 4)->nullable();
-            $table->json('foto_loadtest')->nullable();
 
+            $table->json('foto_loadtest')->nullable();
             // Load Test 1
             $table->string('swl_tinggi_angkat_hook1', 25)->nullable();
             $table->string('beban_uji_load_chard1', 25)->nullable();
@@ -98,6 +99,8 @@ return new class extends Migration
             $table->string('posisi_defleksi_dua', 255)->nullable();
             $table->string('double_girder_beban', 100)->nullable();
             $table->string('double_girder_tanpa_beban', 100)->nullable();
+            $table->string('double_girder_beban_dua', 100)->nullable();
+            $table->string('double_girder_tanpa_beban_dua', 100)->nullable();
 
             $table->text('catatan')->nullable(); 
             $table->timestamps();

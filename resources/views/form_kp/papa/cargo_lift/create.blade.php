@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
         <div class="p-4 bg-white rounded-lg shadow-md">
-            <form action="{{ route('form_kp.papa.crane.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
+            <form action="{{ route('form_kp.papa.cargo_lift.store', $jobOrderTool->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Simpan data?')">
                 @csrf
                 
                 {{-- Tanggal Pemeriksaan --}}
@@ -96,6 +96,17 @@
                     @enderror   
                 </div>
 
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Tinggi Angkat --}}
                 <div class="grid grid-cols-2 gap-4">
 
                     {{-- Left: Label --}}
@@ -901,8 +912,8 @@
                         <label class="block mb-1 text-sm font-medium text-gray-700">Pengujian NTD :  Tidak dilakukan / Dilakukan*) pada bagian:</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="hasil_uji" placeholder="" id="hasil_uji" class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('hasil_uji') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('hasil_uji') }}">
-                        @error('hasil_uji')
+                        <input type="text" name="pengujian_ntd" placeholder="" id="pengujian_ntd" class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pengujian_ntd') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pengujian_ntd') }}">
+                        @error('pengujian_ntd')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
@@ -914,7 +925,7 @@
                         <label class="block mb-1 text-sm font-medium text-gray-700">Hasil:</label>
                     </div>
                     <div>
-                        <input type="number" step="any" name="hasil_uji" placeholder="" id="hasil_uji" class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('hasil_uji') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('hasil_uji') }}">
+                        <input type="text" name="hasil_uji" placeholder="" id="hasil_uji" class="block w-full shadow-md px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('hasil_uji') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('hasil_uji') }}">
                         @error('hasil_uji')
                         <div class="text-xs text-red-600">
                             {{ $message }}

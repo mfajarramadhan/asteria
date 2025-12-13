@@ -424,20 +424,50 @@ class JobOrderController extends Controller
             'catatan'                           => $request->catatan,
         ]);
 
-        // hapus tools lama & simpan ulang
-        JobOrderTool::where('job_order_id', $jobOrder->id)->delete();
+        // --- Sinkronisasi tools tanpa menghapus data pemeriksaan (form KP) ---
+        // Ambil semua tool lama yang sudah ada di pivot
+        $existingTools = JobOrderTool::where('job_order_id', $jobOrder->id)
+            ->get()
+            ->keyBy('tool_id'); // agar mudah dicari berdasarkan tool_id
+
         foreach ($request->tools as $tool) {
-            JobOrderTool::create([
-                'job_order_id'       => $jobOrder->id,
-                'tool_id'            => $tool['tool_id'],
-                'qty'                => $tool['qty'],
-                'status'             => $tool['status'],
-                'kapasitas'          => $tool['kapasitas'],
-                'model'              => $tool['model'],
-                'no_seri'            => $tool['no_seri'],
-                'finished_at'        => null,
-            ]);
+            $toolId = $tool['tool_id'];
+
+            if ($existingTools->has($toolId)) {
+                // UPDATE tool lama (tanpa mengubah finished_at dan status pemeriksaan)
+                $existingTools[$toolId]->update([
+                    'qty'       => $tool['qty'],
+                    'status'    => $tool['status'],
+                    'kapasitas' => $tool['kapasitas'],
+                    'model'     => $tool['model'],
+                    'no_seri'   => $tool['no_seri'],
+                ]);
+
+                // Hapus dari daftar existingTools agar tidak dianggap sisa
+                $existingTools->forget($toolId);
+
+            } else {
+                // CREATE tool baru jika belum terdaftar di JO
+                JobOrderTool::create([
+                    'job_order_id' => $jobOrder->id,
+                    'tool_id'      => $toolId,
+                    'qty'          => $tool['qty'],
+                    'status'       => $tool['status'],
+                    'kapasitas'    => $tool['kapasitas'],
+                    'model'        => $tool['model'],
+                    'no_seri'      => $tool['no_seri'],
+                    'finished_at'  => null, // baru ditambahkan, belum diperiksa
+                ]);
+            }
         }
+
+        // Tools yang tersisa di $existingTools = alat yang dihapus dari input form
+        // Boleh dihapus (akan menghapus form KP terkait jika FK cascade)
+        foreach ($existingTools as $toolToDelete) {
+            $toolToDelete->delete();
+        }
+
+        // Recalculate status tetap dijalankan
         $jobOrder->recalculateStatus();
 
         // update penanggung jawab
@@ -446,6 +476,7 @@ class JobOrderController extends Controller
         } else {
             $jobOrder->responsibles()->sync([]);
         }
+
 
         return redirect()->route('job_orders.index')->with('success', 'Job Order berhasil diperbarui!');
     }

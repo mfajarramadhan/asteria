@@ -95,25 +95,11 @@
                     </div>
                     @enderror   
                 </div>
-                
-                {{-- foto_spesifikasi --}}
+
+                {{-- Tahun Pembuatan --}}
                 <div>
-                    <h2 class="block mb-1 text-base font-bold text-gray-700">Spesifikasi</h2>
-                    <label for="foto_spesifikasi" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
-                    <div id="foto_spesifikasi-preview" class="flex flex-wrap gap-2"></div>
-                    <input type="file" name="foto_spesifikasi[]" id="foto_spesifikasi" accept="image/*" multiple onchange="previewImage(this, 'foto_spesifikasi-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_spesifikasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
-                    
-                    @error('foto_spesifikasi')
-                        <div class="text-xs text-red-600">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                
-                {{-- Kapasitas --}}
-                <div>
-                    <input type="number" step="any" name="kapasitas" placeholder="Kapasitas" id="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas') }}">
-                    @error('kapasitas')
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -160,6 +146,7 @@
                     @enderror   
                 </div>
                 
+                {{-- Kecepatan --}}
                 <div class="grid grid-cols-2 gap-4">
                     {{-- Left: Label --}}
                     <div class="flex items-center">
@@ -304,12 +291,12 @@
 
                 {{-- Tahun Pembuatan --}}
                 <div>
-                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan"
+                    <input type="text" name="tahun_pembuatan_mesin" placeholder="Tahun Pembuatan" id="tahun_pembuatan_mesin"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md
                             focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm
-                            @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('tahun_pembuatan') }}">
-                    @error('tahun_pembuatan')
+                            @error('tahun_pembuatan_mesin') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tahun_pembuatan_mesin') }}">
+                    @error('tahun_pembuatan_mesin')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
@@ -318,12 +305,12 @@
 
                 {{-- Pabrik Pembuatan --}}
                 <div>
-                    <input type="text" name="pabrik_pembuatan" placeholder="Pabrik Pembuatan" id="pabrik_pembuatan"
+                    <input type="text" name="pabrik_pembuatan_mesin" placeholder="Pabrik Pembuatan" id="pabrik_pembuatan_mesin"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md
                             focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm
-                            @error('pabrik_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('pabrik_pembuatan') }}">
-                    @error('pabrik_pembuatan')
+                            @error('pabrik_pembuatan_mesin') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('pabrik_pembuatan_mesin') }}">
+                    @error('pabrik_pembuatan_mesin')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>

@@ -6,24 +6,40 @@
                 @csrf
                 
                 {{-- Tanggal Pemeriksaan --}}
-                <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-                <div class="flex flex-wrap justify-between w-full gap-y-4">
-                    {{-- Tanggal Pemeriksaan 1 --}}
-                    <div class="w-full md:w-[50%]">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
+                <div>
+                    <label for="tanggal_pemeriksaan" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Pemeriksaan</label>
+                    <div class="flex flex-wrap justify-between w-full gap-y-4">
+                        {{-- Tanggal Pemeriksaan 1 --}}
+                        <div class="w-full md:w-[50%]">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                </div>
+                                <input required id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" value="{{ old('tanggal_pemeriksaan') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border shadow-md border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan') }}"> 
                             </div>
-                            <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" value="{{ old('tanggal_pemeriksaan') }}" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg shadow-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tanggal_pemeriksaan') }}"> 
+                            @error('tanggal_pemeriksaan')
+                            <div class="text-xs text-red-600">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @error('tanggal_pemeriksaan')
+                    </div>
+                </div>
+
+                {{-- foto_informasi_umum --}}
+                <div>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Informasi Umum</h2>
+                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
+                    <div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2"></div>
+                    <input type="file" name="foto_informasi_umum[]" id="foto_informasi_umum" accept="image/*" multiple onchange="previewImage(this, 'foto_informasi_umum-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_informasi_umum') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+                    
+                    @error('foto_informasi_umum')
                         <div class="text-xs text-red-600">
                             {{ $message }}
                         </div>
-                        @enderror
-                    </div>
+                    @enderror
                 </div>
 
                 {{-- Nama Perusahaan --}}
@@ -59,11 +75,31 @@
                     </div>
                     @enderror   
                 </div>
-                
+
+                {{-- Jenis --}}
+                <div>
+                    <input type="text" name="jenis" placeholder="Jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis') }}">
+                    @error('jenis')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 {{-- Lokasi --}}
                 <div>
                     <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
                     @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -80,16 +116,6 @@
                     @enderror   
                 </div>
                 
-                {{-- Tahun --}}
-                <div>
-                    <input type="text" name="tahun" placeholder="Tahun" id="tahun" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun') }}">
-                    @error('tahun')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div>
-                
                 {{-- Tekanan Kerja --}}
                 <div>
                     <input type="text" name="tekanan_kerja" placeholder="Tekanan Kerja" id="tekanan_kerja" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tekanan_kerja') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tekanan_kerja') }}">
@@ -100,11 +126,11 @@
                     @enderror   
                 </div>
 
-                <h2 class="block text-sm font-bold text-gray-700">Dimensi</h2>
+                <h2 class="block text-base font-bold text-gray-700">Dimensi</h2>
                 
                 {{-- foto_shell_separator --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
                     <label for="foto_shell_separator" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_shell_separator-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_shell_separator[]" id="foto_shell_separator" accept="image/*" multiple onchange="previewImage(this, 'foto_shell_separator-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_shell_separator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -149,7 +175,7 @@
                 {{-- Instalasi Pipa --}}
                 {{-- foto_instalasi_pipa --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Instalasi Pipa</h2>
                     <label for="foto_instalasi_pipa" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_instalasi_pipa-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_instalasi_pipa[]" id="foto_instalasi_pipa" accept="image/*" multiple onchange="previewImage(this, 'foto_instalasi_pipa-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_instalasi_pipa') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -193,7 +219,7 @@
                 {{-- Casing/Cover Screw Compressor --}}
                 {{-- foto_casing_screw --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
                     <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_casing_screw-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_casing_screw[]" id="foto_casing_screw" accept="image/*" multiple onchange="previewImage(this, 'foto_casing_screw-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_casing_screw') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -237,7 +263,7 @@
                 {{-- Pondasi Screw Compressor --}}
                 {{-- foto_pondasi_screw --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pondasi Screw Compressor</h2>
                     <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pondasi_screw-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pondasi_screw[]" id="foto_pondasi_screw" accept="image/*" multiple onchange="previewImage(this, 'foto_pondasi_screw-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pondasi_screw') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -271,7 +297,7 @@
                 {{-- Safety Device --}}
                 {{-- foto_safety_device --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Safety Device</h2>
                     <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_safety_device-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_safety_device[]" id="foto_safety_device" accept="image/*" multiple onchange="previewImage(this, 'foto_safety_device-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_safety_device') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -330,7 +356,7 @@
 
                 {{-- foto_pressure_switch --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pressure Switch</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pressure Switch</h2>
                     <label for="foto_pressure_switch" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pressure_switch-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pressure_switch[]" id="foto_pressure_switch" accept="image/*" multiple onchange="previewImage(this, 'foto_pressure_switch-preview')" class="block w-full shadow-md lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pressure_switch') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">

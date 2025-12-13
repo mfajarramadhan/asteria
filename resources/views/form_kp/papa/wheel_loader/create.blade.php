@@ -76,10 +76,30 @@
                     @enderror   
                 </div>
 
+                {{-- Jenis --}}
+                <div>
+                    <input type="text" name="jenis" placeholder="Jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis') }}">
+                    @error('jenis')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 {{-- Lokasi --}}
                 <div>
-                    <input type="text" name="lokasi" placeholder="Lokasi Wheel Loader" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
+                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi') }}">
                     @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                    @error('tahun_pembuatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -106,14 +126,6 @@
                 <div>
                     <input type="number" step="any" name="lebar_keseluruhan" placeholder="Lebar Keseluruhan" id="lebar_keseluruhan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lebar_keseluruhan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lebar_keseluruhan') }}">
                     @error('lebar_keseluruhan')
-                    <div class="text-xs text:red-600">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                {{-- Kapasitas Bucket --}}
-                <div>
-                    <input type="number" step="any" name="kapasitas_bucket" placeholder="Kapasitas Bucket" id="kapasitas_bucket" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas_bucket') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas_bucket') }}">
-                    @error('kapasitas_bucket')
                     <div class="text-xs text:red-600">{{ $message }}</div>
                     @enderror
                 </div>
@@ -286,8 +298,8 @@
 
                 {{-- Tahun Pembuatan --}}
                 <div>
-                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
-                    @error('tahun_pembuatan')
+                    <input type="text" name="tahun_pembuatan_mesin" placeholder="Tahun Pembuatan" id="tahun_pembuatan_mesin" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan_mesin') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan_mesin') }}">
+                    @error('tahun_pembuatan_mesin')
                     <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror
                 </div>
@@ -332,7 +344,7 @@
 
                 {{-- foto_pengujian --}}
                 <div>
-                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pengujian </h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pengujian</h2>
                     <label for="foto_pengujian" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
                     <div id="foto_pengujian-preview" class="flex flex-wrap gap-2"></div>
                     <input type="file" name="foto_pengujian[]" id="foto_pengujian" accept="image/*" multiple onchange="previewImage(this, 'foto_pengujian-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_pengujian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
@@ -385,8 +397,8 @@
                         <div class="flex gap-1">
                             <input type="text" name="travelling_gerakan_maju" id="travelling_gerakan_maju" placeholder="Maju" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('travelling_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('travelling_gerakan_maju') }}">
                             @error('travelling_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                            <input type="text" name="travelling_gerakan_maju" id="travelling_gerakan_maju" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('travelling_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('travelling_gerakan_maju') }}">
-                            @error('travelling_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="text" name="travelling_gerakan_mundur" id="travelling_gerakan_mundur" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('travelling_gerakan_mundur') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('travelling_gerakan_mundur') }}">
+                            @error('travelling_gerakan_mundur') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>
@@ -417,8 +429,8 @@
                         <div class="flex gap-1">
                             <input type="text" name="belok_gerakan_maju" id="belok_gerakan_maju" placeholder="Maju" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('belok_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('belok_gerakan_maju') }}">
                             @error('belok_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                            <input type="text" name="belok_gerakan_maju" id="belok_gerakan_maju" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('belok_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('belok_gerakan_maju') }}">
-                            @error('belok_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="text" name="belok_gerakan_mundur" id="belok_gerakan_mundur" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('belok_gerakan_mundur') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('belok_gerakan_mundur') }}">
+                            @error('belok_gerakan_mundur') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>
@@ -449,8 +461,8 @@
                         <div class="flex gap-1">
                             <input type="text" name="lengan_gerakan_maju" id="lengan_gerakan_maju" placeholder="Maju" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lengan_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lengan_gerakan_maju') }}">
                             @error('lengan_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                            <input type="text" name="lengan_gerakan_maju" id="lengan_gerakan_maju" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lengan_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lengan_gerakan_maju') }}">
-                            @error('lengan_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="text" name="lengan_gerakan_mundur" id="lengan_gerakan_mundur" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lengan_gerakan_mundur') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lengan_gerakan_mundur') }}">
+                            @error('lengan_gerakan_mundur') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>
@@ -468,7 +480,7 @@
                             @error('lengan_keterangan') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
-                        {{-- Baris 2 --}}
+                        {{-- Baris 5 --}}
                         <div class="text-left">
                             <label class="block mb-1 text-sm font-medium text-gray-700">Bak (bucket)</label>
                         </div>
@@ -481,8 +493,8 @@
                         <div class="flex gap-1">
                             <input type="text" name="bucket_gerakan_maju" id="bucket_gerakan_maju" placeholder="Maju" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('bucket_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('bucket_gerakan_maju') }}">
                             @error('bucket_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                            <input type="text" name="bucket_gerakan_maju" id="bucket_gerakan_maju" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('bucket_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('bucket_gerakan_maju') }}">
-                            @error('bucket_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="text" name="bucket_gerakan_mundur" id="bucket_gerakan_mundur" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('bucket_gerakan_mundur') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('bucket_gerakan_mundur') }}">
+                            @error('bucket_gerakan_mundur') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>
@@ -500,7 +512,7 @@
                             @error('bucket_keterangan') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
-                        {{-- Baris 2 --}}
+                        {{-- Baris 6 --}}
                         <div class="text-left">
                             <label class="block mb-1 text-sm font-medium text-gray-700">Gerakan Mengangkut (loading)</label>
                         </div>
@@ -513,8 +525,8 @@
                         <div class="flex gap-1">
                             <input type="text" name="loading_gerakan_maju" id="loading_gerakan_maju" placeholder="Maju" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('loading_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('loading_gerakan_maju') }}">
                             @error('loading_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
-                            <input type="text" name="loading_gerakan_maju" id="loading_gerakan_maju" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('loading_gerakan_maju') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('loading_gerakan_maju') }}">
-                            @error('loading_gerakan_maju') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
+                            <input type="text" name="loading_gerakan_mundur" id="loading_gerakan_mundur" placeholder="Mundur" class="block w-full text-center px-2 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('loading_gerakan_mundur') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('loading_gerakan_mundur') }}">
+                            @error('loading_gerakan_mundur') <div class="text-xs text-red-600">{{ $message }}</div> @enderror
                         </div>
 
                         <div>

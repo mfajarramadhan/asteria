@@ -49,42 +49,87 @@ class FormKpDumpTrailerController extends Controller
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
         // Validasi input
         $validated = $request->validate([
-            'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'tanggal_pemeriksaan'       => 'nullable|date',
+            'foto_informasi_umum'       => 'nullable|array',
+            'foto_informasi_umum.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'            => 'nullable|string|max:100',
+            'jenis'                     => 'nullable|string|max:100',
+            'lokasi'                    => 'nullable|string|max:100',
+            'tahun_pembuatan'           => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_keseluruhan'       => 'nullable|numeric',
+            'tinggi_keseluruhan'        => 'nullable|numeric',
+            'ketinggian_kabin'          => 'nullable|numeric',
+            'lebar_keseluruhan'         => 'nullable|numeric',
+            'kecepatan_angkat'          => 'nullable|numeric',
+            'kecepatan_turun'           => 'nullable|numeric',
+            'kecepatan_travelling'      => 'nullable|numeric',
+            'perlengkapan'              => 'nullable|string|max:100',
+            'berat_kendaraan'           => 'nullable|numeric',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // FOTO PENGGERAK UTAMA
+            'foto_penggerak_utama'      => 'nullable|array',
+            'foto_penggerak_utama.*'    => 'image|mimes:jpg,jpeg,png|max:10240',
+            'merk_type'                 => 'nullable|string|max:100',
+            'nomor_seri'                => 'nullable|string|max:100',
+            'jumlah_silinder'           => 'nullable|string|max:50',
+            'daya'                      => 'nullable|string|max:50',
+            'tahun_pembuatan_mesin'     => 'nullable|string|max:50',
+            'pabrik_pembuatan_mesin'    => 'nullable|string|max:50',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO TEKANAN RODA
+            'foto_tekanan_roda'         => 'nullable|array',
+            'foto_tekanan_roda.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'roda_penggerak'            => 'nullable|numeric',
+            'roda_kemudi'               => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO RODA PENGGERAK
+            'foto_roda_penggerak'       => 'nullable|array',
+            'foto_roda_penggerak.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'ukuran'                    => 'nullable|string|max:50',
+            'tipe'                      => 'nullable|string|max:50',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO RODA KEMUDI
+            'foto_roda_kemudi'          => 'nullable|array',
+            'foto_roda_kemudi.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
+            'ukuran2'                   => 'nullable|string|max:50',
+            'tipe2'                     => 'nullable|string|max:50',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO POMPA HIDROLIK
+            'foto_pompa_hidrolik'       => 'nullable|array',
+            'foto_pompa_hidrolik.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tipe_pompa'                => 'nullable|string|max:50',
+            'tekanan_pompa'             => 'nullable|string|max:50',
+            'relief_valve_pompa'        => 'nullable|string|max:50',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // FOTO PENGUJIAN
+            'foto_pengujian'            => 'nullable|array',
+            'foto_pengujian.*'          => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // PENGUJIAN 1
+            'swl_tinggi_angkat1'        => 'nullable|numeric',
+            'beban_uji_load1'           => 'nullable|numeric',
+            'travelling_kecepatan1'     => 'nullable|numeric',
+            'gerakan1'                  => 'nullable|numeric',
+            'hasil1'                    => 'nullable|numeric',
+            'keterangan1'               => 'nullable|string|max:100',
+
+            // PENGUJIAN 2
+            'swl_tinggi_angkat2'        => 'nullable|numeric',
+            'beban_uji_load2'           => 'nullable|numeric',
+            'travelling_kecepatan2'     => 'nullable|numeric',
+            'gerakan2'                  => 'nullable|numeric',
+            'hasil2'                    => 'nullable|numeric',
+            'keterangan2'               => 'nullable|string|max:100',
+
+            // PENGUJIAN 3
+            'swl_tinggi_angkat3'        => 'nullable|numeric',
+            'beban_uji_load3'           => 'nullable|numeric',
+            'travelling_kecepatan3'     => 'nullable|numeric',
+            'gerakan3'                  => 'nullable|numeric',
+            'hasil3'                    => 'nullable|numeric',
+            'keterangan3'               => 'nullable|string|max:100',
+            'catatan'                   => 'nullable|string',
         ]);
 
         // Konversi tanggal ke format Y-m-d
@@ -95,7 +140,7 @@ class FormKpDumpTrailerController extends Controller
         $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
 
         // Simpan file jika ada upload foto  
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_penggerak_utama', 'foto_tekanan_roda', 'foto_roda_penggerak', 'foto_roda_kemudi', 'foto_pompa_hidrolik', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 $paths = [];
                 foreach ($request->file($field) as $file) {
@@ -150,49 +195,94 @@ class FormKpDumpTrailerController extends Controller
     public function update(Request $request, FormKpDumpTrailer $formKpDumpTrailer)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan'           => 'nullable|date',
-            'pabrik_pembuat'                => 'nullable|string|max:255',
-            'lokasi'                        => 'nullable|string|max:255',
+            'tanggal_pemeriksaan'       => 'nullable|date',
+            'foto_informasi_umum'       => 'nullable|array',
+            'foto_informasi_umum.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'pabrik_pembuat'            => 'nullable|string|max:100',
+            'jenis'                     => 'nullable|string|max:100',
+            'lokasi'                    => 'nullable|string|max:100',
+            'tahun_pembuatan'           => 'nullable|string|max:100',
 
-            'foto_mesin'                    => 'nullable|array',
-            'foto_mesin.*'                  => 'image|mimes:jpg,jpeg,png|max:10240',
+            'panjang_keseluruhan'       => 'nullable|numeric',
+            'tinggi_keseluruhan'        => 'nullable|numeric',
+            'ketinggian_kabin'          => 'nullable|numeric',
+            'lebar_keseluruhan'         => 'nullable|numeric',
+            'kecepatan_angkat'          => 'nullable|numeric',
+            'kecepatan_turun'           => 'nullable|numeric',
+            'kecepatan_travelling'      => 'nullable|numeric',
+            'perlengkapan'              => 'nullable|string|max:100',
+            'berat_kendaraan'           => 'nullable|numeric',
 
-            'daya_mesin'                    => 'nullable|numeric',
-            'jumlah_silinder'               => 'nullable|numeric',
+            // FOTO PENGGERAK UTAMA
+            'foto_penggerak_utama'      => 'nullable|array',
+            'foto_penggerak_utama.*'    => 'image|mimes:jpg,jpeg,png|max:10240',
+            'merk_type'                 => 'nullable|string|max:100',
+            'nomor_seri'                => 'nullable|string|max:100',
+            'jumlah_silinder'           => 'nullable|string|max:50',
+            'daya'                      => 'nullable|string|max:50',
+            'tahun_pembuatan_mesin'     => 'nullable|string|max:50',
+            'pabrik_pembuatan_mesin'    => 'nullable|string|max:50',
 
-            'foto_generator'                => 'nullable|array',
-            'foto_generator.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO TEKANAN RODA
+            'foto_tekanan_roda'         => 'nullable|array',
+            'foto_tekanan_roda.*'       => 'image|mimes:jpg,jpeg,png|max:10240',
+            'roda_penggerak'            => 'nullable|numeric',
+            'roda_kemudi'               => 'nullable|numeric',
 
-            'foto_pengukuran'               => 'nullable|array',
-            'foto_pengukuran.*'             => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO RODA PENGGERAK
+            'foto_roda_penggerak'       => 'nullable|array',
+            'foto_roda_penggerak.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'ukuran'                    => 'nullable|string|max:50',
+            'tipe'                      => 'nullable|string|max:50',
 
-            'grounding1'                    => 'nullable|string|max:255',
-            'grounding2'                    => 'nullable|string|max:255',
-            'pondasi'                       => 'nullable|string|max:255',
-            'rangka'                        => 'nullable|string|max:255',
-            'cover_kipas'                   => 'nullable|string|max:255',
-            'pencahayaan_depan'             => 'nullable|string|max:255',
-            'pencahayaan_belakang'          => 'nullable|string|max:255',
-            'pencahayaan_tengah'            => 'nullable|string|max:255',
-            'pencahayaan_depan_panel'       => 'nullable|string|max:255',
-            'kebisingan_ruang_pltd'         => 'nullable|string|max:255',
-            'kebisingan_ruang_kontrol'      => 'nullable|string|max:255',
-            'kebisingan_luar_ruang_pltd'    => 'nullable|string|max:255',
-            'kebisingan_area_kerja'         => 'nullable|string|max:255',
+            // FOTO RODA KEMUDI
+            'foto_roda_kemudi'          => 'nullable|array',
+            'foto_roda_kemudi.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
+            'ukuran2'                   => 'nullable|string|max:50',
+            'tipe2'                     => 'nullable|string|max:50',
 
-            'foto_pengujian'                => 'nullable|array',
-            'foto_pengujian.*'              => 'image|mimes:jpg,jpeg,png|max:10240',
+            // FOTO POMPA HIDROLIK
+            'foto_pompa_hidrolik'       => 'nullable|array',
+            'foto_pompa_hidrolik.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
+            'tipe_pompa'                => 'nullable|string|max:50',
+            'tekanan_pompa'             => 'nullable|string|max:50',
+            'relief_valve_pompa'        => 'nullable|string|max:50',
 
-            'emergency_stop'                => 'nullable|string|max:255',
-            'emergency_stop_ket'            => 'nullable|string|max:255',
-            'catatan'                       => 'nullable|string',
+            // FOTO PENGUJIAN
+            'foto_pengujian'            => 'nullable|array',
+            'foto_pengujian.*'          => 'image|mimes:jpg,jpeg,png|max:10240',
+
+            // PENGUJIAN 1
+            'swl_tinggi_angkat1'        => 'nullable|numeric',
+            'beban_uji_load1'           => 'nullable|numeric',
+            'travelling_kecepatan1'     => 'nullable|numeric',
+            'gerakan1'                  => 'nullable|numeric',
+            'hasil1'                    => 'nullable|numeric',
+            'keterangan1'               => 'nullable|string|max:100',
+
+            // PENGUJIAN 2
+            'swl_tinggi_angkat2'        => 'nullable|numeric',
+            'beban_uji_load2'           => 'nullable|numeric',
+            'travelling_kecepatan2'     => 'nullable|numeric',
+            'gerakan2'                  => 'nullable|numeric',
+            'hasil2'                    => 'nullable|numeric',
+            'keterangan2'               => 'nullable|string|max:100',
+
+            // PENGUJIAN 3
+            'swl_tinggi_angkat3'        => 'nullable|numeric',
+            'beban_uji_load3'           => 'nullable|numeric',
+            'travelling_kecepatan3'     => 'nullable|numeric',
+            'gerakan3'                  => 'nullable|numeric',
+            'hasil3'                    => 'nullable|numeric',
+            'keterangan3'               => 'nullable|string|max:100',
+            'catatan'                   => 'nullable|string',
         ]);
 
         // konversi tanggal
         $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
 
         // upload file baru kalau ada
-        foreach (['foto_mesin', 'foto_generator', 'foto_pengukuran', 'foto_pengujian'] as $field) {
+        foreach (['foto_informasi_umum', 'foto_penggerak_utama', 'foto_tekanan_roda', 'foto_roda_penggerak', 'foto_roda_kemudi', 'foto_pompa_hidrolik', 'foto_pengujian'] as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama
                 if ($formKpDumpTrailer->$field) {

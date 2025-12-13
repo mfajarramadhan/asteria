@@ -7,27 +7,69 @@
                 @method('PUT')
                 
                 {{-- Tanggal Pemeriksaan --}}
-                <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-                <div class="flex flex-wrap justify-between w-full gap-y-4">
-                    <div class="w-full md:w-[48%]">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
+                <div>
+                    <label for="tanggal_pemeriksaan" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Pemeriksaan</label>
+                    <div class="flex flex-wrap justify-between w-full gap-y-4">
+                        <div class="w-full md:w-[48%]">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan"
+                                    value="{{ old('tanggal_pemeriksaan', optional($formKpScrewCompressor->tanggal_pemeriksaan)->format('d-m-Y')) }}"
+                                    datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today
+                                    type="text"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             </div>
-                            <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" 
-                                value="{{ old('tanggal_pemeriksaan', optional($formKpScrewCompressor->tanggal_pemeriksaan)->format('d-m-Y')) }}"
-                                datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today 
-                                type="text" 
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"> 
+                            @error('tanggal_pemeriksaan')
+                            <div class="text-xs text-red-600">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @error('tanggal_pemeriksaan')
-                        <div class="text-xs text-red-600">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
+                </div>
+
+                {{-- foto_informasi_umum --}}
+                <div>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Informasi Umum</h2>
+                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
+
+                    {{-- foto lama --}}
+                    @if($formKpScrewCompressor->foto_informasi_umum)
+                    @php $oldFiles = json_decode($formKpScrewCompressor->foto_informasi_umum, true); @endphp
+                    @if(is_array($oldFiles))
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        @foreach($oldFiles as $oldFile)
+                        <img src="{{ asset('storage/' . $oldFile) }}"
+                            alt="Foto Shell Lama"
+                            class="object-contain w-32 border rounded">
+                        @endforeach
+                    </div>
+                    @endif
+                    @endif
+
+                    {{-- preview baru --}}
+                    <div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2 mb-2"></div>
+
+                    <input
+                        type="file"
+                        name="foto_informasi_umum[]"
+                        id="foto_informasi_umum"
+                        accept="image/*"
+                        multiple
+                        onchange="previewImageDynamic(this, 'foto_informasi_umum-preview')"
+                        class="block w-full px-3 py-2 mt-1 lg:w-[50%] border border-gray-300 rounded-md shadow-sm 
+                                focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                                @error('foto_informasi_umum') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
+                    @error('foto_informasi_umum')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 {{-- Nama Perusahaan --}}
@@ -64,12 +106,34 @@
                     </div>
                     @enderror   
                 </div>
+
+                {{-- Jenis--}}
+                <div>
+                    <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis</label>
+                    <input type="text" name="jenis" placeholder="Jenis" id="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis', $formKpScrewCompressor->jenis) }}">
+                    @error('jenis')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
                 
                 {{-- Lokasi --}}
                 <div>
                     <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
-                    <input type="text" name="lokasi" placeholder="Pabrik Pembuat" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi', $formKpScrewCompressor->lokasi) }}">
+                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi', $formKpScrewCompressor->lokasi) }}">
                     @error('lokasi')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+                
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <label for="tahun_pembuatan" class="block text-sm font-medium text-gray-700">Tahun_pembuatan Pembuatan</label>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun_pembuatan Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan', $formKpScrewCompressor->tahun_pembuatan) }}">
+                    @error('tahun_pembuatan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -79,19 +143,8 @@
                 {{-- Negara --}}
                 <div>
                     <label for="negara" class="block text-sm font-medium text-gray-700">Negara</label>
-                    <input type="text" name="negara" placeholder="Pabrik Pembuat" id="negara" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara', $formKpScrewCompressor->negara) }}">
+                    <input type="text" name="negara" placeholder="Negara" id="negara" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara', $formKpScrewCompressor->negara) }}">
                     @error('negara')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div>
-                
-                {{-- Tahun --}}
-                <div>
-                    <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
-                    <input type="text" name="tahun" placeholder="Pabrik Pembuat" id="tahun" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun', $formKpScrewCompressor->tahun) }}">
-                    @error('tahun')
                     <div class="text-xs text-red-600">
                         {{ $message }}
                     </div>
@@ -113,7 +166,7 @@
                 
                 {{-- foto_shell_separator --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Shell/Badan Saparator Tank</h2>
                     <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
@@ -198,7 +251,7 @@
 
                 {{-- foto_instalasi_pipa --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Instalasi Pipa</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Instalasi Pipa</h2>
                     <label for="foto_shell" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
@@ -283,7 +336,7 @@
 
                 {{-- foto_casing_screw --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Casing/Cover Screw Compressor</h2>
                     <label for="foto_casing_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
@@ -368,7 +421,7 @@
 
                 {{-- foto_pondasi_screw --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Pondasi Screw Compressor</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pondasi Screw Compressor</h2>
                     <label for="foto_pondasi_screw" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
@@ -438,7 +491,7 @@
 
                 {{-- foto_safety_device --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Safety Device</h2>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Safety Device</h2>
                     <label for="foto_safety_device" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}

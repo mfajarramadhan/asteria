@@ -13,58 +13,61 @@ return new class extends Migration
     {
         Schema::create('form_kp_cargo_lift', function (Blueprint $table) {
             $table->id();
+
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
-
             $table->date('tanggal_pemeriksaan');
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('jenis_alat')->nullable();
-            $table->string('lokasi')->nullable();
-            // $table->string('kapasitas')->nullable();
 
-            $table->decimal('tinggi_angkat_meter', 10, 4)->nullable();
-            $table->decimal('tinggi_angkat_lantai', 10, 4)->nullable();
-            $table->decimal('kecepatan_angkat', 10, 4)->nullable();
-            $table->string('dimensi_pondasi')->nullable();
-            $table->string('dimensi_sangkar')->nullable();
-            $table->string('dimensi_ruang_luncur')->nullable();
+            $table->json('foto_informasi_umum')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis_alat', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+
+
+            $table->decimal('tinggi_angkat_meter', 15, 4)->nullable();
+            $table->decimal('tinggi_angkat_lantai', 15, 4)->nullable();
+            $table->decimal('kecepatan_angkat', 15, 4)->nullable();
+            $table->string('dimensi_pondasi', 100)->nullable();
+            $table->string('dimensi_sangkar', 100)->nullable();
+            $table->string('dimensi_ruang_luncur', 100)->nullable();
 
             // Rantai
             $table->json('foto_rantai')->nullable();
-            $table->decimal('panjang_rantai1', 10, 4)->nullable();
-            $table->decimal('panjang_rantai2', 10, 4)->nullable();
-            $table->decimal('panjang_rantai3', 10, 4)->nullable();
-            $table->decimal('panjang_rantai4', 10, 4)->nullable();
-            $table->decimal('panjang_rantai5', 10, 4)->nullable();
-            $table->decimal('panjang_rantai6', 10, 4)->nullable();
+            $table->decimal('panjang_rantai1', 15, 4)->nullable();
+            $table->decimal('panjang_rantai2', 15, 4)->nullable();
+            $table->decimal('panjang_rantai3', 15, 4)->nullable();
+            $table->decimal('panjang_rantai4', 15, 4)->nullable();
+            $table->decimal('panjang_rantai5', 15, 4)->nullable();
+            $table->decimal('panjang_rantai6', 15, 4)->nullable();
 
             // Wire Rope
             $table->json('foto_wire_rope')->nullable();
-            $table->decimal('panjang_wire_rope1', 10, 4)->nullable();
-            $table->decimal('panjang_wire_rope2', 10, 4)->nullable();
-            $table->decimal('panjang_wire_rope3', 10, 4)->nullable();
-            $table->decimal('panjang_wire_rope4', 10, 4)->nullable();
-            $table->decimal('panjang_wire_rope5', 10, 4)->nullable();
-            $table->decimal('panjang_wire_rope6', 10, 4)->nullable();
+            $table->decimal('panjang_wire_rope1', 15, 4)->nullable();
+            $table->decimal('panjang_wire_rope2', 15, 4)->nullable();
+            $table->decimal('panjang_wire_rope3', 15, 4)->nullable();
+            $table->decimal('panjang_wire_rope4', 15, 4)->nullable();
+            $table->decimal('panjang_wire_rope5', 15, 4)->nullable();
+            $table->decimal('panjang_wire_rope6', 15, 4)->nullable();
             
             // Hook (Detail Dimensi)
             $table->json('foto_hook')->nullable();
-            $table->decimal('panjang_hookA', 10, 4)->nullable();
-            $table->decimal('panjang_hookAi', 10, 4)->nullable();
-            $table->decimal('panjang_hookHa', 10, 4)->nullable();
-            $table->decimal('panjang_hookB', 10, 4)->nullable();
-            $table->decimal('panjang_hookBi', 10, 4)->nullable();
-            $table->decimal('panjang_hookHb', 10, 4)->nullable();
-            $table->decimal('panjang_hookW_C', 10, 4)->nullable();
-            $table->decimal('panjang_hookD', 10, 4)->nullable();
+            $table->decimal('panjang_hookA', 15, 4)->nullable();
+            $table->decimal('panjang_hookAi', 15, 4)->nullable();
+            $table->decimal('panjang_hookHa', 15, 4)->nullable();
+            $table->decimal('panjang_hookB', 15, 4)->nullable();
+            $table->decimal('panjang_hookBi', 15, 4)->nullable();
+            $table->decimal('panjang_hookHb', 15, 4)->nullable();
+            $table->decimal('panjang_hookW_C', 15, 4)->nullable();
+            $table->decimal('panjang_hookD', 15, 4)->nullable();
 
             // Pulley
             $table->json('foto_pulley')->nullable();
-            $table->decimal('panjang_pulleyA', 10, 4)->nullable();
-            $table->decimal('panjang_pulleyB', 10, 4)->nullable();
-            $table->decimal('panjang_pulleyC', 10, 4)->nullable();
-            $table->decimal('panjang_pulleyD', 10, 4)->nullable();
-            $table->decimal('panjang_pulleyE', 10, 4)->nullable();
+            $table->decimal('panjang_pulleyA', 15, 4)->nullable();
+            $table->decimal('panjang_pulleyB', 15, 4)->nullable();
+            $table->decimal('panjang_pulleyC', 15, 4)->nullable();
+            $table->decimal('panjang_pulleyD', 15, 4)->nullable();
+            $table->decimal('panjang_pulleyE', 15, 4)->nullable();
 
             // Uji performance
             $table->json('foto_performance')->nullable();
@@ -119,7 +122,11 @@ return new class extends Migration
             $table->string('posisi_defleksi_dua', 255)->nullable();
             $table->string('double_girder_beban', 100)->nullable();
             $table->string('double_girder_tanpa_beban', 100)->nullable();
+            $table->string('double_girder_beban_dua', 100)->nullable();
+            $table->string('double_girder_tanpa_beban_dua', 100)->nullable();
 
+            $table->string('pengujian_ntd', 100)->nullable();
+            $table->string('hasil_uji', 100)->nullable();
             $table->text('catatan')->nullable(); 
             $table->timestamps();
         });
