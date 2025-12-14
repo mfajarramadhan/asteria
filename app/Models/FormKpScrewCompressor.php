@@ -17,6 +17,7 @@ class FormKpScrewCompressor extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan'   => 'date',
+        'foto_informasi_umum'  => 'array',
         'foto_shell_separator'  => 'array',
         'foto_instalasi_pipa'   => 'array',
         'foto_casing_screw'     => 'array',

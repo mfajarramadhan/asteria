@@ -12,9 +12,8 @@ return new class extends Migration
             $table->id();
 
             // Relasi ke job_order_tools
-            $table->foreignId('job_order_tool_id')
-                ->constrained('job_order_tools')
-                ->onDelete('cascade');
+            $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
+
 
             // Informasi Pemeriksaan
             $table->date('tanggal_pemeriksaan')->nullable();
@@ -28,13 +27,13 @@ return new class extends Migration
             $table->text('kecepatan_elevator')->nullable();
             $table->text('lokasi_elevator')->nullable();
 
-            // === Upload Foto ===
-            $table->json('foto_mesin')->nullable();
-            $table->json('foto_tali_penggantung')->nullable();
-            $table->json('foto_teromol')->nullable();
-            $table->json('foto_bangun_ruang_luncur')->nullable();
-            $table->json('foto_komponen_kereta')->nullable();
-            $table->json('foto_governor_rem')->nullable();
+            // // === Upload Foto ===
+            // $table->json('foto_mesin')->nullable();
+            // $table->json('foto_tali_penggantung')->nullable();
+            // $table->json('foto_teromol')->nullable();
+            // $table->json('foto_bangun_ruang_luncur')->nullable();
+            // $table->json('foto_komponen_kereta')->nullable();
+            // $table->json('foto_governor_rem')->nullable();
 
             // === A. Mesin ===
             $table->text('dudukan_mesin')->nullable();

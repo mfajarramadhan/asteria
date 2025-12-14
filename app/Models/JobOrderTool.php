@@ -45,34 +45,83 @@ class JobOrderTool extends Model
         return $this->belongsTo(JobOrder::class, 'job_order_id');
     }
 
-    // Relasi ke Form KP Bejana Tekan
+    // Relasi ke Form KP PUBT
     public function formKpBejanaTekan()
     {
         return $this->hasOne(FormKpBejanaTekan::class, 'job_order_tool_id');
     }
 
-    // Relasi ke Form KP Katel Uap
     public function formKpKatelUap()
     {
         return $this->hasOne(FormKpKatelUap::class, 'job_order_tool_id');
     }
 
-    // Relasi ke Form KP Screw Compressor
     public function formKpScrewCompressor()
     {
         return $this->hasOne(FormKpScrewCompressor::class, 'job_order_tool_id');
     }
 
-    // Relasi ke Form KP Tangki Timbun
     public function formKpTangkiTimbun()
     {
         return $this->hasOne(FormKpTangkiTimbun::class, 'job_order_tool_id');
     }
+    
+    // Relasi ke Form KP PTP
+    public function formKpPesawatTenagaProduksi()
+    {
+        return $this->hasOne(FormKpPesawatTenagaProduksi::class, 'job_order_tool_id');
+    }
+    
+    public function formKpMotorDiesel()
+    {
+        return $this->hasOne(FormKpMotorDiesel::class, 'job_order_tool_id');
+    }
+    
+    public function formKpHeatTreatment()
+    {
+        return $this->hasOne(FormKpHeatTreatment::class, 'job_order_tool_id');
+    }
 
-    // Relasi ke Form KP Tangki Timbun
+    // Relasi ke Form KP PAPA
     public function formKpScissorLift()
     {
         return $this->hasOne(FormKpScissorLift::class, 'job_order_tool_id');
+    }
+
+    public function formKpWheelLoader()
+    {
+        return $this->hasOne(FormKpWheelLoader::class, 'job_order_tool_id');
+    }
+
+    public function formKpDumpTrailer()
+    {
+        return $this->hasOne(FormKpDumpTrailer::class, 'job_order_tool_id');
+    }
+
+    public function formKpCrane()
+    {
+        return $this->hasOne(FormKpCrane::class, 'job_order_tool_id');
+    }
+
+    public function formKpForklift()
+    {
+        return $this->hasOne(formKpForklift::class, 'job_order_tool_id');
+    }
+
+    public function formKpCargoLift()
+    {
+        return $this->hasOne(formKpCargoLift::class, 'job_order_tool_id');
+    }
+    
+    // Relasi ke Form Listrik
+    public function formKpInstalasiListrik()
+    {
+        return $this->hasOne(FormKpInstalasiListrik::class, 'job_order_tool_id');
+    }
+    
+    public function formKpInstalasiPenyalurPetir()
+    {
+        return $this->hasOne(FormKpInstalasiPenyalurPetir::class, 'job_order_tool_id');
     }
 
     // Relasi ke Form Eskalator
@@ -90,10 +139,5 @@ class JobOrderTool extends Model
     public function formKpInstalasiFireAlarm()
     {
         return $this->hasOne(FormKpInstalasiFireAlarm::class, 'job_order_tool_id');
-    }
-
-    public function formKpPesawatTenagaProduksi()
-    {
-        return $this->hasOne(FormKpPesawatTenagaProduksi::class, 'job_order_tool_id');
     }
 }

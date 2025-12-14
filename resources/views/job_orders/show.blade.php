@@ -239,7 +239,7 @@
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Model/Tipe</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No. Seri</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
-                    @role('superAdmin|petugas')
+                    @role('Super Admin|Tim Riksa Uji')
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
                     @endrole
                 </tr>
@@ -266,7 +266,7 @@
                                 </span>
                             @endif
                         </td>
-                        @role('superAdmin|petugas')
+                        @role('Super Admin|Tim Riksa Uji')
                         <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                             @if ($tool->pivot->status_tool === 'belum')
                             <a href="{{ route($tool->subJenis->routeName(), $tool->pivot->id) }}"

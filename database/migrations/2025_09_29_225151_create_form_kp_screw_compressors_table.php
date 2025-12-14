@@ -16,31 +16,44 @@ return new class extends Migration
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
             $table->date('tanggal_pemeriksaan')->nullable();
-            $table->string('pabrik_pembuat')->nullable();
+
+            $table->json('foto_informasi_umum')->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+            $table->string('negara', 100)->nullable();
+            $table->string('tekanan_kerja', 100)->nullable();
+
             $table->json('foto_shell_separator')->nullable();
-            $table->decimal('ketebalan_shell_separator', 10, 4)->nullable();
-            $table->decimal('diameter_shell_separator', 10, 4)->nullable();
-            $table->decimal('panjang_shell_separator', 10, 4)->nullable();
+            $table->decimal('ketebalan_shell_separator', 15, 4)->nullable();
+            $table->decimal('diameter_shell_separator', 15, 4)->nullable();
+            $table->decimal('panjang_shell_separator', 15, 4)->nullable();
+
             $table->json('foto_instalasi_pipa')->nullable();
-            $table->decimal('diameter_instalasi_pipa', 10, 4)->nullable();
-            $table->decimal('ketebalan_instalasi_pipa', 10, 4)->nullable();
-            $table->decimal('panjang_instalasi_pipa', 10, 4)->nullable();
+            $table->decimal('diameter_instalasi_pipa', 15, 4)->nullable();
+            $table->decimal('ketebalan_instalasi_pipa', 15, 4)->nullable();
+            $table->decimal('panjang_instalasi_pipa', 15, 4)->nullable();
+
             $table->json('foto_casing_screw')->nullable();
-            $table->decimal('panjang_casing_screw', 10, 4)->nullable();
-            $table->decimal('lebar_casing_screw', 10, 4)->nullable();
-            $table->decimal('tinggi_casing_screw', 10, 4)->nullable();
+            $table->decimal('panjang_casing_screw', 15, 4)->nullable();
+            $table->decimal('lebar_casing_screw', 15, 4)->nullable();
+            $table->decimal('tinggi_casing_screw', 15, 4)->nullable();
+
             $table->json('foto_pondasi_screw')->nullable();
-            $table->decimal('panjang_pondasi_screw', 10, 4)->nullable();
-            $table->decimal('lebar_pondasi_screw', 10, 4)->nullable();
+            $table->decimal('panjang_pondasi_screw', 15, 4)->nullable();
+            $table->decimal('lebar_pondasi_screw', 15, 4)->nullable();
+
             $table->json('foto_safety_device')->nullable();
-            $table->decimal('safety_valve_separator_membuka', 10, 4)->nullable();
-            $table->decimal('safety_valve_separator_menutup', 10, 4)->nullable();
+            $table->decimal('safety_valve_separator_membuka', 15, 4)->nullable();
+            $table->decimal('safety_valve_separator_menutup', 15, 4)->nullable();
             $table->text('catatan_safety_valve')->nullable();
+
             $table->json('foto_pressure_switch')->nullable();
-            $table->decimal('pressure_switch_on_set', 10, 4)->nullable();
-            $table->decimal('pressure_switch_on_hasil', 10, 4)->nullable();
-            $table->decimal('pressure_switch_off_set', 10, 4)->nullable();
-            $table->decimal('pressure_switch_off_hasil', 10, 4)->nullable();
+            $table->decimal('pressure_switch_on_set', 15, 4)->nullable();
+            $table->decimal('pressure_switch_on_hasil', 15, 4)->nullable();
+            $table->decimal('pressure_switch_off_set', 15, 4)->nullable();
+            $table->decimal('pressure_switch_off_hasil', 15, 4)->nullable();
             $table->text('catatan_pressure_switch')->nullable();
             $table->text('catatan')->nullable();
             $table->timestamps();        

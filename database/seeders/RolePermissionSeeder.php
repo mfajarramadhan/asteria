@@ -12,10 +12,10 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         // 1. Create Roles
-        $superAdminRole = Role::create(['name' => 'superAdmin']);
-        $adminRole = Role::create(['name' => 'admin']);
-        $petugasRole = Role::create(['name' => 'petugas']);
-        $penyusunLHPRole = Role::create(['name' => 'penyusunLHP']);
+        $superAdminRole = Role::create(['name' => 'Super Admin']);
+        $adminRole = Role::create(['name' => 'Admin Riksa Uji']);
+        $petugasRole = Role::create(['name' => 'Tim Riksa Uji']);
+        $penyusunLHPRole = Role::create(['name' => 'Penyusun LHP']);
 
         // 2. Create Permissions
         Permission::create(['name' => 'manage job orders']);   // CRUD JO
@@ -33,8 +33,8 @@ class RolePermissionSeeder extends Seeder
         $userSuperAdmin = User::create([
             'nama' => 'Muh Fajar',
             'email' => 'fajar@gmail.com',
-            'id_user' => '1000',
-            'jabatan' => 'Super Admin',
+            'id_user' => '0001',
+            'jabatan' => 'Admin Utama',
             'avatar' => 'avatars/default.png',
             'password' => bcrypt('fajar12345'),
         ]);

@@ -16,27 +16,31 @@ return new class extends Migration
             // Relasi ke job_order_tools
             $table->foreignId('job_order_tool_id')->constrained('job_order_tools')->onDelete('cascade');
             $table->date('tanggal_pemeriksaan')->nullable();
-            $table->string('pabrik_pembuat')->nullable();
+            
             $table->json('foto_informasi_umum')->nullable();
-            $table->string('jenis_alat')->nullable();
-            $table->string('tempat_tahun_pembuatan')->nullable();
-            $table->decimal('tekanan_desain', 10, 4)->nullable();
-            $table->decimal('tekanan_kerja', 10, 4)->nullable();
-            $table->decimal('luas_pemanasan', 10, 4)->nullable();
-            $table->decimal('work_temperature', 10, 4)->nullable();
+            $table->string('pabrik_pembuat', 100)->nullable();
+            $table->string('jenis', 100)->nullable();
+            $table->string('lokasi', 100)->nullable();
+            $table->string('tahun_pembuatan', 100)->nullable();
+            $table->string('tempat_pembuatan', 100)->nullable();
+            $table->decimal('tekanan_desain', 15, 4)->nullable();
+            $table->decimal('tekanan_kerja', 15, 4)->nullable();
+            $table->decimal('luas_pemanasan', 15, 4)->nullable();
+            $table->decimal('work_temperature', 15, 4)->nullable();
             $table->string('bahan_bakar')->nullable();
-            $table->string('lokasi')->nullable();
+
             $table->json('foto_safety_valve')->nullable();
-            $table->decimal('safety_valve1_membuka', 10, 4)->nullable();
-            $table->decimal('safety_valve1_menutup', 10, 4)->nullable();
-            $table->decimal('safety_valve2_membuka', 10, 4)->nullable();
-            $table->decimal('safety_valve2_menutup', 10, 4)->nullable();
+            $table->decimal('safety_valve1_membuka', 15, 4)->nullable();
+            $table->decimal('safety_valve1_menutup', 15, 4)->nullable();
+            $table->decimal('safety_valve2_membuka', 15, 4)->nullable();
+            $table->decimal('safety_valve2_menutup', 15, 4)->nullable();
             $table->text('catatan_safety_valve')->nullable();
+
             $table->json('foto_pressure_switch')->nullable();
-            $table->decimal('pressure_switch_on_set', 10, 4)->nullable();
-            $table->decimal('pressure_switch_on_hasil', 10, 4)->nullable();
-            $table->decimal('pressure_switch_off_set', 10, 4)->nullable();
-            $table->decimal('pressure_switch_off_hasil', 10, 4)->nullable();
+            $table->decimal('pressure_switch_on_set', 15, 4)->nullable();
+            $table->decimal('pressure_switch_on_hasil', 15, 4)->nullable();
+            $table->decimal('pressure_switch_off_set', 15, 4)->nullable();
+            $table->decimal('pressure_switch_off_hasil', 15, 4)->nullable();
             $table->text('catatan_pressure_switch')->nullable();
             $table->text('catatan')->nullable();
             $table->timestamps();

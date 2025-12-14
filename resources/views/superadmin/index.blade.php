@@ -87,7 +87,7 @@
                             <select name="role"
                                 class="px-2 py-1 border rounded"
                                 onchange="this.form.submit()">
-                                @foreach (['admin', 'petugas', 'penyusunLHP'] as $role)
+                                @foreach (['Admin Riksa Uji', 'Tim Riksa Uji', 'Penyusun LHP'] as $role)
                                     <option value="{{ $role }}"
                                         {{ $user->hasRole($role) ? 'selected' : '' }}>
                                         {{ ucfirst($role) }}

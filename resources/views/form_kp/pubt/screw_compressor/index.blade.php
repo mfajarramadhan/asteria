@@ -65,26 +65,30 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">ID JO</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
-                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">No.</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Tanggal</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">ID JO</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Alat</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Nama Perusahaan</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Status</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Status Pemeriksaan</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($screwCompressors as $screwCompressor)
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $screwCompressor->tanggal_pemeriksaan->format('d-m-Y') }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <a href="{{ route('job_orders.show', $screwCompressor->jobOrderTool->jobOrder->id) }}#list-jo" class="hover:underline hover:text-blue-500">
                             {{ $screwCompressor->jobOrderTool->jobOrder->nomor_jo }}
                         </a>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $screwCompressor->jobOrderTool->tool->nama }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $screwCompressor->jobOrderTool->jobOrder->nama_perusahaan }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $screwCompressor->jobOrderTool->status }}</td>
-                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                    <td class="px-4 py-3 text-sm text-center text-gray-900 whitespace-nowrap">
                         @if ($screwCompressor->jobOrderTool->status_tool == 'belum')
                                 <span class="px-3 py-1 text-sm font-bold text-white rounded-full bg-gradient-to-t from-red-700 to-red-500">
                                     {{ ucfirst($screwCompressor->jobOrderTool->status_tool) }}
@@ -111,6 +115,7 @@
                             {{-- End Read --}}
 
                             {{-- Update --}}
+                            @role('Super Admin|Admin Riksa Uji|Tim Riksa Uji')
                             <button class="flex p-2 transition-all duration-500 rounded-full group item-center">
                             <a href="{{ route('form_kp.pubt.screw_compressor.edit' , $screwCompressor->id) }}">
                                 <svg class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,6 +123,7 @@
                                 </svg>
                             </a>
                             </button>
+                            @endrole
                             {{-- End Update --}}
 
                             {{-- Delete --}}

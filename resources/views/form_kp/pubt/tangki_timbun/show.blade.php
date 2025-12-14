@@ -5,18 +5,47 @@
     <div class="p-4 space-y-4 bg-white rounded-lg shadow-md">
 
         {{-- Tanggal Pemeriksaan --}}
-        <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-        <div class="flex flex-wrap justify-between w-full gap-y-4">
-            <div class="w-full md:w-[48%]">
-                <div class="relative">
-                    <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                        </svg>
+        <div>
+            <label for="tanggal_pemeriksaan" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Pemeriksaan</label>
+            <div class="flex flex-wrap justify-between w-full gap-y-4">
+                <div class="w-full md:w-[48%]">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                            </svg>
+                        </div>
+                        <input disabled id="datepicker-autohide" value="{{ optional($formKpTangkiTimbun->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
                     </div>
-                    <input disabled id="datepicker-autohide" value="{{ optional($formKpTangkiTimbun->tanggal_pemeriksaan)->format('d-m-Y') }}" class="bg-gray-200 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5">
                 </div>
             </div>
+        </div>
+
+        {{-- foto_informasi_umum --}}
+        <div>
+            <h2 class="block mb-1 text-base font-bold text-gray-700">Informasi Umum</h2>
+            <label class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
+            @php
+                $fotoInformasiUmum = $formKpTangkiTimbun->foto_informasi_umum; 
+                if ($fotoInformasiUmum && is_string($fotoInformasiUmum)) {
+                    $fotoInformasiUmum = json_decode($fotoInformasiUmum, true);
+                }            
+            @endphp
+            @if($fotoInformasiUmum && count($fotoInformasiUmum) > 0)
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    @foreach($fotoInformasiUmum as $foto)
+                        <div class="relative overflow-hidden rounded-lg group aspect-square">
+                            <img src="{{ asset('storage/' . $foto) }}" alt="Foto Shell" class="object-contain w-full h-full transition-transform duration-500 transform group-hover:scale-110">
+                            <div class="absolute inset-0 flex items-end p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 to-transparent group-hover:opacity-100">
+                                <div class="transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-sm italic text-gray-500">Tidak ada foto</p>
+            @endif
         </div>
 
         {{-- Nama Perusahaan --}}
@@ -58,12 +87,67 @@
                 {{ $formKpTangkiTimbun->pabrik_pembuat ?? '-' }}
             </div>
         </div>
-        
-        {{-- Informasi Umum --}}
-        {{-- Foto foto_visual --}}
+
+        {{-- Tipe Tangki --}}
         <div>
-            <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
-            <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <label class="block text-sm font-medium text-gray-700">Tipe Tangki</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->jenis ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Lokasi --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->lokasi ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tahun Pembuatan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->tahun_pembuatan ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tempat Pembuatan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tempat Pembuatan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->tempat_pembuatan ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Tekanan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Tekanan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->tekanan ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Suhu --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Suhu</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->suhu ?? '-' }}
+            </div>
+        </div>
+
+        {{-- Media yang Diisikan --}}
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Media yang Diisikan</label>
+            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
+                {{ $formKpTangkiTimbun->media_yang_diisikan ?? '-' }}
+            </div>
+        </div>
+
+        {{-- foto_visual --}}
+        <div>
+            <h2 class="block mb-1 text-base font-bold text-gray-700">Visual</h2>
+            <label for="foto_visual" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoVisual = $formKpTangkiTimbun->foto_visual; 
                 if ($fotoVisual && is_string($fotoVisual)) {
@@ -87,72 +171,6 @@
             @endif
         </div>
 
-        {{-- Tipe Tangki --}}
-        {{-- <div>
-            <input type="text" name="tipe_tangki" placeholder="Tipe Tangki" id="tipe_tangki" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tipe_tangki') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tipe_tangki') }}">
-            @error('tipe_tangki')
-            <div class="text-xs text-red-600">
-                {{ $message }}
-            </div>
-            @enderror   
-        </div> --}}
-
-        {{-- Nomor Seri --}}
-        {{-- <div>
-            <input type="text" name="nomor_seri" placeholder="Nomor Seri" id="nomor_seri" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_seri') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_seri') }}">
-            @error('nomor_seri')
-            <div class="text-xs text-red-600">
-                {{ $message }}
-            </div>
-            @enderror   
-        </div> --}}
-
-        {{-- Pabrik Pembuat --}}
-        {{-- <div>
-            <input type="text" name="tempat_tahun_pembuat" placeholder="Pabrik Pembuat" id="tempat_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tempat_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tempat_tahun_pembuat') }}">
-            @error('tempat_tahun_pembuat')
-            <div class="text-xs text-red-600">
-                {{ $message }}
-            </div>
-            @enderror   
-        </div> --}}
-
-        {{-- Kapasitas --}}
-        {{-- <div>
-            <input type="text" name="kapasitas" placeholder="Tempat/Tahun Pembuat" id="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kapasitas') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kapasitas') }}">
-            @error('kapasitas')
-            <div class="text-xs text-red-600">
-                {{ $message }}
-            </div>
-            @enderror   
-        </div> --}}
-
-        {{-- Tempat/Tahun Pembuat --}}
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Tempat/Tahun Pembuat</label>
-            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpTangkiTimbun->tempat_tahun_pembuat ?? '-' }}
-            </div>
-        </div>
-
-        {{-- Media yang Diisikan --}}
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Media yang Diisikan</label>
-            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpTangkiTimbun->media_yang_diisikan ?? '-' }}
-            </div>
-        </div>
-
-        {{-- Lokasi Tangki --}}
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Lokasi Tangki</label>
-            <div class="px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm">
-                {{ $formKpTangkiTimbun->lokasi_tangki ?? '-' }}
-            </div>
-        </div>
-
-
-        <h2 class="block text-sm font-bold text-gray-700">Visual</h2>
         <div class="overflow-x-auto">
             <table class="min-w-full text-sm text-left border border-gray-300">
                 <thead class="text-gray-700 bg-gray-100">
@@ -224,9 +242,9 @@
         </div>
 
         
-        {{-- Foto foto_pengukuran --}}
+        {{-- foto_pengukuran --}}
         <div>
-            <h2 class="block mb-1 text-sm font-bold text-gray-700">Pengukuran/Pengujian</h2>
+            <h2 class="block mb-1 text-base font-bold text-gray-700">Pengukuran/Pengujian</h2>
             <label for="foto_pengukuran" class="block mb-1 text-sm font-medium text-gray-700">Foto Pengukuran/Pengujian</label>
             @php
                 $fotoPengukuran = $formKpTangkiTimbun->foto_pengukuran; 
@@ -268,9 +286,10 @@
         </div>
 
 
-        {{-- Foto foto_komponen --}}
+        {{-- foto_komponen --}}
         <div>
-            <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto Komponen</label>
+            <h2 class="block mb-1 text-base font-bold text-gray-700">Pengukuran Ketebalan</h2>
+            <label for="foto_komponen" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoKomponen = $formKpTangkiTimbun->foto_komponen; 
                 if ($fotoKomponen && is_string($fotoKomponen)) {
@@ -402,9 +421,10 @@
         </div>
 
 
-        {{-- Foto foto_tangki --}}
+        {{-- foto_tangki --}}
         <div>
-            <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto</label>
+            <h2 class="block mb-1 text-base font-bold text-gray-700">Pengukuran Dimensi</h2>
+            <label for="foto_tangki" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
             @php
                 $fotoTangki = $formKpTangkiTimbun->foto_tangki; 
                 if ($fotoTangki && is_string($fotoTangki)) {
@@ -502,7 +522,7 @@
         <div>
             <label class="block text-sm font-medium text-gray-700">Catatan</label>
             <textarea name="catatan" id="catatan" placeholder="Catatan" rows="3" disabled
-                class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpBejanaTekan->catatan ?? '-' }}</textarea>
+                class="block w-full px-3 py-2 mt-1 leading-normal bg-gray-200 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">{{ $formKpTangkiTimbun->catatan ?? '-' }}</textarea>
         </div>
     </div>
 </x-layout>

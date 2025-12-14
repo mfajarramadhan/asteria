@@ -17,10 +17,10 @@ class FormKpPesawatTenagaProduksi extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        'foto_shell' => 'array',
-        'foto_head' => 'array',
-        'foto_pipa' => 'array',
-        'foto_instalasi' => 'array',
+        'foto_informasi_umum' => 'array',
+        'foto_device' => 'array',
+        'foto_pengukuran' => 'array',
+        'foto_pengujian' => 'array',
     ];
 
     // Relasi ke job_order_tool
