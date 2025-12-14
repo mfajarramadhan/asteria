@@ -9,21 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('form_kp_elevator', function (Blueprint $table) {
-            $table->unsignedBigInteger('job_order_tool_id')->nullable()->after('id');
-            $table->foreign('job_order_tool_id')
-                ->references('id')->on('job_order_tools')
-                ->onDelete('cascade');
-        });
-    }
+    public function up()
+{
+    Schema::table('form_kp_elevator', function (Blueprint $table) {
 
-    public function down(): void
-    {
-        Schema::table('form_kp_elevator', function (Blueprint $table) {
-            $table->dropForeign(['job_order_tool_id']);
+        // Cek apakah kolom belum ada
+        if (!Schema::hasColumn('form_kp_elevator', 'job_order_tool_id')) {
+            $table->unsignedBigInteger('job_order_tool_id')->nullable()->after('id');
+        }
+
+    });
+}
+
+
+    public function down()
+{
+    Schema::table('form_kp_elevator', function (Blueprint $table) {
+        if (Schema::hasColumn('form_kp_elevator', 'job_order_tool_id')) {
             $table->dropColumn('job_order_tool_id');
-        });
-    }
+        }
+    });
+}
 };

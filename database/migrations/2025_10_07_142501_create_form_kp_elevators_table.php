@@ -18,15 +18,15 @@ return new class extends Migration
 
             // Informasi Pemeriksaan
             $table->date('tanggal_pemeriksaan')->nullable();
-            $table->string('nama_perusahaan')->nullable();
-            $table->string('jenis_elevator')->nullable();
-            $table->string('pabrik_pembuat')->nullable();
-            $table->string('negara_tahun_pembuat')->nullable();
-            $table->string('nomor_seri')->nullable();
-            $table->string('kapasitas')->nullable();
-            $table->string('jumlah_lantai_pemberhentian')->nullable();
-            $table->string('kecepatan_elevator')->nullable();
-            $table->string('lokasi_elevator')->nullable();
+            $table->text('nama_perusahaan')->nullable();
+            $table->text('jenis_elevator')->nullable();
+            $table->text('pabrik_pembuat')->nullable();
+            $table->text('negara_tahun_pembuat')->nullable();
+            $table->text('nomor_seri')->nullable();
+            $table->text('kapasitas')->nullable();
+            $table->text('jumlah_lantai_pemberhentian')->nullable();
+            $table->text('kecepatan_elevator')->nullable();
+            $table->text('lokasi_elevator')->nullable();
 
             // === Upload Foto ===
             $table->json('foto_mesin')->nullable();
@@ -37,107 +37,107 @@ return new class extends Migration
             $table->json('foto_governor_rem')->nullable();
 
             // === A. Mesin ===
-            $table->string('dudukan_mesin')->nullable();
-            $table->string('rem_mekanik')->nullable();
-            $table->string('rem_electric')->nullable();
-            $table->string('konstruksi_kamar')->nullable();
-            $table->string('ruang_bebas_kamar')->nullable();
-            $table->string('penerangan_kamar_mesin')->nullable();
-            $table->string('ventilasi_pendingin')->nullable();
-            $table->string('pintu_kamar_mesin')->nullable();
-            $table->string('posisi_panel')->nullable();
-            $table->string('alat_pelindung')->nullable();
-            $table->string('pelindung_lubang_talibaja')->nullable();
-            $table->string('tangga_kamar_mesin')->nullable();
-            $table->string('perbedaan_ketinggian')->nullable();
-            $table->string('alat_pemadam_ringan')->nullable();
-            $table->string('elevator_tanpa_kamar')->nullable();
+            $table->text('dudukan_mesin')->nullable();
+            $table->text('rem_mekanik')->nullable();
+            $table->text('rem_electric')->nullable();
+            $table->text('konstruksi_kamar')->nullable();
+            $table->text('ruang_bebas_kamar')->nullable();
+            $table->text('penerangan_kamar_mesin')->nullable();
+            $table->text('ventilasi_pendingin')->nullable();
+            $table->text('pintu_kamar_mesin')->nullable();
+            $table->text('posisi_panel')->nullable();
+            $table->text('alat_pelindung')->nullable();
+            $table->text('pelindung_lubang_talibaja')->nullable();
+            $table->text('tangga_kamar_mesin')->nullable();
+            $table->text('perbedaan_ketinggian')->nullable();
+            $table->text('alat_pemadam_ringan')->nullable();
+            $table->text('elevator_tanpa_kamar')->nullable();
 
             // === B. Tali / Sabuk Penggantung ===
-            $table->string('tali_sabuk1')->nullable();
-            $table->string('tali_sabuk2')->nullable();
-            $table->string('nilai_faktor_keamanan')->nullable();
-            $table->string('tali_penggantung_bobot_imbang')->nullable();
-            $table->string('tali_penggantung_tanpa_bobot')->nullable();
-            $table->string('sabuk')->nullable();
-            $table->string('pengaman_tanpa_bobot')->nullable();
+            $table->text('tali_sabuk1')->nullable();
+            $table->text('tali_sabuk2')->nullable();
+            $table->text('nilai_faktor_keamanan')->nullable();
+            $table->text('tali_penggantung_bobot_imbang')->nullable();
+            $table->text('tali_penggantung_tanpa_bobot')->nullable();
+            $table->text('sabuk')->nullable();
+            $table->text('pengaman_tanpa_bobot')->nullable();
 
             // === C. Teromol ===
-            $table->string('alur_teromol')->nullable();
-            $table->string('diameter_teromol_penumpang')->nullable();
-            $table->string('diameter_teromol_governor')->nullable();
+            $table->text('alur_teromol')->nullable();
+            $table->text('diameter_teromol_penumpang')->nullable();
+            $table->text('diameter_teromol_governor')->nullable();
 
             // === D. Bangunan Ruang Luncur ===
-            $table->string('konstruksi_ruangLuncur')->nullable();
-            $table->string('dinding_ruangLuncur')->nullable();
-            $table->string('landasan_jalur')->nullable();
-            $table->string('penerangan_ruangLuncur')->nullable();
-            $table->string('pintu_darurat')->nullable();
-            $table->string('ukuran_pintu_darurat')->nullable();
-            $table->string('saklar_pengaman_pintu')->nullable();
-            $table->string('jembatan_bantu')->nullable();
-            $table->string('ruangBebas_atasSangkar')->nullable();
-            $table->string('ruangBebas_lekukDasar')->nullable();
-            $table->string('tangga_lekukDasar')->nullable();
-            $table->string('syarat_lekukDasar')->nullable();
-            $table->string('akses_lekukDasar')->nullable();
-            $table->string('lekukDasar_antar2_elevator')->nullable();
-            $table->string('daun_pintu_ruang_luncur')->nullable();
-            $table->string('interlock_ruang_luncur')->nullable();
-            $table->string('kerataan_lantai')->nullable();
-            $table->string('sekat_ruang_luncur_2sangkar')->nullable();
-            $table->string('elevator_miring')->nullable();
+            $table->text('konstruksi_ruangLuncur')->nullable();
+            $table->text('dinding_ruangLuncur')->nullable();
+            $table->text('landasan_jalur')->nullable();
+            $table->text('penerangan_ruangLuncur')->nullable();
+            $table->text('pintu_darurat')->nullable();
+            $table->text('ukuran_pintu_darurat')->nullable();
+            $table->text('saklar_pengaman_pintu')->nullable();
+            $table->text('jembatan_bantu')->nullable();
+            $table->text('ruangBebas_atasSangkar')->nullable();
+            $table->text('ruangBebas_lekukDasar')->nullable();
+            $table->text('tangga_lekukDasar')->nullable();
+            $table->text('syarat_lekukDasar')->nullable();
+            $table->text('akses_lekukDasar')->nullable();
+            $table->text('lekukDasar_antar2_elevator')->nullable();
+            $table->text('daun_pintu_ruang_luncur')->nullable();
+            $table->text('interlock_ruang_luncur')->nullable();
+            $table->text('kerataan_lantai')->nullable();
+            $table->text('sekat_ruang_luncur_2sangkar')->nullable();
+            $table->text('elevator_miring')->nullable();
 
             // === E. Kereta ===
-            $table->string('kerangka')->nullable();
-            $table->string('badan_kereta')->nullable();
-            $table->string('tinggi_dinding')->nullable();
-            $table->string('luas_lantai')->nullable();
-            $table->string('perluasan_luas_kereta')->nullable();
-            $table->string('pintu_kereta')->nullable();
-            $table->string('ukuran')->nullable();
-            $table->string('kunci_kait')->nullable();
-            $table->string('celah_antar_pintu')->nullable();
-            $table->string('sisi_luar_kereta')->nullable();
-            $table->string('alarm_bell')->nullable();
-            $table->string('sumber_tenaga_cadangan')->nullable();
-            $table->string('intercom')->nullable();
-            $table->string('ventilasi')->nullable(); // (sudah ada? kalau belum, pakai ini)
-            $table->string('penerangan_darurat')->nullable();
-            $table->string('panel_operasi')->nullable();
-            $table->string('penunjuk_posisi_sangkar')->nullable();
+            $table->text('kerangka')->nullable();
+            $table->text('badan_kereta')->nullable();
+            $table->text('tinggi_dinding')->nullable();
+            $table->text('luas_lantai')->nullable();
+            $table->text('perluasan_luas_kereta')->nullable();
+            $table->text('pintu_kereta')->nullable();
+            $table->text('ukuran')->nullable();
+            $table->text('kunci_kait')->nullable();
+            $table->text('celah_antar_pintu')->nullable();
+            $table->text('sisi_luar_kereta')->nullable();
+            $table->text('alarm_bell')->nullable();
+            $table->text('sumber_tenaga_cadangan')->nullable();
+            $table->text('intercom')->nullable();
+            $table->text('ventilasi')->nullable(); // (sudah ada? kalau belum, pakai ini)
+            $table->text('penerangan_darurat')->nullable();
+            $table->text('panel_operasi')->nullable();
+            $table->text('penunjuk_posisi_sangkar')->nullable();
 
-            $table->string('nama_pembuat')->nullable();
-            $table->string('kapasitas_beban')->nullable();
-            $table->string('rambu_dilarang_merokok')->nullable();
-            $table->string('indikasi_beban_lebih')->nullable();
-            $table->string('tombol_buka_tutup')->nullable();
-            $table->string('tombol_lantai_pemberhentian')->nullable();
-            $table->string('tombol_bell_alarm')->nullable();
-            $table->string('intercom_dua_arah')->nullable();
+            $table->text('nama_pembuat')->nullable();
+            $table->text('kapasitas_beban')->nullable();
+            $table->text('rambu_dilarang_merokok')->nullable();
+            $table->text('indikasi_beban_lebih')->nullable();
+            $table->text('tombol_buka_tutup')->nullable();
+            $table->text('tombol_lantai_pemberhentian')->nullable();
+            $table->text('tombol_bell_alarm')->nullable();
+            $table->text('intercom_dua_arah')->nullable();
 
-            $table->string('kekuatan_atap_kereta')->nullable();
-            $table->string('syarat_pintu_darurat')->nullable();
-            $table->string('syarat_pintu_darurat_samping')->nullable();
-            $table->string('pagar_pengaman')->nullable();
-            $table->string('ukuran_pagar')->nullable();
-            $table->string('ukuran_pagar_pengaman')->nullable();
-            $table->string('penerangan_atap')->nullable();
-            $table->string('tombol_operasi_manual')->nullable();
-            $table->string('syarat_interior_kereta')->nullable();
+            $table->text('kekuatan_atap_kereta')->nullable();
+            $table->text('syarat_pintu_darurat')->nullable();
+            $table->text('syarat_pintu_darurat_samping')->nullable();
+            $table->text('pagar_pengaman')->nullable();
+            $table->text('ukuran_pagar')->nullable();
+            $table->text('ukuran_pagar_pengaman')->nullable();
+            $table->text('penerangan_atap')->nullable();
+            $table->text('tombol_operasi_manual')->nullable();
+            $table->text('syarat_interior_kereta')->nullable();
 
             //F. Governor
-            $table->string('penjepit_tali')->nullable();
-            $table->string('saklar_governor')->nullable();
-            $table->string('fungsi_kecepatan_rem')->nullable();
-            $table->string('rem_pengaman')->nullable();
-            $table->string('bentuk_rem_pengaman')->nullable();
-            $table->string('rem_pengaman_berangsur')->nullable();
-            $table->string('rem_pengaman_mendadak')->nullable();
-            $table->string('syarat_rem_pengaman')->nullable();
-            $table->string('kecepatan_kereta')->nullable();
-            $table->string('saklar_Pengaman')->nullable();
-            $table->string('alat_pembatas')->nullable();
+            $table->text('penjepit_tali')->nullable();
+            $table->text('saklar_governor')->nullable();
+            $table->text('fungsi_kecepatan_rem')->nullable();
+            $table->text('rem_pengaman')->nullable();
+            $table->text('bentuk_rem_pengaman')->nullable();
+            $table->text('rem_pengaman_berangsur')->nullable();
+            $table->text('rem_pengaman_mendadak')->nullable();
+            $table->text('syarat_rem_pengaman')->nullable();
+            $table->text('kecepatan_kereta')->nullable();
+            $table->text('saklar_Pengaman')->nullable();
+            $table->text('alat_pembatas')->nullable();
 
 
             $table->timestamps();
