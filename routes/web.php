@@ -21,6 +21,7 @@ use App\Http\Controllers\FormKpElevatorController;
 use App\Http\Controllers\FormKpEskalatorController;
 use App\Http\Controllers\FormKpForkliftController;
 use App\Http\Controllers\FormKpInstalasiFireAlarmController;
+use App\Http\Controllers\FormKpInstalasiFireHydrantController;
 use App\Http\Controllers\FormKpHeatTreatmentController;
 use App\Http\Controllers\FormKpInstalasiListrikController;
 use App\Http\Controllers\FormKpInstalasiPenyalurPetirController;
@@ -294,15 +295,15 @@ Route::middleware('auth')->group(function () {
         // Dashboard IPK
         Route::get('/', [DashboardIPKController::class, 'index'])->name('index');
 
-        // // CRUD IPK
-        // Route::prefix('instalasi_fire_hydrant')->name('instalasi_fire_hydrant.')->group(function () {
-        //     Route::get('/', [FormKpInstalasiFireHydrantController::class, 'index'])->name('index');
-        //     Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireHydrantController::class, 'create'])->name('create');
-        //     Route::post('/{jobOrderTool}', [FormKpInstalasiFireHydrantController::class, 'store'])->name('store');
-        //     Route::get('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'show'])->name('show');
-        //     Route::get('/{formKpInstalasiFireHydrant}/edit', [FormKpInstalasiFireHydrantController::class, 'edit'])->name('edit');
-        //     Route::put('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'update'])->name('update');
-        // });
+        // CRUD IPK
+        Route::prefix('instalasi_fire_hydrant')->name('instalasi_fire_hydrant.')->group(function () {
+            Route::get('/', [FormKpInstalasiFireHydrantController::class, 'index'])->name('index');
+            Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireHydrantController::class, 'create'])->name('create');
+            Route::post('/{jobOrderTool}', [FormKpInstalasiFireHydrantController::class, 'store'])->name('store');
+            Route::get('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'show'])->name('show');
+            Route::get('/{formKpInstalasiFireHydrant}/edit', [FormKpInstalasiFireHydrantController::class, 'edit'])->name('edit');
+            Route::put('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireHydrantController::class, 'update'])->name('update');
+        });
 
         Route::prefix('instalasi_fire_alarm')->name('instalasi_fire_alarm.')->group(function () {
             Route::get('/', [FormKpInstalasiFireAlarmController::class, 'index'])->name('index');

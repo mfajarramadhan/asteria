@@ -72,6 +72,7 @@ class FormKpEskalator extends Model
     // Konversi otomatis JSON <-> array
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
+        'foto_informasi_umum' => 'array',
         'pagar_pelindung' => 'array',
         'ban_pegangan_foto' => 'array',
         'peralatan_pengaman_foto' => 'array',

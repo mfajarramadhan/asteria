@@ -1,111 +1,76 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
-    <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
+<x-slot:title>{{ $title }}</x-slot:title>
+<x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
 
-    <div class="p-4 bg-white rounded-lg shadow-md">
-        <form action="{{ route('form_kp.eskalator.eskalator.update', $formKpEskalator->id) }}"
-            method="POST"
-            class="space-y-4"
-            enctype="multipart/form-data"
-            onsubmit="return confirm('Perbarui data ini?')">
 
-            @csrf
-            @method('PUT')
+<div class="p-4 bg-white rounded-lg shadow-md">
+<form action="{{ route('form_kp.eskalator.eskalator.update', [$jobOrderTool->id, $eskalator->id]) }}"
+method="POST"
+class="space-y-4"
+enctype="multipart/form-data"
+onsubmit="return confirm('Simpan perubahan data?')">
+@csrf
+@method('PUT')
 
-            {{-- Tanggal Pemeriksaan --}}
-            <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-            <div class="flex flex-wrap justify-between w-full gap-y-4">
-                <div class="w-full md:w-[50%]">
-                    <div class="relative">
-                        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                            <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4Z" />
-                                <path d="M0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Z" />
-                            </svg>
-                        </div>
-                        <input
-                            name="tanggal_pemeriksaan"
-                            value="{{ old('tanggal_pemeriksaan', $formKpEskalator->tanggal_pemeriksaan) }}"
-                            placeholder="Tanggal Pemeriksaan"
-                            datepicker datepicker-format="dd-mm-yyyy" datepicker-autohide
-                            type="text"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    @error('tanggal_pemeriksaan')
-                    <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
 
-            {{-- Nama Perusahaan --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->jobOrder->nama_perusahaan }}">
-            </div>
+{{-- ================= TANGGAL PEMERIKSAAN ================= --}}
+<h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
+<div class="w-full md:w-[50%]">
+<input name="tanggal_pemeriksaan"
+type="text"
+datepicker datepicker-autohide datepicker-format="dd-mm-yyyy"
+class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5"
+value="{{ old('tanggal_pemeriksaan', $eskalator->tanggal_pemeriksaan) }}">
+</div>
 
-            {{-- Kapasitas --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->kapasitas }}">
-            </div>
 
-            {{-- Model/Tipe --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->model }}">
-            </div>
+{{-- ================= FOTO INFORMASI UMUM ================= --}}
+<div>
+<h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
+<div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2"></div>
+<input type="file" name="foto_informasi_umum[]" multiple
+onchange="previewImage(this, 'foto_informasi_umum-preview')"
+class="block w-full lg:w-[50%] px-3 py-2 mt-1 border rounded-md">
+</div>
+{{-- ================= DATA UMUM (DISABLED) ================= --}}
+<div>
+<label class="block text-sm font-medium">Nama Perusahaan</label>
+<input type="text" disabled class="w-full bg-gray-200 rounded" value="{{ $jobOrderTool->jobOrder->nama_perusahaan }}">
+</div>
+<div>
+<label class="block text-sm font-medium">Kapasitas</label>
+<input type="text" disabled class="w-full bg-gray-200 rounded" value="{{ $jobOrderTool->kapasitas }}">
+</div>
+<div>
+<label class="block text-sm font-medium">Model / Tipe</label>
+<input type="text" disabled class="w-full bg-gray-200 rounded" value="{{ $jobOrderTool->model }}">
+</div>
+<div>
+<label class="block text-sm font-medium">No Seri</label>
+<input type="text" disabled class="w-full bg-gray-200 rounded" value="{{ $jobOrderTool->no_seri }}">
+</div>
 
-            {{-- No.Seri --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->no_seri }}">
-            </div>
 
-            {{-- Pabrik Pembuat --}}
-            <div>
-                <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpEskalator->pabrik_pembuat) }}">
-                @error('pabrik_pembuat')
-                <div class="text-xs text-red-600">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
+{{-- ================= INPUT TEKS ================= --}}
+@php
+$textFields = [
+'pabrik_pembuat'=>'Pabrik Pembuat',
+'jenis_eskalator'=>'Jenis Eskalator',
+'lokasi_eskalator'=>'Lokasi Eskalator',
+'tahun_pembuatan'=>'Tahun Pembuatan',
+'asal_negara_pembuat'=>'Asal Negara Pembuat',
+'melayani'=>'Melayani'
+];
+@endphp
 
-            {{-- Asal Negara Pembuat --}}
-            <div>
-                <input type="text" name="asal_negara_pembuat" placeholder="Asal Negara Pembuat"
-                    value="{{ old('asal_negara_pembuat', $formKpEskalator->asal_negara_pembuat) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
 
-            {{-- Tahun Pembuatan --}}
-            <div>
-                <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan"
-                    value="{{ old('tahun_pembuatan', $formKpEskalator->tahun_pembuatan) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Kapasitas --}}
-            <div>
-                <input type="text" name="kapasitas" placeholder="Kapasitas"
-                    value="{{ old('kapasitas', $formKpEskalator->kapasitas) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Melayani --}}
-            <div>
-                <input type="text" name="melayani" placeholder="Melayani"
-                    value="{{ old('melayani', $formKpEskalator->melayani) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Lokasi Eskalator --}}
-            <div>
-                <input type="text" name="lokasi_eskalator" placeholder="Lokasi Eskalator"
-                    value="{{ old('lokasi_eskalator', $formKpEskalator->lokasi_eskalator) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
+@foreach($textFields as $name=>$label)
+<div>
+<label class="block text-sm font-medium">{{ $label }}</label>
+<input type="text" name="{{ $name }}" class="w-full border rounded px-3 py-2"
+value="{{ old($name, $eskalator->$name) }}">
+</div>
+@endforeach
 
             {{-- Gambar (preview lama) --}}
             <div>
@@ -123,46 +88,38 @@
                 <div id="pagar_pelindung-preview" class="flex flex-wrap gap-2"></div>
             </div>
 
-            {{-- ... (Bagian tabel pemeriksaan sama seperti show, cukup ganti old() dengan nilai dari model) --}}
-            {{-- Contoh satu baris saja --}}
-            <h2 class="block mb-2 text-sm font-bold text-gray-700">Pemeriksaan Dimensi dan Keamanan</h2>
-            <table class="min-w-full text-sm text-left border border-gray-300">
-                <thead class="bg-gray-100 text-gray-700">
-                    <tr>
-                        <th class="px-3 py-2 border">Komponen</th>
-                        <th class="px-3 py-2 text-center border">Memenuhi</th>
-                        <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
-                        <th class="px-3 py-2 border">Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $items = [
-                    'tinggi' => 'Tinggi',
-                    'tekanan_samping' => 'Tekanan Samping',
-                    'tekanan_vertikal' => 'Tekanan Vertikal',
-                    ];
-                    @endphp
-                    @foreach ($items as $name => $label)
-                    <tr>
-                        <td class="px-3 py-2 border">{{ $label }}</td>
-                        <td class="px-3 py-2 text-center border">
-                            <input type="radio" name="{{ $name }}" value="Memenuhi"
-                                {{ old($name, $formKpEskalator->$name) == 'Memenuhi' ? 'checked' : '' }}>
-                        </td>
-                        <td class="px-3 py-2 text-center border">
-                            <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
-                                {{ old($name, $formKpEskalator->$name) == 'Tidak Memenuhi' ? 'checked' : '' }}>
-                        </td>
-                        <td class="px-3 py-2 border">
-                            <input type="text" name="{{ $name }}_keterangan"
-                                value="{{ old($name.'_keterangan', $formKpEskalator->{$name.'_keterangan'}) }}"
-                                class="w-full border px-2 py-1 rounded">
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            {{-- ================= TABEL PEMERIKSAAN ================= --}}
+@php
+$tables = [
+'dimensi' => [
+'tinggi','tekanan_samping','tekanan_vertikal','pelindung_bawah','kelenturan_pelindung_bawah','celah_anak_tangga'
+],
+'ban' => ['kondisi_ban_pegangan','kecepatan_ban_pegangan','lebar_ban_pegangan'],
+'pengaman' => [
+'kunci_pengendali','saklar_henti','pengaman_rantai','rantai_penarik','pengaman_anak_tangga','pengaman_ban_pegangan','pengaman_pencegah_balik_arah','pengaman_area_masuk_ban','pengaman_pelat_sisir','sikat_pelindung_dalam','tombol_penghenti'
+]
+];
+@endphp
+
+
+@foreach($tables as $section=>$items)
+<h2 class="font-bold mt-4">Pemeriksaan {{ ucfirst($section) }}</h2>
+<table class="w-full border text-sm">
+@foreach($items as $item)
+<tr>
+<td class="border px-2">{{ ucwords(str_replace('_',' ',$item)) }}</td>
+<td class="border text-center"><input type="radio" name="{{ $item }}" value="Memenuhi" {{ old($item, $eskalator->$item)=='Memenuhi'?'checked':'' }}></td>
+<td class="border text-center"><input type="radio" name="{{ $item }}" value="Tidak Memenuhi" {{ old($item, $eskalator->$item)=='Tidak Memenuhi'?'checked':'' }}></td>
+<td class="border"><input type="text" name="{{ $item }}_keterangan" class="w-full border rounded"
+value="{{ old($item.'_keterangan', $eskalator->{$item.'_keterangan'}) }}"></td>
+</tr>
+@endforeach
+</table>
+@endforeach
+
+
+<button class="px-4 py-2 bg-blue-600 text-white rounded mt-4">Update</button>
+</form>
 
             {{-- Tombol Simpan --}}
             <button

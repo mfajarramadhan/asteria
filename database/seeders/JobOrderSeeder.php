@@ -525,27 +525,27 @@ class JobOrderSeeder extends Seeder
 
 
 
-        // // Buat Tools ke-1 IPK  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder2->id,
-        //     'tool_id' => 18, // Hydrant Basement
-        //     'qty' => 1,
-        //     'status' => 'Pertama',
-        //     'kapasitas' => '500 GPM (1890 L/menit)',
-        //     'model' => 'HY-001',
-        //     'no_seri' => 'IPK001',
-        // ]);
+        // Buat Tools ke-1 IPK  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder2->id,
+            'tool_id' => 18, // Hydrant Basement
+            'qty' => 1,
+            'status' => 'Pertama',
+            'kapasitas' => '500 GPM (1890 L/menit)',
+            'model' => 'HY-001',
+            'no_seri' => 'IPK001',
+        ]);
 
-        // // Buat Tools ke-2 IPK  
-        // JobOrderTool::create([
-        //     'job_order_id' => $jobOrder2->id,
-        //     'tool_id' => 19, // Fire Alarm Gudang
-        //     'qty' => 1,
-        //     'status' => 'Resertifikasi',
-        //     'kapasitas' => '100 detector / 1 panel',
-        //     'model' => 'FA-001',
-        //     'no_seri' => 'IPK002',
-        // ]);
+        // Buat Tools ke-2 IPK  
+        JobOrderTool::create([
+            'job_order_id' => $jobOrder2->id,
+            'tool_id' => 19, // Fire Alarm Gudang
+            'qty' => 1,
+            'status' => 'Resertifikasi',
+            'kapasitas' => '100 detector / 1 panel',
+            'model' => 'FA-001',
+            'no_seri' => 'IPK002',
+        ]);
 
 
 
