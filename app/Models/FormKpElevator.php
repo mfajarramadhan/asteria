@@ -11,22 +11,23 @@ class FormKpElevator extends Model
 
     protected $table = 'form_kp_elevator';
 
-    protected $guarded = [
-        'id',
-    ];
+    protected $guarded = ['id'];
 
     protected $casts = [
-        'tanggal_pemeriksaan' => 'date',
+            'tanggal_pemeriksaan' => 'date',
+            'foto_informasi_umum' => 'array',
+            'foto_mesin' => 'array',
+            'foto_tali_penggantung' => 'array',
+            'foto_teromol' => 'array',
+            'foto_bangun_ruang_luncur' => 'array',
+            'foto_komponen_kereta' => 'array',
+            'foto_governor_rem' => 'array',
+            'foto_bobot_imbang' => 'array',
+            'foto_instalasi_listrik'=> 'array'
+];
 
-        // Foto (JSON)
-        'foto_mesin' => 'array',
-        'foto_tali_penggantung' => 'array',
-        'foto_teromol' => 'array',
-        'foto_bangun_ruang_luncur' => 'array',
-        'foto_komponen_kereta' => 'array',
-    ];
 
-    // Relasi ke job_order_tools
+
     public function jobOrderTool()
     {
         return $this->belongsTo(JobOrderTool::class, 'job_order_tool_id');

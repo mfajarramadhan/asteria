@@ -104,36 +104,45 @@
     <h2 class="text-lg font-bold border-b pb-2">Pemeriksaan Dimensi & Keamanan</h2>
 
     <table class="w-full border text-sm">
-        <thead class="bg-gray-100">
-            <tr>
-                <th class="border p-2">Item</th>
-                <th class="border p-2">Hasil</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach([
-                'tinggi' => 'Tinggi',
-                'tekanan_samping' => 'Tekanan Samping',
-                'tekanan_vertikal' => 'Tekanan Vertikal',
-                'pelindung_bawah' => 'Pelindung Bawah',
-                'kelenturan_pelindung_bawah' => 'Kelenturan Pelindung Bawah',
-                'celah_anak_tangga' => 'Celah Anak Tangga'
-            ] as $field => $label)
-            <tr>
-                <td class="border p-2">{{ $label }}</td>
-                <td class="border p-2 font-semibold">
-                    @if($formKpEskalator->$field === 'Memenuhi')
-                        <span class="text-green-600">✔ Memenuhi</span>
-                    @elseif($formKpEskalator->$field === 'Tidak Memenuhi')
-                        <span class="text-red-600">✖ Tidak Memenuhi</span>
-                    @else
-                        -
-                    @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="border p-2">Item</th>
+            <th class="border p-2">Hasil</th>
+            <th class="border p-2">Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach([
+            'tinggi' => 'Tinggi',
+            'tekanan_samping' => 'Tekanan Samping',
+            'tekanan_vertikal' => 'Tekanan Vertikal',
+            'pelindung_bawah' => 'Pelindung Bawah',
+            'kelenturan_pelindung_bawah' => 'Kelenturan Pelindung Bawah',
+            'celah_anak_tangga' => 'Celah Anak Tangga'
+        ] as $field => $label)
+        <tr>
+            <td class="border p-2 font-medium">{{ $label }}</td>
+
+            {{-- Hasil --}}
+            <td class="border p-2 font-semibold">
+                @if($formKpEskalator->$field === 'Memenuhi')
+                    <span class="text-green-600">✔ Memenuhi</span>
+                @elseif($formKpEskalator->$field === 'Tidak Memenuhi')
+                    <span class="text-red-600">✖ Tidak Memenuhi</span>
+                @else
+                    -
+                @endif
+            </td>
+
+            {{-- Keterangan --}}
+            <td class="border p-2">
+                {{ $formKpEskalator->{$field.'_keterangan'} ?? '-' }}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
 {{-- =============================
     BAN PEGANGAN
 ============================= --}}
