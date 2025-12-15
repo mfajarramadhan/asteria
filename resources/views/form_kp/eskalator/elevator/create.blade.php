@@ -26,6 +26,19 @@
                 </div>
             </div>
 
+            {{-- Foto Informasi Umum --}}
+            <div>
+                <h2 class="block mb-1 text-sm font-bold text-gray-700">Foto (Opsional)</h2>
+                <div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2"></div>
+                <input type="file" name="foto_informasi_umum[]" id="foto_informasi_umum" accept="image/*" multiple onchange="previewImage(this, 'foto_informasi_umum-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_informasi_umum') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
+                @error('foto_informasi_umum')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             {{-- Nama Perusahaan --}}
             <div>
                 <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
@@ -34,7 +47,7 @@
 
             {{-- Kapasitas --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
+                <label class="block text-sm font-medium text-gray-700">Kapasitas Angkut</label>
                 <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $jobOrderTool->kapasitas }}">
             </div>
 
@@ -52,6 +65,7 @@
 
             {{-- Pabrik Pembuat --}}
             <div>
+                <label class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
                 <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat') }}">
                 @error('pabrik_pembuat')
                 <div class="text-xs text-red-600">
@@ -60,10 +74,9 @@
                 @enderror
             </div>
 
-            <h2 class="block text-sm font-bold text-gray-700">Spesifikasi</h2>
-
             {{-- Jenis Elevator --}}
             <div>
+                <label class="block text-sm font-medium text-gray-700">Jenis Elevator</label>
                 <input type="text" name="jenis_elevator" placeholder="Jenis Elevator" id="jenis_elevator" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_elevator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jenis_elevator') }}">
                 @error('jenis_elevator')
                 <div class="text-xs text-red-600">
@@ -72,10 +85,32 @@
                 @enderror
             </div>
 
-
-            {{-- Negara Tahun Pembuat --}}
+            {{-- Lokasi Elevator --}}
             <div>
-                <input type="text" name="negara_tahun_pembuat" placeholder="Negara/tahun Pembuat" id="negara_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara_tahun_pembuat') }}">
+                <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+                <input type="text" name="lokasi_elevator" placeholder="Lokasi Elevator" id="lokasi_elevator" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi_elevator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi_elevator') }}">
+                @error('lokasi_elevator')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Tahun Pembuatan --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan" id="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('tahun_pembuatan') }}">
+                @error('tahun_pembuatan')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Asal Negara Pembuat --}}
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Asal Negara Pembuat</label>
+                <input type="text" name="negara_tahun_pembuat" placeholder="Asal Negara Pembuat" id="negara_tahun_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('negara_tahun_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('negara_tahun_pembuat') }}">
                 @error('negara_tahun_pembuat')
                 <div class="text-xs text-red-600">
                     {{ $message }}
@@ -85,6 +120,7 @@
 
             {{-- Jumlah Lantai Pemberhentian --}}
             <div>
+                <label class="block text-sm font-medium text-gray-700">Jumlah Lantai Pemberhentian</label>
                 <input type="text" name="jumlah_lantai_pemberhentian" placeholder="Jumlah Lantai Pemberhentian" id="jumlah_lantai_pemberhentian" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jumlah_lantai_pemberhentian') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('jumlah_lantai_pemberhentian') }}">
                 @error('jumlah_lantai_pemberhentian')
                 <div class="text-xs text-red-600">
@@ -95,18 +131,9 @@
 
             {{-- Kecepatan Elevator --}}
             <div>
+                <label class="block text-sm font-medium text-gray-700">Kecepatan Elevator</label>
                 <input type="text" name="kecepatan_elevator" placeholder="Kecepatan Elevator" id="kecepatan_elevator" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('kecepatan_elevator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('kecepatan_elevator') }}">
                 @error('kecepatan_elevator')
-                <div class="text-xs text-red-600">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            {{-- Lokasi Elevator --}}
-            <div>
-                <input type="text" name="lokasi_elevator" placeholder="Lokasi Elevator" id="lokasi_elevator" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('lokasi_elevator') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('lokasi_elevator') }}">
-                @error('lokasi_elevator')
                 <div class="text-xs text-red-600">
                     {{ $message }}
                 </div>
@@ -552,6 +579,7 @@
                 @enderror
             </div>
 
+            
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm text-left border border-gray-300">
                     <thead class="bg-gray-100 text-gray-700">
@@ -687,8 +715,15 @@
             </div>
 
 
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm text-left border border-gray-300">
+            <div class="overflow-x-auto"><table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @php
                         $items = [
@@ -774,6 +809,14 @@
 
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @php
                         $items = [
@@ -874,7 +917,15 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="min-w-full text-sm text-left border border-white-300">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @php
                         $items = [
@@ -984,7 +1035,15 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="min-w-full text-sm text-left border border-white-300">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @php
                         $items = [
@@ -1014,6 +1073,455 @@
                         ],
                         ];
                         @endphp
+
+
+                        @foreach ($items as $name => $data)
+                        <tr class="relative">
+                            {{-- Nama komponen + tooltip tanda tanya --}}
+                            <td class="px-3 py-2 border font-medium w-[50%]">
+                                <div class="flex items-center justify-between gap-2">
+                                    {{ $data['label'] }}
+                                    <button type="button"
+                                        onclick="toggleTooltip('{{ $name }}')"
+                                        class="text-blue-600 hover:text-blue-800 font-bold">
+                                        ?
+                                    </button>
+                                    <div id="tooltip-{{ $name }}"
+                                        class="absolute hidden bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                                        {{ $data['desc'] }}
+                                    </div>
+                                </div>
+                            </td>
+                            {{-- Radio Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Memenuhi"
+                                    {{ old($name) == 'Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Radio Tidak Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
+                                    {{ old($name) == 'Tidak Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Keterangan --}}
+                            <td class="px-3 py-2 border">
+                                <input type="text" name="{{ $name }}_keterangan"
+                                    placeholder="Keterangan"
+                                    value="{{ old($name . '_keterangan') }}"
+                                    class="w-full px-2 py-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            
+            {{-- Instalasi Listrik--}}
+            <div>
+                <h2 class="block mb-1 text-sm font-bold text-gray-700">H. Instalasi Listrik</h2>
+                <div id="foto_instalasi_listrik-preview" class="flex flex-wrap gap-2"></div>
+                <input type="file" name="foto_instalasi_listrik[]" id="foto_instalasi_listrik" accept="image/*" multiple onchange="previewImage(this, 'foto_instalasi_listrik-preview')" class="block w-full lg:w-[50%] px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('foto_instalasi_listrik') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
+
+                @error('foto_instalasi_listrik')
+                <div class="text-xs text-red-600">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+$items = [
+    'standar_rangkaian' => [
+        'label' => 'Standar Rangkaian Instalasi Listrik, Perlengkapan dan Pengaman',
+        'desc' => 'Periksa kesesuaian seluruh instalasi listrik dengan standar teknis, pastikan semua perlengkapan dan pengaman terpasang sesuai regulasi dan berfungsi dengan baik.'
+    ],
+    'panel_listrik' => [
+        'label' => 'Panel Listrik',
+        'desc' => 'Verifikasi kondisi panel listrik, pastikan semua komponen internal terpasang rapi, aman, dan tidak ada kerusakan pada sambungan atau kabel.'
+    ],
+    'catu_daya_ard' => [
+        'label' => 'Catu Daya Pengganti Listrik Otomatis (ARD)',
+        'desc' => 'Periksa ARD untuk memastikan daya cadangan otomatis berfungsi jika terjadi pemadaman, serta kapasitas dan koneksi sesuai kebutuhan sistem.'
+    ],
+    'kabel_grounding' => [
+        'label' => 'Kabel Grounding',
+        'desc' => 'Pastikan semua kabel grounding terpasang dengan benar, memiliki resistansi rendah, dan melindungi sistem listrik dari gangguan atau bahaya kebakaran.'
+    ],
+    'alarm_kebakaran' => [
+        'label' => 'Alarm Kebakaran',
+        'desc' => 'Uji fungsi alarm kebakaran untuk memastikan dapat mendeteksi asap atau panas secara tepat dan memberikan peringatan sesuai standar keselamatan.'
+    ],
+];
+@endphp
+
+                        @foreach ($items as $name => $data)
+                        <tr class="relative">
+                            {{-- Nama komponen + tooltip tanda tanya --}}
+                            <td class="px-3 py-2 border font-medium w-[50%]">
+                                <div class="flex items-center justify-between gap-2">
+                                    {{ $data['label'] }}
+                                    <button type="button"
+                                        onclick="toggleTooltip('{{ $name }}')"
+                                        class="text-blue-600 hover:text-blue-800 font-bold">
+                                        ?
+                                    </button>
+                                    <div id="tooltip-{{ $name }}"
+                                        class="absolute hidden bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                                        {{ $data['desc'] }}
+                                    </div>
+                                </div>
+                            </td>
+                            {{-- Radio Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Memenuhi"
+                                    {{ old($name) == 'Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Radio Tidak Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
+                                    {{ old($name) == 'Tidak Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Keterangan --}}
+                            <td class="px-3 py-2 border">
+                                <input type="text" name="{{ $name }}_keterangan"
+                                    placeholder="Keterangan"
+                                    value="{{ old($name . '_keterangan') }}"
+                                    class="w-full px-2 py-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+            $items = [
+                'catu_daya_cadangan' => [
+                    'label' => 'Catu Daya Cadangan',
+                    'desc' => 'Pastikan tersedia catu daya cadangan yang mampu menjaga pengoperasian elevator saat listrik utama terputus.'
+                ],
+                'pengoperasian_khusus' => [
+                    'label' => 'Pengoperasian Khusus',
+                    'desc' => 'Verifikasi sistem pengoperasian khusus berfungsi sesuai prosedur darurat.'
+                ],
+                'saklar_kebakaran' => [
+                    'label' => 'Saklar Kebakaran',
+                    'desc' => 'Pastikan saklar kebakaran terpasang, mudah diakses, dan bekerja sesuai standar keselamatan.'
+                ],
+                'label_elevator_kebakaran' => [
+                    'label' => 'Label “Elevator Penanggulangan Kebakaran”',
+                    'desc' => 'Periksa keberadaan dan keterbacaan label elevator penanggulangan kebakaran.'
+                ],
+                'ketahanan_instalasi_api' => [
+                    'label' => 'Ketahanan Instalasi Listrik Terhadap Api',
+                    'desc' => 'Pastikan instalasi listrik memiliki ketahanan terhadap paparan api sesuai standar.'
+                ],
+                'dinding_luncur' => [
+                    'label' => 'Dinding Luncur',
+                    'desc' => 'Pastikan dinding luncur terpasang dengan baik dan berfungsi sebagaimana mestinya.'
+                ],
+                'ukuran_sangkar' => [
+                    'label' => 'Ukuran Sangkar',
+                    'desc' => 'Verifikasi ukuran sangkar elevator sesuai dengan ketentuan teknis dan kapasitas.'
+                ],
+                'ukuran_pintu_kereta' => [
+                    'label' => 'Ukuran Pintu Kereta',
+                    'desc' => 'Pastikan ukuran pintu kereta memenuhi standar keselamatan dan akses evakuasi.'
+                ],
+                'waktu_tempuh' => [
+                    'label' => 'Waktu Tempuh',
+                    'desc' => 'Periksa waktu tempuh elevator agar sesuai dengan spesifikasi dan kebutuhan darurat.'
+                ],
+                'lantai_evakuasi' => [
+                    'label' => 'Lantai Evakuasi',
+                    'desc' => 'Pastikan elevator berhenti di lantai evakuasi yang telah ditentukan saat kondisi darurat.'
+                ],
+            ];
+            @endphp
+
+
+
+                        @foreach ($items as $name => $data)
+                        <tr class="relative">
+                            {{-- Nama komponen + tooltip tanda tanya --}}
+                            <td class="px-3 py-2 border font-medium w-[50%]">
+                                <div class="flex items-center justify-between gap-2">
+                                    {{ $data['label'] }}
+                                    <button type="button"
+                                        onclick="toggleTooltip('{{ $name }}')"
+                                        class="text-blue-600 hover:text-blue-800 font-bold">
+                                        ?
+                                    </button>
+                                    <div id="tooltip-{{ $name }}"
+                                        class="absolute hidden bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                                        {{ $data['desc'] }}
+                                    </div>
+                                </div>
+                            </td>
+                            {{-- Radio Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Memenuhi"
+                                    {{ old($name) == 'Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Radio Tidak Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
+                                    {{ old($name) == 'Tidak Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Keterangan --}}
+                            <td class="px-3 py-2 border">
+                                <input type="text" name="{{ $name }}_keterangan"
+                                    placeholder="Keterangan"
+                                    value="{{ old($name . '_keterangan') }}"
+                                    class="w-full px-2 py-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+                {{-- Elevator untuk Penanggulangan Kebakaran --}}
+            <div>
+                <h2 class="block mb-1 text-sm font-bold text-gray-700">Elevator untuk Penanggulangan Kebakaran</h2>
+            </div>
+
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+$items = [
+    'standar_rangkaian' => [
+        'label' => 'Standar Rangkaian Instalasi Listrik, Perlengkapan dan Pengaman',
+        'desc' => 'Pastikan instalasi listrik sesuai standar dan perlengkapan pengaman terpasang dengan baik.'
+    ],
+    'panel_listrik' => [
+        'label' => 'Panel Listrik',
+        'desc' => 'Periksa panel, sambungan, dan komponen agar aman dan berfungsi normal.'
+    ],
+    'catu_daya_ard' => [
+        'label' => 'Catu Daya Pengganti Listrik Otomatis (ARD)',
+        'desc' => 'Pastikan ARD bekerja otomatis saat listrik padam dan kapasitasnya memadai.'
+    ],
+    'kabel_grounding' => [
+        'label' => 'Kabel Grounding',
+        'desc' => 'Cek kabel grounding agar melindungi sistem listrik dari gangguan dan bahaya.'
+    ],
+    'alarm_kebakaran' => [
+        'label' => 'Alarm Kebakaran',
+        'desc' => 'Uji alarm untuk mendeteksi asap/panas dan memberi peringatan tepat waktu.'
+    ],
+];
+@endphp
+
+
+                        @foreach ($items as $name => $data)
+                        <tr class="relative">
+                            {{-- Nama komponen + tooltip tanda tanya --}}
+                            <td class="px-3 py-2 border font-medium w-[50%]">
+                                <div class="flex items-center justify-between gap-2">
+                                    {{ $data['label'] }}
+                                    <button type="button"
+                                        onclick="toggleTooltip('{{ $name }}')"
+                                        class="text-blue-600 hover:text-blue-800 font-bold">
+                                        ?
+                                    </button>
+                                    <div id="tooltip-{{ $name }}"
+                                        class="absolute hidden bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                                        {{ $data['desc'] }}
+                                    </div>
+                                </div>
+                            </td>
+                            {{-- Radio Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Memenuhi"
+                                    {{ old($name) == 'Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Radio Tidak Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
+                                    {{ old($name) == 'Tidak Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Keterangan --}}
+                            <td class="px-3 py-2 border">
+                                <input type="text" name="{{ $name }}_keterangan"
+                                    placeholder="Keterangan"
+                                    value="{{ old($name . '_keterangan') }}"
+                                    class="w-full px-2 py-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+                {{-- Elevator untuk Disabilitas --}}
+            <div>
+                <h2 class="block mb-1 text-sm font-bold text-gray-700">Elevator untuk Disabilitas</h2>
+            </div>
+
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+$items = [
+    'panel_operasi_disabilitas' => [
+        'label' => 'Panel Operasi Disabilitas',
+        'desc' => 'Periksa panel operasi untuk memastikan berfungsi dengan baik, mudah diakses, dan sesuai standar keselamatan.'
+    ],
+    'tinggi_panel_operasi' => [
+        'label' => 'Tinggi Panel Operasi',
+        'desc' => 'Pastikan tinggi panel operasi sesuai ketentuan agar dapat dijangkau oleh seluruh pengguna, termasuk penyandang disabilitas.'
+    ],
+    'waktu_bukaan_pintu' => [
+        'label' => 'Waktu Bukaan Pintu',
+        'desc' => 'Periksa waktu bukaan pintu agar cukup untuk keluar masuk penumpang dengan aman.'
+    ],
+    'lebar_bukaan_pintu' => [
+        'label' => 'Ukuran Lebar Bukaan Pintu',
+        'desc' => 'Pastikan lebar bukaan pintu memenuhi standar aksesibilitas dan keselamatan.'
+    ],
+    'informasi_operasi' => [
+        'label' => 'Informasi Operasi',
+        'desc' => 'Periksa ketersediaan dan keterbacaan informasi operasi elevator bagi pengguna.'
+    ],
+    'label_operator_disabilitas' => [
+        'label' => 'Label "Operator Disabilitas"',
+        'desc' => 'Pastikan label operator disabilitas terpasang dengan jelas dan mudah dikenali.'
+    ],
+];
+
+@endphp
+
+
+                        @foreach ($items as $name => $data)
+                        <tr class="relative">
+                            {{-- Nama komponen + tooltip tanda tanya --}}
+                            <td class="px-3 py-2 border font-medium w-[50%]">
+                                <div class="flex items-center justify-between gap-2">
+                                    {{ $data['label'] }}
+                                    <button type="button"
+                                        onclick="toggleTooltip('{{ $name }}')"
+                                        class="text-blue-600 hover:text-blue-800 font-bold">
+                                        ?
+                                    </button>
+                                    <div id="tooltip-{{ $name }}"
+                                        class="absolute hidden bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 text-white text-xs rounded px-2 py-1 shadow-lg z-10">
+                                        {{ $data['desc'] }}
+                                    </div>
+                                </div>
+                            </td>
+                            {{-- Radio Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Memenuhi"
+                                    {{ old($name) == 'Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Radio Tidak Memenuhi --}}
+                            <td class="px-3 py-2 text-center border">
+                                <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
+                                    {{ old($name) == 'Tidak Memenuhi' ? 'checked' : '' }}
+                                    class="text-blue-600 border-gray-300 focus:ring-blue-500">
+                            </td>
+
+                            {{-- Keterangan --}}
+                            <td class="px-3 py-2 border">
+                                <input type="text" name="{{ $name }}_keterangan"
+                                    placeholder="Keterangan"
+                                    value="{{ old($name . '_keterangan') }}"
+                                    class="w-full px-2 py-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+                {{-- Sensor Gempa --}}
+            <div>
+                <h2 class="block mb-1 text-sm font-bold text-gray-700">Sensor Gempa</h2>
+            </div>
+
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-left border border-gray-300">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-3 py-2 border">Komponen</th>
+                            <th class="px-3 py-2 text-center border">Memenuhi</th>
+                            <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
+                            <th class="px-3 py-2 border">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+$items = [
+    'sensor_gempa_lebih_10lt_40m' => [
+        'label' => 'Lebih dari 10 lt. / 40 meter',
+        'desc' => 'Pastikan elevator dengan ketinggian lebih dari 10 lantai atau 40 meter dilengkkapi sensor gempa sesuai ketentuan.'
+    ],
+    'fungsi_input_signal_sensor_gempa' => [
+        'label' => 'Fungsi Input Signal Sensor Gempa',
+        'desc' => 'Uji fungsi input signal sensor gempa untuk memastikan sistem merespons dengan benar saat terjadi getaran gempa.'
+    ],
+];
+
+@endphp
 
 
                         @foreach ($items as $name => $data)
