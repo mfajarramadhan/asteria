@@ -14,7 +14,7 @@ class SuperAdminController extends Controller
     {
         // Kirim semua data users kecuali superAdmin
         $users = User::with('roles')->whereDoesntHave('roles', function ($q) {
-                $q->where('name', 'superAdmin');
+                $q->where('name', 'Super Admin');
             })->orderBy('created_at', 'desc')->get();
 
         return view('superadmin.index', [
@@ -30,7 +30,7 @@ class SuperAdminController extends Controller
     public function updateRole(Request $request, $id)
     {
         $request->validate([
-            'role' => 'required|in:superAdmin,admin,petugas,penyusunLHP',
+            'role' => 'required|in:Super Admin,Admin Riksa Uji,Tim Riksa Uji,Penyusun LHP',
         ]);
 
         $user = User::findOrFail($id);

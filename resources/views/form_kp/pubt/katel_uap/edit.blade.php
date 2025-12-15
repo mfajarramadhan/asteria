@@ -7,71 +7,35 @@
                 @method('PUT')
                 
                 {{-- Tanggal Pemeriksaan --}}
-                <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-                <div class="flex flex-wrap justify-between w-full gap-y-4">
-                    <div class="w-full md:w-[48%]">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
+                <div>
+                    <label for="tanggal_pemeriksaan" class="block mb-1 text-sm font-medium text-gray-700">Tanggal Pemeriksaan</label>
+                    <div class="flex flex-wrap justify-between w-full gap-y-4">
+                        <div class="w-full md:w-[48%]">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan"
+                                    value="{{ old('tanggal_pemeriksaan', optional($formKpKatelUap->tanggal_pemeriksaan)->format('d-m-Y')) }}"
+                                    datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today
+                                    type="text"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror">
                             </div>
-                            <input id="datepicker-autohide" name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" 
-                                value="{{ old('tanggal_pemeriksaan', optional($formKpKatelUap->tanggal_pemeriksaan)->format('d-m-Y')) }}"
-                                datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" datepicker-buttons datepicker-autoselect-today 
-                                type="text" 
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  @error('tanggal_pemeriksaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"> 
+                            @error('tanggal_pemeriksaan')
+                            <div class="text-xs text-red-600">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @error('tanggal_pemeriksaan')
-                        <div class="text-xs text-red-600">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
                 </div>
 
-                {{-- Nama Perusahaan --}}
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->jobOrder->nama_perusahaan }}">
-                </div>
-                
-                {{-- Kapasitas --}}
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->kapasitas }}">
-                </div>
-                
-                {{-- Model/Tipe --}}
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->model }}">
-                </div>
-                
-                {{-- No.Seri --}}
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->no_seri }}">
-                </div>
-                
-                {{-- Pabrik Pembuat --}}
-                <div>
-                    <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpKatelUap->pabrik_pembuat) }}">
-                    @error('pabrik_pembuat')
-                    <div class="text-xs text-red-600">
-                        {{ $message }}
-                    </div>
-                    @enderror   
-                </div>
-
-                {{-- <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2> --}}
-                
-                {{-- Informasi Umum --}}
                 {{-- Foto foto_informasi_umum --}}
                 <div>
-                    <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2>
-                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto Informasi Umum</label>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Informasi Umum</h2>
+                    <label for="foto_informasi_umum" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpKatelUap->foto_informasi_umum)
@@ -108,29 +72,92 @@
                     @enderror   
                 </div>
 
+                {{-- Nama Perusahaan --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->jobOrder->nama_perusahaan }}">
+                </div>
+                
+                {{-- Kapasitas --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->kapasitas }}">
+                </div>
+                
+                {{-- Model/Tipe --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->model }}">
+                </div>
+                
+                {{-- No.Seri --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
+                    <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpKatelUap->jobOrderTool->no_seri }}">
+                </div>
+                
+                {{-- Pabrik Pembuat --}}
+                <div>
+                    <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
+                    <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('pabrik_pembuat', $formKpKatelUap->pabrik_pembuat) }}">
+                    @error('pabrik_pembuat')
+                    <div class="text-xs text-red-600">
+                        {{ $message }}
+                    </div>
+                    @enderror   
+                </div>
+
                 {{-- Jenis Alat --}}
                 <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Jenis Alat</label>
-                    <input type="text" name="jenis_alat" placeholder="Jenis Alat" id="jenis_alat"
+                    <label for="jenis" class="block text-sm font-medium text-gray-700">Jenis Alat</label>
+                    <input type="text" name="jenis" placeholder="Jenis Alat" id="jenis"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                        @error('jenis_alat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('jenis_alat', $formKpKatelUap->jenis_alat) }}">
-                    @error('jenis_alat')
+                        @error('jenis') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('jenis', $formKpKatelUap->jenis) }}">
+                    @error('jenis')
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror
                 </div>
 
-                {{-- Tempat & Tahun Pembuatan --}}
+                
+                {{-- Lokasi --}}
                 <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Tempat & Tahun Pembuatan</label>
-                    <input type="text" name="tempat_tahun_pembuatan" placeholder="Tempat & Tahun Pembuatan"
-                        id="tempat_tahun_pembuatan"
+                    <label for="lokasi" class="block text-sm font-medium text-gray-700">Lokasi</label>
+                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                        @error('tempat_tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('tempat_tahun_pembuatan', $formKpKatelUap->tempat_tahun_pembuatan) }}">
-                    @error('tempat_tahun_pembuatan')
+                        @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('lokasi', $formKpKatelUap->lokasi) }}">
+                    @error('lokasi')
+                        <div class="text-xs text-red-600">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Tahun Pembuatan --}}
+                <div>
+                    <label for="tahun_pembuatan" class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                    <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan"
+                        id="tahun_pembuatan"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
+                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                        @error('tahun_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tahun_pembuatan', $formKpKatelUap->tahun_pembuatan) }}">
+                    @error('tahun_pembuatan')
+                        <div class="text-xs text-red-600">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Tempat Pembuatan --}}
+                <div>
+                    <label for="tempat_pembuatan" class="block text-sm font-medium text-gray-700">Tempat_pembuatan Pembuatan</label>
+                    <input type="text" name="tempat_pembuatan" placeholder="Tempat_pembuatan"
+                        id="tempat_pembuatan"
+                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
+                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
+                        @error('tempat_pembuatan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
+                        value="{{ old('tempat_pembuatan', $formKpKatelUap->tempat_pembuatan) }}">
+                    @error('tempat_pembuatan')
                         <div class="text-xs text-red-600">{{ $message }}</div>
                     @enderror
                 </div>
@@ -163,7 +190,7 @@
 
                 {{-- Luas Pemanasan --}}
                 <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Luas Pemanasan</label>
+                    <label for="luas_pemanasan" class="block text-sm font-medium text-gray-700">Luas Pemanasan</label>
                     <input type="number" step="any" name="luas_pemanasan" placeholder="Luas Pemanasan" id="luas_pemanasan"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
@@ -176,7 +203,7 @@
 
                 {{-- Work Temperature --}}
                 <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Work Temperature</label>
+                    <label for="work_temperature" class="block text-sm font-medium text-gray-700">Work Temperature</label>
                     <input type="number" step="any" name="work_temperature" placeholder="Work Temperature" id="work_temperature"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
@@ -189,7 +216,7 @@
 
                 {{-- Bahan Bakar --}}
                 <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Bahan Bakar</label>
+                    <label for="bahan_bakar" class="block text-sm font-medium text-gray-700">Bahan Bakar</label>
                     <input type="text" name="bahan_bakar" placeholder="Bahan Bakar" id="bahan_bakar"
                         class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
                         focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
@@ -200,23 +227,10 @@
                     @enderror
                 </div>
 
-                {{-- Lokasi --}}
-                <div>
-                    <label for="panjang_pipa" class="block text-sm font-medium text-gray-700">Lokasi</label>
-                    <input type="text" name="lokasi" placeholder="Lokasi" id="lokasi"
-                        class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md 
-                        focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm 
-                        @error('lokasi') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror"
-                        value="{{ old('lokasi', $formKpKatelUap->lokasi) }}">
-                    @error('lokasi')
-                        <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 {{-- Foto foto_safety_valve --}}
                 <div>
-                    {{-- <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2> --}}
-                    <label for="foto_safety_valve" class="mt-10 block mb-1 text-sm font-medium text-gray-700">Foto Safety_Valve</label>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Safety Device</h2>
+                    <label for="foto_safety_valve" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)<label>
 
                     {{-- foto lama --}}
                     @if($formKpKatelUap->foto_safety_valve)
@@ -330,8 +344,8 @@
 
                 {{-- Foto foto_pressure_switch --}}
                 <div>
-                    {{-- <h2 class="block mb-1 text-sm font-bold text-gray-700">Informasi Umum</h2> --}}
-                    <label for="foto_pressure_switch" class="mt-10 block mb-1 text-sm font-medium text-gray-700">Foto Pressure Switch</label>
+                    <h2 class="block mb-1 text-base font-bold text-gray-700">Pressure Switch</h2>
+                    <label for="foto_pressure_switch" class="block mb-1 text-sm font-medium text-gray-700">Foto (opsional)</label>
 
                     {{-- foto lama --}}
                     @if($formKpKatelUap->foto_pressure_switch)

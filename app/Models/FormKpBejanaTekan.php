@@ -16,6 +16,7 @@ class FormKpBejanaTekan extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
+        'foto_informasi_umum' => 'array',
         'foto_shell' => 'array',
         'foto_head' => 'array',
         'foto_pipa' => 'array',

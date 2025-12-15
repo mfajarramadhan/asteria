@@ -8,12 +8,12 @@
             <h2 class="text-lg font-semibold text-white">Pesawat Tenaga Produksi</h2>
         </a>
 
-        <a href="{{ route('form_kp.ptp.pesawat_tenaga_produksi.index') }}" class="flex flex-col items-center p-4 transition-transform rounded-lg shadow-md bg-gradient-to-t from-red-700 to-red-500 transform-gpu hover:shadow-lg hover:scale-[103%]">
+        <a href="{{ route('form_kp.ptp.motor_diesel.index') }}" class="flex flex-col items-center p-4 transition-transform rounded-lg shadow-md bg-gradient-to-t from-red-700 to-red-500 transform-gpu hover:shadow-lg hover:scale-[103%]">
             <img src="{{ asset('assets/icon/ptp/gears.png') }}" alt="Motor Diesel" class="w-16 h-16 mb-2">
             <h2 class="text-lg font-semibold text-white">Motor Diesel</h2>
         </a>
 
-        <a href="{{ route('form_kp.ptp.pesawat_tenaga_produksi.index') }}" class="flex flex-col items-center p-4 transition-transform rounded-lg shadow-md bg-gradient-to-t from-yellow-700 to-yellow-500 transform-gpu hover:shadow-lg hover:scale-[103%]">
+        <a href="{{ route('form_kp.ptp.heat_treatment.index') }}" class="flex flex-col items-center p-4 transition-transform rounded-lg shadow-md bg-gradient-to-t from-yellow-700 to-yellow-500 transform-gpu hover:shadow-lg hover:scale-[103%]">
             <img src="{{ asset('assets/icon/ptp/cooker.png') }}" alt="Heat Treatment/Oven" class="w-16 h-16 mb-2">
             <h2 class="text-lg font-semibold text-white">Heat Treatment/Oven</h2>
         </a>

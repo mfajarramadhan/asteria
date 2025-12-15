@@ -18,6 +18,7 @@ class FormKpTangkiTimbun extends Model
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
+        'foto_informasi_umum' => 'array',
         'foto_visual' => 'array',
         'foto_pengukuran' => 'array',
         'foto_komponen' => 'array',
