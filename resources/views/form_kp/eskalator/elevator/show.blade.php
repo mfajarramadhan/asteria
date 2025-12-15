@@ -8,7 +8,7 @@
     ============================== --}}
     <h2 class="text-lg font-bold border-b pb-2">Informasi Umum</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
         <div>
     <label class="text-sm font-semibold">Tanggal Pemeriksaan</label>
     <input type="text" readonly class="w-full bg-gray-200 border rounded p-2"

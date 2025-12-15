@@ -64,8 +64,10 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Tanggal</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">ID JO</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Nama Perusahaan</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
@@ -75,8 +77,10 @@
                 @forelse ($elevators as $elevator)
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $elevator->tanggal_pemeriksaan->format('d-m-Y') }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $elevator->jobOrderTool->jobOrder->nomor_jo }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $elevator->jobOrderTool->tool->nama }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $elevator->jobOrderTool->jobOrder->nama_perusahaan }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $elevator->jobOrderTool->status }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         @if ($elevator->jobOrderTool->status_tool == 'belum')
