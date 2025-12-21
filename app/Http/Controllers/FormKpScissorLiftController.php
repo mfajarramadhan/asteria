@@ -10,25 +10,56 @@ use Illuminate\Support\Facades\Storage;
 
 class FormKpScissorLiftController extends Controller
 {
-public function index()
-{
-    $scissorLifts = FormKpScissorLift::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
-        ->whereHas('jobOrderTool', function ($q) {
-            $q->where('status_tool', 'selesai')
-              ->whereHas('tool', function ($q2) {
-                  $q2->where('jenis_riksa_uji_id', 3)
-                     ->where('sub_jenis_riksa_uji_id', 8);
-              });
-        })
-        ->get();
+    public function index()
+    {
+        $scissorLifts = FormKpScissorLift::with(['jobOrderTool.jobOrder', 'jobOrderTool.tool'])
+            ->whereHas('jobOrderTool', function ($q) {
+                $q->where('status_tool', 'selesai')
+                ->whereHas('tool', function ($q2) {
+                    $q2->where('jenis_riksa_uji_id', 3)
+                        ->where('sub_jenis_riksa_uji_id', 8);
+                });
+            })
+            ->get();
 
-    return view('form_kp.papa.scissor_lift.index', [
-        'title' => 'Form KP Scissor Lift',
-        'subtitle' => 'Daftar alat selesai diperiksa',
-        'scissorLifts' => $scissorLifts,
-    ]);
-}
+        return view('form_kp.papa.scissor_lift.index', [
+            'title' => 'Form KP Scissor Lift',
+            'subtitle' => 'Daftar alat selesai diperiksa',
+            'scissorLifts' => $scissorLifts,
+        ]);
+    }
 
+     public function search(Request $request)
+    {
+        $q = trim($request->q);
+
+        $scissorLifts = FormKpScissorLift::with([
+                'jobOrderTool.jobOrder',
+                'jobOrderTool.tool'
+            ])
+            ->when($q, function ($query) use ($q) {
+
+                $query->where('tanggal_pemeriksaan', 'like', "%{$q}%")
+
+                    ->orWhereHas('jobOrderTool.jobOrder', function ($q2) use ($q) {
+                        $q2->where('nomor_jo', 'like', "%{$q}%")
+                        ->orWhere('nama_perusahaan', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool.tool', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool', function ($q2) use ($q) {
+                        $q2->where('status', 'like', "%{$q}%")
+                        ->orWhere('status_tool', 'like', "%{$q}%");
+                    });
+            })
+            ->latest()
+            ->get();
+
+        return response()->json($scissorLifts);
+    }
 
     public function create($jobOrderToolId)
     {

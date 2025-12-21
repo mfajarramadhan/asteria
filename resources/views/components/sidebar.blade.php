@@ -26,7 +26,7 @@
         </button>
     </div>
 
-    <nav class="flex-1 py-4 overflow-y-auto ">
+    <nav class="flex-1 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
         <ul class="space-y-2">
             {{-- Dashboard --}}
             <li>

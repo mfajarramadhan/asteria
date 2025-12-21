@@ -11,7 +11,7 @@ class JobOrder extends Model
     /** @use HasFactory<\Database\Factories\JobOrderFactory> */
     use HasFactory;
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     protected $casts = [

@@ -12,7 +12,7 @@
 
             {{-- Nama Perusahaan --}}
             <div>
-                <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $jobOrder->nama_perusahaan) }}">
+                <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 uppercase bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="uppercase block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $jobOrder->nama_perusahaan) }}">
                 @error('nama_perusahaan')
                 <div class="text-xs text-red-600">{{ $message }}</div>
                 @enderror
@@ -227,7 +227,7 @@
 
             {{-- ID JO --}}
             <div>
-                <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole name="nomor_jo" placeholder="ID JO" id="nomor_jo" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_jo') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_jo', $jobOrder->nomor_jo) }}">
+                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" name="nomor_jo" placeholder="ID JO" id="nomor_jo" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_jo') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_jo', $jobOrder->nomor_jo) }}">
                 @error('nomor_jo')
                 <div class="text-xs text-red-600">{{ $message }}</div>
                 @enderror
@@ -293,7 +293,9 @@
                     @if(old('tools'))
                         @foreach (old('tools') as $i => $tool)
                             <tr>
-                                <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                                {{-- pivot_id dari old input --}}
+                                <input type="hidden" name="tools[{{ $i }}][pivot_id]" value="{{ $tool['pivot_id'] ?? '' }}">
+
                                     {{-- Super Admin|Admin Riksa Uji Bisa Edit --}}
                                     @role('Super Admin|Admin Riksa Uji')
                                         <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
@@ -317,8 +319,7 @@
                                         </select>
 
                                         {{-- Hidden agar tetap terkirim --}}
-                                        <input type="hidden" name="tools[{{ $i }}][tool_id]" 
-                                            value="{{ old("tools.$i.tool_id", $jobOrder->tools[$i]->tool_id ?? '') }}">
+                                        <input type="hidden" name="tools[{{ $i }}][tool_id]" value="{{ old("tools.$i.tool_id", $jobOrder->tools[$i]->tool_id ?? '') }}">
                                     @endrole
                                 </td>
 
@@ -327,8 +328,8 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                     <select @role('Tim Riksa Uji') readonly class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
-                                        <option value="pertama" {{ old("tools.$i.status") == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                        <option value="resertifikasi" {{ old("tools.$i.status") == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                        <option value="Pertama" {{ old("tools.$i.status") == 'Pertama' ? 'selected' : '' }}>Pertama</option>
+                                        <option value="Resertifikasi" {{ old("tools.$i.status") == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                     </select>
                                 </td>
                                 <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
@@ -355,8 +356,12 @@
                         @endforeach
                     @elseif($jobOrder->tools->count())
                         @foreach ($jobOrder->tools as $i => $tool)
-                            <tr>
+                            <tr data-pivot-id="{{ $tool->pivot->id }}">
                                 <td class="w-full sm:w-[30%] min-w-[200px] px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
+                                
+                                {{-- Hidden --}}
+                                <input type="hidden" name="tools[{{ $i }}][pivot_id]" value="{{ $tool->pivot->id }}">
+
                                 {{-- Super Admin|Admin Riksa Uji Bisa Edit --}}
                                 @role('Super Admin|Admin Riksa Uji')
                                     <select name="tools[{{ $i }}][tool_id]" id="tool-select-{{ $i }}" 
@@ -391,14 +396,14 @@
                                     {{-- Super Admin|Admin Riksa Uji Bisa Edit --}}
                                     @role('Super Admin|Admin Riksa Uji')
                                         <select name="tools[{{ $i }}][status]" class="form-control" required>
-                                            <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                            <option value="Pertama" {{ $tool->pivot->status == 'Pertama' ? 'selected' : '' }}>Pertama</option>
+                                            <option value="Resertifikasi" {{ $tool->pivot->status == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
                                     @else
                                         {{-- Petugas Hanya Lihat --}}
                                         <select disabled class="bg-gray-200 rounded-sm cursor-not-allowed form-control">
-                                            <option value="pertama" {{ $tool->pivot->status == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ $tool->pivot->status == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                            <option value="Pertama" {{ $tool->pivot->status == 'Pertama' ? 'selected' : '' }}>Pertama</option>
+                                            <option value="Resertifikasi" {{ $tool->pivot->status == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
 
                                         {{-- Hidden agar tetap terkirim --}}
@@ -441,6 +446,8 @@
                     </button>
                 @endrole
             </div>
+
+            <div id="deleted-tools-container"></div>
             {{-- End Pilih alat --}}
 
             {{-- Kelengkapan Alat --}}
@@ -758,11 +765,27 @@
             });
 
             // Remove Button Dynamic Input
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('remove-row')) {
-                    e.target.closest('tr').remove();
+            document.querySelector('#tools-table tbody').addEventListener('click', function (e) {
+                const btn = e.target.closest('.remove-row');
+                if (!btn) return;
+
+                const row = btn.closest('tr');
+                const pivotId = row.dataset.pivotId;
+
+                // kalau row lama (punya pivot id)
+                if (pivotId) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'deleted_tools[]';
+                    input.value = pivotId;
+
+                    document
+                        .getElementById('deleted-tools-container')
+                        .appendChild(input);
                 }
-            });
+
+                row.remove();
+        });
         </script>
         @endpush
 </x-layout>

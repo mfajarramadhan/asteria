@@ -29,6 +29,37 @@ class FormKpInstalasiListrikController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $q = trim($request->q);
+
+        $instalasiListriks = FormKpInstalasiListrik::with([
+                'jobOrderTool.jobOrder',
+                'jobOrderTool.tool'
+            ])
+            ->when($q, function ($query) use ($q) {
+
+                $query->where('tanggal_pemeriksaan', 'like', "%{$q}%")
+
+                    ->orWhereHas('jobOrderTool.jobOrder', function ($q2) use ($q) {
+                        $q2->where('nomor_jo', 'like', "%{$q}%")
+                        ->orWhere('nama_perusahaan', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool.tool', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool', function ($q2) use ($q) {
+                        $q2->where('status', 'like', "%{$q}%")
+                        ->orWhere('status_tool', 'like', "%{$q}%");
+                    });
+            })
+            ->latest()
+            ->get();
+
+        return response()->json($instalasiListriks);
+    }
 
     public function create($jobOrderToolId)
     {
