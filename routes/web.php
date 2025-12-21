@@ -53,18 +53,30 @@ Route::middleware('auth')->group(function () {
         Route::get('tools/sub-jenis/{jenis}', [ToolController::class, 'subJenis'])
             ->name('tools.subjenis');
 
+        // Tools Search
+        Route::get('/tools/search-tool', [ToolController::class, 'searchTool'])
+        ->name('tools.search.tool');
+        Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
+        Route::get('/tools/search', [ToolController::class, 'search'])->name('tools.search');    
+
         // Tools Resource (CRUD)
         Route::resource('tools', ToolController::class);
     });
 
     // Rute Job Order: Semua Role
     Route::middleware(['role:Super Admin|Admin Riksa Uji|Tim Riksa Uji|Penyusun LHP'])->group(function () {
+        //  JO Search
+        Route::get('/job-orders/search/jo', [JobOrderController::class, 'searchJo'])
+            ->name('job_orders.search.jo');
+
         // Job Orders Resource (CRUD)
         Route::resource('job_orders', JobOrderController::class);
         Route::patch('/job-order-tools/{jobOrderTool}/selesai', [JobOrderToolController::class, 'setSelesai'])
             ->name('job-order-tools.selesai');
         Route::patch('/job-order-tools/{jobOrderTool}/belum', [JobOrderToolController::class, 'setBelum'])
             ->name('job-order-tools.belum');
+
+
     });
 
     // User Management: Hanya superAdmin
@@ -84,9 +96,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPUBTController::class, 'index'])->name('index');
-
+        
+        
         // CRUD Bejana Tekan
         Route::prefix('bejana_tekan')->name('bejana_tekan.')->group(function () {
+            Route::get('/search', [FormKpBejanaTekanController::class, 'search'])->name('search');
             Route::get('/', [FormKpBejanaTekanController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpBejanaTekanController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpBejanaTekanController::class, 'store'])->name('store');
@@ -97,6 +111,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Katel Uap
         Route::prefix('katel_uap')->name('katel_uap.')->group(function () {
+            Route::get('/search', [FormKpKatelUapController::class, 'search'])->name('search');
             Route::get('/', [FormKpKatelUapController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpKatelUapController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpKatelUapController::class, 'store'])->name('store');
@@ -107,6 +122,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Screw Compressor
         Route::prefix('screw_compressor')->name('screw_compressor.')->group(function () {
+            Route::get('/search', [FormKpScrewCompressorController::class, 'search'])->name('search');
             Route::get('/', [FormKpScrewCompressorController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpScrewCompressorController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpScrewCompressorController::class, 'store'])->name('store');
@@ -117,6 +133,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Tangki Timbun
         Route::prefix('tangki_timbun')->name('tangki_timbun.')->group(function () {
+            Route::get('/search', [FormKpTangkiTimbunController::class, 'search'])->name('search');
             Route::get('/', [FormKpTangkiTimbunController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpTangkiTimbunController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpTangkiTimbunController::class, 'store'])->name('store');
@@ -135,6 +152,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Pesawat Tenaga Produksi
         Route::prefix('pesawat_tenaga_produksi')->name('pesawat_tenaga_produksi.')->group(function () {
+            Route::get('/search', [FormKpTangkiTimbunController::class, 'search'])->name('search');
             Route::get('/', [FormKpPesawatTenagaProduksiController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpPesawatTenagaProduksiController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpPesawatTenagaProduksiController::class, 'store'])->name('store');
@@ -145,6 +163,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Motor Diesel
         Route::prefix('motor_diesel')->name('motor_diesel.')->group(function () {
+            Route::get('/search', [FormKpMotorDieselController::class, 'search'])->name('search');
             Route::get('/', [FormKpMotorDieselController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpMotorDieselController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpMotorDieselController::class, 'store'])->name('store');
@@ -155,6 +174,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Heat Treatment
         Route::prefix('heat_treatment')->name('heat_treatment.')->group(function () {
+            Route::get('/search', [FormKpHeatTreatmentController::class, 'search'])->name('search');
             Route::get('/', [FormKpHeatTreatmentController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpHeatTreatmentController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpHeatTreatmentController::class, 'store'])->name('store');
@@ -173,6 +193,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Scissor Lift
         Route::prefix('scissor_lift')->name('scissor_lift.')->group(function () {
+            Route::get('/search', [FormKpScissorLiftController::class, 'search'])->name('search');
             Route::get('/', [FormKpScissorLiftController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpScissorLiftController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpScissorLiftController::class, 'store'])->name('store');
@@ -183,6 +204,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Wheel Loader
         Route::prefix('wheel_loader')->name('wheel_loader.')->group(function () {
+            Route::get('/search', [FormKpWheelLoaderController::class, 'search'])->name('search');
             Route::get('/', [FormKpWheelLoaderController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpWheelLoaderController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpWheelLoaderController::class, 'store'])->name('store');
@@ -193,6 +215,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Dump Trailer
         Route::prefix('dump_trailer')->name('dump_trailer.')->group(function () {
+            Route::get('/search', [FormKpDumpTrailerController::class, 'search'])->name('search');
             Route::get('/', [FormKpDumpTrailerController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpDumpTrailerController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpDumpTrailerController::class, 'store'])->name('store');
@@ -203,6 +226,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Crane
         Route::prefix('crane')->name('crane.')->group(function () {
+            Route::get('/search', [FormKpCraneController::class, 'search'])->name('search');
             Route::get('/', [FormKpCraneController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpCraneController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpCraneController::class, 'store'])->name('store');
@@ -213,6 +237,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Forklift
         Route::prefix('forklift')->name('forklift.')->group(function () {
+            Route::get('/search', [FormKpForkliftController::class, 'search'])->name('search');
             Route::get('/', [FormKpForkliftController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpForkliftController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpForkliftController::class, 'store'])->name('store');
@@ -223,6 +248,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Cargo Lift
         Route::prefix('cargo_lift')->name('cargo_lift.')->group(function () {
+            Route::get('/search', [FormKpCargoLiftController::class, 'search'])->name('search');
             Route::get('/', [FormKpCargoLiftController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpCargoLiftController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpCargoLiftController::class, 'store'])->name('store');
@@ -241,6 +267,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Instalasi Listrik
         Route::prefix('instalasi_listrik')->name('instalasi_listrik.')->group(function () {
+            Route::get('/search', [FormKpInstalasiListrikController::class, 'search'])->name('search');
             Route::get('/', [FormKpInstalasiListrikController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpInstalasiListrikController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpInstalasiListrikController::class, 'store'])->name('store');
@@ -251,6 +278,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Instalasi Penyalur Petir
         Route::prefix('instalasi_penyalur_petir')->name('instalasi_penyalur_petir.')->group(function () {
+            Route::get('/search', [FormKpInstalasiPenyalurPetirController::class, 'search'])->name('search');
             Route::get('/', [FormKpInstalasiPenyalurPetirController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpInstalasiPenyalurPetirController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpInstalasiPenyalurPetirController::class, 'store'])->name('store');

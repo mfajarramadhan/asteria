@@ -32,7 +32,7 @@ return new class extends Migration
         $table->string('pic_ditemui')->nullable();
         $table->string('contact_person2')->nullable();
         $table->date('tanggal_dibuat')->nullable(); 
-        $table->string('nomor_jo')->unique();
+        $table->string('nomor_jo');
         $table->string('status_jo')->default('belum'); // belum, proses, selesai
         $table->boolean('kelengkapan_manual_book')->default(false);
         $table->integer('qty_manual_book')->nullable();

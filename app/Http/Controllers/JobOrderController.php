@@ -14,12 +14,41 @@ class JobOrderController extends Controller
 {
     public function index()
     {
-        $jobOrders = JobOrder::with('tools')->latest()->paginate(10);
+        $jobOrders = JobOrder::with('tools')
+            ->orderByRaw("
+                CASE
+                    WHEN status_jo = 'belum' THEN 0
+                    WHEN status_jo = 'proses' THEN 1
+                    ELSE 2
+                END
+            ")
+            ->orderByDesc('created_at')
+            ->paginate(10);
+
         return view('job_orders.index', [
             'jobOrders' => $jobOrders,
-            'title' => 'Job Order', 
+            'title' => 'Job Order',
             'subtitle' => 'Job Order PT. Asteria Riksa Indonesia'
         ]);
+    }
+
+
+    public function searchJo(Request $request)
+    {
+        $q = $request->q;
+
+        $jobOrders = JobOrder::query()
+            ->when($q, function ($query) use ($q) {
+                $query->where('nomor_jo', 'like', "%{$q}%")
+                    ->orWhere('nama_perusahaan', 'like', "%{$q}%")
+                    ->orWhere('status_jo', 'like', "%{$q}%")
+                    ->orWhereDate('tanggal_dibuat', 'like', "%{$q}%")
+                    ->orWhereDate('tanggal_selesai', 'like', "%{$q}%");
+            })
+            ->latest()
+            ->get();
+
+        return response()->json($jobOrders);
     }
     
     public function create()
@@ -33,6 +62,22 @@ class JobOrderController extends Controller
             'title' => 'Job Order',
             'subtitle' => 'Buat Job Order PT. Asteria Riksa Indonesia'
         ]);
+    }
+
+    private function generateNomorJo(): string
+    {
+        $lastJo = JobOrder::orderBy('id', 'desc')->first();
+
+        if (! $lastJo || ! $lastJo->nomor_jo) {
+            return 'JO-001';
+        }
+
+        // Ambil angka dari JO-XXX
+        $lastNumber = (int) str_replace('JO-', '', $lastJo->nomor_jo);
+
+        $nextNumber = $lastNumber + 1;
+
+        return 'JO-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
     }
 
     public function store(Request $request)
@@ -60,13 +105,13 @@ class JobOrderController extends Controller
         'pic_ditemui'                       => 'nullable|string|max:255',
         'contact_person2'                   => 'nullable|string|max:255',
         'tanggal_dibuat'                    => 'required|date',
-        'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo',
+        // 'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo',
         'catatan'                           => 'nullable|string|max:65535',    
 
         'tools'                             => 'required|array',
         'tools.*.tool_id'                   => 'required|exists:tools,id',
         'tools.*.qty'                       => 'required|integer|min:1',
-        'tools.*.status'                    => 'required|string|in:pertama,resertifikasi',
+        'tools.*.status'                    => 'required|string|in:Pertama,Resertifikasi',
         'tools.*.kapasitas'                 => 'nullable|string|max:255',
         'tools.*.model'                     => 'nullable|string|max:255',
         'tools.*.no_seri'                   => 'nullable|string|max:255',
@@ -181,7 +226,7 @@ class JobOrderController extends Controller
 
         // 1. Buat JO & konversi format tanggal ke (Y-m-d) bawwaan laravel
         $jobOrder = JobOrder::create([
-        'nama_perusahaan'                   => $request->nama_perusahaan,
+        'nama_perusahaan'                   => strtoupper($request->nama_perusahaan),
         'alamat_perusahaan'                 => $request->alamat_perusahaan,
         'pic_order'                         => $request->pic_order,
         'email'                             => $request->email,
@@ -201,7 +246,7 @@ class JobOrderController extends Controller
         'jam_selesai'                       => $request->jam_selesai,
         'pic_ditemui'                       => $request->pic_ditemui,
         'contact_person2'                   => $request->contact_person2,
-        'nomor_jo'                          => $request->nomor_jo,
+        'nomor_jo'                          => $this->generateNomorJo(),
         'tanggal_dibuat'                    => $toDate($request->tanggal_dibuat),
         'status_jo'                         => 'belum',
         'kelengkapan_manual_book'           => $request->kelengkapan_manual_book,
@@ -287,16 +332,18 @@ class JobOrderController extends Controller
             'pic_ditemui'                       => 'nullable|string|max:255',
             'contact_person2'                   => 'nullable|string|max:255',
             'tanggal_dibuat'                    => 'required|string',
-            'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo,' . $jobOrder->id,
+            // 'nomor_jo'                          => 'required|string|max:50|unique:job_orders,nomor_jo,' . $jobOrder->id,
             'catatan'                           => 'nullable|string|max:65535',    
 
             'tools'                             => 'required|array',
             'tools.*.tool_id'                   => 'required|exists:tools,id',
             'tools.*.qty'                       => 'required|integer|min:1',
-            'tools.*.status'                    => 'required|string|in:pertama,resertifikasi',
+            'tools.*.status'                    => 'required|string|in:Pertama,Resertifikasi',
             'tools.*.kapasitas'                 => 'nullable|string|max:255',
             'tools.*.model'                     => 'nullable|string|max:255',
             'tools.*.no_seri'                   => 'nullable|string|max:255',
+            'tools.*.pivot_id'                  => 'nullable|exists:job_order_tools,id',
+
 
             'responsibles'                      => 'nullable|array',
             'responsibles.*'                    => 'exists:users,id',
@@ -391,7 +438,7 @@ class JobOrderController extends Controller
 
         // update JO
         $jobOrder->update([
-            'nama_perusahaan'                   => $request->nama_perusahaan,
+            'nama_perusahaan'                   => strtoupper($request->nama_perusahaan),
             'alamat_perusahaan'                 => $request->alamat_perusahaan,
             'pic_order'                         => $request->pic_order,
             'email'                             => $request->email,
@@ -411,7 +458,7 @@ class JobOrderController extends Controller
             'jam_selesai'                       => $request->jam_selesai,
             'pic_ditemui'                       => $request->pic_ditemui,
             'contact_person2'                   => $request->contact_person2,
-            'nomor_jo'                          => $request->nomor_jo,
+            // 'nomor_jo'                          => $request->nomor_jo,
             'tanggal_dibuat'                    => $toDate($request->tanggal_dibuat),
             'kelengkapan_manual_book'           => $request->boolean('kelengkapan_manual_book'),
             'qty_manual_book'                   => $request->qty_manual_book,
@@ -424,18 +471,20 @@ class JobOrderController extends Controller
             'catatan'                           => $request->catatan,
         ]);
 
-        // --- Sinkronisasi tools tanpa menghapus data pemeriksaan (form KP) ---
-        // Ambil semua tool lama yang sudah ada di pivot
-        $existingTools = JobOrderTool::where('job_order_id', $jobOrder->id)
-            ->get()
-            ->keyBy('tool_id'); // agar mudah dicari berdasarkan tool_id
+        $existingPivotIds = JobOrderTool::where('job_order_id', $jobOrder->id)
+            ->pluck('id')
+            ->toArray();
+
+        $submittedPivotIds = [];
 
         foreach ($request->tools as $tool) {
-            $toolId = $tool['tool_id'];
 
-            if ($existingTools->has($toolId)) {
-                // UPDATE tool lama (tanpa mengubah finished_at dan status pemeriksaan)
-                $existingTools[$toolId]->update([
+            if (!empty($tool['pivot_id'])) {
+                // 🔁 UPDATE pivot lama
+                $pivot = JobOrderTool::find($tool['pivot_id']);
+
+                $pivot->update([
+                    'tool_id'   => $tool['tool_id'],
                     'qty'       => $tool['qty'],
                     'status'    => $tool['status'],
                     'kapasitas' => $tool['kapasitas'],
@@ -443,29 +492,28 @@ class JobOrderController extends Controller
                     'no_seri'   => $tool['no_seri'],
                 ]);
 
-                // Hapus dari daftar existingTools agar tidak dianggap sisa
-                $existingTools->forget($toolId);
+                $submittedPivotIds[] = $pivot->id;
 
             } else {
-                // CREATE tool baru jika belum terdaftar di JO
-                JobOrderTool::create([
+                // ➕ CREATE pivot baru
+                $newPivot = JobOrderTool::create([
                     'job_order_id' => $jobOrder->id,
-                    'tool_id'      => $toolId,
+                    'tool_id'      => $tool['tool_id'],
                     'qty'          => $tool['qty'],
                     'status'       => $tool['status'],
                     'kapasitas'    => $tool['kapasitas'],
                     'model'        => $tool['model'],
                     'no_seri'      => $tool['no_seri'],
-                    'finished_at'  => null, // baru ditambahkan, belum diperiksa
+                    'finished_at'  => null,
                 ]);
+
+                $submittedPivotIds[] = $newPivot->id;
             }
         }
 
-        // Tools yang tersisa di $existingTools = alat yang dihapus dari input form
-        // Boleh dihapus (akan menghapus form KP terkait jika FK cascade)
-        foreach ($existingTools as $toolToDelete) {
-            $toolToDelete->delete();
-        }
+        $toDelete = array_diff($existingPivotIds, $submittedPivotIds);
+        JobOrderTool::whereIn('id', $toDelete)->delete();
+
 
         // Recalculate status tetap dijalankan
         $jobOrder->recalculateStatus();
