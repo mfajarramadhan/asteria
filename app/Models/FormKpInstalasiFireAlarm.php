@@ -9,18 +9,13 @@ class FormKpInstalasiFireAlarm extends Model
 {
     use HasFactory;
 
-    protected $table = 'form_kp_instalasi_fire_alarm';
-
     protected $guarded = [
         'id',
     ];
 
     protected $casts = [
         'tanggal_pemeriksaan' => 'date',
-        'foto_shell' => 'array',
-        'foto_head' => 'array',
-        'foto_pipa' => 'array',
-        'foto_instalasi' => 'array',
+        'foto_informasi_umum' => 'array',
     ];
 
     // Relasi ke job_order_tool

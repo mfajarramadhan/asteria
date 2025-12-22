@@ -46,70 +46,99 @@ class FormKpInstalasiFireAlarmController extends Controller
     public function store(Request $request, $jobOrderToolId)
     {
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
-        // Validasi input
+        
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'foto_informasi_umum' => 'nullable|array',
+            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
+            
+            // Informasi Umum
+            'nama_perusahaan' => 'nullable|string|max:150',
+            'kapasitas' => 'nullable|string|max:100',
+            'model_unit' => 'nullable|string|max:100',
+            'nomor_seri' => 'nullable|string|max:100',
+            'pabrik_pembuat' => 'nullable|string|max:100',
+            'jenis' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:100',
+            'tahun_pembuatan' => 'nullable|string|max:50',
+            'pengguna_bangunan' => 'nullable|string|max:100',
+            'tahun_instalasi' => 'nullable|string|max:50',
+            'instalatir' => 'nullable|string|max:150',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            // Spesifikasi Bangunan
+            'luas_lahan' => 'nullable|numeric',
+            'luas_bangunan' => 'nullable|numeric',
+            'tinggi_bangunan' => 'nullable|numeric',
+            'luas_lantai' => 'nullable|numeric',
+            'jumlah_lantai' => 'nullable|numeric',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            // Detail Perangkat
+            'panel_control_mcfa' => 'nullable|string|max:150',
+            'annuciator' => 'nullable|string|max:150',
+            'detektor_panas_ror' => 'nullable|string|max:150',
+            'jumlah_detektor_nyala_api_fix' => 'nullable|string|max:150',
+            'detektor_asap' => 'nullable|string|max:150',
+            'detektor_gas' => 'nullable|string|max:150',
+            'tombol_manual_breakglass' => 'nullable|string|max:150',
+            'combination_box' => 'nullable|string|max:150',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            // Detektor
+            'jenis_detektor' => 'nullable|string|max:255',
+            'lokasi_detektor' => 'nullable|string|max:255',
+            'no_zone_detektor' => 'nullable|string|max:255',
+            'hasil_detektor' => 'nullable|string|max:255',
+            'open_circuit_test_detektor' => 'nullable|string|max:255',
+            'keterangan_detektor' => 'nullable|string|max:255',
+            'catatan_fire_alarm' => 'nullable|string|max:255',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
-
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            // Dokumen (Sigle File Uploads)
+            'gambar_layout_gedung_perusahaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'gambar_instalasi' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'dokumen_spesifikasi_peralatan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'dokumen_pemeliharaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'surat_keterangan_berkala' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'laporan_pemeriksaan_berkala' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ]);
 
-        // Konversi tanggal ke format Y-m-d
-        $toDate = fn($date) => $date
-            ? Carbon::createFromFormat('d-m-Y', $date)->format('Y-m-d')
+        // Konversi tanggal
+        $validated['tanggal_pemeriksaan'] = $validated['tanggal_pemeriksaan'] 
+            ? Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d') 
             : null;
 
-        $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
+        // Upload Foto Informasi Umum (Multiple)
+        if ($request->hasFile('foto_informasi_umum')) {
+            $paths = [];
+            foreach ($request->file('foto_informasi_umum') as $file) {
+                $paths[] = $file->store('ipk/instalasi_fire_alarm/foto_umum', 'public');
+            }
+            $validated['foto_informasi_umum'] = json_encode($paths);
+        } else {
+            $validated['foto_informasi_umum'] = null;
+        }
 
-        // Simpan file jika ada upload foto  
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
+        // Upload Dokumen (Single)
+        $docFields = [
+            'gambar_layout_gedung_perusahaan',
+            'gambar_instalasi',
+            'dokumen_spesifikasi_peralatan',
+            'dokumen_pemeliharaan',
+            'surat_keterangan_berkala',
+            'laporan_pemeriksaan_berkala'
+        ];
+
+        foreach ($docFields as $field) {
             if ($request->hasFile($field)) {
-                $paths = [];
-                foreach ($request->file($field) as $file) {
-                    $paths[] = $file->store('ipk/instalasi_fire_alarm', 'public');
-                }
-                $validated[$field] = json_encode($paths);
+                $validated[$field] = $request->file($field)->store('ipk/instalasi_fire_alarm/docs', 'public');
             } else {
                 $validated[$field] = null;
             }
         }
 
-        // Tambahkan kolom lain yang tidak berasal dari request
         $validated['job_order_tool_id'] = $jobOrderToolId;
+        $validated['job_order_id'] = $jobOrderTool->job_order_id;
 
-        // Simpan data ke tabel
         FormKpInstalasiFireAlarm::create($validated);
 
-        // Update status_tool di job_order_tools
-        $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
         $jobOrderTool->update([
             'status_tool' => 'selesai',
             'finished_at' => now(),
@@ -120,7 +149,6 @@ class FormKpInstalasiFireAlarmController extends Controller
 
     public function show(FormKpInstalasiFireAlarm $formKpInstalasiFireAlarm)
     {
-        // load relasi
         $formKpInstalasiFireAlarm->load([
             'jobOrderTool.jobOrder',
             'jobOrderTool.tool'
@@ -146,71 +174,105 @@ class FormKpInstalasiFireAlarmController extends Controller
     {
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'foto_informasi_umum' => 'nullable|array',
+            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
+            
+            // Informasi Umum
+            'nama_perusahaan' => 'nullable|string|max:150',
+            'kapasitas' => 'nullable|string|max:100',
+            'model_unit' => 'nullable|string|max:100',
+            'nomor_seri' => 'nullable|string|max:100',
+            'pabrik_pembuat' => 'nullable|string|max:100',
+            'jenis' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:100',
+            'tahun_pembuatan' => 'nullable|string|max:50',
+            'pengguna_bangunan' => 'nullable|string|max:100',
+            'tahun_instalasi' => 'nullable|string|max:50',
+            'instalatir' => 'nullable|string|max:150',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            // Spesifikasi Bangunan
+            'luas_lahan' => 'nullable|numeric',
+            'luas_bangunan' => 'nullable|numeric',
+            'tinggi_bangunan' => 'nullable|numeric',
+            'luas_lantai' => 'nullable|numeric',
+            'jumlah_lantai' => 'nullable|numeric',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            // Detail Perangkat
+            'panel_control_mcfa' => 'nullable|string|max:150',
+            'annuciator' => 'nullable|string|max:150',
+            'detektor_panas_ror' => 'nullable|string|max:150',
+            'jumlah_detektor_nyala_api_fix' => 'nullable|string|max:150',
+            'detektor_asap' => 'nullable|string|max:150',
+            'detektor_gas' => 'nullable|string|max:150',
+            'tombol_manual_breakglass' => 'nullable|string|max:150',
+            'combination_box' => 'nullable|string|max:150',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            // Detektor
+            'jenis_detektor' => 'nullable|string|max:255',
+            'lokasi_detektor' => 'nullable|string|max:255',
+            'no_zone_detektor' => 'nullable|string|max:255',
+            'hasil_detektor' => 'nullable|string|max:255',
+            'open_circuit_test_detektor' => 'nullable|string|max:255',
+            'keterangan_detektor' => 'nullable|string|max:255',
+            'catatan_fire_alarm' => 'nullable|string|max:255',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
-
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            // Dokumen (Sigle File Uploads)
+            'gambar_layout_gedung_perusahaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'gambar_instalasi' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'dokumen_spesifikasi_peralatan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'dokumen_pemeliharaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'surat_keterangan_berkala' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'laporan_pemeriksaan_berkala' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ]);
 
         // konversi tanggal
-        $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
+        if ($validated['tanggal_pemeriksaan']) {
+            $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
+        }
 
-        // upload file baru kalau ada
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
-            if ($request->hasFile($field)) {
-                // Hapus file lama
-                if ($formKpInstalasiFireAlarm->$field) {
-                    $oldFiles = json_decode($formKpInstalasiFireAlarm->$field, true) ?? [];
-                    foreach ($oldFiles as $oldFile) {
-                        if (Storage::disk('public')->exists($oldFile)) {
-                            Storage::disk('public')->delete($oldFile);
-                        }
+        // Upload Foto Umum
+        if ($request->hasFile('foto_informasi_umum')) {
+            if ($formKpInstalasiFireAlarm->foto_informasi_umum) {
+                $oldFiles = json_decode($formKpInstalasiFireAlarm->foto_informasi_umum, true) ?? [];
+                foreach ($oldFiles as $oldFile) {
+                    if (Storage::disk('public')->exists($oldFile)) {
+                        Storage::disk('public')->delete($oldFile);
                     }
                 }
+            }
+            $paths = [];
+            foreach ($request->file('foto_informasi_umum') as $file) {
+                $paths[] = $file->store('ipk/instalasi_fire_alarm/foto_umum', 'public');
+            }
+            $validated['foto_informasi_umum'] = json_encode($paths);
+        } else {
+             unset($validated['foto_informasi_umum']); 
+        }
 
-                // Upload file baru
-                $paths = [];
-                foreach ((array) $request->file($field) as $file) {
-                    $paths[] = $file->store('ipk/instalasi_fire_alarm', 'public');
+        // Upload Doks
+        $docFields = [
+            'gambar_layout_gedung_perusahaan',
+            'gambar_instalasi',
+            'dokumen_spesifikasi_peralatan',
+            'dokumen_pemeliharaan',
+            'surat_keterangan_berkala',
+            'laporan_pemeriksaan_berkala'
+        ];
+
+        foreach ($docFields as $field) {
+            if ($request->hasFile($field)) {
+                if ($formKpInstalasiFireAlarm->$field && Storage::disk('public')->exists($formKpInstalasiFireAlarm->$field)) {
+                    Storage::disk('public')->delete($formKpInstalasiFireAlarm->$field);
                 }
-
-                $validated[$field] = json_encode($paths);
+                $validated[$field] = $request->file($field)->store('ipk/instalasi_fire_alarm/docs', 'public');
             } else {
-                // Jika tidak upload baru, pertahankan lama
-                $validated[$field] = $formKpInstalasiFireAlarm->$field;
+                unset($validated[$field]);
             }
         }
 
         $formKpInstalasiFireAlarm->update($validated);
 
-        return redirect()->route('form_kp.ipk.instalasi_fire_alarm.index', $formKpInstalasiFireAlarm->id)
+        return redirect()->route('form_kp.ipk.instalasi_fire_alarm.index')
             ->with('success', 'Form KP Instalasi Fire Alarm berhasil diperbarui!');
     }
 }

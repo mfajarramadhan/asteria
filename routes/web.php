@@ -309,9 +309,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [FormKpInstalasiFireAlarmController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireAlarmController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpInstalasiFireAlarmController::class, 'store'])->name('store');
-            Route::get('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireAlarmController::class, 'show'])->name('show');
-            Route::get('/{formKpInstalasiFireHydrant}/edit', [FormKpInstalasiFireAlarmController::class, 'edit'])->name('edit');
-            Route::put('/{formKpInstalasiFireHydrant}', [FormKpInstalasiFireAlarmController::class, 'update'])->name('update');
+            Route::get('/{formKpInstalasiFireAlarm}', [FormKpInstalasiFireAlarmController::class, 'show'])->name('show');
+            Route::get('/{formKpInstalasiFireAlarm}/edit', [FormKpInstalasiFireAlarmController::class, 'edit'])->name('edit');
+            Route::put('/{formKpInstalasiFireAlarm}', [FormKpInstalasiFireAlarmController::class, 'update'])->name('update');
         });
     });
 });

@@ -17,7 +17,7 @@ class FormKpInstalasiFireHydrantController extends Controller
                 $q->where('status_tool', 'selesai')
                     ->whereHas('tool', function ($q2) {
                         $q2->where('jenis_riksa_uji_id', 6)
-                            ->where('sub_jenis_riksa_uji_id', 19);
+                            ->where('sub_jenis_riksa_uji_id', 18);
                     });
             })
             ->get();
@@ -46,70 +46,113 @@ class FormKpInstalasiFireHydrantController extends Controller
     public function store(Request $request, $jobOrderToolId)
     {
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
-        // Validasi input
+        
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'tanggal_pemeriksaan' => 'nullable', // Could be date or time based on migration
+            'foto_informasi_umum' => 'nullable|array',
+            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            // Informasi Pemeriksaan
+            'nama_perusahaan' => 'nullable|string|max:150',
+            'kapasitas' => 'nullable|string|max:100',
+            'model_unit' => 'nullable|string|max:100',
+            'nomor_seri' => 'nullable|string|max:100',
+            'pabrik_pembuat' => 'nullable|string|max:100',
+            'jenis' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:100',
+            'tahun_pembuatan' => 'nullable|string|max:50',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            // Spesifikasi Fisik
+            'luas_lahan' => 'nullable|numeric',
+            'total_luas_bangunan' => 'nullable|numeric',
+            'struktur_utama' => 'nullable|string|max:150',
+            'struktur_lantai' => 'nullable|string|max:150',
+            'dinding_luar' => 'nullable|string|max:150',
+            'dinding_dalam' => 'nullable|string|max:150',
+            'rangka_plafond' => 'nullable|string|max:150',
+            'penutup_plafond' => 'nullable|string|max:150',
+            'rangka_atap' => 'nullable|string|max:150',
+            'penutup_atap' => 'nullable|string|max:150',
+            'tinggi_bangunan' => 'nullable|numeric',
+            'jumlah_lantai' => 'nullable|integer',
+            'jumlah_luas_lantai' => 'nullable|numeric',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            // Instalasi & Sumber Air
+            'tahun_pemasangan' => 'nullable|integer|digits:4',
+            'instalatir' => 'nullable|string|max:150',
+            'sumber_air_baku' => 'nullable|string|max:150',
+            'kapasitas_ground_tank' => 'nullable|numeric',
+            'siamese_connection' => 'nullable|string|max:150',
+            'priming_tank' => 'nullable|string|max:150',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
+            // Bejana & Valve
+            'bejana_liter' => 'nullable|numeric',
+            'bejana_tk_kg' => 'nullable|numeric',
+            'bejana_tk_uji' => 'nullable|numeric',
+            'pressure_relief_valve' => 'nullable|numeric',
+            'test_valve' => 'nullable|numeric',
 
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            // Komponen Hydrant
+            'jumlah_hydrant_gedung' => 'nullable|string|max:150',
+            'jumlah_hydrant_halaman' => 'nullable|string|max:150',
+            'jumlah_hydrant_pillar' => 'nullable|string|max:150',
+            'jumlah_landing_valve' => 'nullable|integer',
+
+            // Pompa
+            'merk_model_pompa_jockey' => 'nullable|string|max:100',
+            'merk_model_pompa_utama' => 'nullable|string|max:100',
+            'merk_model_pompa_diesel' => 'nullable|string|max:100',
+            'nomor_seri_pompa_jockey' => 'nullable|string|max:100',
+            'nomor_seri_pompa_utama' => 'nullable|string|max:100',
+            'nomor_seri_pompa_diesel' => 'nullable|string|max:100',
+            'kapasitas_pompa_jockey' => 'nullable|string|max:100',
+            'kapasitas_pompa_utama' => 'nullable|string|max:100',
+            'kapasitas_pompa_diesel' => 'nullable|string|max:100',
+            'daya_pompa_jockey' => 'nullable|string|max:100',
+            'daya_pompa_utama' => 'nullable|string|max:100',
+            'daya_pompa_diesel' => 'nullable|string|max:100',
+
+            // Pipa & Tekanan
+            'pipa_header_diameter' => 'nullable|string|max:100',
+            'pipa_hisap_diameter' => 'nullable|string|max:100',
+            'pipa_penyalur_utama_diameter' => 'nullable|string|max:100',
+            'pipa_tegak_diameter' => 'nullable|string|max:100',
+            'catatan_diameter_pipa' => 'nullable|string|max:255',
+            'tekanan_titik1' => 'nullable|string|max:100',
+            'tekanan_titik2' => 'nullable|string|max:100',
+            'tekanan_titik3' => 'nullable|string|max:100',
+            'keterangan_tekanan' => 'nullable|string|max:255',
+            'catatan' => 'nullable|string|max:255',
         ]);
 
-        // Konversi tanggal ke format Y-m-d
-        $toDate = fn($date) => $date
-            ? Carbon::createFromFormat('d-m-Y', $date)->format('Y-m-d')
-            : null;
-
-        $validated['tanggal_pemeriksaan'] = $toDate($validated['tanggal_pemeriksaan']);
-
-        // Simpan file jika ada upload foto  
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
-            if ($request->hasFile($field)) {
-                $paths = [];
-                foreach ($request->file($field) as $file) {
-                    $paths[] = $file->store('ipk/instalasi_fire_hydrant', 'public');
-                }
-                $validated[$field] = json_encode($paths);
-            } else {
-                $validated[$field] = null;
-            }
+        // Handing tanggal_pemeriksaan. 
+        // Note: The migration specifies TIME type. However, forms usually submit date.
+        // We will try to format it as Y-m-d. If it fails due to column type, the user should be notified to fix migration.
+        // Assuming we want date here.
+        if ($validated['tanggal_pemeriksaan']) {
+             try {
+                $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
+             } catch (\Exception $e) {
+                 // Ignore if format fails, keep original (maybe it's already Y-m-d or Time)
+             }
         }
 
-        // Tambahkan kolom lain yang tidak berasal dari request
-        $validated['job_order_tool_id'] = $jobOrderToolId;
+        // Upload Foto
+        if ($request->hasFile('foto_informasi_umum')) {
+            $paths = [];
+            foreach ($request->file('foto_informasi_umum') as $file) {
+                $paths[] = $file->store('ipk/instalasi_fire_hydrant/foto_umum', 'public');
+            }
+            $validated['foto_informasi_umum'] = json_encode($paths);
+        } else {
+            $validated['foto_informasi_umum'] = null;
+        }
 
-        // Simpan data ke tabel
+        $validated['job_order_tool_id'] = $jobOrderToolId;
+        $validated['job_order_id'] = $jobOrderTool->job_order_id;
+
         FormKpInstalasiFireHydrant::create($validated);
 
-        // Update status_tool di job_order_tools
-        $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
         $jobOrderTool->update([
             'status_tool' => 'selesai',
             'finished_at' => now(),
@@ -120,7 +163,6 @@ class FormKpInstalasiFireHydrantController extends Controller
 
     public function show(FormKpInstalasiFireHydrant $formKpInstalasiFireHydrant)
     {
-        // load relasi
         $formKpInstalasiFireHydrant->load([
             'jobOrderTool.jobOrder',
             'jobOrderTool.tool'
@@ -145,67 +187,105 @@ class FormKpInstalasiFireHydrantController extends Controller
     public function update(Request $request, FormKpInstalasiFireHydrant $formKpInstalasiFireHydrant)
     {
         $validated = $request->validate([
-            'tanggal_pemeriksaan' => 'nullable|date',
-            'pabrik_pembuat'     => 'nullable|string|max:255',
-            'foto_shell'          => 'nullable|array',
-            'foto_shell.*'        => 'image|mimes:jpg,jpeg,png|max:10240',
-            'ketidakbulatan'      => 'nullable|numeric',
-            'ketebalan_shell'     => 'nullable|numeric',
-            'diameter_shell'      => 'nullable|numeric',
-            'panjang_shell'       => 'nullable|numeric',
+            'tanggal_pemeriksaan' => 'nullable',
+            'foto_informasi_umum' => 'nullable|array',
+            'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
 
-            'foto_head'           => 'nullable|array',
-            'foto_head.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_head'       => 'nullable|numeric',
-            'ketebalan_head'      => 'nullable|numeric',
+            // Informasi Pemeriksaan
+            'nama_perusahaan' => 'nullable|string|max:150',
+            'kapasitas' => 'nullable|string|max:100',
+            'model_unit' => 'nullable|string|max:100',
+            'nomor_seri' => 'nullable|string|max:100',
+            'pabrik_pembuat' => 'nullable|string|max:100',
+            'jenis' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:100',
+            'tahun_pembuatan' => 'nullable|string|max:50',
 
-            'foto_pipa'           => 'nullable|array',
-            'foto_pipa.*'         => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_pipa'       => 'nullable|numeric',
-            'ketebalan_pipa'      => 'nullable|numeric',
-            'panjang_pipa'        => 'nullable|numeric',
+            // Spesifikasi Fisik
+            'luas_lahan' => 'nullable|numeric',
+            'total_luas_bangunan' => 'nullable|numeric',
+            'struktur_utama' => 'nullable|string|max:150',
+            'struktur_lantai' => 'nullable|string|max:150',
+            'dinding_luar' => 'nullable|string|max:150',
+            'dinding_dalam' => 'nullable|string|max:150',
+            'rangka_plafond' => 'nullable|string|max:150',
+            'penutup_plafond' => 'nullable|string|max:150',
+            'rangka_atap' => 'nullable|string|max:150',
+            'penutup_atap' => 'nullable|string|max:150',
+            'tinggi_bangunan' => 'nullable|numeric',
+            'jumlah_lantai' => 'nullable|integer',
+            'jumlah_luas_lantai' => 'nullable|numeric',
 
-            'foto_instalasi'       => 'nullable|array',
-            'foto_instalasi.*'     => 'image|mimes:jpg,jpeg,png|max:10240',
-            'diameter_instalasi'   => 'nullable|numeric',
-            'ketebalan_instalasi'  => 'nullable|numeric',
-            'panjang_instalasi'    => 'nullable|numeric',
+            // Instalasi & Sumber Air
+            'tahun_pemasangan' => 'nullable|integer|digits:4',
+            'instalatir' => 'nullable|string|max:150',
+            'sumber_air_baku' => 'nullable|string|max:150',
+            'kapasitas_ground_tank' => 'nullable|numeric',
+            'siamese_connection' => 'nullable|string|max:150',
+            'priming_tank' => 'nullable|string|max:150',
 
-            'safety_valv_cal'     => 'nullable|boolean',
-            'tekanan_kerja'       => 'nullable|numeric',
-            'set_safety_valv'     => 'nullable|numeric',
+            // Bejana & Valve
+            'bejana_liter' => 'nullable|numeric',
+            'bejana_tk_kg' => 'nullable|numeric',
+            'bejana_tk_uji' => 'nullable|numeric',
+            'pressure_relief_valve' => 'nullable|numeric',
+            'test_valve' => 'nullable|numeric',
 
-            'media_yang_diisikan' => 'nullable|string|max:255',
-            'catatan'             => 'nullable|string',
+            // Komponen Hydrant
+            'jumlah_hydrant_gedung' => 'nullable|string|max:150',
+            'jumlah_hydrant_halaman' => 'nullable|string|max:150',
+            'jumlah_hydrant_pillar' => 'nullable|string|max:150',
+            'jumlah_landing_valve' => 'nullable|integer',
+
+            // Pompa
+            'merk_model_pompa_jockey' => 'nullable|string|max:100',
+            'merk_model_pompa_utama' => 'nullable|string|max:100',
+            'merk_model_pompa_diesel' => 'nullable|string|max:100',
+            'nomor_seri_pompa_jockey' => 'nullable|string|max:100',
+            'nomor_seri_pompa_utama' => 'nullable|string|max:100',
+            'nomor_seri_pompa_diesel' => 'nullable|string|max:100',
+            'kapasitas_pompa_jockey' => 'nullable|string|max:100',
+            'kapasitas_pompa_utama' => 'nullable|string|max:100',
+            'kapasitas_pompa_diesel' => 'nullable|string|max:100',
+            'daya_pompa_jockey' => 'nullable|string|max:100',
+            'daya_pompa_utama' => 'nullable|string|max:100',
+            'daya_pompa_diesel' => 'nullable|string|max:100',
+
+            // Pipa & Tekanan
+            'pipa_header_diameter' => 'nullable|string|max:100',
+            'pipa_hisap_diameter' => 'nullable|string|max:100',
+            'pipa_penyalur_utama_diameter' => 'nullable|string|max:100',
+            'pipa_tegak_diameter' => 'nullable|string|max:100',
+            'catatan_diameter_pipa' => 'nullable|string|max:255',
+            'tekanan_titik1' => 'nullable|string|max:100',
+            'tekanan_titik2' => 'nullable|string|max:100',
+            'tekanan_titik3' => 'nullable|string|max:100',
+            'keterangan_tekanan' => 'nullable|string|max:255',
+            'catatan' => 'nullable|string|max:255',
         ]);
 
-        // konversi tanggal
-        $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
+        if ($validated['tanggal_pemeriksaan']) {
+             try {
+                $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
+             } catch (\Exception $e) {}
+        }
 
-        // upload file baru kalau ada
-        foreach (['foto_shell', 'foto_head', 'foto_pipa', 'foto_instalasi'] as $field) {
-            if ($request->hasFile($field)) {
-                // Hapus file lama
-                if ($formKpInstalasiFireHydrant->$field) {
-                    $oldFiles = json_decode($formKpInstalasiFireHydrant->$field, true) ?? [];
-                    foreach ($oldFiles as $oldFile) {
-                        if (Storage::disk('public')->exists($oldFile)) {
-                            Storage::disk('public')->delete($oldFile);
-                        }
+        if ($request->hasFile('foto_informasi_umum')) {
+            if ($formKpInstalasiFireHydrant->foto_informasi_umum) {
+                $oldFiles = json_decode($formKpInstalasiFireHydrant->foto_informasi_umum, true) ?? [];
+                foreach ($oldFiles as $oldFile) {
+                    if (Storage::disk('public')->exists($oldFile)) {
+                        Storage::disk('public')->delete($oldFile);
                     }
                 }
-
-                // Upload file baru
-                $paths = [];
-                foreach ((array) $request->file($field) as $file) {
-                    $paths[] = $file->store('ipk/instalasi_fire_hydrant', 'public');
-                }
-
-                $validated[$field] = json_encode($paths);
-            } else {
-                // Jika tidak upload baru, pertahankan lama
-                $validated[$field] = $formKpInstalasiFireHydrant->$field;
             }
+            $paths = [];
+            foreach ($request->file('foto_informasi_umum') as $file) {
+                $paths[] = $file->store('ipk/instalasi_fire_hydrant/foto_umum', 'public');
+            }
+            $validated['foto_informasi_umum'] = json_encode($paths);
+        } else {
+             unset($validated['foto_informasi_umum']);
         }
 
         $formKpInstalasiFireHydrant->update($validated);

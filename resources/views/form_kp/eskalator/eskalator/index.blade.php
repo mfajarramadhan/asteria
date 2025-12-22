@@ -66,8 +66,10 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">No.</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tanggal</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">ID JO</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Alat</th>
+                    <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Nama Perusahaan</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Status Pemeriksaan</th>
                     <th class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Aksi</th>
@@ -77,12 +79,14 @@
                 @forelse ($eskalators as $eskalator)
                 <tr>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $eskalator->tanggal_pemeriksaan ? \Carbon\Carbon::parse($eskalator->tanggal_pemeriksaan)->format('d-m-Y') : '-' }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <a href="{{ route('job_orders.show', $eskalator->jobOrderTool->jobOrder->id) }}#list-jo" class="hover:underline hover:text-blue-500">
                             {{ $eskalator->jobOrderTool->jobOrder->nomor_jo }}
                         </a>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $eskalator->jobOrderTool->tool->nama }}</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $eskalator->nama_perusahaan ?? '-' }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">{{ $eskalator->jobOrderTool->status }}</td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         @if ($eskalator->jobOrderTool->status_tool == 'belum')

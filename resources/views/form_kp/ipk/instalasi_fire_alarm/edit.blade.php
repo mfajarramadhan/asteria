@@ -1,172 +1,149 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:subtitle>{{ $subtitle }}</x-slot:subtitle>
-
     <div class="p-4 bg-white rounded-lg shadow-md">
-        <form action="{{ route('form_kp.eskalator.eskalator.update', $formKpEskalator->id) }}"
-            method="POST"
-            class="space-y-4"
-            enctype="multipart/form-data"
-            onsubmit="return confirm('Perbarui data ini?')">
-
+        <form action="{{ route('form_kp.ipk.instalasi_fire_alarm.update', $formKpInstalasiFireAlarm->id) }}" method="POST" class="space-y-4" enctype="multipart/form-data" onsubmit="return confirm('Perbarui data?')">
             @csrf
             @method('PUT')
 
             {{-- Tanggal Pemeriksaan --}}
-            <h2 class="block text-sm font-bold text-gray-700">Tanggal Pemeriksaan</h2>
-            <div class="flex flex-wrap justify-between w-full gap-y-4">
-                <div class="w-full md:w-[50%]">
-                    <div class="relative">
-                        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                            <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4Z" />
-                                <path d="M0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Z" />
-                            </svg>
-                        </div>
-                        <input
-                            name="tanggal_pemeriksaan"
-                            value="{{ old('tanggal_pemeriksaan', $formKpEskalator->tanggal_pemeriksaan) }}"
-                            placeholder="Tanggal Pemeriksaan"
-                            datepicker datepicker-format="dd-mm-yyyy" datepicker-autohide
-                            type="text"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5 focus:ring-blue-500 focus:border-blue-500">
+            <h2 class="block text-sm font-bold text-gray-700">Informasi Umum</h2>
+            <div class="w-full md:w-[50%]">
+                <label class="block text-sm font-medium text-gray-700">Tanggal Pemeriksaan</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
                     </div>
-                    @error('tanggal_pemeriksaan')
-                    <div class="text-xs text-red-600">{{ $message }}</div>
-                    @enderror
+                    <input name="tanggal_pemeriksaan" placeholder="Tanggal Pemeriksaan" datepicker datepicker-autohide datepicker-format="dd-mm-yyyy" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" value="{{ old('tanggal_pemeriksaan', $formKpInstalasiFireAlarm->tanggal_pemeriksaan ? $formKpInstalasiFireAlarm->tanggal_pemeriksaan->format('d-m-Y') : '') }}">
                 </div>
             </div>
 
-            {{-- Nama Perusahaan --}}
+            {{-- Foto Informasi Umum (Existing + New) --}}
             <div>
-                <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->jobOrder->nama_perusahaan }}">
-            </div>
-
-            {{-- Kapasitas --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->kapasitas }}">
-            </div>
-
-            {{-- Model/Tipe --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Model/Tipe</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->model }}">
-            </div>
-
-            {{-- No.Seri --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700">No. Seri/Unit</label>
-                <input type="text" disabled class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-md cursor-not-allowed focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ $formKpEskalator->jobOrderTool->no_seri }}">
-            </div>
-
-            {{-- Pabrik Pembuat --}}
-            <div>
-                <label for="pabrik_pembuat" class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
-                <input type="text" name="pabrik_pembuat" placeholder="Pabrik Pembuat" id="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('pabrik_pembuat') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan', $formKpEskalator->pabrik_pembuat) }}">
-                @error('pabrik_pembuat')
-                <div class="text-xs text-red-600">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            {{-- Asal Negara Pembuat --}}
-            <div>
-                <input type="text" name="asal_negara_pembuat" placeholder="Asal Negara Pembuat"
-                    value="{{ old('asal_negara_pembuat', $formKpEskalator->asal_negara_pembuat) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Tahun Pembuatan --}}
-            <div>
-                <input type="text" name="tahun_pembuatan" placeholder="Tahun Pembuatan"
-                    value="{{ old('tahun_pembuatan', $formKpEskalator->tahun_pembuatan) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Kapasitas --}}
-            <div>
-                <input type="text" name="kapasitas" placeholder="Kapasitas"
-                    value="{{ old('kapasitas', $formKpEskalator->kapasitas) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Melayani --}}
-            <div>
-                <input type="text" name="melayani" placeholder="Melayani"
-                    value="{{ old('melayani', $formKpEskalator->melayani) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Lokasi Eskalator --}}
-            <div>
-                <input type="text" name="lokasi_eskalator" placeholder="Lokasi Eskalator"
-                    value="{{ old('lokasi_eskalator', $formKpEskalator->lokasi_eskalator) }}"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            {{-- Gambar (preview lama) --}}
-            <div>
-                <h2 class="block mb-1 text-sm font-bold text-gray-700">Foto Pagar Pelindung (Opsional)</h2>
-                @if($formKpEskalator->pagar_pelindung)
-                <div class="flex flex-wrap gap-2 mb-2">
-                    @foreach(json_decode($formKpEskalator->pagar_pelindung, true) as $foto)
-                    <img src="{{ asset('storage/'.$foto) }}" class="max-h-32 rounded border">
-                    @endforeach
-                </div>
+                <label class="block text-sm font-medium text-gray-700">Foto Informasi Umum</label>
+                 @if($formKpInstalasiFireAlarm->foto_informasi_umum)
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        @foreach(json_decode($formKpInstalasiFireAlarm->foto_informasi_umum) as $foto)
+                            <img src="{{ asset('storage/' . $foto) }}" class="max-h-32 rounded border m-1">
+                        @endforeach
+                    </div>
                 @endif
-                <input type="file" name="pagar_pelindung[]" multiple accept="image/*"
-                    onchange="previewImage(this, 'pagar_pelindung-preview')"
-                    class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm">
-                <div id="pagar_pelindung-preview" class="flex flex-wrap gap-2"></div>
+                <div id="foto_informasi_umum-preview" class="flex flex-wrap gap-2 mb-2"></div>
+                <input type="file" name="foto_informasi_umum[]" multiple onchange="previewImage(this, 'foto_informasi_umum-preview')" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                <p class="text-xs text-gray-500">Upload baru akan menggantikan foto lama.</p>
             </div>
 
-            {{-- ... (Bagian tabel pemeriksaan sama seperti show, cukup ganti old() dengan nilai dari model) --}}
-            {{-- Contoh satu baris saja --}}
-            <h2 class="block mb-2 text-sm font-bold text-gray-700">Pemeriksaan Dimensi dan Keamanan</h2>
-            <table class="min-w-full text-sm text-left border border-gray-300">
-                <thead class="bg-gray-100 text-gray-700">
-                    <tr>
-                        <th class="px-3 py-2 border">Komponen</th>
-                        <th class="px-3 py-2 text-center border">Memenuhi</th>
-                        <th class="px-3 py-2 text-center border">Tidak Memenuhi</th>
-                        <th class="px-3 py-2 border">Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $items = [
-                    'tinggi' => 'Tinggi',
-                    'tekanan_samping' => 'Tekanan Samping',
-                    'tekanan_vertikal' => 'Tekanan Vertikal',
-                    ];
-                    @endphp
-                    @foreach ($items as $name => $label)
-                    <tr>
-                        <td class="px-3 py-2 border">{{ $label }}</td>
-                        <td class="px-3 py-2 text-center border">
-                            <input type="radio" name="{{ $name }}" value="Memenuhi"
-                                {{ old($name, $formKpEskalator->$name) == 'Memenuhi' ? 'checked' : '' }}>
-                        </td>
-                        <td class="px-3 py-2 text-center border">
-                            <input type="radio" name="{{ $name }}" value="Tidak Memenuhi"
-                                {{ old($name, $formKpEskalator->$name) == 'Tidak Memenuhi' ? 'checked' : '' }}>
-                        </td>
-                        <td class="px-3 py-2 border">
-                            <input type="text" name="{{ $name }}_keterangan"
-                                value="{{ old($name.'_keterangan', $formKpEskalator->{$name.'_keterangan'}) }}"
-                                class="w-full border px-2 py-1 rounded">
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Nama Perusahaan</label>
+                     <input type="text" name="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('nama_perusahaan', $formKpInstalasiFireAlarm->nama_perusahaan) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Kapasitas</label>
+                     <input type="text" name="kapasitas" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('kapasitas', $formKpInstalasiFireAlarm->kapasitas) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Model Unit</label>
+                     <input type="text" name="model_unit" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('model_unit', $formKpInstalasiFireAlarm->model_unit) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Nomor Seri</label>
+                     <input type="text" name="nomor_seri" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('nomor_seri', $formKpInstalasiFireAlarm->nomor_seri) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Pabrik Pembuat</label>
+                     <input type="text" name="pabrik_pembuat" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('pabrik_pembuat', $formKpInstalasiFireAlarm->pabrik_pembuat) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
+                     <input type="text" name="jenis" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('jenis', $formKpInstalasiFireAlarm->jenis) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Lokasi</label>
+                     <input type="text" name="lokasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('lokasi', $formKpInstalasiFireAlarm->lokasi) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                     <input type="text" name="tahun_pembuatan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('tahun_pembuatan', $formKpInstalasiFireAlarm->tahun_pembuatan) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Pengguna Bangunan</label>
+                     <input type="text" name="pengguna_bangunan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('pengguna_bangunan', $formKpInstalasiFireAlarm->pengguna_bangunan) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Tahun Instalasi</label>
+                     <input type="text" name="tahun_instalasi" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('tahun_instalasi', $formKpInstalasiFireAlarm->tahun_instalasi) }}">
+                </div>
+                <div>
+                     <label class="block text-sm font-medium text-gray-700">Instalatir</label>
+                     <input type="text" name="instalatir" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('instalatir', $formKpInstalasiFireAlarm->instalatir) }}">
+                </div>
+            </div>
 
-            {{-- Tombol Simpan --}}
-            <button
-                class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-green-900 to-green-500 transform-gpu hover:shadow-md hover:scale-[103%] mt-3">
+            <h2 class="block text-sm font-bold text-gray-700 mt-4">Spesifikasi Bangunan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700">Luas Lahan</label>
+                     <input type="number" step="0.0001" name="luas_lahan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('luas_lahan', $formKpInstalasiFireAlarm->luas_lahan) }}">
+                </div>
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700">Luas Bangunan</label>
+                     <input type="number" step="0.0001" name="luas_bangunan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('luas_bangunan', $formKpInstalasiFireAlarm->luas_bangunan) }}">
+                </div>
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700">Tinggi Bangunan</label>
+                     <input type="number" step="0.0001" name="tinggi_bangunan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('tinggi_bangunan', $formKpInstalasiFireAlarm->tinggi_bangunan) }}">
+                </div>
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700">Luas Lantai</label>
+                     <input type="number" step="0.0001" name="luas_lantai" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('luas_lantai', $formKpInstalasiFireAlarm->luas_lantai) }}">
+                </div>
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700">Jumlah Lantai</label>
+                     <input type="number" step="0.0001" name="jumlah_lantai" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old('jumlah_lantai', $formKpInstalasiFireAlarm->jumlah_lantai) }}">
+                </div>
+            </div>
+
+            <h2 class="block text-sm font-bold text-gray-700 mt-4">Detail Perangkat Fire Alarm</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach(['panel_control_mcfa', 'annuciator', 'detektor_panas_ror', 'jumlah_detektor_nyala_api_fix', 'detektor_asap', 'detektor_gas', 'tombol_manual_breakglass', 'combination_box'] as $field)
+                <div>
+                     <label class="block text-sm font-medium text-gray-700 capitalize">{{ str_replace('_', ' ', $field) }}</label>
+                     <input type="text" name="{{ $field }}" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old($field, $formKpInstalasiFireAlarm->$field) }}">
+                </div>
+                @endforeach
+            </div>
+
+            <h2 class="block text-sm font-bold text-gray-700 mt-4">Spesifikasi Detektor</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach(['jenis_detektor', 'lokasi_detektor', 'no_zone_detektor', 'hasil_detektor', 'open_circuit_test_detektor', 'keterangan_detektor'] as $field)
+                <div>
+                     <label class="block text-sm font-medium text-gray-700 capitalize">{{ str_replace('_', ' ', $field) }}</label>
+                     <input type="text" name="{{ $field }}" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm" value="{{ old($field, $formKpInstalasiFireAlarm->$field) }}">
+                </div>
+                @endforeach
+                 <div class="col-span-2">
+                     <label class="block text-sm font-medium text-gray-700">Catatan Fire Alarm</label>
+                     <textarea name="catatan_fire_alarm" rows="3" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm sm:text-sm">{{ old('catatan_fire_alarm', $formKpInstalasiFireAlarm->catatan_fire_alarm) }}</textarea>
+                </div>
+            </div>
+
+            <h2 class="block text-sm font-bold text-gray-700 mt-4">Dokumen Pendukung</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 @foreach(['gambar_layout_gedung_perusahaan', 'gambar_instalasi', 'dokumen_spesifikasi_peralatan', 'dokumen_pemeliharaan', 'surat_keterangan_berkala', 'laporan_pemeriksaan_berkala'] as $field)
+                 <div>
+                     <label class="block text-sm font-medium text-gray-700 capitalize">{{ str_replace('_', ' ', $field) }}</label>
+                     @if($formKpInstalasiFireAlarm->$field)
+                        <div class="text-xs mb-1">Current: <a href="{{ asset('storage/' . $formKpInstalasiFireAlarm->$field) }}" target="_blank" class="text-blue-600 underline">Lihat File</a></div>
+                     @endif
+                     <input type="file" name="{{ $field }}" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                 </div>
+                 @endforeach
+            </div>
+
+            <button class="px-3 py-2 font-bold text-white transition-transform rounded-lg bg-gradient-to-t from-blue-900 to-blue-500 transform-gpu hover:shadow-md hover:scale-[103%] mt-3">
                 Perbarui
             </button>
         </form>
@@ -183,7 +160,7 @@
                     img.src = e.target.result;
                     img.classList.add("max-h-32", "rounded", "border", "m-1");
                     previewContainer.appendChild(img);
-                };
+                }
                 reader.readAsDataURL(file);
             });
         }
