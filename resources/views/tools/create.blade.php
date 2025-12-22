@@ -12,7 +12,7 @@
                     Nama Alat <span class="text-red-600">*</span>
                 </label>
                 <input type="text" required name="nama" id="nama"
-                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror"
                     value="{{ old('nama') }}" placeholder="Masukkan nama alat...">
                 @error('nama')
                     <div class="text-xs text-red-600">
@@ -28,7 +28,7 @@
                     Jenis Alat <span class="text-red-600">*</span>
                 </label>
                 <select required name="jenis_riksa_uji_id" id="jenis"
-                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
                     <option value="">--- Pilih Jenis Alat ---</option>
                     @foreach ($jenisRiksaUji as $jenisRiksa)
                         <option value="{{ $jenisRiksa->id }}" {{ old('jenis_riksa_uji_id') == $jenisRiksa->id ? 'selected' : '' }}>
@@ -50,7 +50,7 @@
                     Sub Jenis Alat <span class="text-red-600">*</span>
                 </label>
                 <select required name="sub_jenis_riksa_uji_id" id="sub_jenis"
-                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('sub_jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
+                    class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('sub_jenis_riksa_uji_id') border-red-600 focus:border-red-600 focus:ring-red-200 @enderror">
                     <option value="">--- Pilih Sub Jenis ---</option>
                 </select>
                 @error('sub_jenis_riksa_uji_id')

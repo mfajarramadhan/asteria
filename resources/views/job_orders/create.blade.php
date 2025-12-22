@@ -7,7 +7,7 @@
                 {{-- Nama Perusahaan --}}
                 <h2 class="block text-sm font-bold text-gray-700">General Order</h2>
                 <div>
-                    <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
+                    <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 uppercase bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nama_perusahaan" placeholder="Nama Perusahaan" id="nama_perusahaan" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nama_perusahaan') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nama_perusahaan') }}">
                     @error('nama_perusahaan')
                     <div class="text-xs text-red-600">
                         {{ $message }}
@@ -266,7 +266,7 @@
                     @enderror   
                 </div>
 
-                {{-- ID JO --}}
+                {{-- ID JO
                 <div>
                     <input type="text" @role('Tim Riksa Uji') readonly class="block w-full px-3 py-2 mt-1 bg-gray-200 border border-gray-400 rounded-md shadow-sm cursor-not-allowed sm:text-sm" @endrole required name="nomor_jo" placeholder="ID JO" id="nomor_jo" class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('nomor_jo') valid:border-red-600 valid:focus:border-red-600 valid:focus:ring-red-200 @enderror" value="{{ old('nomor_jo') }}">
                     @error('nomor_jo')
@@ -274,7 +274,7 @@
                         {{ $message }}
                     </div>
                     @enderror       
-                </div>
+                </div> --}}
 
                 {{-- Pilih Tim Riksa Uji --}}
                 <div>
@@ -332,8 +332,8 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                                         <select @role('Tim Riksa Uji') disabled class="cursor-not-allowed form-control" @endrole name="tools[{{ $i }}][status]" class="form-control" required>
-                                            <option value="pertama" {{ old("tools.$i.status") == 'pertama' ? 'selected' : '' }}>Pertama</option>
-                                            <option value="resertifikasi" {{ old("tools.$i.status") == 'resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
+                                            <option value="Pertama" {{ old("tools.$i.status") == 'Pertama' ? 'selected' : '' }}>Pertama</option>
+                                            <option value="Resertifikasi" {{ old("tools.$i.status") == 'Resertifikasi' ? 'selected' : '' }}>Resertifikasi</option>
                                         </select>
                                     </td>
                                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
@@ -630,8 +630,8 @@
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
                         <select @role('Tim Riksa Uji') disabled class="bg-gray-200 cursor-not-allowed form-control" @endrole name="tools[${rowCount}][status]" class="form-control" required>
-                            <option value="pertama">Pertama</option>
-                            <option value="resertifikasi">Resertifikasi</option>
+                            <option value="Pertama">Pertama</option>
+                            <option value="Resertifikasi">Resertifikasi</option>
                         </select>
                     </td>
                     <td class="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">

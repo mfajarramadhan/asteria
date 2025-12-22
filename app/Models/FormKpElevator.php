@@ -14,8 +14,8 @@ class FormKpElevator extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-    'foto_informasi_umum' => 'array',
-    'foto_informasi_umum' => 'array',
+            'tanggal_pemeriksaan' => 'date',
+            'foto_informasi_umum' => 'array',
             'foto_mesin' => 'array',
             'foto_tali_penggantung' => 'array',
             'foto_teromol' => 'array',

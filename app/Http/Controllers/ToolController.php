@@ -15,12 +15,30 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::all();
+        $tools = Tool::with('jenis')->get();
         return view('tools.index', [
             'tools' => $tools, 
             'title' => 'Daftar Alat', 
             'subtitle' => 'Daftar alat riksa uji PT. Asteria Riksa Indonesia'
         ]);
+    }
+
+    public function searchTool(Request $request)
+    {
+        $keyword = $request->q;
+
+        $tools = Tool::with('jenis')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where(function ($q) use ($keyword) {
+                    $q->where('nama', 'LIKE', "%{$keyword}%")
+                    ->orWhereHas('jenis', function ($j) use ($keyword) {
+                        $j->where('jenis', 'LIKE', "%{$keyword}%");
+                    });
+                });
+            })
+            ->get();
+
+        return response()->json($tools);
     }
 
     /**
@@ -38,9 +56,8 @@ class ToolController extends Controller
         ]);
     }
 
-        /**
-     * AJAX: return sub-jenis yang punya jenis_riksa_uji_id = $jenisId
-     */
+    
+    // AJAX: return sub-jenis yang punya jenis_riksa_uji_id = $jenisId
     public function subJenis($jenisId)
     {
         $sub = SubJenisRiksaUji::where('jenis_riksa_uji_id', $jenisId)
