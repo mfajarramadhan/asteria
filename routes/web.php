@@ -55,9 +55,9 @@ Route::middleware('auth')->group(function () {
 
         // Tools Search
         Route::get('/tools/search-tool', [ToolController::class, 'searchTool'])
-        ->name('tools.search.tool');
+            ->name('tools.search.tool');
         Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
-        Route::get('/tools/search', [ToolController::class, 'search'])->name('tools.search');    
+        Route::get('/tools/search', [ToolController::class, 'search'])->name('tools.search');
 
         // Tools Resource (CRUD)
         Route::resource('tools', ToolController::class);
@@ -75,8 +75,6 @@ Route::middleware('auth')->group(function () {
             ->name('job-order-tools.selesai');
         Route::patch('/job-order-tools/{jobOrderTool}/belum', [JobOrderToolController::class, 'setBelum'])
             ->name('job-order-tools.belum');
-
-
     });
 
     // User Management: Hanya superAdmin
@@ -96,8 +94,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('form_kp/pubt')->name('form_kp.pubt.')->middleware(['role:Tim Riksa Uji|Admin Riksa Uji|Super Admin|Penyusun LHP'])->group(function () {
         // Dashboard PUBT
         Route::get('/', [DashboardPUBTController::class, 'index'])->name('index');
-        
-        
+
+
         // CRUD Bejana Tekan
         Route::prefix('bejana_tekan')->name('bejana_tekan.')->group(function () {
             Route::get('/search', [FormKpBejanaTekanController::class, 'search'])->name('search');
@@ -257,7 +255,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/{formKpCargoLift}', [FormKpCargoLiftController::class, 'update'])->name('update');
         });
     });
-    
+
 
 
     // Rute Form KP Listrik Semua Role
@@ -297,6 +295,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Eskalator
         Route::prefix('eskalator')->name('eskalator.')->group(function () {
+            Route::get('/search', [FormKpEskalatorController::class, 'search'])->name('search');
             Route::get('/', [FormKpEskalatorController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpEskalatorController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpEskalatorController::class, 'store'])->name('store');
@@ -307,6 +306,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD Elevator
         Route::prefix('elevator')->name('elevator.')->group(function () {
+            Route::get('/search', [FormKpElevatorController::class, 'search'])->name('search');
             Route::get('/', [FormKpElevatorController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpElevatorController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpElevatorController::class, 'store'])->name('store');
@@ -325,6 +325,7 @@ Route::middleware('auth')->group(function () {
 
         // CRUD IPK
         Route::prefix('instalasi_fire_hydrant')->name('instalasi_fire_hydrant.')->group(function () {
+            Route::get('/search', [FormKpInstalasiFireHydrantController::class, 'search'])->name('search');
             Route::get('/', [FormKpInstalasiFireHydrantController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireHydrantController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpInstalasiFireHydrantController::class, 'store'])->name('store');
@@ -334,6 +335,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('instalasi_fire_alarm')->name('instalasi_fire_alarm.')->group(function () {
+            Route::get('/search', [FormKpInstalasiFireAlarmController::class, 'search'])->name('search');
             Route::get('/', [FormKpInstalasiFireAlarmController::class, 'index'])->name('index');
             Route::get('/{jobOrderTool}/create', [FormKpInstalasiFireAlarmController::class, 'create'])->name('create');
             Route::post('/{jobOrderTool}', [FormKpInstalasiFireAlarmController::class, 'store'])->name('store');

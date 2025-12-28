@@ -29,6 +29,37 @@ class FormKpInstalasiFireAlarmController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $q = trim($request->q);
+
+        $instalasiFireAlarms = FormKpInstalasiFireAlarm::with([
+            'jobOrderTool.jobOrder',
+            'jobOrderTool.tool'
+        ])
+            ->when($q, function ($query) use ($q) {
+
+                $query->where('tanggal_pemeriksaan', 'like', "%{$q}%")
+
+                    ->orWhereHas('jobOrderTool.jobOrder', function ($q2) use ($q) {
+                        $q2->where('nomor_jo', 'like', "%{$q}%")
+                            ->orWhere('nama_perusahaan', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool.tool', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool', function ($q2) use ($q) {
+                        $q2->where('status', 'like', "%{$q}%")
+                            ->orWhere('status_tool', 'like', "%{$q}%");
+                    });
+            })
+            ->latest()
+            ->get();
+
+        return response()->json($instalasiFireAlarms);
+    }
 
     public function create($jobOrderToolId)
     {
@@ -46,12 +77,12 @@ class FormKpInstalasiFireAlarmController extends Controller
     public function store(Request $request, $jobOrderToolId)
     {
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
-        
+
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable|date',
             'foto_informasi_umum' => 'nullable|array',
             'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-            
+
             // Informasi Umum
             'nama_perusahaan' => 'nullable|string|max:150',
             'kapasitas' => 'nullable|string|max:100',
@@ -101,8 +132,8 @@ class FormKpInstalasiFireAlarmController extends Controller
         ]);
 
         // Konversi tanggal
-        $validated['tanggal_pemeriksaan'] = $validated['tanggal_pemeriksaan'] 
-            ? Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d') 
+        $validated['tanggal_pemeriksaan'] = $validated['tanggal_pemeriksaan']
+            ? Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d')
             : null;
 
         // Upload Foto Informasi Umum (Multiple)
@@ -176,7 +207,7 @@ class FormKpInstalasiFireAlarmController extends Controller
             'tanggal_pemeriksaan' => 'nullable|date',
             'foto_informasi_umum' => 'nullable|array',
             'foto_informasi_umum.*' => 'image|mimes:jpg,jpeg,png|max:10240',
-            
+
             // Informasi Umum
             'nama_perusahaan' => 'nullable|string|max:150',
             'kapasitas' => 'nullable|string|max:100',
@@ -232,22 +263,29 @@ class FormKpInstalasiFireAlarmController extends Controller
 
         // Upload Foto Umum
         if ($request->hasFile('foto_informasi_umum')) {
+
             if ($formKpInstalasiFireAlarm->foto_informasi_umum) {
-                $oldFiles = json_decode($formKpInstalasiFireAlarm->foto_informasi_umum, true) ?? [];
+                $oldFiles = $formKpInstalasiFireAlarm->foto_informasi_umum ?? [];
+
                 foreach ($oldFiles as $oldFile) {
-                    if (Storage::disk('public')->exists($oldFile)) {
+                    if (is_string($oldFile) && Storage::disk('public')->exists($oldFile)) {
                         Storage::disk('public')->delete($oldFile);
                     }
                 }
             }
+
             $paths = [];
-            foreach ($request->file('foto_informasi_umum') as $file) {
+            $files = (array) $request->file('foto_informasi_umum');
+
+            foreach ($files as $file) {
                 $paths[] = $file->store('ipk/instalasi_fire_alarm/foto_umum', 'public');
             }
+
             $validated['foto_informasi_umum'] = json_encode($paths);
         } else {
-             unset($validated['foto_informasi_umum']); 
+            unset($validated['foto_informasi_umum']);
         }
+
 
         // Upload Doks
         $docFields = [
