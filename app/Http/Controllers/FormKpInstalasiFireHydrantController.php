@@ -29,6 +29,37 @@ class FormKpInstalasiFireHydrantController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $q = trim($request->q);
+
+        $instalasiFireHydrants = FormKpInstalasiFireHydrant::with([
+            'jobOrderTool.jobOrder',
+            'jobOrderTool.tool'
+        ])
+            ->when($q, function ($query) use ($q) {
+
+                $query->where('tanggal_pemeriksaan', 'like', "%{$q}%")
+
+                    ->orWhereHas('jobOrderTool.jobOrder', function ($q2) use ($q) {
+                        $q2->where('nomor_jo', 'like', "%{$q}%")
+                            ->orWhere('nama_perusahaan', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool.tool', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    })
+
+                    ->orWhereHas('jobOrderTool', function ($q2) use ($q) {
+                        $q2->where('status', 'like', "%{$q}%")
+                            ->orWhere('status_tool', 'like', "%{$q}%");
+                    });
+            })
+            ->latest()
+            ->get();
+
+        return response()->json($instalasiFireHydrants);
+    }
 
     public function create($jobOrderToolId)
     {
@@ -46,7 +77,7 @@ class FormKpInstalasiFireHydrantController extends Controller
     public function store(Request $request, $jobOrderToolId)
     {
         $jobOrderTool = JobOrderTool::findOrFail($jobOrderToolId);
-        
+
         $validated = $request->validate([
             'tanggal_pemeriksaan' => 'nullable', // Could be date or time based on migration
             'foto_informasi_umum' => 'nullable|array',
@@ -130,11 +161,11 @@ class FormKpInstalasiFireHydrantController extends Controller
         // We will try to format it as Y-m-d. If it fails due to column type, the user should be notified to fix migration.
         // Assuming we want date here.
         if ($validated['tanggal_pemeriksaan']) {
-             try {
+            try {
                 $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
-             } catch (\Exception $e) {
-                 // Ignore if format fails, keep original (maybe it's already Y-m-d or Time)
-             }
+            } catch (\Exception $e) {
+                // Ignore if format fails, keep original (maybe it's already Y-m-d or Time)
+            }
         }
 
         // Upload Foto
@@ -265,14 +296,15 @@ class FormKpInstalasiFireHydrantController extends Controller
         ]);
 
         if ($validated['tanggal_pemeriksaan']) {
-             try {
+            try {
                 $validated['tanggal_pemeriksaan'] = Carbon::createFromFormat('d-m-Y', $validated['tanggal_pemeriksaan'])->format('Y-m-d');
-             } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+            }
         }
 
         if ($request->hasFile('foto_informasi_umum')) {
             if ($formKpInstalasiFireHydrant->foto_informasi_umum) {
-                $oldFiles = json_decode($formKpInstalasiFireHydrant->foto_informasi_umum, true) ?? [];
+                $oldFiles = $formKpInstalasiFireAlarm->foto_informasi_umum ?? [];
                 foreach ($oldFiles as $oldFile) {
                     if (Storage::disk('public')->exists($oldFile)) {
                         Storage::disk('public')->delete($oldFile);
@@ -285,7 +317,7 @@ class FormKpInstalasiFireHydrantController extends Controller
             }
             $validated['foto_informasi_umum'] = json_encode($paths);
         } else {
-             unset($validated['foto_informasi_umum']);
+            unset($validated['foto_informasi_umum']);
         }
 
         $formKpInstalasiFireHydrant->update($validated);
