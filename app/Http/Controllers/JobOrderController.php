@@ -15,14 +15,14 @@ class JobOrderController extends Controller
     public function index()
     {
         $jobOrders = JobOrder::with('tools')
-            ->orderByRaw("
-                CASE
-                    WHEN status_jo = 'belum' THEN 0
-                    WHEN status_jo = 'proses' THEN 1
-                    ELSE 2
-                END
-            ")
-            ->orderByDesc('created_at')
+            // ->orderByRaw("
+            //     CASE
+            //         WHEN status_jo = 'belum' THEN 0
+            //         WHEN status_jo = 'proses' THEN 1
+            //         ELSE 2
+            //     END
+            // ")
+            ->orderByDesc('id')
             ->paginate(10);
 
         return view('job_orders.index', [

@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -67,7 +67,7 @@ return new class extends Migration
             $table->text('lifting2')->nullable();
             $table->text('hasil2')->nullable();
             $table->text('keterangan2')->nullable();
-            $table->text('radius_putaran_kiri', 25)->nullable();
+            $table->text('radius_putaran_kiri')->nullable();
 
             $table->text('swl_tinggi_angkat3')->nullable();
             $table->text('beban_uji_load_chard3')->nullable();
