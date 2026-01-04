@@ -1,73 +1,127 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-        @csrf
+<div class="grid w-full min-h-screen grid-cols-1 overflow-hidden md:grid-cols-12 bg-gradient-to-b from-blue-900 to-blue-500">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="nama" :value="__('Nama')" />
-            <x-text-input id="nama" class="block w-full mt-1" type="text" name="nama" :value="old('nama')" required autofocus autocomplete="nama" />
-            <x-input-error :messages="$errors->get('nama')" class="mt-2" />
+    <!-- LEFT -->
+    <div class="flex col-span-1 p-10 text-white md:py-8 md:col-span-7 md:px-32">
+        <div class="flex flex-col justify-between w-full min-w-sm">
+            <div>
+                <h1 class="my-8 text-4xl font-bold leading-tight md:text-4xl text-indigo-50">
+                    Selamat Datang di Sistem Riksa Uji
+                    <span class="mt-2 md:block">PT. Asteria Riksa Indonesia</span>
+                </h1>
+
+                <p class="mb-2 text-lg">
+                    Platform untuk memantau, mengelola, dan memastikan semua peralatan kerja Anda lulus uji sesuai standar K3
+                </p>
+
+                <div class="flex justify-around">
+                    <img src="{{ asset('assets/logo/image-riksa-uji.png') }}"
+                        class="object-contain md:w-64 md:h-64 w-52 h-52 my-9 transform-gpu hover:scale-105">
+
+                    <div class="flex flex-col justify-center">
+                        <p class="mb-2 text-lg">✅ Pengingat otomatis jadwal uji</p>
+                        <p class="mb-2 text-lg">✅ Laporan inspeksi cepat</p>
+                        <p class="mb-2 text-lg">✅ Status kelayakan alat real-time</p>
+                    </div>
+                </div>
+
+                <p class="mb-1 text-base">Sudah punya akun?</p>
+
+                <div class="flex items-center h-12">
+                    <a class="px-4 py-2 font-semibold text-blue-900 bg-white border border-blue-500 rounded-lg hover:bg-gray-50" href="{{ route('login') }}">
+                        Log In
+                    </a>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- ID User -->
-        <div class="mt-4">
-            <x-input-label for="id_user" :value="__('ID Karyawan')" />
-            <x-text-input id="id_user" class="block w-full mt-1" type="text" name="id_user" :value="old('id_user')" required autocomplete="id_user" />
-            <x-input-error :messages="$errors->get('id_user')" class="mt-2" />
+    <!-- RIGHT -->
+    <div class="relative col-span-1 px-6 md:px-0 md:col-span-5 flex md:rounded-tl-[44px] bg-white">
+        <div class="absolute top-4 right-0 -left-4 h-full w-full rounded-tl-[44px] bg-white/50 hidden md:block"></div>
+
+        <div class="z-10 w-full">
+            <div class="max-w-sm p-4 mx-auto mt-6 bg-white sm:p-10 lg:max-w-lg xl:max-w-xl">
+
+                <h2 class="mb-8 text-4xl font-bold text-slate-600">Registrasi</h2>
+
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    @csrf
+
+                    <input id="nama" name="nama" type="text" value="{{ old('nama') }}"
+                        placeholder="Nama Lengkap"
+                        class="w-full px-4 py-4 mb-4 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                    <x-input-error :messages="$errors->get('nama')" class="mb-3"/>
+
+                    <input id="id_user" name="id_user" type="text" value="{{ old('id_user') }}"
+                        placeholder="ID Karyawan"
+                        class="w-full px-4 py-4 mb-4 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                    <x-input-error :messages="$errors->get('id_user')" class="mb-3"/>
+
+                    <input id="email" name="email" type="email" value="{{ old('email') }}"
+                        placeholder="Email"
+                        class="w-full px-4 py-4 mb-4 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                    <x-input-error :messages="$errors->get('email')" class="mb-3"/>
+
+                    <input id="jabatan" name="jabatan" type="text" value="{{ old('jabatan') }}"
+                        placeholder="Jabatan"
+                        class="w-full px-4 py-4 mb-4 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                    <x-input-error :messages="$errors->get('jabatan')" class="mb-3"/>
+
+                    <input id="avatar" name="avatar" type="file"
+                        class="w-full px-2 py-3 mb-4 text-sm border-b text-slate-600">
+
+                    <div class="relative mb-4">
+                        <input id="password" name="password" type="password"
+                            placeholder="Password"
+                            class="w-full px-4 py-4 pr-12 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                        <button type="button"
+                            onclick="togglePassword('password')"
+                            class="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 hover:text-blue-500">
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5
+                                    c4.478 0 8.268 2.943 9.542 7
+                                    -1.274 4.057-5.064 7-9.542 7
+                                    -4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="relative mb-8">
+                        <input id="password_confirmation" name="password_confirmation" type="password"
+                            placeholder="Konfirmasi Password"
+                            class="w-full px-4 py-4 pr-12 text-lg border-b text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                        
+                        <button type="button"
+                            onclick="togglePassword('password_confirmation')"
+                            class="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 hover:text-blue-500">
+                            <svg id="eyeIconConfirm" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-4 font-bold text-white transition rounded-full bg-gradient-to-t from-blue-900 to-blue-500 hover:-translate-y-1 hover:shadow-lg">
+                        Register
+                    </button>
+                </form>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="email" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Jabatan -->
-        <div class="mt-4">
-            <x-input-label for="jabatan" :value="__('Jabatan')" />
-            <x-text-input id="jabatan" class="block w-full mt-1" type="text" name="jabatan" :value="old('jabatan')" required autocomplete="jabatan" />
-            <x-input-error :messages="$errors->get('jabatan')" class="mt-2" />
-        </div>
-
-        <!-- Avatar -->
-        <div class="mt-4">
-            <x-input-label for="avatar" :value="__('Foto Profile')" />
-            <x-text-input id="avatar" class="block w-full mt-1" type="file" name="avatar" :value="old('avatar')" autocomplete="avatar" />
-            <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block w-full mt-1"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block w-full mt-1"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
+</div>
 </x-guest-layout>
+
+<script>
+function togglePassword(id) {
+    const p = document.getElementById(id);
+    p.type = p.type === 'password' ? 'text' : 'password';
+}
+</script>

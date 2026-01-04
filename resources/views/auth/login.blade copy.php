@@ -1,42 +1,21 @@
 <x-guest-layout>
-<div class="grid w-full min-h-screen grid-cols-1 overflow-hidden md:grid-cols-12 bg-gradient-to-b from-blue-900 to-blue-500">
+<div class="grid min-h-screen w-full grid-cols-1 md:grid-cols-12 overflow-hidden bg-[#422ED0]">
 
     <!-- LEFT -->
-    <div class="flex col-span-1 p-10 text-white md:py-8 md:col-span-7 md:px-32">
+    <div class="flex col-span-1 p-10 text-white md:col-span-7 md:p-20">
         <div class="flex flex-col justify-between w-full min-w-sm">
             <div>
-                <h1 class="my-8 text-4xl font-bold leading-tight md:text-4xl text-indigo-50">
-                    Selamat Datang di Sistem Riksa Uji <span class="mt-2 md:block">PT. Asteria Riksa Indonesia</span>
+                <img src="asset('assets/logo/logo-asteria.png)" style="filter: brightness(0) invert(1);" />
+            </div>
+
+            <div>
+                <h1 class="my-8 text-4xl font-bold leading-tight md:text-7xl text-indigo-50">
+                    Selamat Datang di Sistem Riksa Uji PT Asteria Riksa Indonesia
                 </h1>
-
-                <p class="mb-2 text-lg">
-                    Platform untuk memantau, mengelola, dan memastikan semua peralatan kerja Anda lulus uji sesuai standar K3
-                </p>
-
-                <div class="flex justify-around">
-                    <!-- Image -->
-                    <img
-                        src="{{ asset('assets/logo/image-riksa-uji.png') }}"
-                        alt="PT Asteria"
-                        class="object-contain md:w-64 md:h-64 w-52 h-52 my-9 transition-transform transform-gpu hover:scale-[105%]">
-
-                    <div class="flex flex-col justify-center">
-                    <p class="mb-2 text-lg">
-                        ✅ Pengingat otomatis jadwal uji
-                    </p>
-                    <p class="mb-2 text-lg">
-                        ✅ Laporan inspeksi cepat
-                    </p>
-                    <p class="mb-2 text-lg">
-                        ✅ Status kelayakan alat real-time
-                    </p>
-                    </div>
-                </div>
-                    
-                <p class="mb-1 text-base">Belum punya akun?</p>
+                <p class="mb-2 text-xl">Belum punya akun?</p>
 
                 <div class="flex items-center h-12">
-                    <a class="px-4 py-2 font-semibold text-blue-900 bg-white border border-blue-500 rounded-lg hover:bg-gray-50" href="{{ route('register') }}">
+                    <a class="px-4 py-2 font-semibold bg-white border rounded-lg text-violet-800 border-violet-500" href="{{ route('register') }}">
                         Registrasi
                     </a>
                 </div>
@@ -49,7 +28,7 @@
         <div class="absolute top-4 right-0 -left-4 z-2 h-full w-full rounded-tl-[44px] bg-white/50 hidden md:block"></div>
 
         <div class="z-10 w-full">
-            <div class="max-w-sm p-4 mx-auto mt-6 bg-white md:mt-6 z-4 sm:p-10 lg:max-w-lg xl:max-w-xl">
+            <div class="max-w-sm p-4 mx-auto mt-6 bg-white md:mt-10 z-4 sm:p-10 lg:max-w-lg xl:max-w-xl">
 
                 <h2 class="mb-10 text-4xl font-bold text-slate-600">Log In</h2>
 
@@ -65,7 +44,7 @@
                         type="email"
                         value="{{ old('email') }}"
                         placeholder="Email"
-                        class="w-full px-4 py-5 mb-6 text-lg font-medium border-b border-gray-300 text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        class="w-full px-4 py-5 mb-6 text-lg font-medium border-b border-gray-300 text-slate-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
                         required autofocus>
 
                     <x-input-error :messages="$errors->get('email')" class="mb-4" />
@@ -77,12 +56,12 @@
                             name="password"
                             type="password"
                             placeholder="Password"
-                            class="w-full px-4 py-5 pr-12 text-lg font-medium border-b border-gray-300 text-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            class="w-full px-4 py-5 pr-12 text-lg font-medium border-b border-gray-300 text-slate-700 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
                             required>
 
                         <button type="button"
                             onclick="togglePassword()"
-                            class="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 hover:text-blue-500">
+                            class="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 hover:text-indigo-600">
                             <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,13 +81,13 @@
                     <!-- Remember & Forgot -->
                     <div class="flex items-center justify-between mb-10">
                         <label class="flex items-center space-x-2">
-                            <input id="remember_me" name="remember" type="checkbox" class="text-blue-500 form-checkbox">
+                            <input id="remember_me" name="remember" type="checkbox" class="text-indigo-600 form-checkbox">
                             <span class="font-medium text-gray-600">Ingat saya</span>
                         </label>
 
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}"
-                            class="text-lg font-medium text-blue-500 hover:underline">
+                            class="text-lg font-medium text-indigo-600 hover:underline">
                                 Lupa password?
                             </a>
                         @endif
@@ -116,7 +95,7 @@
 
                     <!-- Button -->
                     <button type="submit"
-                        class="w-full px-8 py-4 mb-6 font-bold text-white transition-transform rounded-full transform-gpu bg-gradient-to-t from-blue-900 to-blue-500 hover:-translate-y-1 hover:shadow-lg">
+                        class="w-full px-8 py-4 mb-6 font-bold text-white transition-transform rounded-full transform-gpu bg-gradient-to-r from-blue-500 to-purple-500 hover:-translate-y-1 hover:shadow-lg">
                         Log In
                     </button>
                 </form>
@@ -139,7 +118,7 @@
 
                 <p class="mt-12 text-sm text-center text-gray-500">
                     Belum punya akun?
-                    <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Registrasi</a>
+                    <a href="{{ route('register') }}" class="text-indigo-600 hover:underline">Registrasi</a>
                 </p>
 
             </div>
