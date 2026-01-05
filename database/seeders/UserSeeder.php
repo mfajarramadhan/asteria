@@ -18,75 +18,75 @@ class UserSeeder extends Seeder
         $adminRole = Role::where('name', 'Admin Riksa Uji')->first();
         $penyusunLHPRole = Role::where('name', 'Penyusun LHP')->first();
 
-        $userPetugas = User::create([
-            'nama'      => 'Heri',
-            'id_user'     => '0002',
-            'email'     => 'heri@gmail.com',
-            'jabatan'   => 'Ahli K3',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('heri12345'),
-        ]);
+        // $userPetugas = User::create([
+        //     'nama'      => 'Heri',
+        //     'id_user'     => '0002',
+        //     'email'     => 'heri@gmail.com',
+        //     'jabatan'   => 'Ahli K3',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('heri12345'),
+        // ]);
 
-        $userPetugas2 = User::create([
-            'nama'      => 'Alben',
-            'id_user'     => '0003',
-            'email'     => 'alben@gmail.com',
-            'jabatan'   => 'Asisten Pertama AK3',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('alben12345'),
-        ]);
+        // $userPetugas2 = User::create([
+        //     'nama'      => 'Alben',
+        //     'id_user'     => '0003',
+        //     'email'     => 'alben@gmail.com',
+        //     'jabatan'   => 'Asisten Pertama AK3',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('alben12345'),
+        // ]);
 
-        $userPetugas3 = User::create([
-            'nama'      => 'Sarip',
-            'id_user'     => '0004',
-            'email'     => 'sarip@gmail.com',
-            'jabatan'   => 'Asisten Muda AK3',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('sarip12345'),
-        ]);
+        // $userPetugas3 = User::create([
+        //     'nama'      => 'Sarip',
+        //     'id_user'     => '0004',
+        //     'email'     => 'sarip@gmail.com',
+        //     'jabatan'   => 'Asisten Muda AK3',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('sarip12345'),
+        // ]);
 
-        $userAdmin = User::create([
-            'nama'      => 'Maul',
-            'id_user'     => '0005',
-            'email'     => 'maul@gmail.com',
-            'jabatan'   => 'Staff Admin',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('maul12345'),
-        ]);
+        // $userAdmin = User::create([
+        //     'nama'      => 'Maul',
+        //     'id_user'     => '0005',
+        //     'email'     => 'maul@gmail.com',
+        //     'jabatan'   => 'Staff Admin',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('maul12345'),
+        // ]);
 
-        $userAdmin2 = User::create([
-            'nama'      => 'Intan',
-            'id_user'     => '0006',
-            'email'     => 'intan@gmail.com',
-            'jabatan'   => 'Staff Admin',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('intan12345'),
-        ]);
+        // $userAdmin2 = User::create([
+        //     'nama'      => 'Intan',
+        //     'id_user'     => '0006',
+        //     'email'     => 'intan@gmail.com',
+        //     'jabatan'   => 'Staff Admin',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('intan12345'),
+        // ]);
 
-        $userAdmin3 = User::create([
-            'nama'      => 'Sarah',
-            'id_user'     => '0007',
-            'email'     => 'sarah@gmail.com',
-            'jabatan'   => 'Staff Admin',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('sarah12345'),
-        ]);
+        // $userAdmin3 = User::create([
+        //     'nama'      => 'Sarah',
+        //     'id_user'     => '0007',
+        //     'email'     => 'sarah@gmail.com',
+        //     'jabatan'   => 'Staff Admin',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('sarah12345'),
+        // ]);
 
-        $userPenyusunLHP = User::create([
-            'nama'      => 'Bayu',
-            'id_user'     => '0008',
-            'email'     => 'bayu@gmail.com',
-            'jabatan'   => 'Staff Penyusun LHP',
-            'avatar'    => 'avatars/default.png',
-            'password'  => Hash::make('bayu12345'),
-        ]);
+        // $userPenyusunLHP = User::create([
+        //     'nama'      => 'Bayu',
+        //     'id_user'     => '0008',
+        //     'email'     => 'bayu@gmail.com',
+        //     'jabatan'   => 'Staff Penyusun LHP',
+        //     'avatar'    => 'avatars/default.png',
+        //     'password'  => Hash::make('bayu12345'),
+        // ]);
 
-        $userPetugas->assignRole($petugasRole);
-        $userPetugas2->assignRole($petugasRole);
-        $userPetugas3->assignRole($petugasRole);
-        $userAdmin->assignRole($adminRole);
-        $userAdmin2->assignRole($adminRole);
-        $userAdmin3->assignRole($adminRole);
-        $userPenyusunLHP->assignRole($penyusunLHPRole);
+        // $userPetugas->assignRole($petugasRole);
+        // $userPetugas2->assignRole($petugasRole);
+        // $userPetugas3->assignRole($petugasRole);
+        // $userAdmin->assignRole($adminRole);
+        // $userAdmin2->assignRole($adminRole);
+        // $userAdmin3->assignRole($adminRole);
+        // $userPenyusunLHP->assignRole($penyusunLHPRole);
     }
 }

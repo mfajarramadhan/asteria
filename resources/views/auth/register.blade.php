@@ -11,17 +11,17 @@
                 </h1>
 
                 <p class="mb-2 text-lg">
-                    Platform untuk memantau, mengelola, dan memastikan semua peralatan kerja Anda lulus uji sesuai standar K3
+                    Platform untuk monitoring, mengelola, dan memastikan semua peralatan industri Anda lulus uji sesuai standar K3!
                 </p>
 
-                <div class="flex justify-around">
+                <div class="flex justify-around gap-5">
                     <img src="{{ asset('assets/logo/image-riksa-uji.png') }}"
                         class="object-contain md:w-64 md:h-64 w-52 h-52 my-9 transform-gpu hover:scale-105">
 
                     <div class="flex flex-col justify-center">
-                        <p class="mb-2 text-lg">✅ Pengingat otomatis jadwal uji</p>
-                        <p class="mb-2 text-lg">✅ Laporan inspeksi cepat</p>
-                        <p class="mb-2 text-lg">✅ Status kelayakan alat real-time</p>
+                        <p class="mb-2 text-lg">✅ Monitoring jadwal riksa uji</p>
+                        <p class="mb-2 text-lg">✅ Laporan inspeksi mudah & cepat</p>
+                        <p class="mb-2 text-lg">✅ Status pemeriksaan alat real-time</p>
                     </div>
                 </div>
 
